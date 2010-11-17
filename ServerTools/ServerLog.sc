@@ -19,11 +19,11 @@ ServerLog : NetAddr {
 		Server.default.addr = new;
 		^new
 	}
-	*gui { |tail=1000|
+	*gui { |parent,bounds,tail=1000|
 		var events;
 		if(Server.default.addr.isKindOf(ServerLog),{
 			Server.default.addr.getSortedEvents(tail,{ |events|
-				Server.default.addr.gui(nil,nil,events)
+				Server.default.addr.gui(parent,bounds,events)
 			});
 		},{
 			"ServerLog has not been running".inform;

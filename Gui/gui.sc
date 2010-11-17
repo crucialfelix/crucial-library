@@ -18,7 +18,11 @@
 		^Tile(this,args.first.asPageLayout)
 	}
 }
-
++ ObjectGui {
+	topGui { arg ... args;
+		this.performList(\gui, args);
+	}
+}
 
 + Pattern {
 	// by default gui all public inst vars

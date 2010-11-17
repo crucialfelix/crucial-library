@@ -61,8 +61,8 @@ MultiPageLayout  {
 		this.view.startRow;
 	}
 	indentedRemaining { ^this.view.indentedRemaining }
-	*guify { arg lay,title,width,height,background;
-		^lay ?? {
+	*guify { arg parent,title,width,height,background;
+		^parent ?? {
 			this.new(title,width,height,background: background )
 		}
 	}
@@ -223,13 +223,13 @@ PageLayout  {
 	}
 
 	//asPageLayout
-	*guify { arg lay,title,width,height,metal=false;
-		if(lay.notNil,{// and: {lay.checkNotClosed},{
+	*guify { arg parent,title,width,height,metal=false;
+		if(parent.notNil,{// and: {parent.checkNotClosed},{
 			// if its a GUIWindow we return a flow layout on it
-			if(lay.isKindOf(SCWindow),{
-				^this.onWindow(lay)
+			if(parent.isKindOf(SCWindow),{
+				^this.onWindow(parent)
 			},{
-				^lay
+				^parent
 			});
 		},{
 			^this.new(title,width,height,metal: metal )

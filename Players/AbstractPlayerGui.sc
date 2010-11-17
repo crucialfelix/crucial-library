@@ -1,11 +1,11 @@
 
 AbstractPlayerGui : ObjectGui {
 
-	gui { arg lay,bounds ... args;
+	gui { arg parent,bounds ... args;
 		var layout;
 
-		layout=this.guify(lay,bounds);
-		if(lay.isNil,{
+		layout=this.guify(parent,bounds);
+		if(parent.isNil,{
 			// top level controls
 			this.synthConsole(layout);
 			this.saveConsole(layout);
@@ -21,15 +21,15 @@ AbstractPlayerGui : ObjectGui {
 		if(bounds.isNil,{ layout.resizeToFit });
 		this.enableKeyDowns;
 
-		if(lay.isNil,{
+		if(parent.isNil,{
 			layout.resizeToFit(center:true).front;
 			view.focus;
 		})
 	}
 	background { ^Color.yellow(0.3,alpha:0.1) }
-	topGui { arg lay,bounds ... args;
+	topGui { arg parent,bounds ... args;
 		var layout;
-		layout=this.guify(lay,bounds);
+		layout=this.guify(parent,bounds);
 		// top level controls
 		this.synthConsole(layout);
 		this.saveConsole(layout);
@@ -40,7 +40,7 @@ AbstractPlayerGui : ObjectGui {
 		Do(\topGuiPlugIns,model,layout);
 
 		this.enableKeyDowns;
-		if(lay.isNil,{
+		if(parent.isNil,{
 			layout.resizeToFit.front;
 			view.focus;
 		})

@@ -12,14 +12,14 @@ CXMenu : SCViewHolder { // multiple actions
 	*newWith { arg nameFuncs;
 		^super.new.nameFuncs_(nameFuncs)
 	}
-	gui { arg lay,windowWidth=170,height=400,argButtonWidth=160;
+	gui { arg parent,windowWidth=170,height=400,argButtonWidth=160;
 		var w,wbounds;
 		buttonWidth = argButtonWidth;
 		if(windowWidth.isNumber,{ // backwards compat
 			wbounds = Rect(20,20,windowWidth ? buttonWidth + 10,height);		},{
 			wbounds = windowWidth.asRect
 		});
-		layout = lay ?? {
+		layout = parent ?? {
 			isMyLayout = true;
 			MultiPageLayout.new("menu",wbounds,scroll:true);
 		};
@@ -29,7 +29,7 @@ CXMenu : SCViewHolder { // multiple actions
 		this.guiBody(false);
 		this.enableKeyDowns;
 		if(isMyLayout,{ layout.resizeToFit });
-		if(lay.isNil,{ layout.front });
+		if(parent.isNil,{ layout.front });
 	}
 	guiBody { arg resize;
 		nameFuncs.do({arg nf;
