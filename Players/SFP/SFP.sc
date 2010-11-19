@@ -189,6 +189,8 @@ SFP : AbstractSFP  {
 				name = PathName(soundFilePath).fileName;
 				found = file.openRead(soundFilePath);
 			},{
+				// this is a personal hook for backwards compatiblity
+				// class is not in crucial but otherwise harmless
 				if(sfilePath.isKindOf(CXSoundFile),{
 					file=sfilePath;
 					soundFilePath = file.path = this.class.standardizePath(file.path);
