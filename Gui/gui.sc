@@ -94,9 +94,7 @@
 	}
 }
 
-+ Server {
-	guiClass { ^ServerGui }
-}
+
 + Node {
 //	guiClass { ^NodeGui }
 	guiBody { arg layout;
