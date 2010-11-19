@@ -1,5 +1,12 @@
 
 + Object {
+
+	// return an array of symbols specifying which vars to put up on the gui
+	*instVarsForGui { ^[] }
+	*publicInstVars {
+		^this.instVarNames.select({ |ivar| this.findRespondingMethodFor(ivar).notNil })
+	}
+
 	topGui { arg ... args;
 		^this.guiClass.new(this).performList(\topGui,args);
 	}
@@ -18,7 +25,25 @@
 		^Tile(this,args.first.asPageLayout)
 	}
 }
+
 + ObjectGui {
+
+	guiBody { arg layout;
+		// if your model implement guiBody then call that
+		// this is a lazy way to write simple guis for simple objects
+		// where model/gui code separation is not especially important
+		if(model.respondsTo(\guiBody) and: {model.isKindOf(ObjectGui).not},{
+             model.guiBody(layout)
+		},{
+			/*
+			or by default we make a gui showing variables that the class allows to be visible
+			by instVarsForGui
+			by default this is NO variables at all.
+			*/
+			ObjectGui.guiInstVarsOf(model,layout)
+		})
+	}
+
 	topGui { arg ... args;
 		this.performList(\gui, args);
 	}
@@ -30,6 +55,7 @@
 		^this.publicInstVars
 	}
 }
+
 + Pbind {
 	guiBody { |f|
 		var endval = patternpairs.size-1;
@@ -40,6 +66,7 @@
 		};
 	}
 }
+
 + Pswitch  {
 //	guiClass { ^PswitchGui }
 	guiBody { arg layout;
