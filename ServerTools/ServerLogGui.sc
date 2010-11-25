@@ -59,6 +59,26 @@ ServerLogGui : ObjectGui {
 		});
 	}
 
+	*guiMixedBundle { |mb|
+		var slg;
+		slg = ServerLogGui.new(\fakeModel);
+		
+		Sheet({ |r|
+			[mb.preparationMessages,mb.messages].do({ |msgs|
+				if(msgs.size == 1,{
+					slg.formatMsg(r,msgs[0]);
+				},{
+					msgs.do({ |m,i|
+						if(i>0,{
+							r.startRow;
+							CXLabel(r,"",272).background_(Color.clear);
+						});
+						slg.formatMsg(r,m);
+					})
+				});
+			})
+		})
+	}
 	formatMsg { |r,msg|
 		var cmd,selector;
 		cmd = ServerLog.cmdString(msg[0]);

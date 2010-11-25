@@ -112,7 +112,8 @@ ServerLog : NetAddr {
 			q = PriorityQueue.new;
 			msgs.do({ |it| q.put(it.eventTime,it) });
 			events = Array.fill(msgs.size,{ |i|
-					if(i % 25 == 0,{0.01.wait});
+					if(i % 25 == 0,{0.05.wait});
+					if(i % 250 == 0,{ 0.5.wait });
 					q.pop
 				});
 

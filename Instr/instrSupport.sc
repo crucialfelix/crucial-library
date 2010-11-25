@@ -101,6 +101,8 @@
 		// many matched
 		^nil
 	}
+	color { ^Color.black }
+	background { ^Color( 0.47843137254902, 0.72941176470588, 0.50196078431373  ) }
 }
 
 + ControlSpec 	{
@@ -121,6 +123,25 @@
 		toSpec.maxval = this.map(linMaxVal);
 		^toSpec
 	}
+	color { ^rgb(125, 255, 205) }
+	background { ^Color.black }
+}
++ StaticSpec {
+	color { ^Color.black}
+	background { ^rgb(125, 255, 205) }
+}
++ NonControlSpec {
+	color { ^Color.black.alpha_(0.7) }
+	background { ^Color.yellow(alpha:0.3) }
+}
+	
++ AudioSpec {
+	color { ^rgb(255, 218, 000) }
+	background { ^Color.black }
+}
++ StreamSpec {
+	color { ^Color.black }
+	background { ^Color.white }
 }
 
 /** spec **/

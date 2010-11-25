@@ -52,8 +52,11 @@ SampleGui : ObjectGui {
 		//absBounds = Rect(0, 0, size, 80);
 		//absBounds = absBounds.moveToPoint(layout.absoluteBounds.origin);
 		//absBounds = absBounds.moveBy(0,layout.decorator.top);
-		v = GUI.soundFileView.new(layout, Rect(0,0,4,4)) //Rect(0, 0, size, 80)
+		v = GUI.soundFileView.new(layout,Rect(0, 0, size, 80)) // //Rect(0,0,4,4)
 			.canFocus_(true).gridOn_(true).timeCursorOn_(false);
+		v.background = model.spec.background;
+		v.waveColors = Array.fill(model.numChannels,model.spec.color);
+		layout.startRow;
 		d = GUI.slider2D.new(layout, size@30)
 			.action_({|sl|
 				var y;

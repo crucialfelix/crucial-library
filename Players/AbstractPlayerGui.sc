@@ -88,8 +88,8 @@ AbstractPlayerGui : ObjectGui {
 	synthConsole { arg layout;
 		var s, server;
 		server = model.server.asTarget.server;
-		server.gui(layout);
-		//SynthConsole(model,layout).play.registerPlayKey.record.pauseableRecord.write({
+		server.gui(layout).output(layout);
+		// SynthConsole(model,layout).play.registerPlayKey.record.pauseableRecord.write({
 			// model.timeDuration }).scope.stop.formats.tempo;
 		s = SynthConsole(model,layout).play.record.stop.free.tempo;
 

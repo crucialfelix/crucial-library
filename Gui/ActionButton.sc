@@ -36,6 +36,9 @@ SCButtonAdapter : SCViewHolder {
 		view.states = s;
 		view.refresh;
 	}
+	background {
+		^view.states[0][2]
+	}
 	labelColor_ { arg color;
 		var s;
 		s = view.states;

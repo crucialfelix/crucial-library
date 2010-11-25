@@ -43,7 +43,12 @@ PlayerAmpGui : HasSubjectGui {
 
 // move me...
 StreamKrDurGui : HasSubjectGui {
-
+	writeName { |layout|
+		super.writeName(layout);
+		ActionButton(layout,"reset",{
+			model.resetRoutine
+		})
+	}
 	guiBody { arg layout;
 		layout.startRow;
 		ArgNameLabel("values:",layout);

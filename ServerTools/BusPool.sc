@@ -54,7 +54,11 @@ BusPool {
 	*busses { ^counts.contents.keys.as(Array) }
 	*gui {
 		Sheet({ |f|
-			counts.contents.keysValuesDo({ |bus,count|
+			var sortedBusses;
+			sortedBusses = counts.contents.keys.as(Array).sort({ |a,b| a.index < b.index });
+			sortedBusses.do({ |bus|
+				var count;
+				count = this.itemCount(bus);
 				f.startRow;
 				bus.gui(f);
 				count.gui(f);

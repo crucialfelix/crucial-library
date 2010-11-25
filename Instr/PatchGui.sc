@@ -28,7 +28,8 @@ PatchGui : AbstractPlayerGui {
 			layout.startRow;
 			// ArgNameLabel(model.instr.argNames.at(i),layout);
 			GUI.dragSink.new(vl,Rect(0,0,argNameWidth,15))
-				.background_(Color( 0.47843137254902, 0.72941176470588, 0.50196078431373 ))
+				.stringColor_(model.specAt(i).color).background_(model.specAt(i).background)
+				//.background_(Color( 0.47843137254902, 0.72941176470588, 0.50196078431373  ))
 				.font_(font)
 				.align_(\left)
 				.canReceiveDragHandler_({
@@ -60,10 +61,9 @@ PatchGui : AbstractPlayerGui {
 		});
 	}
 	instrGui { arg layout;
-		//Tile(this.model.instr,layout);
 		ActionButton(layout,this.model.instr.dotNotation,{
 			this.model.instr.gui
-		})
+		}).background_(Color.white).labelColor_(Color.black)
 	}
 }
 
