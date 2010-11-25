@@ -7,7 +7,11 @@
 }
 
 + SequenceableCollection {
-	loadPath { arg warnIfNotFound=true;		^this.collect { arg obj;			obj.loadPath(warnIfNotFound)		}	}
+	loadPath { arg warnIfNotFound=true;
+		^this.collect { arg obj;
+			obj.loadPath(warnIfNotFound)
+		}
+	}
 	enpath {
 		^this.collect({ arg obj;
 			obj.enpath
@@ -109,6 +113,8 @@
 
 	converts any signed integer (such as an identityHash) into a base 62
 	string for unique file name usage.
+	so this essentially compresses a large integer into a smaller string representation.
+	its not intended to be reversible, but it could be if need be.
 */
 
 + Integer {

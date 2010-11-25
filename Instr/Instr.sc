@@ -388,7 +388,9 @@ Instr  {
 				sp
 			});
 	}
-
+	// a filter is any instr that has an input the same spec as its output
+	isFilter { ^this.specs.any({ |sp| sp == this.outSpec }) }
+	
 	guiBody { arg layout;
 		var defs,tf,source,lines,h,w,specWidth;
 

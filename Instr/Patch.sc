@@ -228,17 +228,23 @@ Patch : HasPatchIns  {
 				rate = this.instr.outSpec.rate
 			},{
 				// guess, but don't cache that guess
-				'audio'
+				//'audio'
+				this.asSynthDef;// force build
+				rate
 			});
 		};
 	}
 	numChannels {
 		^numChannels ?? {
 			if(this.instr.outSpec.notNil,{
-				numChannels = this.instr.outSpec.numChannels
+				numChannels = this.instr.outSpec.numChannels;
+				if(numChannels.isNil,{
+					this.asSynthDef; // force build
+				});
+				numChannels
 			},{
-				//( this.asString + ": numChannels is unknown").warn;
-				nil
+				this.asSynthDef; // force build
+				numChannels
 			});
 		}
 	}

@@ -23,9 +23,19 @@ InstrSynthDef : SynthDef {
 		^super.prNew.build(instr,args,outClass)
 	}
 	build { arg instr,args,outClass= \Out;
-		this.initBuild
-			.buildUgenGraph(instr,args ? #[],outClass)
-			.finishBuild
+		var stacked;
+		if(UGen.buildSynthDef.notNil,{
+			stacked = UGen.buildSynthDef;
+			//Error("a synth def is already in the process of being built"+UGen.buildSynthDef).throw
+		});
+		protect {
+			this.initBuild
+				.buildUgenGraph(instr,args ? #[],outClass)
+				.finishBuild;
+			UGen.buildSynthDef = stacked;
+		} {
+			UGen.buildSynthDef = stacked;
+		}
 	}
 	buildUgenGraph { arg argInstr,args,outClass;
 		var result,fixedID="",firstName;
@@ -362,8 +372,11 @@ InstrSynthDef : SynthDef {
 		triggerID = stepchildren.select({|sc|sc.isKindOf(ClientOnTrigResponder)}).size + 9999;
 		onTrig = ClientOnTrigResponder(triggerID,func);
 		stepchildren = stepchildren.add(onTrig);
-
-		^SendTrig.kr(trig,triggerID,value)
+		if(trig.rate == \control,{
+			^SendTrig.kr(trig,triggerID,value)
+		},{
+			^SendTrig.ar(trig,triggerID,value)
+		})			
 	}
 
 	/*synthProxy {

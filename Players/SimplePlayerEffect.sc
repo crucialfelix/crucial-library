@@ -21,6 +21,36 @@ AbstractSinglePlayerEffect : HasSubject {
 	}
 }
 
+//convert mono to stereo or stereo to mono
+FixNumChannelsPlayer : AbstractSinglePlayerEffect {
+	
+	var <>numChannels;
+	
+	*new { |subject,numChannels=2|
+		^super.new(subject).numChannels_(numChannels)
+	}
+	storeArgs { ^[subject,numChannels] }
+	asSynthDef {
+		var subjectNumChannels;
+		subjectNumChannels = subject.numChannels;
+		if(subjectNumChannels.isNil,{
+			subject.asSynthDef; // force patch to build
+			subjectNumChannels = subject.numChannels;
+			if(subjectNumChannels.isNil,{
+				Error("Subject % has unknown numChannels".format(subject)).throw
+			});
+		});
+		
+		^SynthDef(this.defName,{ arg i_inBus=0,i_outBus=0;
+			OffsetOut.ar(i_outBus,
+				NumChannels.ar(  In.ar(i_inBus,subjectNumChannels), this.numChannels )
+			)
+		})
+	}
+	defName { ^"%%%".format(this.class.name,this.numChannels,subject.numChannels) }
+	synthDefArgs { ^[\i_inBus,subject.bus.index,\i_outBus,patchOut.synthArg] }	
+}
+
 PlayerAmp : AbstractSinglePlayerEffect {
 
 	var <amp=1.0,<>spec;

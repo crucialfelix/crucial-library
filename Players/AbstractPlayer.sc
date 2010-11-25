@@ -154,7 +154,7 @@ AbstractPlayer : AbstractFunction  {
 	}
 	topMakePatchOut { arg agroup,private = false,bus;
 		this.group = agroup;
-		bus = bus ?? {BusSpec(\audio,this.numChannels,private)};
+		bus = bus ?? {BusSpec(this.rate,this.numChannels,private)};
 		if(patchOut.isNil,{
 			patchOut = PatchOut(this,group,bus);
 		});
@@ -337,6 +337,7 @@ AbstractPlayer : AbstractFunction  {
 		if(patchOut.isNil,{ ^nil });
 		^patchOut.bus
 	}
+	// does not dynamically change your bus
 	bus_ { arg b;
 		if(b.notNil,{
 			if(patchOut.notNil,{
@@ -346,6 +347,7 @@ AbstractPlayer : AbstractFunction  {
 			// and there is nowhere to store this
 		});
 	}
+	// does not dynamically change your group
 	group_ { arg g;
 		if(g.notNil,{
 			group = g.asGroup;
@@ -630,6 +632,9 @@ AbstractPlayer : AbstractFunction  {
 			item.performList(\update, this, what, moreArgs);
 		});
 	}
+	copy {
+		^this.class.new( *this.storeArgs.collect(_.copy) )
+	}
 	*initClass {
 		bundleClass = MixedBundle;
 	}
@@ -640,7 +645,7 @@ AbstractPlayer : AbstractFunction  {
 
 SynthlessPlayer : AbstractPlayer { // should be higher
 
-	var <isPlaying=false;
+	var <>isPlaying=false;
 
 	loadDefFileToBundle { }
 

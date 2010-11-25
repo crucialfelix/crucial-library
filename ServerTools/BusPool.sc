@@ -21,7 +21,6 @@ BusPool {
 		if(annotations.at(bus,client).notNil,{
 			Error("A client may only retain a bus once").throw;
 		});
-		//[bus,client,name].debug("retain");
 		annotations.put(bus,client,name);
 		this.watchServer(bus.server);
 	}
@@ -30,10 +29,7 @@ BusPool {
 		counts.remove(bus);
 		annotations.removeAt(bus,client);
 		if(counts.itemCount(bus) == 0,{
-			//bus.debug("count 0, freeing bus");
 			bus.free;
-		},{
-			//bus.debug("count > 0, hanging on"+counts.itemCount(bus));
 		})
 	}
 
@@ -50,7 +46,6 @@ BusPool {
 	*watchServer { |server|
 		if(NotificationCenter.registrationExists(server,\newAllocators,this).not,{
 			NotificationCenter.register(server,\newAllocators,this,{
-				//"new allocators, BusPool".debug;
 				this.reset;
 			});
 		});
