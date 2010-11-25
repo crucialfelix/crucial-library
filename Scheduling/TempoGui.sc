@@ -9,7 +9,7 @@ TempoGui : ObjectGui {
 		tempoG = NumberEditor(model.bpm,[1.0,666.0])
 			.action_({arg t; model.bpm_(t)});
 
-		tempoG.gui(layout,nil,true);
+		tempoG.gui(layout,100@14,true);
 
 		gnomeInstr = Instr("TempoGui.gnomeInstr");
 		if(gnomeInstr.isNil,{

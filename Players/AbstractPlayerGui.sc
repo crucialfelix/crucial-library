@@ -18,11 +18,15 @@ AbstractPlayerGui : ObjectGui {
 			this.writeName(layout);
 			this.guiBody(layout);
 		},bounds).background_(this.background);
-		if(bounds.isNil,{ layout.resizeToFit });
+
 		this.enableKeyDowns;
 
+		if(bounds.isNil or: parent.isNil,{ 
+			layout.resizeToFit 
+		});
+
 		if(parent.isNil,{
-			layout.resizeToFit(center:true).front;
+			layout.front;
 			view.focus;
 		})
 	}
@@ -41,7 +45,8 @@ AbstractPlayerGui : ObjectGui {
 
 		this.enableKeyDowns;
 		if(parent.isNil,{
-			layout.resizeToFit.front;
+			layout.resizeToFit;
+			layout.front;
 			view.focus;
 		})
 	}
