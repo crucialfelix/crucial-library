@@ -21,7 +21,7 @@ CXMenu : SCViewHolder { // multiple actions
 		});
 		layout = parent ?? {
 			isMyLayout = true;
-			MultiPageLayout.new("menu",wbounds,scroll:true);
+			PageLayout.new("menu",wbounds,scroll:true);
 		};
 		//view = GUI.scrollView.new(layout,Rect(0,0,buttonWidth+4,height));
 		view = GUI.vLayoutView.new(layout,

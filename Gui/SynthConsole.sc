@@ -187,7 +187,7 @@ SaveConsole : AbstractConsole {
 
 	*new { arg object, path,layout;
 		^super.new.object_(object).path_(path)
-			.layout_(layout ?? {MultiPageLayout.new.front})
+			.layout_(layout ?? {PageLayout.new.front})
 	}
 
 	print {

@@ -165,7 +165,7 @@ Crucial {
 		var a,rec,pause;
 		if(menu.notNil,{ menu.close });
 
-		menu = MultiPageLayout.new("-Library-");
+		menu = PageLayout.new("");
 
 		Server.default.gui(menu);
 		menu.startRow;
@@ -237,7 +237,8 @@ Crucial {
 		//TempoGui.setTempoKeys;
 		Tempo.default.gui(menu.startRow);
 
-		menu.resizeToFit.front;
+		menu.resizeToFit;
+		menu.front;
 
 		a.focus;
 	}

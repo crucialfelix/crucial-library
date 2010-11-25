@@ -93,7 +93,7 @@ span.Apple-tab-span {white-space:pre}
 <p class="p5"><br></p>
 <p class="p5"><br></p>
 <p class="p6">(</p>
-<p class="p10"><span class="s4"><span class="Apple-tab-span">	</span>f=</span>MultiPageLayout<span class="s4">.new;</span></p>
+<p class="p10"><span class="s4"><span class="Apple-tab-span">	</span>f=</span>PageLayout<span class="s4">.new;</span></p>
 <p class="p11"><span class="Apple-tab-span">	</span></p>
 <p class="p7"><span class="Apple-tab-span">	</span>n=<span class="s2">NumberEditor</span>(440.0,<span class="s5">\freq</span>);</p>
 <p class="p7"><span class="Apple-tab-span">	</span>n.topGui(f);</p>
@@ -103,7 +103,7 @@ span.Apple-tab-span {white-space:pre}
 <p class="p13"><span class="s4"><span class="Apple-tab-span">	</span></span><span class="s2">ActionButton</span><span class="s4">(f,</span>"post NumberEditor asCompileString"<span class="s4">,{<span class="Apple-converted-space"> </span></span></p>
 <p class="p7"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>n.asCompileString.postln<span class="Apple-converted-space"> </span></p>
 <p class="p7"><span class="Apple-tab-span">	</span>});</p>
-<p class="p7"><span class="Apple-tab-span">	</span>f.resizeToFit.front;</p>
+<p class="p7"><span class="Apple-tab-span">	</span>f.resizeToFit; f.front;</p>
 <p class="p6">)</p>
 <p class="p5"><br></p>
 <p class="p6">// programatically set it</p>
@@ -159,9 +159,9 @@ span.Apple-tab-span {white-space:pre}
 <p class="p5"><br></p>
 <p class="p6">)</p>
 <p class="p5"><br></p>
-<p class="p6">Putting them on a MultiPageLayout</p>
+<p class="p6">Putting them on a PageLayout</p>
 <p class="p6">(</p>
-<p class="p20"><span class="s4">w = </span>MultiPageLayout<span class="s4">.new;</span></p>
+<p class="p20"><span class="s4">w = </span>PageLayout<span class="s4">.new;</span></p>
 <p class="p7">c = <span class="s10">Array</span>.fill(10,{ <span class="s10">arg</span> i;</p>
 <p class="p7"><span class="Apple-tab-span">	</span><span class="s10">var</span> n;</p>
 <p class="p20"><span class="s4"><span class="Apple-tab-span">	</span>n = </span>NumberEditor<span class="s4">(0,</span><span class="s11">\amp</span><span class="s4">);</span></p>
@@ -185,12 +185,12 @@ span.Apple-tab-span {white-space:pre}
 <p class="p11"><br></p>
 <p class="p7">)</p>
 <p class="p11"><br></p>
-<p class="p7">using a MultiPageLayout on a window</p>
+<p class="p7">using a PageLayout on a window</p>
 <p class="p7">(</p>
 <p class="p11"><br></p>
 <p class="p7">w = <span class="s10">GUI</span>.window.new;</p>
 <p class="p7">w.front;</p>
-<p class="p20"><span class="s4">p = </span>MultiPageLayout<span class="s4">.on(w);</span></p>
+<p class="p20"><span class="s4">p = </span>PageLayout<span class="s4">.on(w);</span></p>
 <p class="p7">c = <span class="s10">Array</span>.fill(10,{ <span class="s10">arg</span> i;</p>
 <p class="p7"><span class="Apple-tab-span">	</span><span class="s10">var</span> n;</p>
 <p class="p20"><span class="s4"><span class="Apple-tab-span">	</span>n = </span>NumberEditor<span class="s4">(0,</span><span class="s11">\amp</span><span class="s4">);</span></p>

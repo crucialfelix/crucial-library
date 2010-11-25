@@ -1,21 +1,21 @@
 + Nil {
 	asPageLayout { arg name,bounds,metal=true;
-		^MultiPageLayout(name.asString,bounds, metal: metal ).front
+		^PageLayout(name.asString,bounds, metal: metal ).front
 	}
 }
 
 + Point {
 	asPageLayout {
-		^MultiPageLayout("",this.asRect ).front
+		^PageLayout("",this.asRect ).front
 	}
 }
 + Rect {
 	asPageLayout {
-		^MultiPageLayout("",this ).front
+		^PageLayout("",this ).front
 	}
 }
 
-+ MultiPageLayout {
++ PageLayout {
 	asFlowView { arg bounds;
 		^if(bounds.notNil,{
 			FlowView(this,bounds)
@@ -28,7 +28,7 @@
 	}
 }
 
-+ MultiPageLayout {
++ PageLayout {
 
 	flow { arg func,bounds;
 		^this.view.flow(func,bounds)
