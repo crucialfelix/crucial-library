@@ -261,6 +261,9 @@ KeyCodeResponderStack {
 	reset { stack = [] }
 	value { arg view, char,modifier,unicode,keycode;
 		var result;
+		// need to look into this. all should be able to respond
+		// but result is clearly bogus
+		// and not sure who uses it
 		stack.do({ arg responder;
 			result = responder.value(view,char,modifier,unicode,keycode);
 		});
@@ -269,6 +272,9 @@ KeyCodeResponderStack {
 	++ { arg that;
 		var new;
 		if(that.isNil,{ ^this });
+		if(that.isKindOf(UnicodeResponder),{
+		    ^KeyDownResponderGroup(this,that)
+		});
 		new = this.class.new.stack_(stack);
 		that.stack.do({ arg kdr;
 			new.addKDR(kdr)
@@ -338,3 +344,24 @@ KDRMaskTester : SimpleKDRUnit {
 		}
 	}
 }
+
+// for concatenating KeyCodeResponder with UnicodeResponder
+KeyDownResponderGroup {
+
+    var <>responders;
+
+    *new { arg ... responders;
+        ^super.new.responders_(responders)
+    }
+	value { arg view, char,modifier,unicode,keycode;
+        responders.do({ |r|
+            var result;
+            result = r.value(view,char,modifier,unicode,keycode);
+            if(result.notNil,{
+               ^result
+            }); 
+        });
+        ^nil
+    }
+}       
+

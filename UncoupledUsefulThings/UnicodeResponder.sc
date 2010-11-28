@@ -75,7 +75,10 @@ UnicodeResponder {
 	++ { arg that;
 		var new,keys;
 		if(that.isNil,{ ^this });
-		if(that.class !== this.class,{ die("Can't mix responder classes:", this.class, that.class) });
+		if(that.isKindOf(KeyCodeResponder),{
+		    ^KeyDownResponderGroup(this,that)
+		});
+		    
 		// that overides this
 		new = this.class.new;
 		new.dict = dict.copy;
