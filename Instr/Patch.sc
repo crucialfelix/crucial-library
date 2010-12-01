@@ -227,9 +227,7 @@ Patch : HasPatchIns  {
 			if(this.instr.outSpec.notNil,{
 				rate = this.instr.outSpec.rate
 			},{
-				// guess, but don't cache that guess
-				//'audio'
-				this.asSynthDef;// force build
+				this.asSynthDef;// force build, sets rate and numChannels
 				rate
 			});
 		};
@@ -239,11 +237,11 @@ Patch : HasPatchIns  {
 			if(this.instr.outSpec.notNil,{
 				numChannels = this.instr.outSpec.numChannels;
 				if(numChannels.isNil,{
-					this.asSynthDef; // force build
+					this.asSynthDef; // force build, sets rate and numChannels
 				});
 				numChannels
 			},{
-				this.asSynthDef; // force build
+				this.asSynthDef; // force build, sets rate and numChannels
 				numChannels
 			});
 		}
@@ -347,10 +345,6 @@ Patch : HasPatchIns  {
 		// could be cached, must be able to invalidate it
 		// if an input changes
 		^synthDef ?? {
-			if(this.spec.rate == 'stream',{
-				("Output rate is 'stream', not yet supported").warn;
-				^nil
-			});
 			synthDef = InstrSynthDef.build(this.instr,this.args,this.outClass);
 			defName = synthDef.name;
 			// the synthDef has now evaluated and can know the number of channels
