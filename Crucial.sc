@@ -321,6 +321,14 @@ Crucial {
 								});
 			})
 		});
+		Library.put(\menuItems,\post,'UnicodeResponder template code',{
+		    UnicodeResponder.tester;
+		});
+		Library.put(\menuItems,\post,'KeyCodeResponder template code',{
+		    KeyCodeResponder.tester;
+		});
+
+
 		Library.put(\menuItems,\tools,\guiDebugger,{
 			var g;
 			CXMenu.newWith(
