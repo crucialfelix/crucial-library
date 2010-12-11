@@ -89,7 +89,7 @@ CXObjectInspector : ObjectGui {
 	actionsGui { arg layout;
 		layout.startRow;
 		ActionButton(layout,"re-inspect now",{ model.insp });
-		ActionButton(layout,"gui",{ model.topGui });
+		ActionButton(layout,"gui",{ model.gui });
 		ActionButton(layout,"post",{ model.asCompileString.postln });
 		ActionButton(layout,"dump",{ model.dump });
 		ActionButton(layout,"assign to var x",{

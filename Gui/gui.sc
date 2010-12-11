@@ -40,7 +40,7 @@
 			by instVarsForGui
 			by default this is NO variables at all.
 			*/
-			ObjectGui.guiInstVarsOf(model,layout)
+			//ObjectGui.guiInstVarsOf(model,layout)
 		})
 	}
 
