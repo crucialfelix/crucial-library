@@ -2,15 +2,15 @@
 
 KeyCodeResponder {
 
-       classvar global;
+    classvar global;
 
-       const <normalModifier       = 0;
-       const <capsModifier         = 0x00010000;
-       const <shiftModifier        = 0x00020000;
-       const <controlModifier      = 0x00040000;
-       const <optionModifier       = 0x00080000;
-       const <functionKeyModifier  = 0x00800000;
-       const <commandModifier = 0x00100000;
+    const <normalModifier       = 0;
+    const <capsModifier         = 0x00010000;
+    const <shiftModifier        = 0x00020000;
+    const <controlModifier      = 0x00040000;
+    const <optionModifier       = 0x00080000;
+    const <functionKeyModifier  = 0x00800000;
+    const <commandModifier = 0x00100000;
 
 /* 	classvar <>normalModifier=0,<>shiftModifier=0x00020000,<>controlModifier=0x00040000,
                <>optionModifier=0x00080000,<>functionKeyModifier=0x00800000,<>capsModifier=0x00010000;
@@ -135,7 +135,7 @@ KeyCodeResponder {
 		var new,keys;
 		if(that.isNil,{ ^this });
 		if(that.class !== this.class,{
-			this.die("Can't concatenate KeyCode and Unicode responder classes:", this.class, that.class)
+		    ^KeyDownResponderGroup(this,that)
 		});
 
 		// that overides this
@@ -148,6 +148,7 @@ KeyCodeResponder {
 	}
 
 	*new { ^super.new.clear }
+
 
 	/** PRIVATE **/
 	*registerKeycode { arg modifier,keycode,function;
@@ -174,7 +175,6 @@ KeyCodeResponder {
 	}
 
 
-
 	/** the actual responder **/
 	value { arg view,char,modifier,unicode,keycode;
 		^this.at(keycode).value(view, char,modifier,unicode,keycode);
@@ -185,9 +185,9 @@ KeyCodeResponder {
 
 	*global {
 		^global ?? {
-				global = this.new;
-				SCView.globalKeyDownAction = global;
-				global
+			global = this.new;
+			SCView.globalKeyDownAction = global;
+			global
 		}
 	}
 
@@ -234,9 +234,10 @@ KeyCodeResponder {
 	guiClass { ^KeyCodeResponderGui }
 }
 
-// used by both UnicodeResponder and KeyCodeResponder
+
 KeyCodeResponderStack {
 
+    // used by both UnicodeResponder and KeyCodeResponder
 	// only needs to parse the modifier
 	// but passes ascii, code and modifer to the function
 
@@ -272,7 +273,7 @@ KeyCodeResponderStack {
 	++ { arg that;
 		var new;
 		if(that.isNil,{ ^this });
-		if(that.isKindOf(UnicodeResponder),{
+		if(that.class !== this.class,{
 		    ^KeyDownResponderGroup(this,that)
 		});
 		new = this.class.new.stack_(stack);
@@ -292,6 +293,7 @@ KeyCodeResponderStack {
 }
 
 SimpleKDRUnit {
+    
 	// matches if the modifier combo (or single) is present,
 	// but does NOT FAIL if others are also present
 
@@ -315,8 +317,9 @@ SimpleKDRUnit {
 }
 
 
-// test multiple modifiers deny and require
 KDRMaskTester : SimpleKDRUnit {
+
+    // test multiple modifiers deny and require
 
 	var <>denyMask;
 
@@ -345,8 +348,12 @@ KDRMaskTester : SimpleKDRUnit {
 	}
 }
 
-// for concatenating KeyCodeResponder with UnicodeResponder
+
 KeyDownResponderGroup {
+
+    // for concatenating differing class of responder
+    // including KeyCodeResponder/UnicodeResponder/SwitchableKeyDownResponder 
+    // and straight functions 
 
     var <>responders;
 
@@ -363,5 +370,23 @@ KeyDownResponderGroup {
         });
         ^nil
     }
-}       
+}
+
+
+SwitchableKeyDownResponder : KeyDownResponderGroup {
+    
+    // dynamically switch between different responders
+    // eg for mode or instrument changes
+    
+    var <>currentIndex=0;
+    
+	value { arg view, char,modifier,unicode,keycode;
+        ^responders[currentIndex].value(view,char,modifier,unicode,keycode);
+    }
+    select { arg i;
+        currentIndex = i;
+    }
+}
+
+
 

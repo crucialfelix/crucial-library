@@ -75,7 +75,7 @@ UnicodeResponder {
 	++ { arg that;
 		var new,keys;
 		if(that.isNil,{ ^this });
-		if(that.isKindOf(KeyCodeResponder),{
+		if(that.class !== this.class,{
 		    ^KeyDownResponderGroup(this,that)
 		});
 		    
