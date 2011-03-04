@@ -23,7 +23,7 @@ MultiChanRecorder {
 			});
 		});
 
-		recordNode = Patch({
+		recordNode = Patch(Instr("MultiChannelRecorder",{
 			recordBufs.collect({ arg b,i;
 				if(limit,{
 					DiskOut.ar(b.bufnum, Limiter.ar(busses[i].ar,0.999) )
@@ -33,7 +33,7 @@ MultiChanRecorder {
 			});
 			// no audio out
 			0.0
-		});
+		},[],\audio));
 		// better : add a node responder watching for n_end
 		// then close the buffer and free
 
@@ -68,19 +68,24 @@ MultiChanRecorder {
 			recordNode = nil;
 			recordBufs.do({ |rb| rb.close(rb.freeMsg); });
 			recordBufs = nil;
-			"Recording Stopped".inform },
-		{ "Not Recording".warn });
+			"Recording Stopped".inform 
+		}, { 
+		    "Not Recording".warn 
+		});
 	}
 	// mix outs to main out if they aren't already playing there
 	monitor { arg boo = true;
 		if(monitor.isNil,{ // assuming they are all on the same server
-			monitor = Patch({
+			monitor = Patch(Instr("MCRmonitor",{
 				Mix.new(
 					busses.reject(_.isAudioOut).collect({ |b| b.ar });
 				)
-			});
+			},[],\audio));
 		});
 		if(boo,{ if(monitor.isPlaying.not,{ monitor.play }) },{ if(monitor.isPlaying,{ monitor.stop }) });
+	}
+	isMonitoring {
+	    ^monitor.isPlaying
 	}
 	// private
 	cmdPeriod {

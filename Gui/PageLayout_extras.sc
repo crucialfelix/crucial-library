@@ -1,6 +1,6 @@
 + Nil {
-	asPageLayout { arg name,bounds,metal=true;
-		^PageLayout(name.asString,bounds, metal: metal ).front
+	asPageLayout { arg name,bounds;
+		^PageLayout(name.asString,bounds ).front
 	}
 }
 

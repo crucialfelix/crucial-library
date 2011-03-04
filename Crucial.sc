@@ -612,15 +612,11 @@ Crucial {
 //			MLIDbrowser(\Instr,onSelect).gui
 //		});
 
-		Library.put(\menuItems,\post,'post Instr address',{
-			MLIDbrowser(\Instr,{ arg instr;
-				instr.name.asCompileString.post;
-			}).gui;
-		});
-
-		Library.put(\menuItems,\sounds,'make new Patch',{
-			MLIDbrowser(\Instr,{ arg instr;
-				Patch(instr.name).topGui
+		Library.put(\menuItems,\post,'Instr Browser',{
+		    InstrBrowser({ arg layout,instr;
+		        ActionButton(layout,"post Instr name",{
+				    instr.dotNotation.post;
+				}).beginDragAction = {instr.dotNotation};
 			}).gui;
 		});
 
