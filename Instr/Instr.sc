@@ -33,29 +33,24 @@ Instr  {
 		^search
 	}
 	*loadAll {
-		var quarkInstr;
-		(this.dir ++ "*").pathMatch.do({ arg path;
-			{
-				if(path.last != $/,{
-					path.loadPath(false)
-				})
-			}.try({ arg err;
-				("ERROR while loading " + path).postln;
-				err.throw;
-			});
-		});
-		quarkInstr = (Platform.userExtensionDir ++ "/quarks/*/Instr/*").pathMatch
-			.reject { |path| path.splitext[1] == "sc" };
-		quarkInstr.do({ |path|
-			{
-				if(path.last != $/,{
-					path.loadPath(false);
-				})
-			}.try({ arg err;
-				("ERROR while loading " + path).postln;
-				err.throw;
-			});
-		});
+	    this.prLoadDir(this.dir);
+		this.prLoadDir(Platform.userExtensionDir ++ "/quarks/*/Instr");
+	}
+	*prLoadDir { arg dir;
+	    var paths;
+	    paths = (dir +/+ "*").pathMatch.reject { |path| path.splitext[1] == "sc" };
+	    paths.do { |path|
+	        if(path.last == $/,{
+	            this.prLoadDir(path)
+	        },{
+    			{
+				path.loadPath(false);
+    			}.try({ arg err;
+    				("ERROR while loading " + path).postln;
+    				err.throw;
+    			});
+    		});
+		};
 	}
 	*clearAll {
 		Library.global.removeAt(this)
@@ -167,7 +162,7 @@ Instr  {
 	asDefName {
 		^this.store.name
 	}
-
+	funcDef { ^func.def }
 	test { arg ... args;
 		var p;
 		p = Patch(this.name,args);
@@ -290,8 +285,9 @@ Instr  {
 			},{
 				orcname = PathName(file).fileNameWithoutExtension;
 				if(orcname == pathPartsFirst,{
+				    //("Loading:" + path).postln;
 					path.load;
-
+					
 					//fullInstrName copied up until including orcname
 					symbols = [];
 					fullInstrName.any({ |n|
@@ -306,7 +302,7 @@ Instr  {
 
 		^nil
 	}
-	dotNotation {
+	dotNotation { // "dir.subdir.file.instrName"
 		^String.streamContents({ arg s;
 			name.do({ arg n,i;
 				if(i > 0,{ s << $. });
@@ -362,16 +358,17 @@ Instr  {
 			});
 		});
 		this.class.put(this);
+		this.class.changed(this)
 	}
 	makeSpecs { arg argspecs;
-		explicitSpecs = specs ? [];
+		explicitSpecs = argspecs ? [];
 		specs =
 			Array.fill(this.argsSize,{ arg i;
 				var sp,name;
 				name = this.argNameAt(i);
-				sp = argspecs.at(i);
+				sp = explicitSpecs.at(i);
+				// backwards compatibility with old spec style
 				if(sp.isSequenceableCollection,{
-					// backwards compatibility with old spec style
 					// [\envperc]
 					// [[0,1]]
 					// [StaticSpec()]
@@ -384,7 +381,6 @@ Instr  {
 				},{
 					sp = (sp ? name).asSpec ?? {ControlSpec.new};
 				});
-				//sp.copy;
 				sp
 			});
 	}
@@ -436,9 +432,21 @@ UGenInstr {
 
 		//specs
 		specs = this.argNames.collect({ arg ag,i;
+		    var da,sp;
 			ag.asSpec ?? {
-				("UGenInstr:init Spec.specs has no entry for: % so guessing ControlSpec".format(ag.asCompileString)).warn;
-				nil.asSpec
+			    da = this.defArgAt(i) ? 0;
+			    if(da.isNumber) {
+    			    if(da.inclusivelyBetween(0.0,1.0),{
+    				    //("UGenInstr:init Spec.specs has no entry for: % so guessing default ControlSpec".format(ag.asCompileString)).warn;
+    				    nil.asSpec
+    				},{
+    				    sp = ControlSpec(da,da,default:da);
+    				    ("UGenInstr:init Spec.specs has no entry for: % so creating spec: %".format(ag.asCompileString,sp)).warn;
+    				    sp
+    				});
+    			} {
+    			    ObjectSpec.new
+    			};
 			}
 		});
 	}
@@ -453,14 +461,28 @@ UGenInstr {
 	ar { arg ... args; ^this.value(args) }
 	kr { arg ... args; ^this.value(args) }
 	outSpec {
-		if(rate=='ar',{
-			^\audio
-		},{
-			^\control
-		})
+		^rate.switch(
+	            \ar,\audio,
+	            \kr,\control,
+	            \new,\fft // temp hack
+	            );
 	}
-	dotNotation { ^ugenClass.asString }
-	funcDef { ^ugenClass.class.findMethod(rate) }
+	dotNotation { ^ugenClass }
+	funcDef { 
+	    ^ugenClass.class.findMethod(rate) ?? {
+	        ugenClass.superclasses.do { arg sc;
+	            var fd;
+	            if(sc == UGen) {
+	                ^nil
+	            };
+	            fd = sc.class.findMethod(rate);
+	            if(fd.notNil,{
+	                ^fd
+	            });
+	        }
+	    };
+	}
+	path { ^ugenClass.filenameSymbol.asString }
 	maxArgs { ^this.argsSize }
 	argsSize { ^this.funcDef.argNames.size - 1 }
 	argNames {
@@ -497,6 +519,21 @@ UGenInstr {
 	asString { ^"UGenInstr " ++ ugenClass.name.asString }
 	asInstr { ^this }
 	name { ^ugenClass.asString }
+	
+	*leaves { arg rateMethod; // ar kr new
+		var ll;
+		^Library.atList([this,'leaves',rateMethod ? 'all']) ?? {
+			ll = UGen.allSubclasses;
+			if(rateMethod.notNil,{
+				ll = ll.select({ arg cls; cls.class.findMethod(rateMethod).notNil })
+			});
+			ll = ll.sort({ arg a,b; a.charPos <= b.charPos });
+			ll = ll.sort({ arg a,b; a.filenameSymbol.asString <= b.filenameSymbol.asString });
+			ll = ll.collect(UGenInstr(_));
+			Library.putList([this,'leaves',rateMethod ? 'all',ll]);
+			ll
+		}
+	}
 
 }
 

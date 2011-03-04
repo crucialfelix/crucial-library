@@ -26,12 +26,11 @@ InstrSynthDef : SynthDef {
 		var stacked;
 		if(UGen.buildSynthDef.notNil,{
 			stacked = UGen.buildSynthDef;
-			//Error("a synth def is already in the process of being built"+UGen.buildSynthDef).throw
 		});
 		protect {
-			this.initBuild
-				.buildUgenGraph(instr,args ? #[],outClass)
-				.finishBuild;
+			this.initBuild;
+			this.buildUgenGraph(instr,args ? #[],outClass);
+			this.finishBuild;
 			UGen.buildSynthDef = stacked;
 		} {
 			UGen.buildSynthDef = stacked;
@@ -39,7 +38,7 @@ InstrSynthDef : SynthDef {
 	}
 	buildUgenGraph { arg argInstr,args,outClass;
 		var result,fixedID="",firstName;
-		var isScalarOut;
+		var isScalarOut, saveControlNames;
 
 		outClass = outClass.asClass;
 
@@ -47,6 +46,7 @@ InstrSynthDef : SynthDef {
 		inputs = args;
 
 		// restart controls in case of *wrap
+		saveControlNames = controlNames;
 		controlNames = nil;
 		controls = nil;
 		secretIr = nil;
@@ -106,7 +106,7 @@ InstrSynthDef : SynthDef {
 			err.throw;
 		});
 
-		name = argInstr.dotNotation ++ "." ++ outClass.name.asString;
+		name = argInstr.dotNotation.asString ++ "." ++ outClass.name.asString;
 		this.allControlNames.do({ |controlName,i|
 			name = name ++ ".";
 			// the argNames are fixed for the Instr so we don't need to save them
@@ -143,6 +143,8 @@ InstrSynthDef : SynthDef {
 		});
 		name = firstName ++ "*" ++ longName.hash;
 		// name.debug("name");
+		controlNames = saveControlNames;
+		^result
 	}
 
 	// passed to Instr function but not to synth
@@ -324,18 +326,6 @@ InstrSynthDef : SynthDef {
 					//this.loadCacheFromDir(server);
 			});
 		});
-			/*SimpleController(server)
-				.put(\serverRunning,{ //clear on quit
-					if(server.serverRunning.not,{
-						AppClock.sched(3.0,{ // don't panic too quickly
-							if(server.serverRunning.not,{ // okay, she's dead
-								this.clearCache(server);
-								this.loadCacheFromDir(server);
-							})
-						});
-					});
-				});
-			*/
 	}
 	*clearCache { arg server;
 		"Clearing AbstractPlayer SynthDef cache".inform;
@@ -349,6 +339,12 @@ InstrSynthDef : SynthDef {
 			Library.put(SynthDef,server,defName.asSymbol,\assumedLoaded);
 		})
 	}
+	*cacheRemoveAt { arg defName,server;
+		(server ? Server.allRunningServers).do({ |s|
+			Library.global.removeAt(SynthDef,s,defName.asSymbol);
+		})
+	}
+		
 	*buildSynthDef {
 		var sd;
 		sd = UGen.buildSynthDef;
@@ -362,10 +358,21 @@ InstrSynthDef : SynthDef {
 	}
 
 	// in the context of an InstrSynthDef
-	// InstrSynthDef.buildSynthDef.onTrig(sig,func,pollableValue)
-	// this allows to execute the func in the client whenever the trigger goes
-	// the mechanics and the adding/removing of the responder are taken care of
-	// because Patch knows when it starts and stops the synth
+	/*
+		Patch({
+			t = Impulse.ar(1);
+			InstrSynthDef.buildSynthDef.onTrig(
+				t,
+				{ arg value;
+					[value,"trigged"].postln
+				},
+				SinOsc.ar(0.01)
+			);
+			t
+		}).play
+	*/
+	// execute the func in the client whenever triggered
+	// see Patch help
 	onTrig { |trig,func,value=0.0|
 		// triggerID is the nTh onTrig we have so far added + 9999
 		var triggerID,onTrig;

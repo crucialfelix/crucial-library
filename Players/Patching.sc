@@ -69,7 +69,9 @@ PatchOut {
 	var busses;
 
 	*new { arg source,group,bus;
-		^this.perform(source.rate,source,group,bus)
+		^this.perform(source.rate ?? 
+			{Error("source has nil rate" + source).throw},
+			source,group,bus)
 	}
 	*prNew {arg source,group,bus;
 		 ^super.newCopyArgs(source,group.asGroup,bus).init;

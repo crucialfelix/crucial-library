@@ -374,7 +374,7 @@ Patch : HasPatchIns  {
 					ag.addDependant(this);
 				});
 			});
-		})
+		});
 	}
 	update { arg changed,changer;
 		var newArgs;
@@ -388,15 +388,19 @@ Patch : HasPatchIns  {
 			})
 		});
 		if(changed === this.instr,{
-			synthDef = nil;
-			defName = nil;
-			stepChildren = nil;
+			this.removeSynthDefCache;
 		});
 	}
-	invalidateSynthDef {
+	removeSynthDefCache {
+		if(defName.notNil,{
+			InstrSynthDef.cacheRemoveAt(defName);
+		});
 		synthDef = nil;
 		defName = nil;
 		stepChildren = nil;
+	}
+	invalidateSynthDef {
+		this.removeSynthDefCache;
 		this.releaseArgs;
 		this.instr.removeDependant(this);
 	}
