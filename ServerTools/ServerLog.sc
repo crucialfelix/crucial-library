@@ -1,7 +1,7 @@
 
 ServerLog : NetAddr {
 
-	var <msgs;
+	var <msgs,<>tail=false;
 	var lastStatus;
 	*start { |server|
 		var addr,new;
@@ -65,11 +65,17 @@ ServerLog : NetAddr {
 	sendMsg { arg ... args;
 		if(args != ["/status"],{
 			msgs = msgs.add( ServerLogSentEvent( nil, args,false) );
+			if(tail,{
+			    args.postln;
+			});
 		});
 		^super.sendMsg(*args);
 	}
 	sendBundle { arg time ... args;
 		msgs = msgs.add( ServerLogSentEvent( time,args,true) );
+		if(tail,{
+		    args.postln;
+		});
 		^super.sendBundle(*([time]++args))
 	}
 	guiClass { ^ServerLogGui }

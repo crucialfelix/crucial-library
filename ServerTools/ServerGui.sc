@@ -106,24 +106,31 @@ ServerGui : ObjectGui {
 	// button to switch the output the server is connected to
 	output { |layout|
 		var switch,devs,current;
-		switch = Button(layout, Rect(0,0, 140, GUI.skin.buttonHeight));
+		switch = PopUpMenu(layout, Rect(0,0, 140, GUI.skin.buttonHeight));
 		
 		devs = ServerOptions.outDevices;
-		switch.states = devs.collect({ |name| [name,Color.black,Color.clear]});
+		switch.items = devs;
 		current = model.options.device;
 		if(current.notNil,{
 			if(current.isSequenceableCollection,{
-				current = model.options.outputDevice;
+				current = model.options.outDevice;
 			});
 			switch.value = devs.indexOf(current);
 		});
 		switch.action = {
 			var ll;
-			ll = switch.states[switch.value];
-			model.options.device = ll[0];
+			ll = switch.items[switch.value];
+			model.options.device = ll;
 		};
 	}		
-		
+	tail { |layout|
+	    ToggleButton(layout,"tail",{
+	        ServerLog.start(model).tail = true;
+	    },{
+	        ServerLog.stop(model);
+	    })
+	}
+
 	update { arg changer,what;
 		if(view.isClosed,{
 			this.remove
