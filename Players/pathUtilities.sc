@@ -33,7 +33,8 @@
 				obj = thisProcess.interpreter.executeFile(path);
 				obj.didLoadFromPath(this);
 			}.try({ arg err;
-				("In file: " + this).postln;
+				// could be compile or execute error
+				("executeFile failed: " + this).postln;
 				err.throw;
 			});
 		},{
@@ -44,8 +45,6 @@
 		});
 		if(obj.isNil and: warnIfNotFound, {
 			warn("String:loadPath found nil, empty contents or parse error in " + path);
-
-			//^ObjectNotFound.new(path)
 		});
 		^obj
 	}

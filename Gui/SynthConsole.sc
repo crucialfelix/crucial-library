@@ -218,7 +218,13 @@ SaveConsole : AbstractConsole {
 			this.getPathThen(\doSaveAs,default);
 	 	});
 	}
-
+	open { arg onOpenF;
+		ActionButton(layout,"open",{
+			GUI.dialog.getPaths({ arg paths;
+				onOpenF.value(paths[0]);
+			});
+		});
+	}				
 	getPathThen {  arg then ... args;
 		//var defPath;
 		//defPath=(defaultPath.value ? object).asString;

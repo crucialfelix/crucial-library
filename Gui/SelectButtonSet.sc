@@ -44,6 +44,13 @@ SelectButtonSet  {
 		this.passiveSelect(x);
 		^action.value(selected,this);
 	}
+	selectItem { arg item;
+		var x;
+		x = labelArray.indexOfEqual(item);
+		if(x.notNil,{
+			this.select(x)
+		});
+	}
 	passiveSelect { arg x;
 		if(butts.at(x).notNil,{
 			this.colorNormal(selected);
