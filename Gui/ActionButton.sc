@@ -58,16 +58,18 @@ ActionButton : SCButtonAdapter {
 		^super.new.init(layout,title,function,minWidth,minHeight,color,backcolor,font)
 	}
 	init { arg layout,title,function,minWidth=20,minHeight,color,backcolor,font;
-		var environment,optimalWidth;
+		var environment,optimalWidth,skin;
+		skin = GUI.skin;
 		title = title.asString;
 		if(title.size > 40,{ title = title.copyRange(0,40) });
-		if(font.isNil,{ font = GUI.font.new(*GUI.skin.fontSpecs) });
+		if(font.isNil,{ font = GUI.font.new(*skin.fontSpecs) });
 		optimalWidth = title.bounds(font).width;
 		this.makeViewWithStringSize(layout,optimalWidth,minWidth,minHeight);
-		view.states_([[title,color ?? {Color.black},
-			backcolor ?? {Color.new255(205, 201, 201)}]]);
+		view.states_([[title,color ?? {skin.fontColor},
+			backcolor ?? {skin.background}]]);
 		view.font_(font);
 		view.action_(function);
+		view.focusColor_((skin.focusColor ? Color.grey(0.5,0.1)).alpha_(0.1));
 		if(consumeKeyDowns,{ this.keyDownAction = {nil}; });
 	}
 }

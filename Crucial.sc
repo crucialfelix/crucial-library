@@ -17,13 +17,14 @@ Crucial {
 			(
 				fontSpecs: 	["Helvetica", 11.0],
 				fontColor: 	Color.black,
-				background: 	Color.white,
+				background: 	Color(1.0, 1.0, 1.0, 0.80597014925373),
 				foreground:	Color.grey(0.95),
 				onColor:		Color.new255(255, 250, 250),
 				offColor:		Color.clear,
 				gap:			4 @ 4,
 				margin: 		2@0,
-				buttonHeight:	17
+				buttonHeight:	17,
+				focusColor: Color(0.0, 0.85714285714286, 1.0, 0.34328358208955)
 			));
 	}
 

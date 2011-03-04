@@ -31,10 +31,10 @@ SynthConsole : AbstractConsole  {
 	}
 
 	play {
-		ActionButton(layout,">",{this.doPlay }).background_(Color.green);
+		ActionButton(layout,">",{this.doPlay }).background_(Color(0.41676819981724, 0.92857142857143, 0.2771855010661, 0.86567164179104));
 	}
 	prepare {
-		ActionButton(layout,"pre",{this.doPrepare}).background_(Color.green(1.0,0.2))
+		ActionButton(layout,"pre",{this.doPrepare}).background_(Color(0.41676819981724, 0.92857142857143, 0.2771855010661, 0.2089552238806))
 	}
 	scope {arg duration=0.5;
 		//ActionButton(layout,"scope",{this.doScope(duration)})
@@ -205,7 +205,7 @@ SaveConsole : AbstractConsole {
 		 	})
 	 	},minWidth).background_(
 	 		if(path.value.isNil,{ // virgin
-	 			Color.new255(202,255,161)
+	 			GUI.skin.background
 	 		},{
 	 			Color.new255(255,242,89)
 	 		})
