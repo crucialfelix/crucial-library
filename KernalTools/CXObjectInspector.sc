@@ -11,7 +11,7 @@ CXObjectInspector : ObjectGui {
 	}
 
 	guiBody { arg layout;
-		var vert,list,listItems,actions;
+		var vert,list,listItems,actions,val;
 		listItems = List.new;
 		actions = List.new;
 
@@ -38,12 +38,19 @@ CXObjectInspector : ObjectGui {
 			});
 		});
 
-		list = GUI.listView.new(layout,550@600);
+		list = ListView(layout,(layout.bounds.width-20)@600);
 		list.font = GUI.font.new("Courier",10);
-		list.background = Color(0.65,0.75,0.65,0.15);
+		list.background = Color(0.96777196663153, 0.97014925373134, 0.95566941412341);
 		list.items = listItems.array.add("");
 		list.action = {
-			actions[list.value].value };
+			val = actions[list.value];
+		};
+		list.mouseUpAction = {
+			val.value
+		};
+		list.enterKeyAction = {
+			val.value
+		};
 		list.value = list.items.size - 1;
 		this.dependantsGui(layout);
 		this.actionsGui(layout);
@@ -109,13 +116,17 @@ ClassGui : CXObjectInspector { // ClassGui
 
 		var iNames,supers,scale,width;
 
-		width = (layout.bounds.width - 30) / (model.superclasses.size + 1);
+		if(model.superclass.notNil,{
+			width = (layout.bounds.width - 30) / (model.superclasses.size + 1);
+		},{
+			width = (layout.bounds.width - 30);
+		});			
 		// you are here
 		//InspectorLink(model,layout.startRow,minWidth:width);
 		ClassNameLabel(model,layout,width,30);
 		//CXLabel(layout,":",height: 30);
-		supers = model.superclasses;
-		if(supers.notNil,{
+		if(model.superclass.notNil,{
+			supers = model.superclasses;
 			scale = supers.size;
 			supers.do({ arg sup,i;
 				ClassNameLabel(sup,layout,width,30);
@@ -231,16 +242,18 @@ ClassGui : CXObjectInspector { // ClassGui
 				},{
 					MethodLabel(meth,f.startRow,minWidth:width);
 				});
-				class.superclasses.do({ arg superclass;
-					var supermethod;
-					supermethod = superclass.findMethod(meth.name);
-					if(supermethod.notNil,{
-						MethodLabel(supermethod,f,minWidth:width)
-					},{
-						// leave space
-						GUI.staticText.new(f,Rect(0,0,width,GUI.skin.buttonHeight))
-					});
-				})
+				if(class.superclass.notNil,{
+					class.superclasses.do({ arg superclass;
+						var supermethod;
+						supermethod = superclass.findMethod(meth.name);
+						if(supermethod.notNil,{
+							MethodLabel(supermethod,f,minWidth:width)
+						},{
+							// leave space
+							GUI.staticText.new(f,Rect(0,0,width,GUI.skin.buttonHeight))
+						});
+					})
+				});
 			})
 		});
 	}
@@ -277,10 +290,6 @@ ClassGui : CXObjectInspector { // ClassGui
 
 MethodGui : ObjectGui {
 
-//	writeName { arg layout;
-//		Tile(model.class,layout);
-//		CXLabel(layout,model.asString);
-//	}
 	source {
 		var classSource,myIndex,nextMethod,tillChar;
 		classSource = File(model.fileNameSymbol.asString,"r").readAllString;
@@ -308,8 +317,8 @@ MethodGui : ObjectGui {
 
 		// from Object down...
 		layout.startRow;
-		supers = model.ownerClass.superclasses;
-		if(supers.notNil,{
+		if(model.ownerClass.superclass.notNil,{
+			supers = model.ownerClass.superclasses;
 			supers.reverse.do({ arg class;
 				var supermethod;
 				supermethod = class.findMethod(model.name);
