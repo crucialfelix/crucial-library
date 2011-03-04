@@ -17,7 +17,6 @@ NumberEditorGui : EditorGui {
 		var bounds,h;
 		bounds = layout.indentedRemaining;
 
-		//[layout,slider,box].debug;
 		// massive space,
 			// box, slider horz
 		if(bounds.width >= 140 and: {bounds.height >= 11},{
@@ -85,7 +84,6 @@ NumberEditorGui : EditorGui {
 				^this
 			});
 		});
-		//bounds.die("unmatched bounds");
 
 		// any unmatched
 		if(slider,{
@@ -94,29 +92,53 @@ NumberEditorGui : EditorGui {
 			this.box(layout,Rect(0,0,bounds.width,h));
 		});
 		^this
-/*
-unmatched bounds
-Instance of Rect {    (1744D760, gc=C0, fmt=00, flg=00, set=02)
-  instance variables [4]
-    left : Integer 2
-    top : Integer 0
-    width : Float 146.0   40624000 00000000
-    height : Float 13.0   402A0000 00000000
-}*/
 	}
 	box { arg layout,bounds;
-		var r;
-		numv = GUI.numberBox.new(layout,bounds)
+		var r,startValue,range,mod,startPoint;
+		numv = NumberBox(layout,bounds)
 			.object_(model.poll)
 			.focusColor_(Color.yellow(1.0,0.5))
 			.action_({ arg nb;
 				model.activeValue_(model.spec.constrain(nb.value)).changed(numv);
 			});
+		numv.mouseDownAction = { arg view,x, y, modifiers, buttonNumber, clickCount;
+			startValue = model.unmappedValue;
+			mod = modifiers;
+			startPoint = 0@0;
+		};
+		numv.mouseMoveAction = { arg view,x,y,modifiers;
+			var move,val,unimove;
+			if(modifiers != mod,{
+				mod = modifiers;
+				startValue = model.unmappedValue;
+				startPoint = x@y;
+			});
+			if(modifiers.isCtrl,{
+			    move = (y - startPoint.y).neg;
+				if(modifiers.isShift,{
+					range = 1800.0;
+				},{
+					range = 300.0;
+				});
+				move = move.clip(range.neg,range);
+				unimove = move.abs.linlin(0.0,range,0.0,1.0);
+				if(move > 0,{
+				    val = (startValue + unimove);
+				},{
+				    val = (startValue - unimove);
+				});
+				model.setUnmappedValue( val.clip(0.0,1.0) );
+			});
+		};
+		numv.scroll = false;
+		numv.clipLo = model.spec.minval;
+		numv.clipHi = model.spec.maxval;
+		
 		//if(consumeKeyDowns,{
 		//	numv.keyDownAction = {nil};
 		//});
 	}
-	slider { arg layout, bounds;// x=100,y=15;
+	slider { arg layout, bounds;
 		var r;
 		slv = GUI.slider.new(layout, bounds);
 		slv.focusColor_(Color.yellow(1.0,0.2));

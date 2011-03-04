@@ -199,6 +199,18 @@ IntegerEditor : NumberEditor {
 		value = val.asInteger;
 		this.changed(\value,changer);
 	}
+	rand { arg standardDeviation = 0.15,mean;
+		// IntegerEditor(2 [1,24,\linear].asSpec).rand.value
+		// fix me
+		
+		
+		// gaussian centered on the spec default
+		var default,unmapped;
+		default = spec.unmap( mean ? spec.default );
+		unmapped = (sqrt(-2.0 * log(1.0.rand)) * sin(2pi.rand) * standardDeviation + default);
+		this.setUnmappedValue(unmapped);
+	}
+	
 }
 
 BooleanEditor : NumberEditor {
@@ -214,6 +226,9 @@ BooleanEditor : NumberEditor {
 	}
 	value_ { |v|
 		value = v;
+	}
+	rand {
+		this.value = 1.0.coin;
 	}
 
 	guiClass { ^BooleanEditorGui }
