@@ -41,7 +41,9 @@ AudioSpec : Spec {
 
 // an array of mono/stereo signals
 MultiTrackAudioSpec : AudioSpec {
+	
 	var <>tracks;
+	
 	*new { arg tracks=2,numChannels=2;
 		^super.new(numChannels).tracks_(tracks)
 	}
@@ -49,7 +51,10 @@ MultiTrackAudioSpec : AudioSpec {
 }
 
 // has a gate. generally short duration.  for Pbind, InstrGateSpawner etc.
+// this specifies that the output is audio and that the synth can be expected
+// to end via an internal envelope
 AudioEventSpec : AudioSpec {
+
 	*initClass {
 		var a;
 		specs.addAll(
@@ -64,8 +69,11 @@ AudioEventSpec : AudioSpec {
 	}
 }
 
+// this specifies that the output is audio and it has an input which is also audio
 EffectSpec : AudioSpec {
+	
 	var <>numInputs;
+	
 	*new { arg numChannels=2,numInputs=1;
 		^super.new(numChannels).numInputs_(numInputs)
 	}
@@ -80,6 +88,26 @@ EffectSpec : AudioSpec {
 			\dualStereoEffect -> EffectSpec(2,2)
 			];
 		)
+	}
+}
+
+// specifies an FFT chain output or for an input that takes an FFT chain
+FFTSpec : Spec {
+
+	var <>bufSize;
+
+	*new { arg bufSize=2048;	
+		^super.new.bufSize_(bufSize)
+	}
+	*initClass {
+		specs.addAll(
+		[
+			\chain -> FFTSpec.new,
+			\fft -> FFTSpec.new
+		])
+	}	
+	defaultControl {
+		^Patch(Instr("FFTblank",{FFT(LocalBuf(2048),Silent.ar)}))
 	}
 }
 
@@ -99,6 +127,13 @@ TrigSpec : ControlSpec {
 		// could accept 0 or 1 but useless
 		^(thing.isKindOf(AbstractPlayer) and: { thing.spec == this })
 	}
+}
+
+DemandSpec : ControlSpec {
+	
+	// defaultControl { Dwhite(this.minval,this.maxval,this.step,inf) }
+	rate { ^\demand }
+
 }
 
 

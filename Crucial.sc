@@ -34,6 +34,7 @@ Crucial {
 		Spec.specs.putAll(
 		  IdentityDictionary[
 			'audio'->AudioSpec.new,
+			'input'->AudioSpec.new,
 			//'lofreq'->ControlSpec.new(0.1, 100, 'exp', 0, 6),
 			//'rq'->ControlSpec.new(0.001, 2, 'exp', 0, 0.707),
 			//'boostcut'->ControlSpec.new(-20, 20, 'lin', 0, 0),
@@ -49,6 +50,7 @@ Crucial {
 			'pitch'->ControlSpec.new(-4, 4, 'lin', 0, 0),
 
 			'trig'->TrigSpec.new(0, 1, 'lin', 0, 0.0),
+			'trigger'->TrigSpec.new(0, 1, 'lin', 0, 0.0),
 			'gate'->TrigSpec.new(0, 1, 'lin', 0, 0.0),
 
 			'legato'->StaticSpec.new(0.01, 4, 'lin', 0, 0.9),
@@ -143,7 +145,10 @@ Crucial {
 			\k->ControlSpec(-6.0,6.0),
 			\stepsPerOctave->ControlSpec(1.0,128.0,\lin,1.0,12.0),
 			\mul -> ControlSpec(0.0,1.0,\lin,0,1.0),
-			\add -> ControlSpec(0.0,1.0,\lin,0.0,0.0)
+			\add -> ControlSpec(0.0,1.0,\lin,0.0,0.0),
+			'bufnum' -> StaticIntegerSpec(0,100,0),
+			'sndbuf' -> StaticIntegerSpec(0,100,0)
+			
 		  ]
 		);
 	}
