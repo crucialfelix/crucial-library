@@ -3,7 +3,7 @@ BeatSched {
 
 	classvar <global;
 
-	var clock,tempo,<tempoClock;
+	var clock,<tempo,<tempoClock;
 	var epoch=0.0,beatEpoch=0.0;
 	var nextTask; // for exclusive locks
 
@@ -62,6 +62,9 @@ BeatSched {
 	clear {
 		pq.clear;
 		nextTask = nextAbsFunc = nextAbsTime = nil;
+		if(tempoClock !== TempoClock.default,{
+			tempoClock.clear;
+		});
 	}
 	deltaTillNext { arg quantize; // delta in beats till next beat
 		var beats,next;
@@ -110,7 +113,7 @@ BeatSched {
 		clock.sched(seconds,{ arg time; function.value(time); nil })
 	}
 	xtsched { arg seconds,function;
-		var thsTask,notCancelled;
+		var thsTask;
 		clock.sched(seconds,
 			thsTask = nextTask = {
 				if(thsTask === nextTask,function);
@@ -120,7 +123,6 @@ BeatSched {
 	}
 	sched { arg beats,function;
 		tempoClock.dsched(beats,function)
-		//this.tsched(tempo.beats2secs(beats),function)
 	}
 	xsched { arg beats,function;
 		var thsTask,notCancelled;
@@ -258,7 +260,7 @@ OSCSched : BeatSched {
 			onSend.value;
 			// and convert those beats to seconds here
 			// inaccurate final delivery if tempo is changing quickly
-			server.listSendBundle(tempo.beats2secs(latency).debug("latency in seconds"),bundle);
+			server.listSendBundle(tempo.beats2secs(latency),bundle);
 			nil
 		});
 		if(onArrival.notNil,{
