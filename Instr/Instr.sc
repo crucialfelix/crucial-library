@@ -391,44 +391,8 @@ Instr  {
 	// a filter is any instr that has an input the same spec as its output
 	isFilter { ^this.specs.any({ |sp| sp == this.outSpec }) }
 	
-	guiBody { arg layout;
-		var defs,tf,source,lines,h,w,specWidth;
-
-		this.argNames.do({ arg a,i;
-			layout.startRow;
-			ArgNameLabel(  a ,layout,150);
-			CXLabel(layout, " = " ++ this.defArgAt(i).asString,100);
-			specWidth = min(layout.indentedRemaining.width,300);
-			this.specs.at(i).asCompileString.gui(layout,specWidth@GUI.skin.buttonHeight);
-		});
-
-		layout.startRow;
-		source = this.func.def.sourceCode;
-		if(source.notNil,{
-			lines = ["\n"] ++ source.split($\n).collect({|l| " "++l}) ++ ["\n"];
-
-			w = lines.maxValue({ |l| l.size }) * 7;
-			h = lines.size * 13;
-
-			tf = GUI.textField.new(layout,Rect(0,0,w,h));
-			tf.string = source;
-			tf.font_(GUI.font.new("Helvetica",10.0));
-		});
-
-		ArgNameLabel("outSpec:",layout.startRow,150);
-		this.outSpec.asString.gui(layout);
-
-		if(path.notNil,{
-			CXLabel(layout.startRow,path);
-			// ActionButton(layout.startRow,"open file...",{ path.openTextFile });
-		});
-
-		layout.startRow;
-		if(path.notNil and: { File.exists(this.path) },{
-			ActionButton(layout,"edit File",{ this.path.openTextFile });
-		});
-		ActionButton(layout,"make a Patch",{ Patch(this.name).topGui });
-	}
+	guiClass { ^InstrGui }
+	
 }
 
 
@@ -529,7 +493,7 @@ UGenInstr {
 		^if(nn.notNil,{nn.at(i + 1)},{nil});
 	}
 
-//	guiClass { ^UGenInstrGui }
+	guiClass { ^UGenInstrGui }
 	asString { ^"UGenInstr " ++ ugenClass.name.asString }
 	asInstr { ^this }
 	name { ^ugenClass.asString }
