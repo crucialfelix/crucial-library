@@ -36,15 +36,16 @@ InstrGui : ObjectGui {
 	}
 	sourceGui { arg layout,width;
 	    var source,up;
-		var tf,lines;
+		var tf,lines,height,f;
 	    
 		layout.startRow;
 		source = model.funcDef.sourceCode;
 		if(source.notNil,{
-			lines = ["\n"] ++ source.split($\n).collect({|l| " "++l}) ++ ["\n"];
-			tf = TextView(layout,Rect(0,0,width,lines.size * 19));
+			f = GUI.font.new("Courier",12.0);
+			height = source.bounds(f).height + 5;
+			tf = TextView(layout,Rect(0,0,width,height));
 			tf.string = source;
-			tf.font_(GUI.font.new("Courier",12.0));
+			tf.font_(f);
 			tf.syntaxColorize;
 		},{
 		    CXLabel(layout,"Source code not found",width);
