@@ -102,9 +102,13 @@ NumberEditorGui : EditorGui {
 				model.activeValue_(model.spec.constrain(nb.value)).changed(numv);
 			});
 		numv.mouseDownAction = { arg view,x, y, modifiers, buttonNumber, clickCount;
-			startValue = model.unmappedValue;
-			mod = modifiers;
-			startPoint = 0@0;
+			if(modifiers.isAlt,{
+				model.activeValue_(model.spec.default).changed
+			},{
+				startValue = model.unmappedValue;
+				mod = modifiers;
+				startPoint = 0@0;
+			})
 		};
 		numv.mouseMoveAction = { arg view,x,y,modifiers;
 			var move,val,unimove;
@@ -134,6 +138,13 @@ NumberEditorGui : EditorGui {
 		numv.clipLo = model.spec.minval;
 		numv.clipHi = model.spec.maxval;
 		
+		/*numv.keyDownAction = { arg char,modifiers,unicode,keycode;
+			if("012356789-.".includes(char),{
+				this.defaultKeyDownAction(char, modifiers, unicode, keycode);
+			},{
+				nil
+			})
+		};*/
 		//if(consumeKeyDowns,{
 		//	numv.keyDownAction = {nil};
 		//});
