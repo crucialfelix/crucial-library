@@ -22,7 +22,7 @@ AudioSpec : Spec {
 			];
 		)
 	}
-	defaultControl{
+	defaultControl {
 		if(numChannels.isNil,{
 			// the purpose is to occupy an input
 			// so a fixed numChannels is needed
@@ -39,6 +39,7 @@ AudioSpec : Spec {
 
 }
 
+
 // an array of mono/stereo signals
 MultiTrackAudioSpec : AudioSpec {
 	
@@ -49,6 +50,29 @@ MultiTrackAudioSpec : AudioSpec {
 	}
 	storeArgs { ^[tracks,numChannels] }
 }
+
+
+BFormatSpec : AudioSpec {
+	
+	// w, x, y, z
+	
+	*new {
+		^super.new.numChannels_(4)
+	}
+	storeArgs { ^[] }
+	*initClass {
+		specs.addAll(
+		 [
+			\bformat -> this.new
+			];
+		)
+	}
+	/*constrain { arg value;
+		^value
+	}*/
+
+}
+
 
 // has a gate. generally short duration.  for Pbind, InstrGateSpawner etc.
 // this specifies that the output is audio and that the synth can be expected
@@ -67,7 +91,9 @@ AudioEventSpec : AudioSpec {
 	default{
 		^Event.default
 	}
+	
 }
+
 
 // this specifies that the output is audio and it has an input which is also audio
 EffectSpec : AudioSpec {
