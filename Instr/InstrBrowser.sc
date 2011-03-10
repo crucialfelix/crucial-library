@@ -2,11 +2,11 @@
 InstrBrowser {
 
     var <>toolbarFunc,lv,frame;
-    var instrs,ugenInstrs,rate=nil,showUGenInstr=true;
+    var instrs,ugenInstrs,<rate=nil,<>showUGenInstr=true;
 
-    *new { arg toolbarFunc;
+    *new { arg toolbarFunc,showUGenInstr=true;
         //Instr.loadAll;
-        ^super.newCopyArgs(toolbarFunc).init.initUGenInstrs
+        ^super.newCopyArgs(toolbarFunc).showUGenInstr_(showUGenInstr).init.initUGenInstrs
     }
     gui { arg layout,bounds;
         this.guiBody( layout.asFlowView(bounds ?? {Rect(100,0,1000,1000)} ) );
@@ -29,7 +29,7 @@ InstrBrowser {
         };
         layout.horz({ arg layout;
             lv = ListView(layout,250@layout.bounds.height);
-            lv.items = instrs ++ ugenInstrs;
+            lv.items = this.allInstr;
             lv.mouseUpAction_({ arg view, x, y, modifiers, buttonNumber, clickCount;
                 frame.removeAll;
                 this.focus(lv.items[lv.value]);
@@ -54,7 +54,7 @@ InstrBrowser {
     }
     initUGenInstrs {
         ugenInstrs = UGenInstr.leaves(this.rateMethod); // should use rate not demand
-        ugenInstrs = ugenInstrs.collect(_.name);
+        ugenInstrs = ugenInstrs.collect(_.name).sort;
     }
     rate_ { arg rr;
         rate = rr;
@@ -71,12 +71,19 @@ InstrBrowser {
                 \fft,\new
                 );
     }
-    search { arg q;
-        // if(showUGenInstr ...
-        if(q != "",{
-            lv.items = (instrs.select(_.containsi(q)) ++ ugenInstrs.select(_.containsi(q))).sort;
+    allInstr {
+        if(showUGenInstr,{
+            ^(instrs ++ ugenInstrs);
         },{
-            lv.items = (instrs ++ ugenInstrs);
+            ^instrs;
+        });
+    }
+    search { arg q;
+        var base;
+        if(q != "",{
+            lv.items = (this.allInstr.select(_.containsi(q)));
+        },{
+            lv.items = this.allInstr
         });
         lv.refresh;
     }
