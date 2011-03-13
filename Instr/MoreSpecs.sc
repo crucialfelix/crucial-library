@@ -240,6 +240,47 @@ StaticIntegerSpec : StaticSpec {
 	}
 }
 
+
+NamedIntegersSpec : ControlSpec {
+    
+    var <values,<names,<static;
+    /*
+    two styles for names:
+        0 indexed integers 
+        [ "LINEAR","CAUCHY",...]   
+        using a custom integer list
+        [ [512,"512"],[1024,"1024"],[2048,"2048"] ...]
+    */
+    *new { arg names,default,static=false;
+        ^super.new(0,names.size-1,\linear,1,default).nisinit(names,static,default)
+    }
+	storeArgs { ^[[values,names].flop,default,static] }
+	*newFrom { arg similar;
+		^this.new([similar.values,similar.names].flop, similar.default,similar.static)
+	}
+
+    nisinit { arg n,s,d;
+        if(n[0].isString.not) {
+            # names, values = n.flop;
+            if(d.isNil,{
+                default = 0;
+            },{
+                default = values.indexOf(d) ? 0
+            })
+        } {
+            names = n;
+            values = Array.series(names.size);
+            default = d ? 0;
+        };
+        static = s;
+    }
+ 	canKr { ^static.not }
+	rate { ^if(static,\noncontrol,\control) }
+	defaultControl { arg val;
+	    ^PopUpEditor(default,names,values)
+	}
+}
+
 ScalarSpec : ControlSpec {
 	// \scalar means .ir or i_initialValue
 	// SendTrig etc. output a 0.0

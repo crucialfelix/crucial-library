@@ -190,6 +190,11 @@ PopUpEditor : KrNumberEditor {
 		value = values.at(index);
 		selectedIndex = index;
 	}
+	rand { arg standardDeviation = 0.15,mean;
+	    this.value = values.size.rand;
+	    this.changed
+	}
+	
 	guiClass { ^PopUpEditorGui }
 }
 
