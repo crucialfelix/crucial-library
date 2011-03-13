@@ -453,8 +453,9 @@ AbstractPlayer : AbstractFunction  {
 	*kr { arg ... args;
 		^this.performList(\new,args).kr
 	}
-
-
+	plot { arg duration=5.0, bounds;
+		{this.value}.plot2(duration,this.server,bounds?Rect(0,0,900,800))
+	}
 	/** hot patching **/
 	connectTo { arg hasInput;
 		this.connectToPatchIn(hasInput.patchIn,this.isPlaying ? false);

@@ -27,10 +27,7 @@ Instr  {
 		^super.newCopyArgs(name,func).init(specs,outSpec)
 	}
 	*at { arg  name;
-		var search;
-		search = this.objectAt(name);
-		//if(search.notNil,{ search = search.asInstr; });
-		^search
+		^this.objectAt(name);
 	}
 	*loadAll {
 	    this.prLoadDir(this.dir);
@@ -77,6 +74,9 @@ Instr  {
 	}
 	valueArray { arg inputs;
 		^func.valueArray(inputs)
+	}
+	*kr { arg name, args;
+		^this.ar(name,args)
 	}
 	kr { arg ... inputs;
 		^func.valueArrayEnvir(inputs);
@@ -172,6 +172,9 @@ Instr  {
 	play { arg ... args;
 		^Patch(this.name,args).play
 	}
+	plot { arg args,duration=5.0;
+		^Patch(this.name,args).plot(duration)
+	}
 	*choose { arg start;
 		// this is only choosing from Instr in memory,
 		// it is not loading all possible Instr from file
@@ -230,13 +233,15 @@ Instr  {
 		});
 		error("Invalid name for Instr : "++name);
 	}
-
+	*isDefined { arg name;
+		^Library.atList([this] ++ this.symbolizeName(name)).notNil;
+	}		
 	*objectAt { arg name;
-		var symbolized,search,path,pathParts,rootPath,instr;
+		var symbolized,search;
 		symbolized = this.symbolizeName(name);
 		search = Library.atList([this] ++ symbolized);
 		if(search.notNil,{ ^search });
-
+		symbolized.debug("Instr not found, loading file...");
 		this.findFileFor(symbolized);
 
 		// its either loaded now or its nil
@@ -274,7 +279,7 @@ Instr  {
 		// or synths/stereo/SinOsc/pmod.scd
 
 		(rootPath++"*").pathMatch.do({ |path|
-			var file,orcname,symbols;
+			var file,orcname,symbols,pn;
 			file = path.copyRange(rootPath.size,path.size-1);
 			if(file.last == $/,{
 				if(file.copyRange(0,file.size-2) == pathPartsFirst,{
@@ -283,20 +288,26 @@ Instr  {
 										fullInstrName );
 				});
 			},{
-				orcname = PathName(file).fileNameWithoutExtension;
-				if(orcname == pathPartsFirst,{
-				    //("Loading:" + path).postln;
-					path.load;
+			    pn = PathName(file);
+			    if(["scd","rtf",""].includesEqual(pn.extension),{
+    				orcname = pn.fileNameWithoutExtension;
+    				if(orcname == pathPartsFirst,{
+    				    ("Loading instr file:" + path).debug(orcname);
+    					
+    					// compiles and creates all Instr
+    					// which are now findable in the Library
+    					path.load;
 					
-					//fullInstrName copied up until including orcname
-					symbols = [];
-					fullInstrName.any({ |n|
-						symbols = symbols.add(n);
-						n == orcname
-					});
-					Instr.leaves(symbols).do({ |instr| instr.path = path });
-					^path
-				});
+    					// set path on all those within this file that we just loaded
+    					symbols = [];
+    					fullInstrName.any({ |n|
+    						symbols = symbols.add(n.asSymbol);
+    						n.asSymbol === orcname.asSymbol
+    					});
+    					Instr.leaves(symbols).do({ |instr| instr.path = path });
+    					^path
+    				});
+    			})
 			});
 		});
 
