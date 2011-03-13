@@ -36,7 +36,6 @@ AudioSpec : Spec {
 	canAccept { arg thing;
 		^(thing.isKindOf(AbstractPlayer) and: { thing.spec == this })
 	}
-
 }
 
 
@@ -155,6 +154,7 @@ TrigSpec : ControlSpec {
 	}
 }
 
+
 DemandSpec : ControlSpec {
 	
 	// defaultControl { Dwhite(this.minval,this.maxval,this.step,inf) }
@@ -178,6 +178,7 @@ TempoSpec : Spec {
 	}
 }
 
+
 NoLagControlSpec : ControlSpec {
 
 	*initClass {
@@ -192,8 +193,8 @@ NoLagControlSpec : ControlSpec {
 	defaultControl { arg val;
 		^KrNumberEditor.new(this.constrain(val ? this.default),this).lag_(nil)
 	}
-
 }
+
 
 StaticSpec : NoLagControlSpec {
 	// also a scalar spec, but better to inherit ControlSpec
@@ -205,7 +206,9 @@ StaticSpec : NoLagControlSpec {
 	}
 }
 
+
 StaticIntegerSpec : StaticSpec {
+    
 	*new { arg minval=0, maxval=10, default, units;
 		^super.new(minval.asInteger, maxval.asInteger, \lin, 1, default , units )
 	}
@@ -292,10 +295,13 @@ ScalarSpec : ControlSpec {
 	}
 }
 
+
 NonControlSpec : Spec {
+    
 	rate { ^\noncontrol }
 	canKr { ^false }
 }
+
 
 EnvSpec : NonControlSpec {
 
@@ -322,12 +328,10 @@ EnvSpec : NonControlSpec {
 				\envperc -> this.new(Env.perc),
 				\envadsr -> this.new(Env.adsr),
 				\envasr -> this.new(Env.asr),
-				\env3 -> this.new(Env.new([0,1,1,0],[0,1,0])),
-				\env3sustain -> this.new(Env.new([0,1,1,0],[0,1,0]).releaseNode_(2)),
-				\fenv -> this.new(Env.new([ 0, 1, 0.2, 0 ], [ 0.04, 0.4, 0.3 ], [ -6.31, 1.1, -2 ], nil, nil)),
-				\rqenv -> this.new(  Env.new([ 0.194444, 0.0810185, 0.0648148, 0.444444 ], [ 0.01, 0.111111, 0.0833333 ], [ -0.583333, 3.33333, 1.66667 ], nil, nil)),
-				\envpercshort -> this.new(Env.new([ 0, 1, 1, 0.444444, 0 ], [ 0.166667, 1, 0.805556, 0.777778 ], [ -7.16667, -2, 2, -2 ], nil, nil))
 
+				// personal, will remove
+				// filter envelope
+				\fenv -> this.new(Env.new([ 0, 1, 0.2, 0 ], [ 0.04, 0.4, 0.3 ], [ -6.31, 1.1, -2 ], nil, nil))
 			]
 		)
 	}
@@ -335,6 +339,7 @@ EnvSpec : NonControlSpec {
 		^thing.isKindOf(Env) or: {thing.isKindOf(EnvEditor)}
 	}
 }
+
 
 BufferProxySpec : NonControlSpec {
 
@@ -365,17 +370,21 @@ BufferProxySpec : NonControlSpec {
 	}
 }
 
+
 BusSpec : NonControlSpec {
+	
 	/* this is not for i_bus inputs but rather for specifying that you need a Bus object
 	for kr or ir bus indices use
 		a ControlSpec(0, 4096, 'linear', 1, 0, "Bus")
 		or ScalarSpec(0,4096,'linear',1,0,"Bus")
 	*/
 	var <>rate,<>numChannels,<>private;
+	
 	*new { |rate,numChannels,private|
 		^super.new.rate_(rate).numChannels_(numChannels).private_(private)
 	}
 }
+
 
 SampleSpec : NonControlSpec {
 
@@ -390,8 +399,8 @@ SampleSpec : NonControlSpec {
 	defaultControl { ^Sample.new } // silent sample
 	default { ^this.defaultControl }
 	canAccept { arg ting; ^ting.isKindOf(Sample) }
-
 }
+
 
 ScaleSpec : NonControlSpec {
 	/*
@@ -414,7 +423,9 @@ ScaleSpec : NonControlSpec {
 
 // abstract class for container objects whose content items conform to itemSpec
 HasItemSpec : NonControlSpec {
+
 	var <>itemSpec;
+
 	*new { arg itemSpec;
 		var spec;
 		spec = itemSpec.asSpec;
@@ -437,9 +448,12 @@ HasItemSpec : NonControlSpec {
 	storeArgs { ^[itemSpec] }
 }
 
+
 // an array that has items that conform to itemSpec
 ArraySpec : HasItemSpec {
+
 	var <>size;
+
 	*new { arg itemSpec,size=16;
 		^super.new(itemSpec).size_(size)
 	}
@@ -454,6 +468,7 @@ ArraySpec : HasItemSpec {
 
 // a stream that returns items conforming to the itemSpec
 StreamSpec : HasItemSpec {
+
 	constrain { arg value; ^itemSpec.constrain(value) }
 	canAccept { arg ting;
 		^(ting.rate == \stream or: {itemSpec.canAccept(ting) })
@@ -467,23 +482,30 @@ StreamSpec : HasItemSpec {
 	maxval { ^itemSpec.maxval }
 }
 
+
 // an EventStream is playable as audio, but its also a stream of events for further pattern work
 EventStreamSpec : NonControlSpec {
+
 	rate { ^\stream }
 	defaultControl { ^Pbind.new }
 }
 
+
 // a player whose output conforms to itemSpec
 PlayerSpec : HasItemSpec {
+    
 	canAccept { arg ting;
 		^(ting.isKindOf(AbstractPlayer) and: {ting.spec == itemSpec})
 	}
 	rate { ^itemSpec.rate }
 }
 
-// should change to InstrSpec : could be as an instr or a string or a function
+
+// should change to InstrSpec : could be an instr or a string or a function
 InstrNameSpec : HasItemSpec {
+
 	var <>hasGate,<>hasAudioInput; // nil means "does not care"
+
 	*new { arg outSpec,hasGate,hasAudioInput;
 		^super.new(outSpec).hasGate_(hasGate).hasAudioInput_(hasAudioInput)
 	}
@@ -493,9 +515,10 @@ InstrNameSpec : HasItemSpec {
 	}
 }
 
-// for generic object input to a Patch
 
+// jh: for generic object input to a Patch
 ObjectSpec : Spec {
+
 	var  <>defaultControl;
 
 	*new { |obj|
