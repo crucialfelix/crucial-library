@@ -185,8 +185,7 @@ Crucial {
 			Server.default.startAliveThread;
 			Server.default.dumpOSC(0)
 		},Server.default.dumpMode != 0 ,minWidth: 250);
-
-
+		
 		if(debugNodeWatcher.isNil,{
 			debugNodeWatcher = AnnotatedDebugNodeWatcher(Server.default);
 		});
@@ -417,54 +416,32 @@ Crucial {
 			UnicodeResponder.tester;
 		});
 
-//		Library.put(\menuItems,\introspection,'find class...',{
-//			GetStringDialog("Classname or partial string","",{
-//				arg ok,string;
-//				var matches,f,classes;
-//				matches = IdentitySet.new;
-//				if(ok,{
-//					classes = Class.allClasses.reject({ arg cl; cl.class === Class });
-//					classes.do({ arg cl;
-//						if(cl.name.asString.containsi(string),{
-//							matches = matches.add(cl);
-//						});
-//					});
-//
-//					Sheet({ arg f;
-//						matches.do({ arg cl;
-//							ClassNameLabel(cl,f.startRow,200);
-//							ActionButton(f,"source",{
-//								cl.openCodeFile;
-//							},60);
-//							ActionButton(f,"help",{
-//								cl.openHelpFile;
-//							},60);
-//						});
-//						if(matches.isEmpty,{
-//							CXLabel(f,"No matches found");
-//						});
-//					},"matches" + string);
-//				})
-//			});
-//		});
-
-		Library.put(\menuItems,\introspection,\classfinder,{
+		Library.put(\menuItems,\introspection,\classfinder,{ 
+			var close=true;
 			GetStringDialog("Search classes...","",{ arg ok,string;
-				Sheet({ |layout|
-					var matches;
+				var w;
+				w = Sheet({ |layout|
+					var matches,first;
 					Object.allSubclasses.do({ |class|
 						if(class.isMetaClass.not and: {class.name.asString.find(string,true).notNil},{
 							matches = matches.add(class,true);
 							layout.startRow;
 							//ClassNameLabel(class,layout,300);
-							ActionButton(layout,class.name.asString,{ class.openCodeFile; },300);
+							first = first ? 
+							    ActionButton(layout,class.name.asString,{ 
+								    class.openCodeFile; 
+								    if(close ? true,{w.close; });
+								},300);
 						});
 					});
 					if(matches.isNil,{
 						("No classes matching " + string + "found").gui(layout);
-					})
-				},"Class search")
-			})
+					});
+					if(first.notNil,{
+					    first.focus
+					});
+				},"Class search",Rect(500,800,500,500))
+			},Rect(500,800,100,100))
 		});
 
 		Library.put(\menuItems,\introspection,\methodfinder,{
