@@ -26,6 +26,8 @@ AbstractSFPGui : AbstractPlayerGui {
 
 SFPGui : AbstractSFPGui {
 
+	var a;
+	
 	sfpBody { arg layout;
 		var pathLabel,hf,ch,sr;
 
@@ -40,6 +42,10 @@ SFPGui : AbstractSFPGui {
 		//LabelledNumericalView(layout.win,layout.layRight(40,30),\tempo,model.tempo,0,2000,0)
 		//		.action_({ arg th; model.tempo = th.value; model.changed; });
 
+
+		a = SoundFileView(layout, Rect(0,0, layout.bounds.width, 60));
+		this.read;
+		
 		layout.removeOnClose(Updater(model,{
 			// in case the file gets swapped
 			pathLabel.label_(model.fileName).refresh;
@@ -57,6 +63,16 @@ SFPGui : AbstractSFPGui {
 			});
 		})
 	}
-	// it dont get more underlying than me
+	read {
+		if(model.file.notNil,{
+			a.soundfile = model.file;
+			a.read(0, model.file.numFrames);
+		});
+	}
+	update {
+		if(model.file != a.soundfile,{
+			this.read
+		})
+	}	
 	underlyingFileGui { }
 }
