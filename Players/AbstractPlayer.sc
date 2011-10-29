@@ -180,9 +180,7 @@ AbstractPlayer : AbstractFunction  {
 		this.spawnOnToBundle(group,bus,bundle);
 		bundle.sendAtTime(this.server,atTime,timeOfRequest);
 	}
-
-
-	spawnToBundle { arg bundle;
+	spawnToBundle { arg bundle,selector=\addToTailMsg;
 		bundle.addMessage(this,\didSpawn);
 		this.children.do({ arg child;
 			child.spawnToBundle(bundle);
@@ -191,7 +189,7 @@ AbstractPlayer : AbstractFunction  {
 		this.annotate(synth,"synth");
 		NodeWatcher.register(synth);
 		bundle.add(
-			synth.addToTailMsg(this.group,this.synthDefArgs)
+			synth.perform(selector,this.group,this.synthDefArgs)
 		);
 	}
 	spawnOnToBundle { arg agroup,bus,bundle;
