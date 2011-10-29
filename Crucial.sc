@@ -424,18 +424,21 @@ Crucial {
 					var matches,first;
 					Object.allSubclasses.do({ |class|
 						if(class.isMetaClass.not and: {class.name.asString.find(string,true).notNil},{
-							matches = matches.add(class,true);
-							layout.startRow;
-							//ClassNameLabel(class,layout,300);
-							first = first ? 
-							    ActionButton(layout,class.name.asString,{ 
-								    class.openCodeFile; 
-								    if(close ? true,{w.close; });
-								},300);
+							matches = matches.add(class);
 						});
 					});
 					if(matches.isNil,{
 						("No classes matching " + string + "found").gui(layout);
+					},{
+						matches.sortMap({|c| c.name }).do { arg class;
+							var b;
+							layout.startRow;
+						    b = ActionButton(layout,class.name.asString,{ 
+							    class.openCodeFile; 
+							    if(close ? true,{w.close; });
+							},300);
+							first = first ? b;
+						}
 					});
 					if(first.notNil,{
 					    first.focus
