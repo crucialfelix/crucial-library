@@ -1,3 +1,5 @@
+
+
 // abstract
 SCButtonAdapter : SCViewHolder {
 
@@ -49,7 +51,8 @@ SCButtonAdapter : SCViewHolder {
 	*defaultHeight { ^GUI.skin.buttonHeight }
 }
 
-// abreviation for a one state button
+
+// a one state button
 ActionButton : SCButtonAdapter {
 
 	var <action;
@@ -69,7 +72,7 @@ ActionButton : SCButtonAdapter {
 			backcolor ?? {skin.background}]]);
 		view.font_(font);
 		view.action_(function);
-		view.focusColor_((skin.focusColor ? Color.grey(0.5,0.1)).alpha_(0.1));
+		view.focusColor_((skin.focusColor ?? {Color.grey(0.5,0.1)}).alpha_(0.1));
 		if(consumeKeyDowns,{ this.keyDownAction = {nil}; });
 	}
 }
@@ -97,17 +100,19 @@ ToggleButton : SCButtonAdapter {
 	}
 	// private
 	init { arg layout,init,title,minWidth,minHeight;
-		var font;
+		var font,skin;
+		skin = GUI.skin;
 		font = GUI.font.new(*GUI.skin.fontSpecs);
 		this.makeViewWithStringSize(layout,title.bounds(font).width,minWidth,minHeight);
 		view.states = [
-			[title,GUI.skin.fontColor,GUI.skin.offColor],
-			[title,GUI.skin.fontColor,GUI.skin.onColor]
+			[title,skin.fontColor,skin.offColor],
+			[title,skin.fontColor,skin.onColor]
 		];
 		state=init;
 		view.value_(state.binaryValue);
 		view.action_({this.prSetState(state.not)});
 		view.font = font;
+		view.focusColor = skin.focusColor ?? {Color(0.0, 0.85714285714286, 1.0, 0.1)};
 	}
 	prSetState { arg newstate;
 		state = newstate;
