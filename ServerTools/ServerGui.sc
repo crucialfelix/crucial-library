@@ -126,7 +126,13 @@ ServerGui : ObjectGui {
 			ll = switch.items[switch.value];
 			model.options.device = ll;
 		};
-	}		
+	}
+	meters { |layout,bounds|
+	    ActionButton(layout,"Meters",{
+	        model.meter
+	        //ServerMeterView(model)
+	    })
+    }
 	tail { |layout|
 	    ToggleButton(layout,"tail",{
 	        ServerLog.start(model).tail = true;
