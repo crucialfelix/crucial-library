@@ -170,7 +170,7 @@ Crucial {
 			call Crucial-initLibraryItems first
 		*/
 
-		var a,rec,pause;
+		var a,rec,pause,width=256;
 		if(menu.notNil,{ menu.close });
 
 		menu = PageLayout.new("");
@@ -184,7 +184,7 @@ Crucial {
 		},{
 			Server.default.startAliveThread;
 			Server.default.dumpOSC(0)
-		},Server.default.dumpMode != 0 ,minWidth: 250);
+		},Server.default.dumpMode != 0 ,minWidth: width);
 		
 		if(debugNodeWatcher.isNil,{
 			debugNodeWatcher = AnnotatedDebugNodeWatcher(Server.default);
@@ -193,45 +193,45 @@ Crucial {
 			debugNodeWatcher.start;
 		},{
 			debugNodeWatcher.stop;
-		},debugNodeWatcher.isWatching,minWidth: 250);
+		},debugNodeWatcher.isWatching,minWidth: width);
 
 		ToggleButton(menu.startRow,"Server Log",{
 			ServerLog.start;
 		},{
 			ServerLog.stop;
-		},false,minWidth: 250);
+		},false,minWidth: width);
 
 		ActionButton(menu.startRow,"ServerLog.report",{
 			ServerLog.gui(tail:500);
-		},minWidth: 250);
+		},minWidth: width);
 
 		ActionButton(menu.startRow,"Query All Nodes",{
-			Library.at(\menuItems,\tools,'Server Node Report').value;		},minWidth: 250);
+			Library.at(\menuItems,\tools,'Server Node Report').value;		},minWidth: width);
 
 		ActionButton(menu.startRow,"Annotated Buses",{
-			Library.at(\menuItems,\tools,'Annotated Buses Report').value;		},minWidth: 250);
+			Library.at(\menuItems,\tools,'Annotated Buses Report').value;		},minWidth: width);
 
 		ActionButton(menu.startRow,"Listen to Buses",{
-			Library.at(\menuItems,\tools,'listen to audio busses').value;		},minWidth: 250);
+			Library.at(\menuItems,\tools,'listen to audio busses').value;		},minWidth: width);
 
 		ActionButton(menu.startRow,"Gui debugger",{
 			Library.at(\menuItems,\tools,\guiDebugger).value;
-		},minWidth: 250);
+		},minWidth: width);
 
 		ActionButton(menu.startRow,"Annotated Nodes",{
-			Library.at(\menuItems,\tools,'Annotated Nodes Report').value;		},minWidth: 250);
+			Library.at(\menuItems,\tools,'Annotated Nodes Report').value;		},minWidth: width);
 
 		ActionButton(menu.startRow,"edit ~/startup.rtf",{
 			"startup.rtf".openDocument
-		},minWidth: 250);
+		},minWidth: width);
 
 		ActionButton(menu.startRow,"kill all",{
 			Server.killAll;
-		},minWidth: 250);
+		},minWidth: width);
 
 		ActionButton(menu.startRow,"Quarks",{
 			Quarks.gui;
-		},minWidth: 250);
+		},minWidth: width);
 
 
 		//TempoGui.setTempoKeys;
