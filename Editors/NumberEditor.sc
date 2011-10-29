@@ -56,7 +56,7 @@ NumberEditor : Editor {
 	}
 	init { arg val,aspec;
 		spec = (aspec.asSpec ?? {ControlSpec.new});
-		this.value_(spec.constrain(val));
+		this.value = val;
 	}
 	spec_ { arg aspec;
 		spec = aspec.asSpec;
@@ -78,7 +78,8 @@ NumberEditor : Editor {
 	rand { arg standardDeviation = 0.15,mean;
 		// gaussian centered on the spec default
 		var default,unmapped;
-		default = spec.unmap( mean ? spec.default );
+		mean = mean ?? {if(spec.default == spec.minval,{spec.range / 2 + spec.minval},{spec.default})};
+		default = spec.unmap( mean );
 		unmapped = (sqrt(-2.0 * log(1.0.rand)) * sin(2pi.rand) * standardDeviation + default);
 		this.setUnmappedValue(unmapped);
 	}
