@@ -247,16 +247,6 @@ AbstractPlayer : AbstractFunction  {
 			NotificationCenter.notify(this,\didStop);
 		});
 	}
-	run { arg flag=true,atTime;
-		if(synth.notNil,{
-			AbstractPlayer.bundle(server,atTime,{ |bundle|
-				bundle.add( synth.runMsg(flag) );
-			})
-		});
-		// should call children ?
-		// this isn't fully implemented
-		// might be quite useful
-	}
 	release { arg releaseTime,atTime;
 		AbstractPlayer.bundle(server,atTime,{ |rb|
 			this.releaseToBundle(releaseTime,rb);
