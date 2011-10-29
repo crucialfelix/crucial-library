@@ -9,19 +9,21 @@ TempoGui : ObjectGui {
 		tempoG = NumberEditor(model.bpm,[1.0,666.0])
 			.action_({arg t; model.bpm_(t)});
 
-		tempoG.gui(layout,100@14,true);
+		tempoG.gui(layout,160@GUI.skin.buttonHeight,true);
 
-		gnomeInstr = Instr("TempoGui.gnomeInstr");
-		if(gnomeInstr.isNil,{
-			Instr("TempoGui.gnomeInstr",
-				{ arg trig,freq,amp;
-					Decay2.ar(
-						K2A.ar(trig), 0.01,0.11,
-						SinOsc.ar( freq, 0, amp )
-					)
-				});
+		if(Instr.isDefined("TempoGui.gnomeInstr").not,{
+			gnomeInstr =
+				Instr("TempoGui.gnomeInstr",
+					{ arg trig,freq,amp;
+						Decay2.ar(
+							K2A.ar(trig), 0.01,0.11,
+							SinOsc.ar( freq, 0, amp )
+						)
+					});
+		},{
+			gnomeInstr = Instr("TempoGui.gnomeInstr");
 		});
-		gnome = Patch("TempoGui.gnomeInstr",[
+		gnome = Patch(gnomeInstr,[
 			BeatClockPlayer.new(4.0),
 			StreamKrDur(
 				Pseq([ 750, 500, 500, 500, 750, 500, 500, 500,
