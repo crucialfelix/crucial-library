@@ -163,8 +163,9 @@ SFP : AbstractSFP  {
 	storeArgs { ^[this.soundFilePath,tempo,firstBeatIsAt] }
 
 	*getNew { arg receivingFunction;
-		GetFileDialog({ arg ok, path;
-			if(ok,{
+		File.openDialog(nil,
+			{ arg path;
+				
 				{
 					if(receivingFunction.notNil,{
 						receivingFunction.value(this.new(path));
@@ -172,9 +173,9 @@ SFP : AbstractSFP  {
 						this.new(path).gui;
 					});
 					nil
-				}.defer
-			})
-		})
+				}.defer				
+				
+			});
 	}
 
 	init { arg sfilePath;
