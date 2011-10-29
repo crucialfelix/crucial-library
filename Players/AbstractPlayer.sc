@@ -193,6 +193,7 @@ AbstractPlayer : AbstractFunction  {
 		);
 	}
 	spawnOnToBundle { arg agroup,bus,bundle;
+		// spawn on a group / bus to bundle
 		if(patchOut.isNil,{
 			this.makePatchOut(agroup,true,bus,bundle);
 		},{
@@ -212,15 +213,11 @@ AbstractPlayer : AbstractFunction  {
 		b = AbstractPlayer.bundleClass.new;
 		this.freeToBundle(b);
 		b.doFunctions;
-		// sending the OSC is irrelevant since its already root node cleared
+		// sending the OSC is irrelevant since the root node already freed
 	}
-	// these always call children
-	stop { arg atTime,andFreeResources = true;
-		// this was requested : the normal user thinks that stop means stop
-		// but they want it to also free its resources
-		// so really most of the time you mean .free
-		if(andFreeResources,{ ^this.free });
 
+	// these always call children
+	stop { arg atTime;
 		if(server.notNil,{
 			AbstractPlayer.bundle(server,atTime ? this.server.latency,{ |bundle|
 				this.stopToBundle(bundle,true);
@@ -236,7 +233,6 @@ AbstractPlayer : AbstractFunction  {
 			});
 			this.freeSynthToBundle(bundle);
 			bundle.addMessage(this,\didStop);
-			//this.freePatchOutToBundle(bundle);
 		})
 	}
 	didStop {
