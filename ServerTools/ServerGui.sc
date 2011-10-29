@@ -81,12 +81,13 @@ ServerGui : ObjectGui {
 		recorder = GUI.button.new(layout, Rect(0,0, 10, height));
 		recorder.states = [
 			["*", Color.black, Color.clear],
-			["*", Color.red, Color.gray(0.1)],
+			["*", Color.yellow, Color.gray(0.3)],
 			["X", Color.black, Color.red]
 		];
 		recorder.action = {
 			if (recorder.value == 1) {
 				model.prepareForRecord;
+				"Server prepared for record".inform;
 			}{
 				if (recorder.value == 2) { model.record } { model.stopRecording };
 			};
@@ -172,9 +173,7 @@ ServerErrorGui : ObjectGui {
 			}.defer
 		});
 		failer.add;
-		if(thisThread.exceptionHandler.notNil,{
-			"ServerErrorGui : There is already an exception handler installed".inform;
-		},{
+		if(thisThread.exceptionHandler.isNil,{
 			thisThread.exceptionHandler = handler = { |error|
 				if(Error.handling,{ error.dump; this.halt; });
 				Error.handling = true;
