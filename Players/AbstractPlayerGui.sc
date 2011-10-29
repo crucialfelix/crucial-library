@@ -9,7 +9,6 @@ AbstractPlayerGui : ObjectGui {
 			// top level controls
 			this.synthConsole(layout);
 			this.saveConsole(layout);
-			Do(\topGuiPlugIns,model,layout);
 			layout.startRow;
 		});
 
@@ -39,9 +38,6 @@ AbstractPlayerGui : ObjectGui {
 		this.saveConsole(layout);
 		layout.startRow;
 		this.performList(\gui,[layout,bounds] ++ args);
-
-		/** plug in **/
-		Do(\topGuiPlugIns,model,layout);
 
 		this.enableKeyDowns;
 		if(parent.isNil,{
