@@ -57,6 +57,13 @@ AbstractPlayerGui : ObjectGui {
 			});
 		});
 	}
+	viewDidClose {
+		if(model.isPlaying.not,{
+			model.free
+		});
+		super.viewDidClose;
+	}
+	
 //	keyDowns {
 //		view.keyDownAction = this.keyDownResponder;
 //	}
