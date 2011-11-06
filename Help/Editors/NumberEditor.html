@@ -14,31 +14,31 @@ p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0p
 p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco; min-height: 14.0px}
 p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco}
 p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco}
-p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco; color: #42200f}
-p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco; color: #001984}
-p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #001984}
+p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco; color: #2c160a}
+p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco; color: #00136f}
+p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #00136f}
 p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; min-height: 12.0px}
-p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #42200f}
-p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #3b3b3b}
+p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #2c160a}
+p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #2b2b2b}
 p.p14 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Helvetica; min-height: 17.0px}
-p.p15 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco; color: #00139d}
-p.p16 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco; color: #7c210d}
-p.p17 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco; color: #7c210d; min-height: 14.0px}
-p.p18 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #001593}
-p.p19 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #001499}
+p.p15 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco; color: #00128a}
+p.p16 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco; color: #5e1d0b}
+p.p17 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco; color: #5e1d0b; min-height: 14.0px}
+p.p18 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #00127f}
+p.p19 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #001285}
 span.s1 {font: 19.0px Helvetica}
-span.s2 {color: #001984}
-span.s3 {color: #353e15}
+span.s2 {color: #00136f}
+span.s3 {color: #272d0e}
 span.s4 {color: #000000}
-span.s5 {color: #374015}
-span.s6 {color: #3b3b3b}
-span.s7 {color: #00139d}
-span.s8 {color: #29480e}
-span.s9 {color: #7c210d}
-span.s10 {color: #001593}
-span.s11 {color: #324311}
-span.s12 {color: #2d460f}
-span.s13 {color: #001499}
+span.s5 {color: #292e0f}
+span.s6 {color: #2b2b2b}
+span.s7 {color: #00128a}
+span.s8 {color: #23350c}
+span.s9 {color: #5e1d0b}
+span.s10 {color: #00127f}
+span.s11 {color: #27310d}
+span.s12 {color: #24330c}
+span.s13 {color: #001285}
 span.Apple-tab-span {white-space:pre}
 </style>
 </head>
@@ -91,6 +91,7 @@ span.Apple-tab-span {white-space:pre}
 <p class="p5"><br></p>
 <p class="p6">control-drag up/down in the number box scales the value</p>
 <p class="p6">shift-control-drag for finer control</p>
+<p class="p5"><br></p>
 <p class="p6">option click on the number box to reset the value to the spec's default</p>
 <p class="p5"><br></p>
 <p class="p6">(</p>
@@ -109,10 +110,14 @@ span.Apple-tab-span {white-space:pre}
 <p class="p5"><br></p>
 <p class="p5"><br></p>
 <p class="p6">// programatically set it</p>
-<p class="p6">n.value = 100</p>
+<p class="p6">n.value = 100 // onscreen slider does not move yet</p>
 <p class="p6">n.changed; // now the slider moves</p>
-<p class="p6"><span class="Apple-tab-span">	</span>// and sends to the server !</p>
 <p class="p5"><br></p>
+<p class="p6"><span class="Apple-tab-span">	</span>// and note that if this slider is used in a Patch then</p>
+<p class="p6"><span class="Apple-tab-span">	</span>// it sends the .set message to the synth on the server only when</p>
+<p class="p6"><span class="Apple-tab-span">	</span>// .changed is invoked</p>
+<p class="p6"><span class="Apple-tab-span">	</span>// this is because neither the Patch nor the NumberEditor does the sending</p>
+<p class="p6"><span class="Apple-tab-span">	</span>// its a separate utility object that is a registered dependent of the NumberEditor</p>
 <p class="p14"><br></p>
 <p class="p5"><br></p>
 <p class="p5"><br></p>
@@ -175,6 +180,7 @@ span.Apple-tab-span {white-space:pre}
 <p class="p6">)</p>
 <p class="p5"><br></p>
 <p class="p6">Putting them on normal windows</p>
+<p class="p6">// broken ! didn't take the incoming bounds origin</p>
 <p class="p7">(</p>
 <p class="p7">w = <span class="s10">GUI</span>.window.new;</p>
 <p class="p7">w.front;</p>

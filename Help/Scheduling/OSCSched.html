@@ -12,16 +12,20 @@ p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px Helvetica; min-height: 22.0p
 p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
 p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
 p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco}
-p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #001d9d; min-height: 12.0px}
-p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #4d4d4d}
-p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; min-height: 12.0px}
-p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #662914}
-p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Helvetica}
-span.s1 {color: #001d9d}
-span.s2 {color: #000000}
-span.s3 {color: #43551a}
-span.s4 {color: #4d4d4d}
-span.s5 {color: #662914}
+p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #00178a; min-height: 12.0px}
+p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #000000}
+p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #606060}
+p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #000000; min-height: 12.0px}
+p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #bf0000}
+p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; min-height: 12.0px}
+p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Helvetica}
+p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; color: #000000}
+span.s1 {color: #00178a}
+span.s2 {color: #0000bf}
+span.s3 {color: #000000}
+span.s4 {color: #007300}
+span.s5 {color: #606060}
+span.s6 {color: #bf0000}
 span.Apple-tab-span {white-space:pre}
 </style>
 </head>
@@ -121,101 +125,131 @@ span.Apple-tab-span {white-space:pre}
 <p class="p4"><br></p>
 <p class="p6"><span class="Apple-tab-span">	</span></p>
 <p class="p3"><b>load all of these for use in all following examples</b></p>
-<p class="p5">s = <span class="s1">Server</span>.local;</p>
-<p class="p5">s.boot;</p>
+<p class="p7">s = <span class="s2">Server</span>.local;</p>
+<p class="p7">s.boot;</p>
+<p class="p7">(</p>
+<p class="p8"><span class="s2">SynthDef</span><span class="s3">(</span>"bubbles"<span class="s3">, {</span></p>
+<p class="p7"><span class="Apple-tab-span">	</span><span class="s2">var</span> f, zout;</p>
+<p class="p7"><span class="Apple-tab-span">	</span>f = <span class="s2">LFSaw</span>.kr(0.4, 0, 24, <span class="s2">LFSaw</span>.kr([8,7.23], 0, 3, 80)).midicps;</p>
+<p class="p7"><span class="Apple-tab-span">	</span>zout = <span class="s2">CombN</span>.ar(<span class="s2">SinOsc</span>.ar(f, 0, 0.04), 0.2, 0.2, 4);</p>
+<p class="p7"><span class="Apple-tab-span">	</span><span class="s2">Out</span>.ar(0, zout);</p>
+<p class="p7">}).send(s);</p>
+<p class="p9"><br></p>
+<p class="p7">n = s.nodeAllocator.alloc;</p>
+<p class="p7">i = [[ <span class="s4">'/s_new'</span>, <span class="s5">"bubbles"</span>, n, 1, 0 ]];</p>
+<p class="p7">o = [[ <span class="s4">'/n_free'</span>, n ]];</p>
+<p class="p9"><br></p>
+<p class="p7">c = <span class="s2">OSCSched</span>.new;</p>
+<p class="p7">)</p>
+<p class="p9"><br></p>
+<p class="p9"><br></p>
+<p class="p9"><br></p>
+<p class="p10">// unitialised, the scheduler's time is number of seconds<span class="Apple-converted-space"> </span></p>
+<p class="p10">// since SC itself started up</p>
+<p class="p7">c.time.postln;</p>
+<p class="p9"><br></p>
+<p class="p10">// defaults to 1.0 beats per second</p>
+<p class="p7"><span class="s2">Tempo</span>.tempo.postln;</p>
+<p class="p9"><br></p>
+<p class="p10">// number of beats since SC itself started up</p>
+<p class="p7">c.beat.postln;</p>
+<p class="p9"><br></p>
+<p class="p10">// set the default global Tempo</p>
+<p class="p7"><span class="s2">Tempo</span>.bpm = 96;</p>
+<p class="p9"><br></p>
+<p class="p10">// how many of those beats since time started</p>
+<p class="p7">c.beat.postln;</p>
+<p class="p9"><br></p>
+<p class="p10">// tell the scheduler what beat we think it is</p>
+<p class="p7">c.beat = 0.0;</p>
+<p class="p9"><br></p>
+<p class="p10">// how beats since time started</p>
+<p class="p7">c.beat.postln;</p>
+<p class="p9"><br></p>
+<p class="p9"><br></p>
+<p class="p10">// start in 2.0 beats</p>
+<p class="p7">c.sched(2.0,s,i,{</p>
+<p class="p8"><span class="s3"><span class="Apple-tab-span">	</span></span>"starting"<span class="s3">.postln;</span></p>
+<p class="p7">});</p>
+<p class="p9"><br></p>
+<p class="p9"><br></p>
+<p class="p10">// free the synth on the next even bar</p>
+<p class="p7">c.qsched(4.0,s,o,{</p>
+<p class="p10"><span class="s3"><span class="Apple-tab-span">	</span>c.beat.postln; </span>// note the timing imprecision</p>
+<p class="p7">});</p>
+<p class="p9"><br></p>
+<p class="p9"><br></p>
+<p class="p10">// start in 4.0 seconds</p>
+<p class="p7">c.tsched(4.0,s,i,{</p>
+<p class="p8"><span class="s3"><span class="Apple-tab-span">	</span></span>"starting"<span class="s3">.postln;</span></p>
+<p class="p7">});</p>
+<p class="p11"><br></p>
+<p class="p11"><br></p>
+<p class="p11"><br></p>
+<p class="p12"><b>Absolute Beat / Time scheduling</b></p>
+<p class="p11"><br></p>
+<p class="p7">c.clear;</p>
+<p class="p9"><br></p>
+<p class="p10">// execute the example below all at once</p>
+<p class="p10">// the functions execute at the server event time</p>
+<p class="p10">// note the imprecision</p>
+<p class="p7">(</p>
+<p class="p10"><span class="s3">c.beat = 32.0; </span>// beat 32 is now</p>
+<p class="p7">c.schedAbs(36.0,s,i,{c.beat.postln}); <span class="s6">// in</span></p>
+<p class="p7">c.schedAbs(39.0,s,o,{c.beat.postln});<span class="Apple-tab-span">	</span><span class="s6">// out</span></p>
+<p class="p7">c.schedAbs(41.0,s,o,{c.beat.postln}); <span class="s6">// out</span></p>
+<p class="p7">c.schedAbs(40.0,s,i,{c.beat.postln}); <span class="s6">// but first in</span></p>
+<p class="p7">c.schedAbs(43.0,s,i,{</p>
+<p class="p7"><span class="Apple-tab-span">	</span>c.beat.postln;</p>
+<p class="p7"><span class="Apple-tab-span">	</span>c.schedAbs(42.0,s,o,{</p>
+<p class="p8"><span class="s3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></span>"this will never happen, its already in the past"<span class="s3">.postln;</span></p>
+<p class="p7"><span class="Apple-tab-span">	</span>});</p>
+<p class="p7"><span class="Apple-tab-span">	</span>c.schedAbs(46.0,s,o,{</p>
+<p class="p7"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>c.beat.postln;</p>
+<p class="p7"><span class="Apple-tab-span">	</span>});</p>
+<p class="p7">});</p>
+<p class="p7">)</p>
+<p class="p11"><br></p>
+<p class="p11"><br></p>
+<p class="p13"><b>aschedFunc(beat,function)</b></p>
+<p class="p5"><span class="Apple-tab-span">	</span>execute this function at this beat</p>
+<p class="p11"><span class="Apple-tab-span">	</span></p>
 <p class="p5">(</p>
-<p class="p7"><span class="s1">SynthDef</span><span class="s2">(</span>"bubbles"<span class="s2">, {</span></p>
-<p class="p5"><span class="Apple-tab-span">	</span><span class="s1">var</span> f, zout;</p>
-<p class="p5"><span class="Apple-tab-span">	</span>f = <span class="s1">LFSaw</span>.kr(0.4, 0, 24, <span class="s1">LFSaw</span>.kr([8,7.23], 0, 3, 80)).midicps;</p>
-<p class="p5"><span class="Apple-tab-span">	</span>zout = <span class="s1">CombN</span>.ar(<span class="s1">SinOsc</span>.ar(f, 0, 0.04), 0.2, 0.2, 4);</p>
-<p class="p5"><span class="Apple-tab-span">	</span><span class="s1">Out</span>.ar(0, zout);</p>
-<p class="p5">}).send(s);</p>
-<p class="p8"><br></p>
-<p class="p5">n = s.nodeAllocator.alloc;</p>
-<p class="p5">i = [[ <span class="s3">'/s_new'</span>, <span class="s4">"bubbles"</span>, n, 1, 0 ]];</p>
-<p class="p5">o = [[ <span class="s3">'/n_free'</span>, n ]];</p>
-<p class="p8"><br></p>
-<p class="p5">c = <span class="s1">OSCSched</span>.new;</p>
-<p class="p5">)</p>
-<p class="p8"><br></p>
-<p class="p8"><br></p>
-<p class="p8"><br></p>
-<p class="p9">// unitialised, the scheduler's time is number of seconds<span class="Apple-converted-space"> </span></p>
-<p class="p9">// since SC itself started up</p>
-<p class="p5">c.time.postln;</p>
-<p class="p8"><br></p>
-<p class="p9">// defaults to 1.0 beats per second</p>
-<p class="p5"><span class="s1">Tempo</span>.tempo.postln;</p>
-<p class="p8"><br></p>
-<p class="p9">// number of beats since SC itself started up</p>
-<p class="p5">c.beat.postln;</p>
-<p class="p8"><br></p>
-<p class="p9">// set the default global Tempo</p>
-<p class="p5"><span class="s1">Tempo</span>.bpm = 96;</p>
-<p class="p8"><br></p>
-<p class="p9">// how many of those beats since time started</p>
-<p class="p5">c.beat.postln;</p>
-<p class="p8"><br></p>
-<p class="p9">// tell the scheduler what beat we think it is</p>
-<p class="p5">c.beat = 0.0;</p>
-<p class="p8"><br></p>
-<p class="p9">// how beats since time started</p>
-<p class="p5">c.beat.postln;</p>
-<p class="p8"><br></p>
-<p class="p8"><br></p>
-<p class="p9">// start in 2.0 beats</p>
-<p class="p5">c.sched(2.0,s,i,{</p>
-<p class="p7"><span class="s2"><span class="Apple-tab-span">	</span></span>"starting"<span class="s2">.postln;</span></p>
-<p class="p5">});</p>
-<p class="p8"><br></p>
-<p class="p8"><br></p>
-<p class="p9">// free the synth on the next even bar</p>
-<p class="p5">c.qsched(4.0,s,o,{</p>
-<p class="p9"><span class="s2"><span class="Apple-tab-span">	</span>c.beat.postln; </span>// note the floating point imprecision</p>
-<p class="p5">});</p>
-<p class="p8"><br></p>
-<p class="p8"><br></p>
-<p class="p9">// start in 4.0 seconds</p>
-<p class="p5">c.tsched(4.0,s,i,{</p>
-<p class="p7"><span class="s2"><span class="Apple-tab-span">	</span></span>"starting"<span class="s2">.postln;</span></p>
-<p class="p5">});</p>
-<p class="p8"><br></p>
-<p class="p8"><br></p>
-<p class="p10"><b>Absolute Beat / Time scheduling</b></p>
-<p class="p8"><br></p>
-<p class="p5">c.clear;</p>
-<p class="p8"><br></p>
-<p class="p8"><br></p>
-<p class="p5">(</p>
-<p class="p9"><span class="s2">c.beat = 32.0; </span>// we are starting at beat 32</p>
-<p class="p5">c.schedAbs(36.0,s,i); <span class="s5">// in</span></p>
-<p class="p5">c.schedAbs(39.0,s,o);<span class="Apple-tab-span">	</span><span class="s5">// out</span></p>
-<p class="p5">c.schedAbs(41.0,s,o); <span class="s5">// out</span></p>
-<p class="p5">c.schedAbs(40.0,s,i); <span class="s5">// but first in</span></p>
-<p class="p5">c.schedAbs(43.0,s,i,{</p>
-<p class="p5"><span class="Apple-tab-span">	</span>c.schedAbs(42.0,s,o,{</p>
-<p class="p7"><span class="s2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></span>"this will never happen, its already in the past"<span class="s2">.postln;</span></p>
+<p class="p5">c = <span class="s2">OSCSched</span>.new;</p>
+<p class="p11"><br></p>
+<p class="p10"><span class="s3">c.beat = 32.0; </span>// beat 32 is now</p>
+<p class="p5">c.aschedFunc(36.0,{c.beat.postln}); <span class="s6">// in</span></p>
+<p class="p5">c.aschedFunc(39.0,{c.beat.postln});<span class="Apple-tab-span">	</span><span class="s6">// out</span></p>
+<p class="p5">c.aschedFunc(41.0,{c.beat.postln}); <span class="s6">// out</span></p>
+<p class="p5">c.aschedFunc(40.0,{c.beat.postln}); <span class="s6">// but first in</span></p>
+<p class="p5">c.aschedFunc(43.0,{</p>
+<p class="p5"><span class="Apple-tab-span">	</span>c.beat.postln;</p>
+<p class="p5"><span class="Apple-tab-span">	</span>c.aschedFunc(42.0,{</p>
+<p class="p8"><span class="s3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></span>"this will never happen, its already in the past"<span class="s3">.postln;</span></p>
 <p class="p5"><span class="Apple-tab-span">	</span>});</p>
-<p class="p5"><span class="Apple-tab-span">	</span>c.schedAbs(46.0,s,o);</p>
+<p class="p5"><span class="Apple-tab-span">	</span>c.aschedFunc(46.0,{</p>
+<p class="p5"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>c.beat.postln;</p>
+<p class="p5"><span class="Apple-tab-span">	</span>});</p>
 <p class="p5">});</p>
 <p class="p5">)</p>
-<p class="p8"><br></p>
-<p class="p8"><br></p>
-<p class="p8"><br></p>
-<p class="p10"><b>Exclusive<span class="Apple-converted-space"> </span></b></p>
-<p class="p8"><br></p>
-<p class="p5">(</p>
-<p class="p5">c.xsched(4.0,s,i,{</p>
-<p class="p5"><span class="Apple-tab-span">	</span><span class="s4">"4.0"</span>.postln;<span class="Apple-tab-span">	</span></p>
-<p class="p5">});</p>
-<p class="p5">c.sched(8.0,s,o); <span class="s5">// not affected</span></p>
-<p class="p9">// changed my mind...</p>
-<p class="p9"><span class="s2">c.xsched(3.0,s,i,{ </span>// the x-methods are exclusive</p>
-<p class="p5"><span class="Apple-tab-span">	</span><span class="s4">"3.0"</span>.postln;<span class="Apple-tab-span">	</span></p>
-<p class="p5">});</p>
-<p class="p5">)</p>
-<p class="p8"><br></p>
-<p class="p8"><br></p>
-<p class="p8"><br></p>
+<p class="p5">// nope</p>
+<p class="p11"><br></p>
+<p class="p11"><br></p>
+<p class="p11"><br></p>
+<p class="p12"><b>Exclusive<span class="Apple-converted-space"> </span></b></p>
+<p class="p9"><br></p>
+<p class="p7">(</p>
+<p class="p7">c.xsched(4.0,s,i,{</p>
+<p class="p7"><span class="Apple-tab-span">	</span><span class="s5">"4.0"</span>.postln;<span class="Apple-tab-span">	</span></p>
+<p class="p7">});</p>
+<p class="p7">c.sched(8.0,s,o); <span class="s6">// not affected</span></p>
+<p class="p10">// changed my mind...</p>
+<p class="p10"><span class="s3">c.xsched(3.0,s,i,{ </span>// the x-methods are exclusive</p>
+<p class="p7"><span class="Apple-tab-span">	</span><span class="s5">"3.0"</span>.postln;<span class="Apple-tab-span">	</span></p>
+<p class="p7">});</p>
+<p class="p7">)</p>
+<p class="p9"><br></p>
+<p class="p11"><br></p>
+<p class="p11"><br></p>
 </body>
 </html>

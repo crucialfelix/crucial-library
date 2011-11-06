@@ -5,20 +5,23 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title></title>
 <meta name="Generator" content="Cocoa HTML Writer">
-<meta name="CocoaVersion" content="824.44">
+<meta name="CocoaVersion" content="949.54">
 <style type="text/css">
 p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Helvetica}
 p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; min-height: 12.0px}
 p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; color: #000000; min-height: 14.0px}
-p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; color: #000000}
+p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco}
 p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #bf0000}
 p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #000000}
 p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #000000; min-height: 12.0px}
-p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #bf0000; min-height: 12.0px}
-p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco}
+p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #9d200d}
+p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; color: #000000}
+p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #9d200d; min-height: 12.0px}
 span.s1 {font: 18.0px Helvetica}
 span.s2 {color: #0000bf}
+span.s3 {color: #606060}
+span.s4 {color: #0012af}
 span.Apple-tab-span {white-space:pre}
 </style>
 </head>
@@ -27,72 +30,98 @@ span.Apple-tab-span {white-space:pre}
 <p class="p2"><br></p>
 <p class="p3">GridLayout is useful for laying out the larger sections of an interface.</p>
 <p class="p4"><br></p>
-<p class="p5">Grid systems are a commonly used method that graphic designers use layout the overall form of a page.<span class="Apple-converted-space">  </span>Look at any magazine, newspaper or finer website.<span class="Apple-converted-space">  </span>They give a vertical and horizontal rhythm to the design and simplify decisions about where to place things.<span class="Apple-converted-space">  </span>It quantizes the visual space.</p>
+<p class="p3">Grid systems are a commonly used method that graphic designers use to layout the structural sections on a page.<span class="Apple-converted-space">  </span>You can see this in most any magazine, newspaper or website.<span class="Apple-converted-space">  </span>They give a vertical and horizontal rhythm to the design and simplify decisions about where to place things.<span class="Apple-converted-space">  </span>It quantizes the visual space.</p>
 <p class="p4"><br></p>
-<p class="p5">A GridLayout is not a decorator like FlowLayout.<span class="Apple-converted-space">  </span>You create one and use it directly to calculate bounds, then Composite views or flow views can be placed at those Rects and you put your controls and stuff inside those.</p>
+<p class="p3">A GridLayout is not a decorator like FlowLayout.<span class="Apple-converted-space">  </span>You create one and use it directly to calculate bounds, then Composite views or flow views can be placed at those Rects and you use those Rects when placing your views.</p>
 <p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p5">(</p>
 <p class="p6">// a fairly large bounds</p>
-<p class="p7">b = <span class="s2">GUI</span>.window.screenBounds.resizeBy(-100,-100);</p>
+<p class="p7">b = <span class="s2">Window</span>.screenBounds.resizeBy(-100,-100);</p>
 <p class="p8"><br></p>
-<p class="p6">// create a large grid layout with 12 cols and 5 rows</p>
-<p class="p7">g = <span class="s2">GridLayout</span>.new(b,12,5);</p>
+<p class="p7">w = <span class="s2">Window</span>(<span class="s3">"GridLayout"</span>,b).front;</p>
 <p class="p8"><br></p>
-<p class="p6">// 12 cols and as many rows as will fit within the bounds</p>
-<p class="p7">g = <span class="s2">GridLayout</span>.new(b,12);</p>
+<p class="p9">// create a large grid layout with 12 cols and 7 rows</p>
+<p class="p7">g = <span class="s2">GridLayout</span>.new(b,12,7);</p>
 <p class="p8"><br></p>
-<p class="p6">// use the grid's gui to plan where you want things</p>
-<p class="p7">g.gui</p>
+<p class="p6">// specify using row@column Points:<span class="Apple-converted-space">  </span>left and bottom right inclusive</p>
+<p class="p6">// the GridLayout calculates the rect</p>
+<p class="p7"><span class="s2">TextView</span>(w,g.calc(0@0,6@1)).background = <span class="s2">Color</span>.white;</p>
 <p class="p8"><br></p>
-<p class="p5">Several ways to specify and obtain bounds.</p>
+<p class="p7"><span class="s2">TextView</span>(w,g.calc(0@2,1@9)).background = <span class="s2">Color</span>.red;</p>
+<p class="p8"><br></p>
+<p class="p5"><span class="s2">TextView</span>(w,g.calc(0@10,6@11)).background = <span class="s2">Color</span>.black;</p>
+<p class="p8"><br></p>
+<p class="p5"><span class="s2">TextView</span>(w,g.calc(2@2,6@9)).background = <span class="s2">Color</span>.blue;</p>
+<p class="p8"><br></p>
+<p class="p5">)</p>
+<p class="p2"><br></p>
+<p class="p3">A built in design tool to plan grid layouts</p>
+<p class="p5">(</p>
+<p class="p9">// a fairly large bounds</p>
+<p class="p5">b = <span class="s4">Window</span>.screenBounds.resizeBy(-100,-100);</p>
+<p class="p2"><br></p>
+<p class="p9">// create a large grid layout with 12 cols and 7 rows</p>
+<p class="p5">g = <span class="s4">GridLayout</span>.new(b,12,7);</p>
+<p class="p5">// this shows that the larger dimension (12) consumes as much space as it can</p>
+<p class="p5">// and that determines the size of each square</p>
+<p class="p2"><br></p>
+<p class="p9">// the GUI for the grid object is a tool for planning a layout</p>
+<p class="p5">g.gui</p>
+<p class="p5">)</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p10"><b>Several ways to specify and obtain bounds.</b></p>
 <p class="p4"><br></p>
-<p class="p5">To get a 2 x 3 box (occupying 6 total grid spaces) in the upper right corner I find it easiest to specify two sets of quadrants that encompass the area.</p>
-<p class="p9"><br></p>
-<p class="p6">// top left and bottom right corner</p>
-<p class="p10">g.calc( 0@0, 2@1 )</p>
-<p class="p6">// you can specify any two quadrants in any order</p>
-<p class="p8"><br></p>
-<p class="p7">// the same specified with points</p>
-<p class="p8"><br></p>
-<p class="p7">// or specify using a rect with the left,top, width, height in integers</p>
-<p class="p10">g.mapRect( Rect(0,0,2,3) )</p>
+<p class="p3">To get a 2 x 3 box (occupying 6 total grid spaces) in the upper right corner I find it easiest to specify two sets of quadrants that encompass the area.</p>
+<p class="p11"><br></p>
+<p class="p9">// top left and bottom right corner</p>
+<p class="p5">g.calc( 0@0, 2@1 )</p>
+<p class="p9">// you can specify any two quadrants in any order</p>
+<p class="p2"><br></p>
+<p class="p5">// get the same result but specifying by quadrant arrays</p>
+<p class="p5">g.getBounds( [0,0],[2,1] )</p>
+<p class="p2"><br></p>
+<p class="p5">// or specify using a rect with the left,top, width, height in integers</p>
+<p class="p5">g.mapRect( Rect(0,0,2,3) )</p>
 <p class="p2"><br></p>
 <p class="p2"><br></p>
-<p class="p10">(</p>
-<p class="p10">b = <span class="s2">GUI</span>.window.screenBounds.resizeBy(-100,-100);</p>
-<p class="p10">g = <span class="s2">GridLayout</span>.new(b,12,7);</p>
-<p class="p10">w = GUI.window.new(b).front;</p>
+<p class="p5">(</p>
+<p class="p5">b = <span class="s4">GUI</span>.window.screenBounds.resizeBy(-100,-100);</p>
+<p class="p5">g = <span class="s4">GridLayout</span>.new(b,12,7);</p>
+<p class="p5">w = GUI.window.new(b).front;</p>
 <p class="p2"><br></p>
-<p class="p6">// 12 cols and as many rows as will fit within the bounds</p>
-<p class="p10">g = <span class="s2">GridLayout</span>.new(b,12);</p>
+<p class="p9">// 12 cols and as many rows as will fit within the bounds</p>
+<p class="p5">g = <span class="s4">GridLayout</span>.new(b,12);</p>
 <p class="p2"><br></p>
-<p class="p10">// g.gui</p>
-<p class="p2"><br></p>
-<p class="p10">a = g.calc( 0@),<span class="Apple-converted-space"> </span></p>
-<p class="p2"><br></p>
-<p class="p2"><br></p>
-<p class="p10">w.view</p>
+<p class="p5">)</p>
 <p class="p2"><br></p>
 <p class="p2"><br></p>
 <p class="p2"><br></p>
 <p class="p2"><br></p>
 <p class="p2"><br></p>
-<p class="p10">Could be done as a decorator and specify bounds as integers</p>
+<p class="p5">Notes on how it could be done as a decorator and specify the bounds as integers:</p>
 <p class="p2"><br></p>
-<p class="p10">decorator = GridLayout</p>
+<p class="p5">not yet implemented</p>
 <p class="p2"><br></p>
-<p class="p10">text(g,Rect(0,0,1,1))</p>
+<p class="p5">decorator = GridLayout</p>
 <p class="p2"><br></p>
-<p class="p10">text(g,Rect(2,0,6,1))</p>
+<p class="p5">text(g,Rect(0,0,1,1))</p>
 <p class="p2"><br></p>
-<p class="p10">text(g,GridBlock([2,0],[3,4])</p>
+<p class="p5">text(g,Rect(2,0,6,1))</p>
 <p class="p2"><br></p>
-<p class="p10">[2,0][3,4]</p>
+<p class="p5">text(g,GridBlock([2,0],[3,4])</p>
 <p class="p2"><br></p>
-<p class="p10">text(c,g.calc([2,0],[3,4]))</p>
+<p class="p5">[2,0][3,4]</p>
 <p class="p2"><br></p>
-<p class="p10">g.calc(2@0,3@4)</p>
+<p class="p5">text(c,g.calc([2,0],[3,4]))</p>
 <p class="p2"><br></p>
-<p class="p10">g.project(2@0,3@4)</p>
+<p class="p5">g.calc(2@0,3@4)</p>
+<p class="p2"><br></p>
+<p class="p5">g.project(2@0,3@4)</p>
 <p class="p2"><br></p>
 <p class="p2"><br></p>
 <p class="p2"><br></p>

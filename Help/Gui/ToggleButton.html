@@ -5,16 +5,24 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title></title>
 <meta name="Generator" content="Cocoa HTML Writer">
-<meta name="CocoaVersion" content="824.42">
+<meta name="CocoaVersion" content="949.54">
 <style type="text/css">
 p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px Helvetica}
 p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; min-height: 12.0px}
 p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
 p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #0019b7}
-p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco}
-span.s1 {color: #000000}
+p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #000000}
+p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #0000bf}
+p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #000000; min-height: 12.0px}
+p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #bf0000}
+p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #0017a6; min-height: 12.0px}
+p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Arial; color: #0017a6; min-height: 14.0px}
+p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; color: #000000}
+p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Arial; color: #000000}
+p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Arial; color: #000000; min-height: 14.0px}
+span.s1 {color: #0000bf}
 span.s2 {color: #606060}
+span.s3 {color: #000000}
 span.Apple-tab-span {white-space:pre}
 </style>
 </head>
@@ -22,16 +30,48 @@ span.Apple-tab-span {white-space:pre}
 <p class="p1"><b>ToggleButton</b></p>
 <p class="p2"><br></p>
 <p class="p2"><br></p>
-<p class="p3"><b>ToggleButton.new(layout,title,onFunction,offFunction,initialState)</b></p>
+<p class="p3"><b>ToggleButton.new(parent,title,onFunction,offFunction,initialState,minWidth,minHeight)</b></p>
+<p class="p4"><br></p>
+<p class="p3">initialState</p>
+<p class="p3"><span class="Apple-tab-span">	</span>boolean</p>
+<p class="p3">minWidth <span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-tab-span">	</span>button width is calculated to fit the title</p>
+<p class="p3"><span class="Apple-tab-span">	</span>setting minWidth will widen the button to a minimum width</p>
+<p class="p3">minHeight</p>
+<p class="p3"><span class="Apple-tab-span">	</span>default is the GUI.skin.buttonHeight</p>
 <p class="p4"><br></p>
 <p class="p4"><br></p>
-<p class="p4"><br></p>
-<p class="p5"><span class="s1">t = </span>ToggleButton<span class="s1">(</span>nil<span class="s1">,</span><span class="s2">"push me"</span><span class="s1">,{</span></p>
-<p class="p6"><span class="Apple-tab-span">	</span><span class="s2">"on"</span>.postln;</p>
-<p class="p6">},{</p>
-<p class="p6"><span class="Apple-tab-span">	</span><span class="s2">"off"</span>.postln;</p>
-<p class="p5"><span class="s1">},</span>false<span class="s1">);</span></p>
-<p class="p2"><br></p>
-<p class="p6">t.toggle;</p>
+<p class="p5">t = <span class="s1">ToggleButton</span>(<span class="s1">nil</span>,<span class="s2">"push me"</span>,{ <span class="s1">arg</span> button,bool;</p>
+<p class="p5"><span class="Apple-tab-span">	</span><span class="s2">"on"</span>.postln;</p>
+<p class="p5">},{</p>
+<p class="p5"><span class="Apple-tab-span">	</span><span class="s2">"off"</span>.postln;</p>
+<p class="p6"><span class="s3">},</span>false<span class="s3">);</span></p>
+<p class="p7"><br></p>
+<p class="p5">t.toggle;</p>
+<p class="p7"><br></p>
+<p class="p8">// set to false, doing the action</p>
+<p class="p5">t.toggle(<span class="s1">false</span>)</p>
+<p class="p7"><br></p>
+<p class="p8">// set to false, not doing the action</p>
+<p class="p5">t.toggle(<span class="s1">false</span>,<span class="s1">false</span>)</p>
+<p class="p7"><br></p>
+<p class="p7"><br></p>
+<p class="p7"><br></p>
+<p class="p8">// using only one function</p>
+<p class="p5">t = <span class="s1">ToggleButton</span>(<span class="s1">nil</span>,<span class="s2">"push me"</span>,{ <span class="s1">arg</span> button,bool;</p>
+<p class="p5"><span class="Apple-tab-span">	</span>if(bool,{</p>
+<p class="p5"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="s2">"on"</span>.postln;</p>
+<p class="p5"><span class="Apple-tab-span">	</span>},{</p>
+<p class="p5"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="s2">"off"</span>.postln;</p>
+<p class="p5"><span class="Apple-tab-span">	</span>})</p>
+<p class="p5">});</p>
+<p class="p9"><br></p>
+<p class="p10"><br></p>
+<p class="p11"><b>value = bool</b></p>
+<p class="p12"><span class="Apple-tab-span">	</span>set the value, not doing the action</p>
+<p class="p13"><br></p>
+<p class="p11"><b>toggle(bool,doAction=true)</b></p>
+<p class="p12"><span class="Apple-tab-span">	</span>with no arguments it toggles the state, doing the action</p>
+<p class="p12"><span class="Apple-tab-span">	</span>or may set the value explicitly (like value_ but doing the action as well)</p>
 </body>
 </html>
