@@ -176,7 +176,9 @@ BeatSched {
 	}
 }
 
+
 OSCSched : BeatSched {
+	
 	classvar <global;
 
 	*initClass { global = this.new; }
@@ -240,13 +242,18 @@ OSCSched : BeatSched {
 
 	sched { arg beats,server,bundle,onArrival,onSend;
 		var latency;
-		latency = server.latency ? 0.05;
-		tempoClock.dsched(beats - latency,{ // this is correct : treat latency as though it were beats ...
-			onSend.value;
-			// and convert those beats to seconds here
-			// inaccurate final delivery if tempo is changing quickly
-			server.listSendBundle(tempo.beats2secs(latency),bundle);
-			nil
+		if(beats <= 1.0,{
+			server.listSendBundle(tempo.beats2secs(beats),bundle);
+		},{
+			latency = server.latency ? 0.05;
+			tempoClock.dsched(beats - latency,{ // using latency as though it were beats
+				onSend.value;
+				// and convert those beats to seconds here
+				// inaccurate final delivery if tempo is changing quickly
+				// during the final latency gap
+				server.listSendBundle(tempo.beats2secs(latency),bundle);
+				nil
+			});
 		});
 		if(onArrival.notNil,{
 			tempoClock.dsched(beats,{ onArrival.value; nil })
@@ -290,21 +297,24 @@ OSCSched : BeatSched {
 	}
 	// xtschedAbs
 	schedAbs { arg beat,server,bundle,onArrival;
-		/*  to do...
-		if(time >= this.time,{ // in the future ?
-			pq.put(time,[server,bundle,onArrival]);
-			// was something else already scheduled before me ?
-			if(nextAbsTime.notNil,{
-				if(time == pq.topPriority ,{ // i'm next
-					pq.put(nextAbsTime,nextAbsList); // put old top back on queue
-					this.tschedAbsNext;
-				})
-			},{
-				this.tschedAbsNext; // sched meself
-			});
+		var beats;
+		beats = beat - this.beat;
+		if(beats.isPositive,{
+			this.sched(beats, server, bundle,onArrival);
+		});
+	}
+	aschedFunc { arg beat,func;
+		if(beat >= this.beat,{
+			tempoClock.schedAbs(beatEpoch + beat,{func.value; nil});
 		})
-		*/
-		this.tschedAbs(tempo.beats2secs(beat),server,bundle,onArrival)
+	}
+	schedAtTime { arg atTime,server,bundle;
+		atTime.schedBundle(bundle,server)
+	}
+	xschedAtTime { arg atTime,server,bundle;
+		// tricky. for now:
+		atTime.schedBundle(bundle,server)
+		// the lock will come soon
 	}
 
 	xschedBundle { arg beatDelta,server,bundle;
@@ -338,3 +348,5 @@ OSCSched : BeatSched {
 		});
 	}
 }
+
+
