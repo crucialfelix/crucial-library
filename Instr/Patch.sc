@@ -388,7 +388,9 @@ Patch : HasPatchIns  {
 		if(this.args.includes(changed),{
 			if(this.isPlaying,{
 				newArgs = synthDef.secretDefArgs(this.args);
-				synth.performList(\set,newArgs);
+				if(newArgs.notEmpty,{
+					synth.performList(\set,newArgs);
+				})
 			},{
 				this.invalidateSynthDef;
 			})
