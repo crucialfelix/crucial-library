@@ -138,11 +138,10 @@ InstrSynthDef : SynthDef {
 		});
 		longName = name;
 		firstName = argInstr.name.last.asString;
-		if(firstName.size > 20,{
+		if(firstName.size > 18,{
 			firstName = "Instr";
 		});
 		name = firstName ++ "*" ++ longName.hash;
-		// name.debug("name");
 		controlNames = saveControlNames;
 		^result
 	}
