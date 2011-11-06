@@ -102,6 +102,9 @@ CXObjectInspector : ObjectGui {
 		ActionButton(layout,"assign to var x",{
 			thisProcess.interpreter.perform('x_',model);
 		});
+		ActionButton(layout,"-> y",{
+			thisProcess.interpreter.perform('y_',model);
+		});
 		ActionButton(layout,"open class file",{
 			model.class.openCodeFile;
 		});
@@ -116,111 +119,115 @@ ClassGui : CXObjectInspector { // ClassGui
 
 		var iNames,supers,scale,width;
 
-		if(model.superclass.notNil,{
-			width = (layout.bounds.width - 30) / (model.superclasses.size + 1);
-		},{
-			width = (layout.bounds.width - 30);
-		});			
-		// you are here
-		//InspectorLink(model,layout.startRow,minWidth:width);
-		ClassNameLabel(model,layout,width,30);
-		//CXLabel(layout,":",height: 30);
-		if(model.superclass.notNil,{
-			supers = model.superclasses;
-			scale = supers.size;
-			supers.do({ arg sup,i;
-				ClassNameLabel(sup,layout,width,30);
-			})
-		});
+		layout.scroll({ arg layout;
+			layout.flow({ arg layout;
 
-		layout.startRow;
-		ActionButton(layout, "Source",{
-			model.openCodeFile;
-		}).font_(GUI.font.new("Monaco",9.0));
-		ActionButton(layout,"Help",{
-			var path;
-			model.openHelpFile;
-		});
-
-
-		// explicit references
-		/*
-		CXLabel(layout.startRow,"classes explicitly referenced in source:");
-		layout.startRow;
-		model.explicitClassReferences.do({ arg c;
-			ClassNameLabel(c.asClass,layout,200);
-		});
-		*/
-
-		// classVarnames
-		if(model.classVarNames.size > 0,{
-			CXLabel(layout.startRow,"classvars:",minWidth:160).bold;
-			model.classVarNames.size.do({ arg cvi;
-				var iv;
-				VariableNameLabel(model.classVarNames.at(cvi),layout.startRow);
-				iv=model.classVars.at(cvi);
-				//ClassNameLabel(iv.class,layout);
-				InspectorLink(iv,layout);
-			});
-		});
-
-		//instance vars
-		if(model.instVarNames.size > 0,{
-			CXLabel(layout.startRow,"vars:",minWidth:160).bold;
-			model.instVarNames.size.do({ arg ivi;
-				if(ivi % 8 ==0,{ layout.startRow });
-				VariableNameLabel(model.instVarNames.at(ivi),layout,minWidth:width);
-				// iprototype
-			});
-		});
-
-		// meta_class methods
-		if(model.class.methods.size > 0,{
-			model.class.methods.size.do({arg cmi;
-				MethodLabel.classMethod(model.class.methods.at(cmi),layout.startRow,minWidth:width);
-			});
-		});
-
-		// cprototype
-		// filenameSymbol
-		// MethodBrowser(class)
-		// show up to 50 methods, up the superclass chain (stop at object ?)
-		// show when methods are overriden by subclass
-		//if(model.methods.size < 50,{
-			this.displayMethodsOf(model,layout,true,width);
-		//},{
-		//	ActionButton(layout.startRow,"display instance methods (" + model.methods.size + ")",{
-		//		this.displayMethodsOf(model);
-		//	},minWidth:width)
-		//});
-		ActionButton(layout,"find method...",{
-			GetStringDialog("find method...","",{ arg ok,string;
-				var class,method;
-				string = string.asSymbol;
-				class = model;
-				while({ class != Meta_Object },{
-					method = class.findMethod(string);
-					if(method.notNil,{
-						method.gui;
-						class = Meta_Object
-					 },{
-					 	class = class.superclass;
-					 });
+				if(model.superclass.notNil,{
+					width = (layout.bounds.width - 30) / (model.superclasses.size + 1);
+				},{
+					width = (layout.bounds.width - 30);
+				});			
+				// you are here
+				//InspectorLink(model,layout.startRow,minWidth:width);
+				ClassNameLabel(model,layout,width,30);
+				//CXLabel(layout,":",height: 30);
+				if(model.superclass.notNil,{
+					supers = model.superclasses;
+					scale = supers.size;
+					supers.do({ arg sup,i;
+						ClassNameLabel(sup,layout,width,30);
+					})
 				});
-			})
+		
+				layout.startRow;
+				ActionButton(layout, "Source",{
+					model.openCodeFile;
+				}).font_(GUI.font.new("Monaco",9.0));
+				ActionButton(layout,"Help",{
+					var path;
+					model.openHelpFile;
+				});
+		
+		
+				// explicit references
+				/*
+				CXLabel(layout.startRow,"classes explicitly referenced in source:");
+				layout.startRow;
+				model.explicitClassReferences.do({ arg c;
+					ClassNameLabel(c.asClass,layout,200);
+				});
+				*/
+		
+				// classVarnames
+				if(model.classVarNames.size > 0,{
+					CXLabel(layout.startRow,"classvars:",minWidth:160).bold;
+					model.classVarNames.size.do({ arg cvi;
+						var iv;
+						VariableNameLabel(model.classVarNames.at(cvi),layout.startRow);
+						iv=model.classVars.at(cvi);
+						//ClassNameLabel(iv.class,layout);
+						InspectorLink(iv,layout);
+					});
+				});
+		
+				//instance vars
+				if(model.instVarNames.size > 0,{
+					CXLabel(layout.startRow,"vars:",minWidth:160).bold;
+					model.instVarNames.size.do({ arg ivi;
+						if(ivi % 8 ==0,{ layout.startRow });
+						VariableNameLabel(model.instVarNames.at(ivi),layout,minWidth:width);
+						// iprototype
+					});
+				});
+		
+				// meta_class methods
+				if(model.class.methods.size > 0,{
+					model.class.methods.size.do({arg cmi;
+						MethodLabel.classMethod(model.class.methods.at(cmi),layout.startRow,minWidth:width);
+					});
+				});
+		
+				// cprototype
+				// filenameSymbol
+				// MethodBrowser(class)
+				// show up to 50 methods, up the superclass chain (stop at object ?)
+				// show when methods are overriden by subclass
+				//if(model.methods.size < 50,{
+					this.displayMethodsOf(model,layout,true,width);
+				//},{
+				//	ActionButton(layout.startRow,"display instance methods (" + model.methods.size + ")",{
+				//		this.displayMethodsOf(model);
+				//	},minWidth:width)
+				//});
+				ActionButton(layout,"find method...",{
+					GetStringDialog("find method...","",{ arg ok,string;
+						var class,method;
+						string = string.asSymbol;
+						class = model;
+						while({ class != Meta_Object },{
+							method = class.findMethod(string);
+							if(method.notNil,{
+								method.gui;
+								class = Meta_Object
+							 },{
+							 	class = class.superclass;
+							 });
+						});
+					})
+				});
+		
+				this.dependantsGui(layout);
+		
+				// subclasses
+				// needs a scroll view
+				layout.hr;
+				//layout.scroll({ |layout|
+					this.displaySubclassesOf(model,layout,0,50);
+				//});
+		
+				//layout.hr;
+			});
 		});
-
-		this.dependantsGui(layout);
-
-		// subclasses
-		// needs a scroll view
-		layout.hr;
-		//layout.scroll({ |layout|
-			this.displaySubclassesOf(model,layout,0,50);
-		//});
-
-		//layout.hr;
-
 	}
 
 	displayMethodsOf { arg class,f,withoutClass = true,width=160,indent=0;
@@ -337,8 +344,6 @@ MethodGui : ObjectGui {
 		// other class implementations of this message (command-y)
 		CXLabel(layout.startRow,"References to this message:");
 		Class.findAllReferences(model.name).do({ |r|
-			//r.gui(layout.startRow);
-			//r.debug;
 			if(r.isKindOf(FunctionDef),{
 				InspectorLink(r,layout.startRow,300);
 			},{
