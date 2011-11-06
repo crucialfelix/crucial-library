@@ -48,11 +48,12 @@ AbstractPlayerGui : ObjectGui {
 	}
 
 	writeName { arg layout;
-		//color it based on whether it has a .path
-						// (was loaded from disk)
-		super.writeName(layout);
+		this.prWriteName(layout,this.model.asString);
+		if(InspectorLink.notNil,{
+			InspectorLink.icon(model,layout)
+		});
 		if(model.path.notNil,{
-			ActionButton(layout,"edit file",{
+			ActionButton(layout,"edit source",{
 				model.path.openTextFile;
 			});
 		});

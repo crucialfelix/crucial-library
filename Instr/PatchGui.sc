@@ -1,15 +1,8 @@
 
 PatchGui : AbstractPlayerGui {
 
-	writeName { arg layout;
-		//color it based on whether it has a .path
-						// (was loaded from disk)
-		this.prWriteName(layout,model.class.asString);
-		if(model.path.notNil,{
-			ActionButton(layout,"edit file",{
-				model.path.openTextFile;
-			});
-		});
+	prWriteName { arg layout,name;
+		super.prWriteName(layout,model.class.name.asString)
 	}
 	guiBody { arg layout;
 		var bounds, maxHeight,vl,font,argNameWidth;
