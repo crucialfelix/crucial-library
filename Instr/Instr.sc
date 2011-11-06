@@ -29,6 +29,12 @@ Instr  {
 	*at { arg  name;
 		^this.objectAt(name);
 	}
+	*load { arg name;
+	    // forces a reload from file
+		name = this.symbolizeName(name);
+		Library.global.removeAtPath(name.copy.addFirst(this));
+	    ^this.at(name)
+	}
 	*loadAll {
 	    this.prLoadDir(this.dir);
 		this.prLoadDir(Platform.userExtensionDir ++ "/quarks/*/Instr");
