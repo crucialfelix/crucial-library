@@ -167,6 +167,12 @@ Patch : HasPatchIns  {
 			this.setInput(i,in)
 		});
 	}
+	instr_ { arg newInstr;
+		this.invalidateSynthDef;
+		instr = newInstr;
+		instr.addDependant(this);
+		this.changed(\instr);
+	}
 	set { arg index, value;
 		var argg;
 		if(index.isKindOf(Symbol),{
