@@ -69,7 +69,6 @@ BFormatSpec : AudioSpec {
 	/*constrain { arg value;
 		^value
 	}*/
-
 }
 
 
@@ -90,7 +89,6 @@ AudioEventSpec : AudioSpec {
 	default{
 		^Event.default
 	}
-	
 }
 
 
@@ -159,7 +157,6 @@ DemandSpec : ControlSpec {
 	
 	// defaultControl { Dwhite(this.minval,this.maxval,this.step,inf) }
 	rate { ^\demand }
-
 }
 
 
@@ -249,7 +246,7 @@ NamedIntegersSpec : ControlSpec {
     var <values,<names,<static;
     /*
     two styles for names:
-        0 indexed integers 
+        0-indexed integers 
         [ "LINEAR","CAUCHY",...]   
         using a custom integer list
         [ [512,"512"],[1024,"1024"],[2048,"2048"] ...]
@@ -280,7 +277,7 @@ NamedIntegersSpec : ControlSpec {
  	canKr { ^static.not }
 	rate { ^if(static,\noncontrol,\control) }
 	defaultControl { arg val;
-	    ^PopUpEditor(default,names,values)
+	    ^PopUpEditor(val ? default,names,values)
 	}
 }
 
@@ -313,8 +310,8 @@ EnvSpec : NonControlSpec {
 		^super.new.prototype_(prototype ?? {Env.asr})
 	}
 	storeArgs { ^[prototype] }
-	defaultControl {
-		^EnvEditor.new(prototype.copy)
+	defaultControl { arg env;
+		^EnvEditor.new(env ?? {prototype.copy})
 	}
 	default { ^prototype.copy }
 
