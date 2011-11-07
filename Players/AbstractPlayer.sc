@@ -311,7 +311,9 @@ AbstractPlayer : AbstractFunction  {
 			//server = nil;
 		});
 	}
-
+	record { arg path,endBeat,onComplete,recHeaderFormat='AIFF', recSampleFormat='int24',atTime;
+		PlayerRecorder(this).record(path,endBeat,onComplete,recHeaderFormat='AIFF', recSampleFormat='int24',atTime)
+	}
 
 	busIndex {
 		if(patchOut.isNil,{ ^nil });
