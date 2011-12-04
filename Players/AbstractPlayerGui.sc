@@ -1,4 +1,6 @@
 
+
+
 AbstractPlayerGui : ObjectGui {
 
 	gui { arg parent,bounds ... args;
@@ -92,15 +94,9 @@ AbstractPlayerGui : ObjectGui {
 	synthConsole { arg layout;
 		var s, server;
 		server = model.server.asTarget.server;
-		server.gui(layout).output(layout).tail(layout).meters(layout);
-		// SynthConsole(model,layout).play.registerPlayKey.record.write({
-			// model.timeDuration }).scope.stop.formats.tempo;
+		server.gui(layout).meters(layout);
 		s = SynthConsole(model,layout).play.record.stop.free.tempo;
-
-		ServerErrorGui(server).gui(layout);
-
-		//NotificationCenter.register(s,\didRecordOrWrite,model,{
-			// NotificationCenter.notify(model,\didRecordOrWrite) });
+		//ServerErrorGui(server).gui(layout);
 	}
 
 	durationString { // time
