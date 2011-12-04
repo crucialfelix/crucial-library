@@ -12,7 +12,7 @@ PlayerRecorder {
 		^super.newCopyArgs(player)
 	}
 	
-	record { arg path,endBeat,onComplete,recHeaderFormat='AIFF', recSampleFormat='int24',atTime;
+	record { arg path,endBeat,onComplete,recHeaderFormat='AIFF', recSampleFormat='int24',atTime,limit=true;
 
 		var timeOfRequest,bus,group,server,do;
 		if(player.isPlaying,{ ^Error("Cannot start record while playing").throw });
@@ -51,7 +51,7 @@ PlayerRecorder {
 					timeout = timeout - 0.1;
 					0.1.wait
 				};
-				this.prRecord(path,endBeat,server.asGroup,bus,recordBuf,onComplete,recHeaderFormat,recSampleFormat, atTime,timeOfRequest)
+				this.prRecord(path,endBeat,server.asGroup,bus,recordBuf,onComplete,recHeaderFormat,recSampleFormat, limit,atTime,timeOfRequest)
 			}.fork
 		};
 		if(server.serverRunning.not,{
@@ -70,7 +70,7 @@ PlayerRecorder {
 		},do);
 	}
 
-	prRecord { arg path, endBeat,parentGroup, bus, recordBuf,onComplete, recHeaderFormat='AIFF', recSampleFormat='int24', atTime, timeOfRequest;
+	prRecord { arg path, endBeat,parentGroup, bus, recordBuf,onComplete, recHeaderFormat='AIFF', recSampleFormat='int24',limit=true, atTime, timeOfRequest;
 		var bundle,def,defName,group,synth;
 		bundle = AbstractPlayer.bundleClass.new;
 		group = Group.basicNew(parentGroup.server);
@@ -82,8 +82,11 @@ PlayerRecorder {
 		def = SynthDef(defName, { arg bufnum,busnum;
 			var out;
 			out = In.ar(busnum, player.numChannels);
+			if(limit and: {recSampleFormat.asString.contains("int")},{
+				out = Limiter.ar(out,-0.01.dbamp)
+			});
 			Out.ar(0, out ); // listen
-			DiskOut.ar(bufnum.debug("bufnum"), out);
+			DiskOut.ar(bufnum, out);
 		});
 		bundle.addPrepare([ "/d_recv", def.asBytes]);
 
@@ -94,6 +97,9 @@ PlayerRecorder {
 			ender = AbstractPlayer.bundleClass.new;
 			ender.add(synth.freeMsg);
 			ender.add(recordBuf.closeMsg(recordBuf.freeMsg));
+			ender.addFunction({
+				recordBuf = nil;
+			});
 			player.stopToBundle(ender);
 			player.freeToBundle(ender);
 			OSCSched.sched(endBeat,player.server,ender.messages,{
@@ -116,6 +122,7 @@ PlayerRecorder {
 		if(recordBuf.notNil,{
 			recordBuf.close;
 			recordBuf.free;
+			recordBuf = nil;
 		});
 		responder.remove;
 		CmdPeriod.remove(this);
