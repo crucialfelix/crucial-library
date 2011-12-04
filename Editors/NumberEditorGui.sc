@@ -165,6 +165,12 @@ NumberEditorGui : EditorGui {
 	}
 	update {arg changed,changer; // always has a number box
 		{
+			if(changer == 'spec',{
+				if(numv.notNil,{
+					numv.clipLo = model.spec.minval;
+					numv.clipHi = model.spec.maxval;
+				})
+			});					
 			if(changer !== numv and: {numv.notNil},{
 				numv.value_(model.poll);
 			});
