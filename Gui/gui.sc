@@ -28,22 +28,6 @@
 
 + ObjectGui {
 
-	guiBody { arg layout;
-		// if your model implement guiBody then call that
-		// this is a lazy way to write simple guis for simple objects
-		// where model/gui code separation is not especially important
-		if(model.respondsTo(\guiBody) and: {model.isKindOf(ObjectGui).not},{
-             model.guiBody(layout)
-		},{
-			/*
-			or by default we make a gui showing variables that the class allows to be visible
-			by instVarsForGui
-			by default this is NO variables at all.
-			*/
-			//ObjectGui.guiInstVarsOf(model,layout)
-		})
-	}
-
 	topGui { arg ... args;
 		this.performList(\gui, args);
 	}
@@ -94,7 +78,6 @@
 	}
 }
 
-
 + Node {
 //	guiClass { ^NodeGui }
 	guiBody { arg layout;
@@ -108,6 +91,7 @@
 		});
 	}
 }
+
 + Synth {
 //	guiClass { ^SynthGui }
 	guiBody { arg layout;
@@ -115,4 +99,5 @@
 		super.guiBody(layout);
 	}
 }
+
 	
