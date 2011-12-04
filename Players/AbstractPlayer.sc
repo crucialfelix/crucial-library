@@ -544,6 +544,7 @@ AbstractPlayer : AbstractFunction  {
 	}
 	didSaveAs { arg apath;
 		path = apath;
+		name = nil;
 		NotificationCenter.notify(AbstractPlayer,\saveAs,[this,path]);
 		/* to receive this:
 			NotificationCenter.register(AbstractPlayer,\saveAs,you,
