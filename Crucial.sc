@@ -24,7 +24,7 @@ Crucial {
 				gap:			4 @ 4,
 				margin: 		2@0,
 				buttonHeight:	17,
-				focusColor: Color(0.0, 0.85714285714286, 1.0, 0.34328358208955)
+				focusColor: Color(1.0, 0.98507462686567,0)
 			));
 	}
 
@@ -219,7 +219,7 @@ Crucial {
 		},minWidth: width);
 
 		ActionButton(menu.startRow,"Annotated Nodes",{
-			Library.at(\menuItems,\tools,'Annotated Nodes Report').value;		},minWidth: width);
+			Library.at(\menuItems,\tools,'Server Node Report').value;		},minWidth: width);
 
 		ActionButton(menu.startRow,"edit ~/startup.rtf",{
 			"startup.rtf".openDocument
@@ -257,10 +257,10 @@ Crucial {
 		});
 
 		// tools
-		Library.put(\menuItems,\load,'browse for objects...',{
+		Library.put(\menuItems,\load,'Open Player...',{
 			GetFileDialog({ arg ok,loadPath;
 				if(ok,{
-					loadPath.loadPath.topGui;
+					loadPath.loadPath.gui;
 				});
 			})
 		});
@@ -286,8 +286,7 @@ Crucial {
 					},{
 						listen.stop
 					});
-					CXLabel( layout, b.start.asString + "(" ++ b.size.asString ++ ")"
-						,100 );
+					CXLabel( layout, b.start.asString + "(" ++ b.size.asString ++ ")",100 );
 
 					bus = BusPool.findBus(s,b.start);
 					if(bus.notNil,{
@@ -419,8 +418,7 @@ Crucial {
 		Library.put(\menuItems,\introspection,\classfinder,{ 
 			var close=true;
 			GetStringDialog("Search classes...","",{ arg ok,string;
-				var w;
-				w = Sheet({ |layout|
+				Sheet({ |layout|
 					var matches,first;
 					Object.allSubclasses.do({ |class|
 						if(class.isMetaClass.not and: {class.name.asString.find(string,true).notNil},{
@@ -430,18 +428,23 @@ Crucial {
 					if(matches.isNil,{
 						("No classes matching " + string + "found").gui(layout);
 					},{
-						matches.sortMap({|c| c.name }).do { arg class;
-							var b;
-							layout.startRow;
-						    b = ActionButton(layout,class.name.asString,{ 
-							    class.openCodeFile; 
-							    if(close ? true,{w.close; });
-							},300);
-							first = first ? b;
-						}
-					});
-					if(first.notNil,{
-					    first.focus
+						if(matches.size == 1,{
+							matches.first.openCodeFile;
+							if(close ? true,{layout.window.close; });
+						},{
+							matches.sortMap({|c| c.name }).do { arg class;
+								var b;
+								layout.startRow;
+							    b = ActionButton(layout,class.name.asString,{ 
+								    class.openCodeFile; 
+								    if(close ? true,{layout.window.close; });
+								},300);
+								first = first ? b;
+							}
+						});
+						if(first.notNil,{
+						    first.focus
+						});
 					});
 				},"Class search",Rect(500,800,500,500))
 			},Rect(500,800,100,100))
@@ -651,23 +654,6 @@ Crucial {
 				})
 			});
 		});
-
-		/*
-		Library.put(\menuItems,\tools,'Annotated Node Report',{
-			var a;
-			a = Library.at(AbstractPlayer, \busAnnotations, Server.default,\audio);
-			if(a.notNil,{
-				a.keysValuesDo({ |k,v|
-					[k,v].postln
-				})
-			});
-			a = Library.at(AbstractPlayer, \busAnnotations, Server.default,\control);
-			if(a.notNil,{
-				a.keysValuesDo({ |k,v|
-					[k,v].postln
-				})
-			});
-		});*/
 
 		Library.put(\menuItems,\tools,'Server Node Report',{
 			var probe,probing,resp,nodes,server,report,indent = 0,order=0;
