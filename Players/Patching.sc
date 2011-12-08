@@ -139,6 +139,9 @@ PatchOut {
 	// and store them here in the PatchOut
 	allocBus { |name,rate,numChannels|
 		var b;
+		if(this.busses[name].notNil,{
+			Error("Bus for "+name+"already allocated").throw;
+		});
 		b = BusPool.alloc(rate,this.server,numChannels,source,name);
 		this.busses[name] = b;
 		^b
