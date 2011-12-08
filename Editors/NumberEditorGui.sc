@@ -175,10 +175,10 @@ NumberEditorGui : EditorGui {
 					numv.clipHi = model.spec.maxval;
 				})
 			});					
-			if(changer !== numv and: {numv.notNil},{
+			if(changer !== numv and: {numv.notNil} and: {numv.isClosed.not},{
 				numv.value_(model.poll);
 			});
-			if(changer !== slv and: {slv.notNil},{
+			if(changer !== slv and: {slv.notNil} and: {slv.isClosed.not},{
 				slv.value_(model.spec.unmap(model.poll));
 			});
 			nil
