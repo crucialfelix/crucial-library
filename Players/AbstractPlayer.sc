@@ -59,8 +59,7 @@ AbstractPlayer : AbstractFunction  {
 
 	prPlay { arg atTime,bus,timeOfRequest;
 		var bundle;
-		// status must be in one of these states:
-		if(status === \isPlaying,{ "already playing".debug });
+		if(status === \isPlaying,{ ^"already playing".inform });
 
 		bundle = AbstractPlayer.bundleClass.new;
 		if(status !== \readyForPlay,{
@@ -156,7 +155,7 @@ AbstractPlayer : AbstractFunction  {
 		this.group = agroup;
 		bus = bus ?? {BusSpec(this.rate,this.numChannels,private)};
 		if(patchOut.isNil,{
-			patchOut = PatchOut(this,group,bus);
+			patchOut = PatchOut(this,group,bus)
 		});
 		^patchOut
 	}
