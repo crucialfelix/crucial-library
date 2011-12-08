@@ -1,4 +1,5 @@
 
+
 ClassNameLabel : ActionButton {
 
 	*new { arg  class,layout,minWidth=200,minHeight;
@@ -12,7 +13,6 @@ ClassNameLabel : ActionButton {
 			Color( 0.52156862745098, 0.75686274509804, 0.90196078431373 ),
 			GUI.font.new("Helvetica-Bold",18))
 	}
-
 }
 
 
@@ -30,12 +30,6 @@ MethodLabel : ActionButton {
 		^super.new(layout,"*" ++ method.name.asString,{method.ginsp},minWidth,GUI.skin.buttonHeight,nil,
 			Color.new255(245, 222, 179),GUI.font.new("Monaco",9));
 	}
-
-//	// search by selector link
-//	*browseSelectorLink { arg method,layout;
-//		^super.prNew(layout, "::" ++ method.name.asString,{SelectorBrowser(method.name).ginsp},100,13,2).background_(Color(160,206,147));
-//	}
-
 }
 
 
@@ -47,8 +41,8 @@ SelectorLabel : ActionButton {
 	}
 }
 
-//aka GuiLink
-Tile : ActionButton {
+
+Tile : ActionButton { // the name comes from Squeak
 
 	*new { arg  target,layout,minWidth=100;
 		if(target.guiClass == StringGui,{
@@ -57,13 +51,15 @@ Tile : ActionButton {
 		^super.new(layout,target.asString,{
 				target.gui;
 				//#F6F9F5
-			},minWidth,GUI.skin.buttonHeight, Color.black,	Color.new255(248, 248, 255))
+			},minWidth,GUI.skin.buttonHeight, Color.black,			Color.new255(248, 248, 255))
 	}
 
 }
 
+
 InspectorLink : ActionButton {
-	*new { arg  target,layout,minWidth=100;
+	
+	*new { arg  target,layout,minWidth=150;
 		^super.new(layout,target.asString,{target.insp},minWidth,nil,
 			Color.new255(70, 130, 200),
 			Color.white,
@@ -75,13 +71,14 @@ InspectorLink : ActionButton {
 			Color.black,Color.white,GUI.font.new("Helvetica-Bold",18))
 	}
 	*icon { arg target,layout;
-		^GUI.button.new(layout,Rect(0,0,6,GUI.skin.buttonHeight))
+		^GUI.button.new(layout,Rect(0,0,30,GUI.skin.buttonHeight))
 			.action_({ target.insp })
-			.states_([["i",Color.black,Color.white]])
-			.font_(GUI.font.new("Helvetica-Bold",9));
-
-		/*^super.new(layout,"|",{target.insp},1,nil,
-			Color.black,Color.white,GUI.font.new("Helvetica-Bold",9))*/
+			.states_([["insp",Color.black,Color.white]])
+			.font_(GUI.font.new("Helvetica",9));
+	}
+	*captioned { arg caption,target,layout,minWidth=150;
+		CXLabel(layout,caption,minWidth:minWidth);
+		this.new(target,layout);
 	}
 }
 

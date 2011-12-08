@@ -1,4 +1,5 @@
 
+
 Insp {
 	var <subject,<notes,<guiInstead,<name,layout,box,hidden = false;
 
@@ -64,6 +65,7 @@ Insp {
 	}
 }
 
+
 InspManager {
 
 	classvar <global;
@@ -82,7 +84,7 @@ InspManager {
 			menu = \pleaseWait;
 			{
 				var h,fb,f,w,val;
-				f = GUI.window.new("inspect",Rect(440,500,1100,900));
+				f = GUI.window.new("::inspect::",Rect(440,500,1100,900));
 				f.view.background = Color.white;
 				h = f.bounds.height - 50;
 				w = f.bounds.width;
@@ -124,3 +126,6 @@ InspManager {
 		insps = [];
 	}
 }
+
+
+

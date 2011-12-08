@@ -1,6 +1,9 @@
 
+
 CXObjectInspector : ObjectGui {
 
+	classvar displayHooks;
+	
 	writeName { arg layout;
 		ClassNameLabel.newBig(model.class,layout);
 		GUI.dragSource.new(layout,Rect(0,0,500,30))
@@ -14,24 +17,18 @@ CXObjectInspector : ObjectGui {
 		var vert,list,listItems,actions,val;
 		listItems = List.new;
 		actions = List.new;
-
+		
+		displayHooks.at(model.class).value(model,layout);
+	
+		layout.startRow;
 		this.instVarsGui(listItems,actions);
 
 		// slotAt
 		if(model.isArray,{
-			//vert = model.slotSize < 26;
 			min(model.slotSize,2048).do({arg i;
 				var iv;
-				//if(vert or: {i % 3 == 0},{ layout.startRow; });
-
 				listItems.add( ("@" ++ i).as(Array).extend(25,$ ).as(String) ++"=  " + model.slotAt(i).asString );
 				actions.add({ model.slotAt(i).insp(model,"@"++i) });
-
-				//CXLabel(layout,"@" ++ i,minWidth: 40);
-				//iv=model.slotAt(i);
-				//ClassNameLabel(iv.class,layout);
-				// drag in / out here
-				//InspectorLink(iv,layout,minWidth:200);
 			});
 			if(model.slotSize > 300,{
 				CXLabel(layout,"... slotSize is" ++ model.slotSize.asString,minWidth:160).bold;
@@ -58,40 +55,22 @@ CXObjectInspector : ObjectGui {
 
 	instVarsGui { arg listItems,actions;
 		var iNames;
-		//identify which classes they come from, color code by fading
-		iNames=model.class.instVarNames;
+		iNames = model.class.instVarNames;
 		if(iNames.notNil,{
 			iNames.do({arg v,i;
 				var iv;
-				//layout.startRow;
-				//VariableNameLabel(v,layout);
 				iv=model.instVarAt(i);
 				listItems.add( v.asString.as(Array).extend(25,$ ).as(String) ++ "=  " + iv);
 				actions.add({ iv.insp(model,v) });
-
-				/*ActionButton(layout,"code->",{
-					GetStringDialog("enter code to compile and insert to "
-							+ v.asString,"",
-					{ arg ok,string;
-						if(ok,{
-							model.instVarPut(i,  string.interpret)
-						})
-					})
-				});*/
-				//iv=model.instVarAt(i);
-				//ClassNameLabel(iv.class,layout);
-				//InspectorLink(iv,layout,400);
 			});
 		});
 	}
 	dependantsGui { arg layout;
-		layout.hr;
-		// dependants
-		CXLabel(layout.startRow,"dependants:",minWidth:160).bold;
+		CXLabel(layout.startRow,"dependants:",minWidth:layout.bounds.width - 30).bold;
+		layout.startRow;
 		model.dependants.do({ arg d;
 			InspectorLink(d,layout);
 		});
-		// uniqueMethods
 	}
 	actionsGui { arg layout;
 		layout.startRow;
@@ -102,52 +81,84 @@ CXObjectInspector : ObjectGui {
 		ActionButton(layout,"assign to var x",{
 			thisProcess.interpreter.perform('x_',model);
 		});
-		ActionButton(layout,"-> y",{
+		ActionButton(layout,"assign to var y",{
 			thisProcess.interpreter.perform('y_',model);
 		});
 		ActionButton(layout,"open class file",{
 			model.class.openCodeFile;
 		});
 	}
+	
+	*initClass {
+		var hook;
+		displayHooks = IdentityDictionary.new;
+		this.registerHook(Function,{ arg model,layout;
+			layout.startRow;
+			if(model.def.sourceCode.notNil,{
+				this.sourceCodeGui(model.def.sourceCode,layout,700);
+			})
+		});
+		hook = { arg model,layout;
+				layout.startRow;
+				model.keysValuesDo({ arg k,v;
+					InspectorLink.captioned(k.asString,v,layout.startRow);
+				});
+			};
+		([Dictionary] ++ Dictionary.allSubclasses).do { arg klass;
+			this.registerHook(klass,hook);
+		};
+	}
+	*registerHook { arg class,function;
+		displayHooks[class] = function;
+	}
+	
+	*sourceCodeGui { arg sourceCode, layout,width=700;
+		var f,height,tf;
+		f = GUI.font.new("Courier",12.0);
+		height = sourceCode.bounds(f).height + 5;
+		tf = TextView(layout,Rect(0,0,width,height));
+		tf.string = sourceCode;
+		tf.font_(f);
+		tf.syntaxColorize;
+		^tf
+	}		
 }
 
-ClassGui : CXObjectInspector { // ClassGui
+
+ClassGui : CXObjectInspector {
 
 	writeName {}
 
 	guiBody { arg layout;
 
-		var iNames,supers,scale,width;
+		var iNames,supers,scale,width,layoutWidth;
 
 		layout.scroll({ arg layout;
 			layout.flow({ arg layout;
-
+				layoutWidth = layout.bounds.width - 30;
 				if(model.superclass.notNil,{
-					width = (layout.bounds.width - 30) / (model.superclasses.size + 1);
+					width = layoutWidth / (model.superclasses.size + 1);
 				},{
-					width = (layout.bounds.width - 30);
+					width = layoutWidth;
 				});			
-				// you are here
-				//InspectorLink(model,layout.startRow,minWidth:width);
-				ClassNameLabel(model,layout,width,30);
-				//CXLabel(layout,":",height: 30);
+				CXLabel(layout,model.asString,width,30,width,Font("Helvetica-Bold",18));
+				layout.startRow;
+				ActionButton(layout, "Source code",{
+					model.openCodeFile;
+				}).font_(GUI.font.new("Monaco",9.0));
+				ActionButton(layout,"Help file",{
+					var path;
+					model.openHelpFile;
+				});
+				
 				if(model.superclass.notNil,{
+					CXLabel(layout.startRow,"superclasses:",minWidth:layoutWidth).bold;
 					supers = model.superclasses;
 					scale = supers.size;
 					supers.do({ arg sup,i;
 						ClassNameLabel(sup,layout,width,30);
 					})
 				});
-		
-				layout.startRow;
-				ActionButton(layout, "Source",{
-					model.openCodeFile;
-				}).font_(GUI.font.new("Monaco",9.0));
-				ActionButton(layout,"Help",{
-					var path;
-					model.openHelpFile;
-				});
-		
 		
 				// explicit references
 				/*
@@ -160,7 +171,7 @@ ClassGui : CXObjectInspector { // ClassGui
 		
 				// classVarnames
 				if(model.classVarNames.size > 0,{
-					CXLabel(layout.startRow,"classvars:",minWidth:160).bold;
+					CXLabel(layout.startRow,"classvars:",minWidth:layoutWidth).bold;
 					model.classVarNames.size.do({ arg cvi;
 						var iv;
 						VariableNameLabel(model.classVarNames.at(cvi),layout.startRow);
@@ -172,17 +183,19 @@ ClassGui : CXObjectInspector { // ClassGui
 		
 				//instance vars
 				if(model.instVarNames.size > 0,{
-					CXLabel(layout.startRow,"vars:",minWidth:160).bold;
+					CXLabel(layout.startRow,"vars:",minWidth:layoutWidth).bold;
+					layout.startRow;
 					model.instVarNames.size.do({ arg ivi;
-						if(ivi % 8 ==0,{ layout.startRow });
 						VariableNameLabel(model.instVarNames.at(ivi),layout,minWidth:width);
 						// iprototype
 					});
 				});
-		
+
+				CXLabel(layout.startRow,"methods:",minWidth:layoutWidth).bold;
+				layout.startRow;
 				// meta_class methods
 				if(model.class.methods.size > 0,{
-					model.class.methods.size.do({arg cmi;
+					model.class.methods.size.do({ arg cmi;
 						MethodLabel.classMethod(model.class.methods.at(cmi),layout.startRow,minWidth:width);
 					});
 				});
@@ -217,15 +230,10 @@ ClassGui : CXObjectInspector { // ClassGui
 				});
 		
 				this.dependantsGui(layout);
-		
-				// subclasses
-				// needs a scroll view
-				layout.hr;
-				//layout.scroll({ |layout|
-					this.displaySubclassesOf(model,layout,0,50);
-				//});
-		
-				//layout.hr;
+
+				CXLabel(layout.startRow,"subclasses:",minWidth:layoutWidth).bold;
+				layout.startRow;
+				this.displaySubclassesOf(model,layout,0,50);
 			});
 		});
 	}
@@ -234,15 +242,7 @@ ClassGui : CXObjectInspector { // ClassGui
 		var methods;
 		methods = class.methods;
 		if(methods.notNil,{
-			//this.displayMethods(methods,f,withoutClass,width,indent);
-		//});
-		// go to the superclasses
-		// display all methods not already shown
-		// with an indent of one class width
-	//}
-	//displayMethods { arg class,f,withoutClass = true,width=160,indent=0;
 			f = f.asFlowView;
-		//if(class.methods.notNil,{
 			methods.do({ arg meth;
 				if(withoutClass,{
 					MethodLabel.withoutClass(meth,f.startRow,minWidth:width)
@@ -276,9 +276,8 @@ ClassGui : CXObjectInspector { // ClassGui
 					layout.startRow;
 					CXLabel(layout,"",minWidth: indent).background = Color.clear;
 					ClassNameLabel(c,layout,200);
-					indent = indent + 50;
-					//layout.indent(1);
 
+					indent = indent + 50;
 					if(c.subclasses.size + shown < limit,{
 						this.displaySubclassesOf(c,layout,shown,limit,indent);
 					},{
@@ -288,7 +287,6 @@ ClassGui : CXObjectInspector { // ClassGui
 						});
 					});
 					indent = indent - 50;
-					//layout.indent(-1);
 				})
 		});
 	}
@@ -320,7 +318,6 @@ MethodGui : ObjectGui {
 		ActionButton(layout,"Help",{
 			model.openHelpFile;
 		});
-		//this.source.gui(layout);
 
 		// from Object down...
 		layout.startRow;
@@ -353,3 +350,5 @@ MethodGui : ObjectGui {
 		// would rather look at the source code for most things
 	}
 }
+
+
