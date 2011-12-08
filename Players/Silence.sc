@@ -12,7 +12,7 @@ PlayerInputProxy : Silence { // audio
 	var <patchIn;
 	var inBus;
 
-	*new { arg spec=\stereo; // \mono, \stereo
+	*new { arg spec=\stereo;
 		^super.new.spec_(spec.asSpec).pipinit
 	}
 	pipinit {

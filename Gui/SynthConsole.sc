@@ -148,13 +148,7 @@ SaveConsole : AbstractConsole {
 		 	},{
 		 		this.doSave
 		 	})
-	 	},minWidth).background_(
-	 		if(path.value.isNil,{ // virgin
-	 			GUI.skin.background
-	 		},{
-	 			Color.new255(255,242,89)
-	 		})
-	 	);
+	 	},minWidth).background_(GUI.skin.background)
 	}
 	saveAs { arg onSaveF,default;
 		defaultPath = default ? defaultPath;

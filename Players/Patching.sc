@@ -1,4 +1,5 @@
 
+
 PatchIn {
 
 	var <>nodeControl,<>connectedTo;
@@ -31,6 +32,7 @@ PatchIn {
 	}
 }
 
+
 AudioPatchIn : PatchIn {
 
 	rate { ^\audio }
@@ -45,6 +47,7 @@ AudioPatchIn : PatchIn {
 	}
 }
 
+
 ControlPatchIn : AudioPatchIn {
 	rate { ^\control }
 	value_ { arg val;
@@ -52,12 +55,15 @@ ControlPatchIn : AudioPatchIn {
 	}
 }
 
+
 ScalarPatchIn : ControlPatchIn {
 	rate { ^\scalar }
 	value_ { arg val;
 		// nothing to do
 	}
 }
+
+
 ObjectPatchIn : ScalarPatchIn {
 	rate { ^\noncontrol }
 }
@@ -158,6 +164,7 @@ PatchOut {
 	}
 }
 
+
 ControlPatchOut : PatchOut { // you are returned from a .kr play
 
 	init {
@@ -254,6 +261,7 @@ ScalarPatchOut : PatchOut {
 	}
 }
 
+
 ObjectPatchOut : ScalarPatchOut {
 
 }
@@ -307,3 +315,5 @@ UpdatingScalarPatchOut : ScalarPatchOut {
 		enabled = false;
 	}
 }
+
+

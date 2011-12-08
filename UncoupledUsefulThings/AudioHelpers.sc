@@ -1,5 +1,5 @@
 XFader  {  // UNIPOLAR
-		// XFade2 is now cheaper (in c)
+		// LinXFade2 is now cheaper (in c)
 
 	*ar { arg l, r, pan;
 		^(l + (pan * (r - l)))

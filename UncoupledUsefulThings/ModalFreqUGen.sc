@@ -1,6 +1,7 @@
 
 ModalFreqUGen { // a pseudo ugen
 
+    // buffer is expected to have the scale
 	*kr { arg degree=0,bufferProxy,root=0.0,octave=4.0,stepsPerOctave=12.0;
 
 		var note,midinote;

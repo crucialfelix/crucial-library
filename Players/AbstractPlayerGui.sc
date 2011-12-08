@@ -67,9 +67,6 @@ AbstractPlayerGui : ObjectGui {
 		super.viewDidClose;
 	}
 	
-//	keyDowns {
-//		view.keyDownAction = this.keyDownResponder;
-//	}
 	keyDownResponder {
 		var k;
 		k = KeyCodeResponder.new;
@@ -127,7 +124,6 @@ AbstractPlayerGui : ObjectGui {
 			}).update;
 		);
 	}
-
 }
 
 

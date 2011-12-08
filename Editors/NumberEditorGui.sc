@@ -1,7 +1,11 @@
 
+
 EditorGui : ObjectGui {
+
 	writeName {}
+	
 }
+
 
 NumberEditorGui : EditorGui {
 
@@ -140,7 +144,7 @@ NumberEditorGui : EditorGui {
 		numv.scroll = false;
 		numv.clipLo = model.spec.minval;
 		numv.clipHi = model.spec.maxval;
-		numv.focusColor = GUI.skin.focusColor ?? {this.spec.color};
+		numv.focusColor = GUI.skin.focusColor ?? {model.spec.color};
 		/*numv.keyDownAction = { arg char,modifiers,unicode,keycode;
 			if("012356789-.".includes(char),{
 				this.defaultKeyDownAction(char, modifiers, unicode, keycode);
@@ -155,7 +159,7 @@ NumberEditorGui : EditorGui {
 	slider { arg layout, bounds;
 		var r;
 		slv = GUI.slider.new(layout, bounds);
-		slv.focusColor = GUI.skin.focusColor ?? {this.spec.color};
+		slv.focusColor = GUI.skin.focusColor ?? {model.spec.color};
 		slv.setProperty(\value,model.spec.unmap(model.poll));
 		slv.thumbSize = min(bounds.height,bounds.width) / 1.61803399;
 		slv.action_({arg th;
@@ -183,8 +187,11 @@ NumberEditorGui : EditorGui {
 	background { ^Color(0.0,0.2,0.2,0.2) }
 }
 
+
 KrNumberEditorGui : NumberEditorGui {
+
 	background { ^Color(0.0,0.3,0.0,0.2) }
+
 }
 
 
@@ -249,7 +256,6 @@ BooleanEditorGui : EditorGui {
 		if(changer !== this,{
 			cb.setProperty(\value,model.value.binaryValue);
 		});
-	}
-	
+	}	
 }
 

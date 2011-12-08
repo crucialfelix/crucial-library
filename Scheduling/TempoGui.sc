@@ -36,7 +36,7 @@ TempoGui : ObjectGui {
 		]);
 
 		h = GUI.skin.buttonHeight;
-		gn = GUI.button.new(layout,h@h);
+		gn = Button(layout,h@h);
 		gn.states = [ ["M",Color.black,Color.white],["M",Color.white,Color.black]];
 		gn.action = {
 			if(gnome.isPlaying.not,{

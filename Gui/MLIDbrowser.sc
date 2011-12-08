@@ -45,7 +45,7 @@ MLIDbrowser { // MultiLevelIdentityDictionary browser
 		})
 	}
 	// all on one page
-	*tree { arg  dictNames, layout, onSelect;
+	*tree { arg  dictNames, layout ,onSelect;
 		^super.new
 			.layTree(layout.asPageLayout,
 				Library.atList(dictNames) ?? {Library.global.dictionary},

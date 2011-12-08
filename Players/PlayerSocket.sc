@@ -1,12 +1,12 @@
 
 /*
-	a player that can switch playing different players in its socket
+	a player that can switch between different players using a socket
 
 	numChannels will cause all players played within the socket to automatically adapt :
 		stereo mixed to mono,
 		mono expanded to stereo
-
 */
+
 
 PlayerSocket : AbstractPlayerProxy {
 

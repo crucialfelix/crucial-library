@@ -8,7 +8,7 @@ Instr  {
 	var <explicitSpecs;// specs that were explicitly stated on construction (not guessed)
 
 	// specs are optional : can be guessed from the argnames
-	// outSpec is optional : can be determined by evaluating the func and examining the result
+	// outSpec is optional but recommended : can be determined by evaluating the func and examining the result
 	*new { arg name, func, specs, outSpec;
 		var previous;
 		if(func.isNil,{ ^this.at(name) });

@@ -1,4 +1,6 @@
 
+
+
 CXAbstractLabel : SCViewHolder {
 
 	*new { arg layout,string,width,height,minWidth=15,font;
@@ -18,10 +20,11 @@ CXAbstractLabel : SCViewHolder {
 	label_ { arg string;
 		view.string_(" " ++ string ++ " ");
 	}
-	bold {
-		this.font = GUI.font.new("Helvetica-Bold",11.0);
+	bold { arg fontSize=11;
+		this.font = GUI.font.new("Helvetica-Bold",fontSize);
 	}
 }
+
 
 CXLabel : CXAbstractLabel {
 
@@ -38,6 +41,7 @@ CXLabel : CXAbstractLabel {
 
 
 VariableNameLabel : CXAbstractLabel {
+	
 	*new { arg name,layout,minWidth=120;
 		^super.new(layout,name,minWidth: minWidth)
 			.background_(Color( 1, 0.86666666666667, 0.38039215686275 ))
@@ -45,10 +49,14 @@ VariableNameLabel : CXAbstractLabel {
 	}
 }
 
+
 ArgNameLabel : CXAbstractLabel {
+	
 	*new { arg name,layout,minWidth=130;
 		^super.new(layout,name,minWidth: minWidth)
 			.background_(Color( 0.47843137254902, 0.72941176470588, 0.50196078431373 ))
 			.align_(\left)
 	}
 }
+
+

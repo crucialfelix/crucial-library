@@ -1,4 +1,5 @@
 
+
 AbstractPlayer : AbstractFunction  {
 
 	var <path,>name;
@@ -91,7 +92,6 @@ AbstractPlayer : AbstractFunction  {
 		this.makePatchOut(group,private,bus,bundle);
 		this.makeResourcesToBundle(bundle);
 		this.prepareChildrenToBundle(bundle);
-
 		this.loadBuffersToBundle(bundle);
 	}
 	makeResourcesToBundle {}
@@ -345,15 +345,6 @@ AbstractPlayer : AbstractFunction  {
 			// if playing, move me
 		})
 	}
-
-	// notifications only needed for top level play
-	// or for play inside a socket
-	/*stateNotificationsToBundle { arg b;
-		b.addFunction({
-			status = \isSpawning;
-			NotificationCenter.notify(this,\didPlay);
-		});
-	}*/
 
 	/** SUBCLASSES SHOULD IMPLEMENT **/
 	//  this works for simple audio function subclasses
@@ -632,7 +623,6 @@ AbstractPlayer : AbstractFunction  {
 		bundleClass = MixedBundle;
 	}
 	guiClass { ^AbstractPlayerGui }
-
 }
 
 
@@ -677,9 +667,11 @@ MultiplePlayers : AbstractPlayer { // abstract
 
 }
 
+
 MultiTrackPlayer : MultiplePlayers { // abstract
 
 }
+
 
 /**
   * this is a basic socket that subclasses can then use to spawn players
@@ -743,26 +735,5 @@ AbstractPlayerProxy : AbstractPlayer { // won't play if source is nil
 			child.prepareToBundle(group,bundle,true,this.bus);
 		});
 	}
-/*	makeResourcesToBundle { arg bundle;
-		if(patchOut.hasBus,{ // could be a scalar out
-			//if(sharedBus.notNil,{ sharedBus.releaseBus(this) });
-			sharedBus = patchOut.bus; //SharedBus.newFrom(patchOut.bus,this);
-			//if(sharedBus.owner === this,{
-			//	this.annotate(sharedBus,"sharedBus");
-			//});
-			//patchOut.bus = sharedBus;
-		});
-	}
-	freeResourcesToBundle { arg bundle;
-		bundle.addFunction({
-			if(status == \isStopping or: status == \isFreeing or: status == \isStopped,{
-				//if(sharedBus.notNil,{
-				//	sharedBus.releaseBus(this);
-				//});
-				sharedBus = nil;
-			})
-		});
-	}
-*/
 }
 

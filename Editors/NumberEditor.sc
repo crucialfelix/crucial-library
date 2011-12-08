@@ -1,5 +1,7 @@
 
+
 Editor {
+
 	var  <>action, // { arg value,theEditor; }
 		<>value, <patchOut;
 
@@ -44,8 +46,8 @@ Editor {
 	}
 	spec { ^thisMethod.subclassResponsibility }
 	copy { ^this.class.new.value_(value.copy) }
-
 }
+
 
 NumberEditor : Editor {
 
@@ -98,8 +100,11 @@ NumberEditor : Editor {
 
 }
 
+
 KrNumberEditor : NumberEditor {
+	
 	classvar <>defaultLag = 0.1;
+ 	
  	var <>lag;
 
 	init { arg val,aspec;
@@ -133,10 +138,11 @@ KrNumberEditor : NumberEditor {
 	copy { ^this.class.new(value,spec).lag_(lag) }
 
 	guiClass { ^KrNumberEditorGui }
-
 }
 
+
 IrNumberEditor : NumberEditor {
+	
 	init { arg val,aspec;
 		super.init(val, aspec);
 		if((spec.isKindOf(ScalarSpec) or: spec.isKindOf(StaticSpec)).not,{
@@ -158,8 +164,6 @@ IrNumberEditor : NumberEditor {
 	}
 	connectToPatchIn { } // nothing doing.  we are ir only
 }
-
-
 
 
 // paul.crabbe@free.fr
@@ -199,6 +203,7 @@ PopUpEditor : KrNumberEditor {
 	guiClass { ^PopUpEditorGui }
 }
 
+
 IntegerEditor : NumberEditor {
 
 	value_ { arg val,changer;
@@ -216,8 +221,8 @@ IntegerEditor : NumberEditor {
 		unmapped = (sqrt(-2.0 * log(1.0.rand)) * sin(2pi.rand) * standardDeviation + default);
 		this.setUnmappedValue(unmapped);
 	}
-	
 }
+
 
 BooleanEditor : NumberEditor {
 

@@ -1,8 +1,10 @@
 
+
 ServerLog : NetAddr {
 
 	var <msgs,<>tail=false;
 	var lastStatus;
+	
 	*start { |server|
 		var addr,new;
 		if(Server.default.addr.isKindOf(ServerLog),{ ^Server.default.addr });
@@ -157,8 +159,8 @@ ServerLog : NetAddr {
 			cmd.asString
 		)
 	}
-
 }
+
 
 ServerLogSentEvent {
 
@@ -177,8 +179,8 @@ ServerLogSentEvent {
 
 		(">>> % (% + %) % %".format(this.eventTime,timeSent,delta,ServerLog.cmdString(msg[0]),msg.copyToEnd(1))).postln
 	}
-
 }
+
 
 ServerLogReceivedEvent {
 
