@@ -327,21 +327,19 @@ AbstractPlayer : AbstractFunction  {
 		if(patchOut.isNil,{ ^nil });
 		^patchOut.bus
 	}
-	// does not dynamically change your bus
 	bus_ { arg b;
 		if(b.notNil,{
 			if(patchOut.notNil,{
 				patchOut.bus = b;
-			});
-			// otherwise we should have had a patchOut
-			// and there is nowhere to store this
+			},{
+				Error(this.asString + " is not prepared for play, there is no patchOut to store the bus in").throw;
+			})
 		});
 	}
-	// does not dynamically change your group
 	group_ { arg g;
+		// does not dynamically change your group
 		if(g.notNil,{
 			group = g.asGroup;
-			// if playing, move me
 		})
 	}
 
@@ -695,7 +693,7 @@ AbstractPlayerProxy : AbstractPlayer { // won't play if source is nil
 	defName { ^this.source.defName }
 	spawnToBundle { arg bundle;
 		this.source.spawnToBundle(bundle);
-		bundle.addMessage(this,\didSpawn);
+		bundle.addFunction({ this.didSpawn });
 	}
 	isPlaying { ^status == \isPlaying }
 	didSpawn {
