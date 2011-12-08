@@ -7,7 +7,7 @@ Sheet {
 		var layout;
 		layout = PageLayout(name,bounds,front:false);
 		buildDialog.value(layout);
-		layout.resizeToFit;
+		layout.resizeToFit(center:true);
 		layout.front;
 		^layout
 	}
