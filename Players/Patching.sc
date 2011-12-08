@@ -40,19 +40,15 @@ AudioPatchIn : PatchIn {
 		nodeControl.value = bus.index;
 	}
 	value_ { arg val;
-		// the nodeControl indicates the audio bus number
-		// to set the value of audio, would have to set up a bus and set the sample value
-		// thisMethod.notYetImplemented;
-		nodeControl.value = val;
+		if(nodeControl.node.isPlaying,{
+			nodeControl.value = val;
+		})
 	}
 }
 
 
 ControlPatchIn : AudioPatchIn {
 	rate { ^\control }
-	value_ { arg val;
-		nodeControl.value = val;
-	}
 }
 
 
