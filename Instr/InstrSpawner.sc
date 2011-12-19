@@ -20,10 +20,10 @@ InstrSpawner : Patch {
 			stream << "(" << this.instr.func.def.sourceCode << ",[";
 		});
 		args.do({ arg ag,i;
-			stream <<< enpath(ag) << ","
+			stream <<< enpath(ag);
+			if(i != last,{ stream << "," });
 		});
-		stream <<< deltaPattern;		
-		stream << "])";
+		stream << "]," <<< deltaPattern << ")";
 	}
 
 	asSynthDef {
