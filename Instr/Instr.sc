@@ -36,23 +36,23 @@ Instr  {
 	    ^this.at(name)
 	}
 	*loadAll {
-	    this.prLoadDir(this.dir);
+		this.prLoadDir(this.dir);
 		this.prLoadDir(Platform.userExtensionDir ++ "/quarks/*/Instr");
 	}
 	*prLoadDir { arg dir;
-	    var paths;
-	    paths = (dir +/+ "*").pathMatch.reject { |path| path.splitext[1] == "sc" };
-	    paths.do { |path|
+		var paths;
+		paths = (dir +/+ "*").pathMatch.reject { |path| path.splitext[1] == "sc" };
+		paths.do { |path|
 	        if(path.last == $/,{
 	            this.prLoadDir(path)
 	        },{
-    			{
-				path.loadPath(false);
-    			}.try({ arg err;
-    				("ERROR while loading " + path).postln;
-    				err.throw;
-    			});
-    		});
+	    			{
+					path.loadPath(false);
+	    			}.try({ arg err;
+	    				("ERROR while loading " + path).postln;
+	    				err.throw;
+	    			});
+	    		});
 		};
 	}
 	*clearAll {
@@ -87,6 +87,45 @@ Instr  {
 	kr { arg ... inputs;
 		^func.valueArrayEnvir(inputs);
 	}
+	asSynthDef { arg args,outClass=\Out;
+		var synthDef;
+		synthDef = InstrSynthDef.new;
+		synthDef.build(this,args ? [],outClass);
+		^synthDef
+	}
+	writeDefFile { arg dir;
+		this.asSynthDef.writeDefFile(dir);
+	}
+	write { arg dir;
+		var synthDef;
+		synthDef = this.asSynthDef;
+		synthDef.writeDefFile(dir);
+	}
+	// for use in patterns
+	add { arg args, libname, completionMsg, keepDef = true;
+		^this.asSynthDef(args).add(libname,completionMsg, keepDef);
+	}
+	store { arg args;
+		^this.asSynthDef(args).store
+	}
+	// create a synth
+	after { arg anode,args,bundle,atTime;
+		^this.prMakeSynth(\addAfterMsg,anode,args,bundle,atTime)
+	}
+	before { arg anode,args,bundle,atTime;
+		^this.prMakeSynth(\addBeforeMsg,anode,args,bundle,atTime)
+	}
+	head { arg anode,args,bundle,atTime;
+		^this.prMakeSynth(\addToHeadMsg,anode,args,bundle,atTime)
+	}
+	tail { arg anode,args,bundle,atTime;
+		^this.prMakeSynth(\addToTailMsg,anode,args,bundle,atTime)
+	}
+	replace { arg anode,args,bundle,atTime;
+		^this.prMakeSynth(\addReplaceMsg,anode,args,bundle,atTime)
+	}
+
+	// using in a stream	
 	next { arg ... inputs;
 		^func.valueArray(inputs)
 	}
@@ -134,59 +173,17 @@ Instr  {
 	}
 
 	defName { ^this.class.symbolizeName(name).collect(_.asString).join($.) }
-	asSynthDef { arg args,outClass=\Out;
-		var synthDef;
-		synthDef = InstrSynthDef.new;
-		synthDef.build(this,args,outClass);
-		^synthDef
-	}
 					
 	prepareToBundle { arg group,bundle;
 		this.asSynthDef.prepareToBundle(group,bundle);
 	}
 
-	writeDefFile { arg dir;
-		this.asSynthDef.writeDefFile(dir);
-	}
-	write { arg dir;
-		var synthDef;
-		synthDef = this.asSynthDef;
-		synthDef.writeDefFile(dir);
-	}
-	// for use in patterns
-	store {
-		var args;
-		args = this.specs.collect({ arg spec,i;
-				if(spec.rate == \control or: spec.rate == \stream,{
-					IrNumberEditor(this.initAt(i),spec);
-				},{
-					spec.defaultControl(this.initAt(i))
-				})
-			});
-		^this.asSynthDef(args).store
-	}
 	asDefName {
 		^this.store.name
 	}
 	funcDef { ^func.def }
 
 	
-	// create a synth
-	after { arg anode,args,bundle,atTime;
-		^this.prMakeSynth(\addAfterMsg,anode,args,bundle,atTime)
-	}
-	before { arg anode,args,bundle,atTime;
-		^this.prMakeSynth(\addBeforeMsg,anode,args,bundle,atTime)
-	}
-	head { arg anode,args,bundle,atTime;
-		^this.prMakeSynth(\addToHeadMsg,anode,args,bundle,atTime)
-	}
-	tail { arg anode,args,bundle,atTime;
-		^this.prMakeSynth(\addToTailMsg,anode,args,bundle,atTime)
-	}
-	replace { arg anode,args,bundle,atTime;
-		^this.prMakeSynth(\addReplaceMsg,anode,args,bundle,atTime)
-	}
 	prMakeSynth { arg targetStyle,anode,args,bundle,atTime;
 		var b,def, synth,synthDefArgs;
 		anode = anode.asTarget;

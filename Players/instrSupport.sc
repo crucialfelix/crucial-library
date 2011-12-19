@@ -137,4 +137,32 @@
 	}
 }
 
++ Symbol {
+	// support symbols ir tr ar kr to create inputs on synth def by rate
+	// other symbols are assumed to really be an input to an Instr arg
+	// which does mean you can't have a dropdown with options 'ir' 'tr' 'ar' kr' 
+	addToSynthDef { arg synthDef,name,defArg;
+		case { (this == \ir) }
+		{
+			synthDef.addIr(name, defArg);
+		}
+		{(this == \tr) }
+		{
+			synthDef.addTr(name, defArg);
+		}
+		{(this == \ar)}
+		{
+			synthDef.addAr(name, defArg);
+		}
+		{(this == \kr)}
+		{
+			synthDef.addKr(name, defArg);
+		}
+		{ // default
+			synthDef.addInstrOnlyArg(name,this)
+		}
+	}
+	instrArgFromControl { arg control; ^control }
+}
 
+		

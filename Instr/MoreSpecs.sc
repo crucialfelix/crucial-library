@@ -301,6 +301,9 @@ NonControlSpec : Spec {
 }
 
 
+SymbolSpec : NonControlSpec {}
+
+
 EnvSpec : NonControlSpec {
 
 	var <>prototype;
@@ -514,13 +517,12 @@ InstrNameSpec : HasItemSpec {
 }
 
 
-// jh: for generic object input to a Patch
 ObjectSpec : Spec {
 
 	var  <>defaultControl;
 
-	*new { |obj|
-		^super.newCopyArgs(obj)
+	*new { |defaultControl|
+		^super.newCopyArgs(defaultControl)
 	}
 
 	storeArgs { |stream|

@@ -181,13 +181,6 @@ InstrSynthDef : SynthDef {
 		^object.instrArgFromControl(bus);
 	}
 
-//	addSecretAr { arg object,initialValue,selector;
-//		var name;
-//		name = "__secret_ar__"++(secretIr.size);
-//		secretAr = secretAr.add( [object,initialValue,secretKr.size,selector]);
-//		// secretIr = secretIr.add([name,value,argi,selector]);
-//		^Control.names([name]).ar([initialValue])
-//	}
 	secretObjects {
 		var so;
 		so = IdentitySet.new;
@@ -234,7 +227,7 @@ InstrSynthDef : SynthDef {
 		defargs = (argNames = instr.argNames).collect({ arg name,defargi;
 			var defarg;
 			defarg = (objects.at(defargi) ?? {instr.initAt(defargi)});
-			defarg.addToSynthDef(this,name);
+			defarg.addToSynthDef(this,name,instr.initAt(defargi));
 			defarg
 		});
 		outputProxies = this.buildControls;
