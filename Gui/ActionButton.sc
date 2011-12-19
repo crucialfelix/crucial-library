@@ -61,7 +61,7 @@ ActionButton : SCButtonAdapter {
 		^super.new.init(layout,title,function,minWidth,minHeight,color,backcolor,font)
 	}
 	init { arg layout,title,function,minWidth=20,minHeight,color,backcolor,font;
-		var environment,optimalWidth,skin;
+		var optimalWidth,skin;
 		skin = GUI.skin;
 		title = title.asString;
 		if(title.size > 40,{ title = title.copyRange(0,40) });

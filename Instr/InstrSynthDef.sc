@@ -366,20 +366,6 @@ InstrSynthDef : SynthDef {
 		^sd
 	}
 
-	// in the context of an InstrSynthDef
-	/*
-		Patch({
-			t = Impulse.ar(1);
-			InstrSynthDef.buildSynthDef.onTrig(
-				t,
-				{ arg value;
-					[value,"trigged"].postln
-				},
-				SinOsc.ar(0.01)
-			);
-			t
-		}).play
-	*/
 	// execute the func in the client whenever triggered
 	// see Patch help
 	onTrig { |trig,func,value=0.0|

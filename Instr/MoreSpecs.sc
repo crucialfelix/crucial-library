@@ -281,6 +281,7 @@ NamedIntegersSpec : ControlSpec {
 	}
 }
 
+
 ScalarSpec : ControlSpec {
 	// \scalar means .ir or i_initialValue
 	// SendTrig etc. output a 0.0

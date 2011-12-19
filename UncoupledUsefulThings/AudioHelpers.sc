@@ -1,3 +1,5 @@
+
+
 XFader  {  // UNIPOLAR
 		// LinXFade2 is now cheaper (in c)
 
@@ -96,3 +98,4 @@ Impulsar {  // see also Trig
 		//^ImpulseSequencer.ar({trig.poll},K2A.ar(trig),mul,add)
 	}
 }
+
