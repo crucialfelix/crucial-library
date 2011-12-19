@@ -140,7 +140,7 @@ Instr  {
 		synthDef.build(this,args,outClass);
 		^synthDef
 	}
-
+					
 	prepareToBundle { arg group,bundle;
 		this.asSynthDef.prepareToBundle(group,bundle);
 	}
@@ -169,6 +169,45 @@ Instr  {
 		^this.store.name
 	}
 	funcDef { ^func.def }
+
+	
+	// create a synth
+	after { arg anode,args,bundle,atTime;
+		^this.prMakeSynth(\addAfterMsg,anode,args,bundle,atTime)
+	}
+	before { arg anode,args,bundle,atTime;
+		^this.prMakeSynth(\addBeforeMsg,anode,args,bundle,atTime)
+	}
+	head { arg anode,args,bundle,atTime;
+		^this.prMakeSynth(\addToHeadMsg,anode,args,bundle,atTime)
+	}
+	tail { arg anode,args,bundle,atTime;
+		^this.prMakeSynth(\addToTailMsg,anode,args,bundle,atTime)
+	}
+	replace { arg anode,args,bundle,atTime;
+		^this.prMakeSynth(\addReplaceMsg,anode,args,bundle,atTime)
+	}
+	prMakeSynth { arg targetStyle,anode,args,bundle,atTime;
+		var b,def, synth,synthDefArgs;
+		anode = anode.asTarget;
+		b = bundle ?? {MixedBundle.new};
+		args = args ?? { this.specs.collect(_.default) };
+		def = this.asSynthDef(args);
+		InstrSynthDef.loadDefFileToBundle(def,b,anode.server);
+		synth = Synth.basicNew(def.name,anode.server);
+		synthDefArgs = Array.new(args.size);
+		this.specs.do { arg sp,i;
+			if(sp.rate != 'noncontrol',{
+				synthDefArgs.add( args[i] )
+			})
+		};
+		b.add( synth.perform(targetStyle,anode,synthDefArgs) );
+		if(bundle.isNil,{
+			b.sendAtTime(anode.server,atTime)
+		});
+		^synth
+	}		
+
 	test { arg ... args;
 		var p;
 		p = Patch(this.name,args);
@@ -181,6 +220,8 @@ Instr  {
 	plot { arg args,duration=5.0;
 		^Patch(this.name,args).plot(duration)
 	}
+	
+	
 	*choose { arg start;
 		// this is only choosing from Instr in memory,
 		// it is not loading all possible Instr from file
