@@ -1,12 +1,16 @@
 
+
+/*
+	toolbarFunc(layout,instr)
+*/
+
 InstrBrowser {
 
     var <>toolbarFunc,lv,frame;
-    var instrs,ugenInstrs,<rate=nil,<>showUGenInstr=true;
+    var instrs,ugenInstrs,<>rate=nil,<>showUGenInstr=true,<>inputSpec,<>outputSpec;
 
-    *new { arg toolbarFunc,showUGenInstr=true;
-        //Instr.loadAll;
-        ^super.newCopyArgs(toolbarFunc).showUGenInstr_(showUGenInstr).init.initUGenInstrs
+    *new { arg toolbarFunc,showUGenInstr=false;
+        ^super.newCopyArgs(toolbarFunc).showUGenInstr_(showUGenInstr).init
     }
     gui { arg layout,bounds;
         this.guiBody( layout.asFlowView(bounds ?? {Rect(100,0,1000,1000)} ) );
@@ -19,17 +23,19 @@ InstrBrowser {
         search.action = {this.search(search.value)};
 
         rateFilter = PopUpMenu(layout,120@17);
-        rateFilter.items = ["all","audio","control","fft"];
+        rateFilter.items = ["all","audio","control","fft","stream","player","demand"];
         rateFilter.action = {
             if(rateFilter.value == 0,{
-                 this.rate = nil
+                 this.rate = nil;
+                 this.init.refresh;
             },{
                 this.rate = rateFilter.item.asSymbol;
+                 this.init.refresh;
             })
         };
         layout.horz({ arg layout;
             lv = ListView(layout,250@layout.bounds.height);
-            lv.items = this.allInstr;
+            lv.items = instrs;
             lv.mouseUpAction_({ arg view, x, y, modifiers, buttonNumber, clickCount;
                 frame.removeAll;
                 this.focus(lv.items[lv.value]);
@@ -47,20 +53,28 @@ InstrBrowser {
     }
     init {
         instrs = Instr.leaves;
+        if(showUGenInstr,{
+	        instrs = instrs ++ UGenInstr.leaves(this.rateMethod);
+        });
         if(rate.notNil,{
             instrs = instrs.select({ arg ins; ins.outSpec.notNil and: {ins.outSpec.rate == rate}})
         });
+        if(inputSpec.notNil,{
+	        instrs = instrs.select({ arg ins; 
+		        ins.specs.any({ arg sp; 
+			        // ignore numChannels mismatches
+			        sp.class === inputSpec.class and: { sp.respondsTo('numChannels') or: {sp == inputSpec} }
+			    }) 
+		   });
+        });
+        if(outputSpec.notNil,{
+	        instrs = instrs.select({ arg ins; 
+			        // ignore numChannels mismatches
+			   ins.outSpec.class === outputSpec.class and: { ins.outSpec.respondsTo('numChannels') or: {ins.outSpec == outputSpec} }
+		   });
+        });
+        
         instrs = instrs.collect(_.dotNotation).sort;
-    }
-    initUGenInstrs {
-        ugenInstrs = UGenInstr.leaves(this.rateMethod); // should use rate not demand
-        ugenInstrs = ugenInstrs.collect(_.name).sort;
-    }
-    rate_ { arg rr;
-        rate = rr;
-        this.init;
-        this.initUGenInstrs;
-        this.search("");
     }
     rateMethod {
         ^rate.switch(
@@ -68,22 +82,25 @@ InstrBrowser {
                 \audio,\ar,
                 \control,\kr,
                 \demand,\new,
-                \fft,\new
+                \fft,\new,
+                \stream,\stream,
+                \player,\player
                 );
     }
     allInstr {
-        if(showUGenInstr,{
-            ^(instrs ++ ugenInstrs);
-        },{
-            ^instrs;
-        });
+	    ^instrs
     }
+    refresh {
+	    lv.items = instrs;
+	    lv.refresh;
+    }
+    // only if gui is active
     search { arg q;
         var base;
         if(q != "",{
-            lv.items = (this.allInstr.select(_.containsi(q)));
+            lv.items = (instrs.select(_.containsi(q)));
         },{
-            lv.items = this.allInstr
+            lv.items = instrs
         });
         lv.refresh;
     }
