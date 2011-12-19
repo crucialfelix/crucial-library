@@ -33,18 +33,18 @@ InstrBrowser {
                  this.init.refresh;
             })
         };
+        layout.startRow;
         layout.horz({ arg layout;
             lv = ListView(layout,250@layout.bounds.height);
             lv.items = instrs;
             lv.mouseUpAction_({ arg view, x, y, modifiers, buttonNumber, clickCount;
-                frame.removeAll;
                 this.focus(lv.items[lv.value]);
             });
             lv.beginDragAction = {
                 lv.items[lv.value]
             };
-            frame = layout.flow({ arg layout; },(layout.bounds.width-200)@layout.bounds.height);
-        },layout.bounds.width.max(900)@(layout.bounds.height - 100))
+            frame = layout.flow({ arg layout; },(layout.bounds.width-254)@layout.bounds.height);
+        },layout.indentedRemaining)
         .background_(Color(0.83582089552239, 0.83582089552239, 0.83582089552239));
 
         Updater(Instr,{
@@ -106,11 +106,13 @@ InstrBrowser {
     }
     focus { arg instrname;
         var instr,ic,rr;
+        frame.removeAll;
+
         if(instrname.isNil,{
             ^this
         });
         ic = instrname.asSymbol.asClass;
-        if(ic.notNil and: {Instr.at([ic.name.asString]).isNil}) {
+        if(showUGenInstr and: {ic.notNil} and: {Instr.at([ic.name.asString]).isNil}) {
             rr = this.rateMethod;
             instr = UGenInstr(ic,rr)
         }{
@@ -119,8 +121,10 @@ InstrBrowser {
         toolbarFunc.value(frame,instr);
         frame.startRow;
         frame.scroll({ arg frame;
-            instr.gui(frame);
-        });
+	        frame.flow({ arg frame;
+	            instr.gui(frame);
+	        })
+        },frame.indentedRemaining);
     }
 }
 
