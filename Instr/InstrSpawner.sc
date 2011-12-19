@@ -1,15 +1,30 @@
 
+
+
 InstrSpawner : Patch {
 
 	classvar <>latency=0.07;
 
 	var <>deltaPattern,<deltaStream,<delta;
-	var streams,sendArray,firstSecretDefArgIndex,spawnTask,<clock,spawnGroup;
+	var streams,sendArray,firstSecretDefArgIndex,spawnTask,<clock,<spawnGroup;
 
 	*new { arg func,args,deltaPattern = 1.0;
 		^super.new(func,args).deltaPattern_(deltaPattern)
 	}
-	storeArgs { ^[instr.name,args,deltaPattern] }
+	storeParamsOn { arg stream;
+		var last;
+		last = args.size - 1;
+		if(this.instr.path.notNil,{
+			stream << "(" <<< this.instr.dotNotation << ",[";
+		},{
+			stream << "(" << this.instr.func.def.sourceCode << ",[";
+		});
+		args.do({ arg ag,i;
+			stream <<< enpath(ag) << ","
+		});
+		stream <<< deltaPattern;		
+		stream << "])";
+	}
 
 	asSynthDef {
 		var initArgs;
@@ -153,7 +168,6 @@ InstrSpawner : Patch {
 			this.asSynthDef;// make sure it exists
 
 			this.children.do({ arg child;
-				//child.group = spawnGroup;
 				child.spawnToBundle(bundle);
 			});
 			this.stepChildren.do({ arg child;
@@ -220,6 +234,7 @@ InstrGateSpawner : InstrSpawner {
 	}
 }
 
+
 ScurryableInstrGateSpawner : InstrGateSpawner {
 
 	var scurried = 0,stepsToDo = 0;
@@ -260,76 +275,4 @@ ScurryableInstrGateSpawner : InstrGateSpawner {
 		});
 	}
 }
-
-
-/**
-
-	// assumes doneAction 1 (sleep)
-	//  just wakes and sets the gate back to 1
-
-
-InstrGateSleepSpawner : InstrGateSpawner {
-
-	prepareToBundle { arg group,bundle;
-		super.prepareToBundle(group,bundle);
-		synths.do({ arg synth,i;
-			if(i > 0 and: aintSeenNil,{
-				bundle.add(synth.addToTailMsg(this.group,this.synthDefArgs.copy));
-				bundle.add([12, synth.nodeID,0])
-			})
-		});
-	}
-	didSpawn {
-		deltaStream = delta.asStream;
-		durationStream = duration.asStream;
-		synths.put(0,synth);
-
-		spawnTask = Task({
-
-			var delta,dur,server,latency,beat,itSynth,index=1;
-			aintSeenNil=true;
-			beat = TempoClock.default.elapsedBeats;
-
-			server = this.server;
-			latency = server.latency;
-
-			//first synth already started
-			delta = deltaStream.next;
-			dur = durationStream.next(delta,beat);
-			// sched first gate off
-			server.listSendBundle(Tempo.beats2secs(dur), [ synth.releaseMsg ]);
-
-			// small slippage if tempo changes during first event !
-			(delta - Tempo.secs2beats(latency)).wait;
-
-			while({
-				beat = TempoClock.default.elapsedBeats;
-				this.synthDefArgs(beat);
-				delta = deltaStream.value(beat);
-				dur = durationStream.value(delta,beat);
-				aintSeenNil and: delta.notNil and: dur.notNil
-			},{
-				itSynth = synths.wrapAt(index = index + 1);
-				server.listSendBundle(server.latency,
-					[
-						["/n_set",itSynth.nodeID,\gate,1] ++ sendArray,
-						[12,itSynth.nodeID ,1] // wake up
-					]);
-
-				// tempo change during play screws up release time
-				server.listSendBundle(server.latency + Tempo.beats2secs(dur),
-					[	["/n_set", itSynth.nodeID, \gate, 0] ]);
-				delta.wait // we are running slightly ahead of arrival time
-			});
-
-		}, TempoClock.default);
-		spawnTask.play
-	}
-}
-
-
-
-**/
-
-
 

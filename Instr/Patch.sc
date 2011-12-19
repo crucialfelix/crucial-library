@@ -519,21 +519,29 @@ Patch : HasPatchIns  {
 		if(this.class === Patch,{ // an indulgence ...
 			last = args.size - 1;
 			// anything with a path gets stored as abreviated
-			stream << "(" <<< this.instr.dotNotation << ",[";
-				if(stream.isKindOf(PrettyPrintStream),{ stream.indent(1); });
-				args.do({ arg ag,i;
-					stream.nl;
-					stream <<< enpath(ag);
-					if(i != last,{ stream << "," });
-				});
-				if(stream.isKindOf(PrettyPrintStream),{ stream.indent(-1); });
+			if(this.instr.path.notNil,{
+				stream << "(" <<< this.instr.dotNotation << ",[";
+			},{
+				stream << "(" << this.instr.func.def.sourceCode << ",[";
+			});
+			
+			if(stream.isKindOf(PrettyPrintStream),{ stream.indent(1); });
+			args.do({ arg ag,i;
+				stream.nl;
+				stream <<< enpath(ag);
+				if(i != last,{ stream << "," });
+			});
+			if(stream.isKindOf(PrettyPrintStream),{ stream.indent(-1); });
+			
 			stream.nl;
 			stream << "])";
 		},{
 			super.storeParamsOn(stream)
 		});
 	}
-	storeArgs { ^[this.instr.name,args] }
+	storeArgs { 
+		^[this.instr.name,args] 
+	}
 	guiClass { ^PatchGui }
 }
 
