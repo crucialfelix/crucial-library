@@ -40,9 +40,10 @@ NumberEditorGui : EditorGui {
 			if(h > 100 and: {w >= 30},{
 				layout.comp({ |l|
 					var y;
-					this.box(l,Rect(0,0,y = min(40,w),GUI.skin.buttonHeight));
-					this.slider(l,Rect(0,y,min(30,w),h-GUI.skin.buttonHeight));
-				},Rect(0,0,40,h = h.max(130)))
+					this.box(l,Rect(0,0,min(70,w),y = GUI.skin.buttonHeight));
+					y = y + 4;
+					this.slider(l,Rect(0,y,min(70,w),h-y));
+				},Rect(0,0,w,h = h.max(130)))
 				^this
 			});
 			if(h > 100 ,{
@@ -166,6 +167,12 @@ NumberEditorGui : EditorGui {
 			model.activeValue_(model.spec.map(th.value)).changed(slv)
 		});
 		if(consumeKeyDowns,{ slv.keyDownAction = {nil}; });
+		/* but slider doesnt trigger mouseDownAction */
+		slv.mouseDownAction = { arg view, x, y, modifiers, buttonNumber, clickCount;
+			if(modifiers.isAlt,{
+				model.activeValue_(model.spec.default).changed
+			})
+		}
 	}
 	update {arg changed,changer; // always has a number box
 		{
