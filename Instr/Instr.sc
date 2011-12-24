@@ -125,6 +125,12 @@ Instr  {
 		^this.prMakeSynth(\addReplaceMsg,anode,args,bundle,atTime)
 	}
 
+	spawnEvent { arg event;
+		event['type'] = \instr;
+		event['instr'] = this;
+		event.play;	
+	}
+	
 	// using in a stream	
 	next { arg ... inputs;
 		^func.valueArray(inputs)
@@ -393,8 +399,37 @@ Instr  {
 
 	*initClass {
 		Class.initClassTree(Document);
+		
 		// default is relative to your doc directory
 		if(dir.isNil,{ dir = Document.dir ++ "Instr/"; });
+		
+		Class.initClassTree(Event);
+		Event.addEventType(\instr,{ arg server;
+			var instr, instrArgs,patch;
+			~server = server;
+			~freq = ~detunedFreq.value;
+			~amp = ~amp.value;
+			~sustain = ~sustain.value;
+			
+			instr = Instr(~instr);
+			instrArgs = instr.argNames.collect({ arg an,i; 
+							var inp,spec;
+							inp = currentEnvironment[an] ?? {instr.defArgAt(i)};
+							spec = instr.specs.at(i);
+							if(spec.rate == \control,{
+								if(inp.rate == \control,{
+									inp
+								},{
+									IrNumberEditor( inp.synthArg, spec )
+								})
+							},{
+								inp
+							})
+						});
+			patch = Patch(instr,instrArgs);
+			patch.play(~group ? server,server.latency,~bus);
+			patch.patchOut.releaseBusses; // not needed, and I wont free myself
+		});
 	}
 	init { arg specs,outsp;
 		if(path.isNil,{
