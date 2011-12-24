@@ -104,7 +104,7 @@ AbstractPlayer : AbstractFunction  {
 		});
 	}
 	loadDefFileToBundle { arg bundle,server;
-		var def,bytes,dn;
+		var def,dn;
 		// Patch needs to know children numChannels
 		// before it can know its own.
 		// this is the only reason we are forcing the children to load
@@ -113,31 +113,19 @@ AbstractPlayer : AbstractFunction  {
 		this.children.do({ arg child;
 			child.loadDefFileToBundle(bundle,server);
 		});
-		// yes, I might be producing a stream
+		// I might be producing a stream
 		// and I'll pass it to your synthArg
 		if(this.rate === 'stream',{ ^this });
 
 		dn = this.defName;
-		if(dn.isNil or: {
-			Library.at(SynthDef,server,dn.asSymbol).isNil
-		},{
-			// Patches are discarding their cache on purpose
-			// just to be on the safe side.
-			// at some point I'll tighten this up again and honor the cache for Patch
-			//dn.debug("dn was nil");
-			// save it in the archive of the player or at least the name.
-			// Patches cannot know their defName until they have built
+		if(InstrSynthDef.cacheAt(dn,server).isNil,{
 			def = this.asSynthDef;
 			defName = def.name;
-			//defName.debug("defname");
-			dn = defName.asSymbol;
-			bytes = def.asBytes;
+			
+			bundle.addPrepare(["/d_recv", def.asBytes]);
 
-			bundle.addPrepare(["/d_recv", bytes]);
-
-			// InstrSynthDef watches \serverRunning to clear this if the server severs
 			InstrSynthDef.watchServer(server);
-			Library.put(SynthDef,server,dn,true);
+			InstrSynthDef.cachePut(def,server);
 		});
 	}
 	// the default behavior for play
@@ -411,15 +399,13 @@ AbstractPlayer : AbstractFunction  {
 	// inside an InstrSynthDef a player can insert itself as a stepchild
 	// of the patch and play inline
 	ar {
-		var dn,synthDef, buildSynthDef;
-		// if not built, then build
-		dn = this.defName;
-		if(dn.isNil or: {Library.at(SynthDef,server,dn.asSymbol).isNil},{
-			buildSynthDef = UGen.buildSynthDef;
-			synthDef = this.asSynthDef;
-			UGen.buildSynthDef = buildSynthDef;
-		});
-		^UGen.buildSynthDef.playerIn(this)
+		if(UGen.buildSynthDef.class === InstrSynthDef,{
+			// if not built, then build in case numChannels/rate are unknown
+			this.asSynthDef;
+			^UGen.buildSynthDef.playerIn(this)
+		},{
+			SubclassResponsibilityError(this,thisMethod,this.class).throw
+		})
 	}
 	kr { ^this.ar }
 	value {  ^this.ar }
@@ -539,12 +525,6 @@ AbstractPlayer : AbstractFunction  {
 		path = apath;
 		name = nil;
 		NotificationCenter.notify(AbstractPlayer,\saveAs,[this,path]);
-		/* to receive this:
-			NotificationCenter.register(AbstractPlayer,\saveAs,you,
-			{ arg model,path;
-				// do any saveAs handlers you wish
-			});
-		*/
 	}
 
 	asCompileString { // support arg sensitive formatting
@@ -567,6 +547,7 @@ AbstractPlayer : AbstractFunction  {
 			stream << ".new";
 		})
 	}
+	simplifyStoreArgs { arg args; ^args }
 
 	annotate { arg thing,note;
 		this.class.annotate(thing,"owner:" + this.asString + ":" + note);
@@ -623,8 +604,8 @@ AbstractPlayer : AbstractFunction  {
 }
 
 
-SynthlessPlayer : AbstractPlayer { // should be higher
-
+SynthlessPlayer : AbstractPlayer {
+	
 	var <>isPlaying=false;
 
 	loadDefFileToBundle { }

@@ -164,7 +164,7 @@ Instr  {
 	}
 	defArgAt { arg i;
 		var nn;
-		nn=func.def.prototypeFrame;
+		nn = func.def.prototypeFrame;
 		^nn.at(i)
 	}
 	// the default value supplied in the function
@@ -173,14 +173,15 @@ Instr  {
 	}
 
 	defName { ^this.class.symbolizeName(name).collect(_.asString).join($.) }
+	// used by Synth
+	asDefName { arg args;
+		^this.asSynthDef(args).name
+	}
 					
 	prepareToBundle { arg group,bundle;
 		this.asSynthDef.prepareToBundle(group,bundle);
 	}
 
-	asDefName {
-		^this.store.name
-	}
 	funcDef { ^func.def }
 
 	

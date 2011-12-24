@@ -312,15 +312,20 @@ Patch : HasPatchIns  {
 			ag
 		});
 	}
-
+	defName {
+		^defName ?? {
+			defName = InstrSynthDef.makeDefName(this.instr,this.args,this.outClass)[1];
+		}
+	}
 	asSynthDef {
-		// could be cached, must be able to invalidate it
-		// if an input changes
 		^synthDef ?? {
-			synthDef = InstrSynthDef.build(this.instr,this.args,this.outClass);
-			defName = synthDef.name;
+			synthDef = InstrSynthDef.cacheAt(this.defName,Server.default) ?? {
+						synthDef = InstrSynthDef.build(this.instr,this.args,this.outClass);
+						synthDef;
+					};
+			
 			// the synthDef has now evaluated and can know the number of channels
-			// but if it returned an Out.ar then it does not know
+			// but if it returned a manual Out.ar then it does not know
 			// so we will have to trust the Instr outSpec
 			if(synthDef.numChannels.notNil,{
 				numChannels = synthDef.numChannels;
@@ -375,8 +380,6 @@ Patch : HasPatchIns  {
 	}
 	invalidateSynthDef {
 		this.removeSynthDefCache;
-		//this.releaseArgs;
-		//this.instr.removeDependant(this);
 	}
 	releaseArgs {
 		// Sample, Env, NumberEditor are watched
@@ -385,7 +388,6 @@ Patch : HasPatchIns  {
 	didFree {
 		var did;
 		did = super.didFree;
-		//if(did,{ this.invalidateSynthDef; });
 		^did
 	}
 
@@ -459,7 +461,6 @@ Patch : HasPatchIns  {
 		});
 		^args
 	}
-	defName { ^defName } // super would say 'Patch'
 
 	stopToBundle { arg bundle;
 		super.stopToBundle(bundle);
