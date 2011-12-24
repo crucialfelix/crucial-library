@@ -2,55 +2,71 @@
 
 ServerLog : NetAddr {
 
-	var <msgs,<>tail=false;
+	var <msgs,<>tail=false,<server;
 	var lastStatus;
-	
+
+	*new { arg server;
+		server = server ? Server.default;
+		if(server.addr.isKindOf(ServerLog),{ ^server.addr });
+		^super.new(server.addr.hostname,server.addr.port).slinit(server);
+	}
+	*forServer { arg server;
+		server = server ? Server.default;
+		if(server.addr.isKindOf(ServerLog),{ ^server.addr });
+		^nil
+	}		
 	*start { |server|
-		var addr,new;
-		if(Server.default.addr.isKindOf(ServerLog),{ ^Server.default.addr });
-		addr = (server ? Server.default).addr;
-		new = ServerLog(addr.hostname,addr.port);
-		Server.default.addr = new;
-		^new
+		^this.new(server)
 	}
 	*stop { |server|
-		var addr,new;
-		if(Server.default.addr.isKindOf(ServerLog).not,{ ^Server.default.addr });
-		addr = (server ? Server.default).addr;
-		new = NetAddr(addr.hostname,addr.port);
-		Server.default.addr = new;
-		^new
+		this.forServer(server).remove
 	}
-	*gui { |parent,bounds,tail=1000|
-		var events;
-		if(Server.default.addr.isKindOf(ServerLog),{
-			Server.default.addr.getSortedEvents(tail,{ |events|
-				Server.default.addr.gui(parent,bounds,events)
-			});
-		},{
-			"ServerLog has not been running".inform;
-		});
+	remove {
+		server.addr = NetAddr(hostname,port);
 	}
-	*report { |tail=1000|
-		if(Server.default.addr.isKindOf(ServerLog),{
-			Server.default.addr.report(tail)
-		},{
-			"ServerLog has not been running".inform;
-		});
-	}
-	report { arg tail;
-		this.events(tail).do({ |ev|
-			ev.report
+
+	*ifActive { arg server,func;
+		var sl;
+		sl = this.forServer(server);
+		if(sl.notNil,{
+			func.value(sl)
 		})
 	}
 
-
-	// private
-	*new { arg hostname, port=0;
-		^super.new(hostname,port).slinit
+	
+	filterBySynthDef { arg defName;
+		^this.matchMsgs({ arg m; m.matchSynthDef(defName) })
 	}
-
-	slinit {
+	filterBySynth { arg nodeID;
+		^this.matchMsgs({arg m; m.matchSynth(nodeID) })
+	}
+	matchMsgs { arg matchFunc;
+		var matches;
+		matches = [];
+		msgs.do { arg msg;
+			var ms;
+			ms = msg.matchMsgs(matchFunc);
+			if(ms.notNil,{  matches = matches ++ ms })
+		};
+		^matches
+	}
+				
+	*guiMsgsForSynth { arg synth,layout,showTimes=false;
+		var msgs,sl;
+		sl = this.forServer(synth.server) ?? { "ServerLog not running".inform; ^this };
+		msgs = sl.filterBySynth(synth.nodeID);
+		ServerLogGui(sl).showTimes_(showTimes).gui(layout,nil,msgs)
+	}
+	*guiMsgsForSynthDef { arg defName,layout,server;
+		var msgs,sl;
+		sl = this.forServer(server)  ?? { "ServerLog not running".inform; ^this };
+		msgs = sl.filterBySynthDef(defName);
+		ServerLogGui(sl).gui(layout,nil,msgs)
+	}
+		
+	slinit { arg s;
+		server = s;
+		server.addr = this;
 		thisProcess.recvOSCfunc = { arg time,replyAddr,msg;
 			var status;
 			if(msg[0] == '/status.reply') {
@@ -159,6 +175,29 @@ ServerLog : NetAddr {
 			cmd.asString
 		)
 	}
+	
+	*gui { |parent,bounds,tail=1000,server|
+		var sl,events;
+		sl = this.new(server);
+		sl.asyncGui(parent,bounds,tail);
+	}
+	asyncGui { arg parent,bounds,tail=1000;
+		this.getSortedEvents(tail,{ |events|
+			this.gui(parent,bounds,events)
+		});
+	}
+	*report { |tail=1000|
+		if(Server.default.addr.isKindOf(ServerLog),{
+			Server.default.addr.report(tail)
+		},{
+			"ServerLog has not been running".inform;
+		});
+	}
+	report { arg tail;
+		this.events(tail).do({ |ev|
+			ev.report
+		})
+	}	
 }
 
 
@@ -177,7 +216,27 @@ ServerLogSentEvent {
 		// if(isBundle,{  TODO
 			// i use the gui mostly
 
-		(">>> % (% + %) % %".format(this.eventTime,timeSent,delta,ServerLog.cmdString(msg[0]),msg.copyToEnd(1))).postln
+		(">>> % (% + %) % %".format(this.eventTime,timeSent,delta,this.cmdString,msg.copyToEnd(1))).postln
+	}
+	cmdString { ^ServerLog.cmdString(msg[0]) }
+	matchMsgs { arg func;
+		if(this.isBundle,{
+			^msg.collect(ServerLogSentEvent(delta,_,false,timeSent)).select(func)
+		},{
+			if(func.value(this), { ^[this] }, { ^nil })
+		})
+	}
+	// for non bundles only
+	matchSynthDef { arg defName;
+		var cmd;
+		^(msg[1] == defName) and: {  
+			cmd = ServerLog.cmdString(msg[0]);
+			cmd == "/s_new" /* or: { cmd == "/d_recv" } */
+			// have to decode the bytes
+		}
+	}
+	matchSynth { arg nodeID;
+		^(msg[2] == nodeID) and: {  ServerLog.cmdString(msg[0]) == "/s_new" }
 	}
 }
 
@@ -206,10 +265,12 @@ ServerLogReceivedEvent {
 	isBundle {
 		^false
 	}
+	matchMsgs { arg func;
+		if(func.value(this), { ^[this] },{ ^nil })
+	}
+	matchSynthDef { ^false }
+	matchSynth { arg nodeID;
+		^(msg[1] == nodeID) and: {  ServerLog.cmdString(msg[0]) == "/n_go" }
+	}
 }
-
-
-
-
-
 
