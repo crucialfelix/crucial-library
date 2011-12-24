@@ -168,7 +168,7 @@ AbstractPlayer : AbstractFunction  {
 		bundle.sendAtTime(this.server,atTime,timeOfRequest);
 	}
 	spawnToBundle { arg bundle,selector=\addToTailMsg;
-		bundle.addMessage(this,\didSpawn);
+		bundle.addFunction({this.didSpawn});
 		this.children.do({ arg child;
 			child.spawnToBundle(bundle);
 		});
@@ -295,6 +295,7 @@ AbstractPlayer : AbstractFunction  {
 			patchOut.free; // frees the busses
 			patchOut = nil;
 			group  = nil;
+			this.class.removeAnnotation(this)
 			//server = nil;
 		});
 	}
@@ -550,42 +551,27 @@ AbstractPlayer : AbstractFunction  {
 	simplifyStoreArgs { arg args; ^args }
 
 	annotate { arg thing,note;
-		this.class.annotate(thing,"owner:" + this.asString + ":" + note);
+		if(Annotations.notNil,{
+			Annotations.register(this);
+			if(note.notNil,{
+				Annotations.put(thing,this,note)
+			},{
+				Annotations.put(thing,this)
+			})
+		})
 	}
 	*annotate { arg thing,note;
-		var prev;
-		prev = this.getAnnotation(thing);
-		if(prev.notNil,{
-			note = prev ++ ";;" + note;
-		});
-		if(thing.isKindOf(Node),{
-			Library.put(AbstractPlayer, \nodeAnnotations,
-				thing.server ?? {"node has no server, cannot annotate".die},
-				thing.nodeID ?? {"nodeID is nil, cannot annotate".die},
-			 	note);
-		},{
-			if(thing.isKindOf(Bus),{
-				Library.put(AbstractPlayer, \busAnnotations,
-					thing.server ?? {"Bus has no server, cannot annotate".die},
-					thing.rate ?? {"Bus has no rate, cannot annotate".die},
-					thing.index ?? {"Bus has no index, cannot annotate".die},
-					note);//thing.asString + ":" +
-			});
-		});
+		if(Annotations.notNil,{
+			Annotations.put(thing,note)
+		})
 	}
 	*getAnnotation { arg thing;
-		^if(thing.isKindOf(Node),{
-			Library.at(AbstractPlayer, \nodeAnnotations, thing.server, thing.nodeID);
-		},{
-			if(thing.isKindOf(Bus),{
-				Library.at(AbstractPlayer, \busAnnotations, thing.server,thing.rate, thing.index);
-			});
-		});
-		//^Library.at(AbstractPlayer, node.server, node.nodeID) ? "";
+		if(Annotations.isNil, { ^nil });
+		^Annotations.at(thing)
 	}
-	*removeAnnotation { arg thing;
-		// shouldnt have to do this since its just a lookup by integer indices
-		// and its better to know what it once was annotated as (if it failed to be released etc.)
+	*removeAnnotation { arg thing; 
+		if(Annotations.isNil, { ^nil });
+		Annotations.unregister(thing) 
 	}
 
 	// using the arg passing version
