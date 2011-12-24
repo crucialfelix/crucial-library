@@ -92,7 +92,7 @@ BeatSched {
 		^global.xtschedAbs(time,function)
 	}
 	*schedAbs { arg beat,function;
-		^global.tschedAbs(beat,function)
+		^global.schedAbs(beat,function)
 	}
 
 	/**  instance methods **/
@@ -148,7 +148,9 @@ BeatSched {
 		});
 	}
 	schedAbs { arg beat,function;
-		tempoClock.schedAbs(beat + beatEpoch,function);
+		if(beat >= this.beat,{
+			tempoClock.schedAbs(beat + beatEpoch,function);
+		})
 	}
 	/*xschedAbs { arg beat,function;
 		if(beat >= this.beat,{ // in the future ?
