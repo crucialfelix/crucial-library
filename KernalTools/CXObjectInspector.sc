@@ -90,26 +90,58 @@ CXObjectInspector : ObjectGui {
 	}
 	
 	*initClass {
-		var hook;
 		displayHooks = IdentityDictionary.new;
+
+		// some standard library hooks
 		this.registerHook(Function,{ arg model,layout;
 			layout.startRow;
 			if(model.def.sourceCode.notNil,{
 				this.sourceCodeGui(model.def.sourceCode,layout,700);
 			})
 		});
-		hook = { arg model,layout;
-				layout.startRow;
-				model.keysValuesDo({ arg k,v;
-					InspectorLink.captioned(k.asString,v,layout.startRow);
-				});
+		this.registerHook(Dictionary,{ arg model,layout;
+			layout.startRow;
+			model.keysValuesDo({ arg k,v;
+				InspectorLink.captioned(k.asString,v,layout.startRow);
+			});
+		});
+		
+		this.registerHook(Synth,{ arg model,layout;
+			var sd;
+			layout.startRow;
+			ServerLog.guiMsgsForSynth(model,layout);
+			if(InstrSynthDef.notNil,{
+				if(model.defName.notNil,{
+					sd = InstrSynthDef.cacheAt(model.defName,model.server);
+					if(sd.notNil,{
+						InspectorLink(sd,layout);
+					})
+				})
+			})
+		});
+		this.registerHook(SynthDef,{ arg def,layout;
+			def.allControlNames.do { arg cn,i;
+				ArgNameLabel(cn.name,layout.startRow);
+				CXLabel(layout,cn.rate);
+				CXLabel(layout,cn.defaultValue);
 			};
-		([Dictionary] ++ Dictionary.allSubclasses).do { arg klass;
-			this.registerHook(klass,hook);
-		};
+			if(def.name.notNil,{
+				ActionButton(layout,"search ServerLog...",{
+					ServerLog.guiMsgsForSynthDef(def.name);
+				})
+			})
+		});
 	}
-	*registerHook { arg class,function;
-		displayHooks[class] = function;
+	*registerHook { arg class,displayFunction,includeSubclasses=true;
+		if(includeSubclasses,{
+			class.allSubclasses.do { arg klass;
+				if(displayHooks[klass].isNil,{
+					displayHooks[klass] = displayFunction;// arg object, layout
+				})
+			}
+		},{
+			displayHooks[class] = displayFunction;// arg object, layout
+		})
 	}
 	
 	*sourceCodeGui { arg sourceCode, layout,width=700;

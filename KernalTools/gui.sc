@@ -9,7 +9,6 @@
 	ginsp { arg  ... args;
 		Insp(this,args,true);
 	}
-
 }
 
 + Class {

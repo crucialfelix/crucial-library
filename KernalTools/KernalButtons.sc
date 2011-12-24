@@ -60,19 +60,19 @@ Tile : ActionButton { // the name comes from Squeak
 InspectorLink : ActionButton {
 	
 	*new { arg  target,layout,minWidth=150;
-		^super.new(layout,target.asString,{target.insp},minWidth,nil,
+		^super.new(layout,target.asString,{target.insp; InspManager.front; },minWidth,nil,
 			Color.new255(70, 130, 200),
 			Color.white,
 			GUI.font.new("Helvetica",12)
 		)
 	}
 	*big { arg  target,layout,minWidth=200;
-		^super.new(layout,target.asString,{target.insp},minWidth,30,
+		^super.new(layout,target.asString,{target.insp; InspManager.front; },minWidth,30,
 			Color.black,Color.white,GUI.font.new("Helvetica-Bold",18))
 	}
 	*icon { arg target,layout;
 		^GUI.button.new(layout,Rect(0,0,30,GUI.skin.buttonHeight))
-			.action_({ target.insp })
+			.action_({ target.insp; InspManager.front })
 			.states_([["insp",Color.black,Color.white]])
 			.font_(GUI.font.new("Helvetica",9));
 	}

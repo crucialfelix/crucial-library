@@ -69,10 +69,12 @@ Insp {
 InspManager {
 
 	classvar <global;
-	var <insps,menu,<currentInsp,inspView;
+	var <insps,menu,<currentInsp,inspView,<window;
 
 	*initClass { global = this.new }
-
+	*front {
+		global.window.front
+	}
 	watch { arg insp;
 		if(insp.isNil,{
 			//"Insp was nil, asked to watch".error;
@@ -84,7 +86,7 @@ InspManager {
 			menu = \pleaseWait;
 			{
 				var h,fb,f,w,val;
-				f = GUI.window.new("::inspect::",Rect(440,500,1100,900));
+				window = f = GUI.window.new("::inspect::",Rect(440,500,1100,900));
 				f.view.background = Color.white;
 				h = f.bounds.height - 50;
 				w = f.bounds.width;
