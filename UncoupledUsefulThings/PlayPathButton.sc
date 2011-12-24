@@ -16,7 +16,7 @@ PlayPathButton : SCButtonAdapter { // loads the object at loadDocument and .play
 	}
 	path_ { arg p;
 		subject = p.asString;
-		this.initOneState(PathName(subject).fileName,nil,rgb(228,255,107));
+		this.initOneState(PathName(subject).fileName,nil,Color.new255(228,255,107));
 	}
 
 	doAction {
@@ -28,12 +28,12 @@ PlayPathButton : SCButtonAdapter { // loads the object at loadDocument and .play
 		action.value(this);
 	}
 	stop {
-		this.background_(rgb(228,255,107));
+		this.background_(Color.new255(228,255,107));
 		if(player.notNil,{player.stop });
 	}
 	play {
 		player = subject.loadDocument;
-		this.background_(rgb(255, 215, 0));
+		this.background_(Color.new255(255, 215, 0));
 		player.play(atTime:1);
 	}
 	isPlaying { ^player.isPlaying }
@@ -100,14 +100,14 @@ XPlayButton : PlayButton { // plays exclusively one thing at any time.
 		prev = this;
 	}
 	displayOn { this.background_(Color.green) }
-	displayOff { this.background_(rgb(228,255,107)) }
+	displayOff { this.background_(Color.new255(228,255,107)) }
 
 }
 
 	doAction {
 		if(this.isPlaying,{
 			isPlaying = false;
-			this.background_(rgb(228,255,107));
+			this.background_(Color.new255(228,255,107));
 			if(player.notNil,{player.stop });
 		},{
 			this.background_(Color.green);
