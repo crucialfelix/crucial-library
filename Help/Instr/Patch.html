@@ -62,7 +62,8 @@ span.Apple-tab-span {white-space:pre}
 <p class="p3"><span class="Apple-tab-span">	</span>players of any type</p>
 <p class="p3"><span class="Apple-tab-span">	</span>many other types of objects</p>
 <p class="p3"><span class="Apple-tab-span">	</span>It all depends what the instr function accepts.</p>
-<p class="p2"><br></p>
+<p class="p2"><span class="Apple-tab-span">	</span></p>
+<p class="p5"><span class="Apple-tab-span">	</span>or a dictionary/event expressing args by name as:<span class="Apple-converted-space">  </span>(argName: value, ... )</p>
 <p class="p2"><br></p>
 <p class="p2"><br></p>
 <p class="p2"><br></p>
@@ -199,6 +200,18 @@ span.Apple-tab-span {white-space:pre}
 <p class="p5"><span class="Apple-tab-span">	</span>]).gui</p>
 <p class="p5">)<span class="Apple-tab-span">	</span></p>
 <p class="p2"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></p>
+<p class="p2"><br></p>
+<p class="p3">Args may also be supplied using a dictionary/event expressing args by name as:<span class="Apple-converted-space">  </span>(argName: value, ... )</p>
+<p class="p2"><br></p>
+<p class="p5">Patch({ arg freq,amp;</p>
+<p class="p2"><span class="Apple-tab-span">	</span></p>
+<p class="p5"><span class="Apple-tab-span">	</span>SinOsc.ar(freq,amp)</p>
+<p class="p5">},(</p>
+<p class="p5"><span class="Apple-tab-span">	</span>amp: 0.4</p>
+<p class="p5">)).gui</p>
+<p class="p2"><br></p>
+<p class="p3">This is useful for Instr with long arg lists and helps to avoid errors.</p>
+<p class="p2"><br></p>
 <p class="p2"><span class="Apple-tab-span">	</span></p>
 <p class="p2"><br></p>
 <p class="p3"><b>Automatic Input Creation</b></p>
