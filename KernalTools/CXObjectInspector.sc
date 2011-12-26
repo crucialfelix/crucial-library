@@ -134,7 +134,7 @@ CXObjectInspector : ObjectGui {
 	}
 	*registerHook { arg class,displayFunction,includeSubclasses=true;
 		if(includeSubclasses,{
-			class.allSubclasses.do { arg klass;
+			class.allSubclasses.add(class).do { arg klass;
 				if(displayHooks[klass].isNil,{
 					displayHooks[klass] = displayFunction;// arg object, layout
 				})
