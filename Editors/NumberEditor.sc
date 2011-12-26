@@ -2,10 +2,10 @@
 
 Editor {
 
-	var  <>action, // { arg value,theEditor; }
-		<>value, <patchOut;
-
-	guiClass { ^ObjectGui }
+	classvar editorFor;
+	
+	var <>action; // { arg value,theEditor; }
+	var <>value, <patchOut;
 
 	storeOn { arg stream;
 		value.storeOn(stream)
@@ -13,6 +13,7 @@ Editor {
 
 	next { ^this.value }// Object would return this
 	poll { ^value }
+	dereference { ^this.value }
 	embedInStream { arg inval; ^this.asStream.embedInStream(inval); }
 	asStream { ^FuncStream(this) }
 
@@ -46,6 +47,75 @@ Editor {
 	}
 	spec { ^thisMethod.subclassResponsibility }
 	copy { ^this.class.new.value_(value.copy) }
+
+	guiClass { ^ObjectGui }
+
+	// find suitable editor any object
+	*for { arg object ... args;
+		var cl,f;
+		cl = object.class;
+		f = this.editorFor.at(cl);
+		if(f.isNil,{
+			while({
+				f.isNil and: {
+					cl = cl.superclass;
+					cl.notNil;
+				}
+			},{
+				f = this.editorFor.at(cl);
+			});
+		});
+		^f.valueArray([object] ++ args )
+	}
+	*editorFor {
+		^editorFor ?? {
+			editorFor = IdentityDictionary[
+	
+				// has an extra arg
+				SimpleNumber -> { arg n,spec; 
+					if(spec.class === ControlSpec,{
+						KrNumberEditor(n,spec)
+					},{
+						NumberEditor(n,spec)	
+					})
+				},
+
+				Env -> { arg e,levelSpec; EnvEditor(e,levelSpec) },
+				Dictionary -> { arg e; DictionaryEditor(e) },
+				HasSubject -> { arg h; h.subject = Editor.for(h.subject); h },
+
+				Patch -> { arg p;
+					p.class.new(p.instr.name,
+						p.args.collect
+							({ arg a,i; 
+								Editor.for(a,p.instr.specs.at(i)); 
+							})
+					)
+				},				
+				PlayerMixer -> { arg p; p.players = p.players.collect({ arg a; Editor.for(a) }); p },
+				// PlayerUnop -> { arg p; p.a = Editor.for(p.a); p },
+				// PlayerBinop -> { arg p; p.a = Editor.for(p.a); p.b = Editor.for(p.b); p },
+				BeatClockPlayer -> { arg p;
+					p.tempoFactor = Editor.for(p.tempoFactor,[0.25,64.0,\linear,0.25]);
+					p.mul = Editor.for(p.mul,\mul);
+					p
+				},
+				ModalFreq -> { arg m;
+					m.degree = Editor.for(m.degree,\degree);
+					m.scale = Editor.for(m.scale,\scale);
+					m.root = Editor.for(m.root,\root);
+					m.octave = Editor.for(m.octave,\octave);
+					m.stepsPerOctave = Editor.for(m.stepsPerOctave,\stepsPerOctave);
+					m
+				},
+				
+				Array -> { arg arr; arr.collect({ arg obj; Editor.for(obj) }) },
+				
+				Object -> { arg o; o }
+			
+			];
+		}
+	}		
 }
 
 
@@ -244,4 +314,43 @@ BooleanEditor : NumberEditor {
 
 	guiClass { ^BooleanEditorGui }
 }
+
+
+DictionaryEditor : Editor {
+
+	var <editing;
+	
+	*new { arg dict;
+		^super.new.value_(dict)
+	}
+	value_ { arg dict;
+		var n;
+		value = dict;
+		editing = dict.copy;
+		dict.keysValuesDo { arg k,v;
+						var spec,cv;
+						spec = k.asSpec;
+						[k,spec,v].debug;
+						if(spec.respondsTo(\constrain),{
+							cv = spec.constrain(v);
+							if(cv != v,{ // leave the guessing to the Editor
+								spec = nil
+							})
+						});
+						editing.put(k,Editor.for(v,spec))
+					};
+	}
+	value {
+		// dereference the editors
+		var edited;
+		edited = editing.copy;
+		edited.keysValuesDo { arg k,v;
+			edited.put(k, v.value )
+		};
+		^edited
+	}
+	
+	guiClass { ^DictionaryEditorGui }		
+}
+
 

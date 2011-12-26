@@ -3,7 +3,6 @@
 EditorGui : ObjectGui {
 
 	writeName {}
-	
 }
 
 
@@ -198,7 +197,6 @@ NumberEditorGui : EditorGui {
 KrNumberEditorGui : NumberEditorGui {
 
 	background { ^Color(0.0,0.3,0.0,0.2) }
-
 }
 
 
@@ -264,5 +262,17 @@ BooleanEditorGui : EditorGui {
 			cb.setProperty(\value,model.value.binaryValue);
 		});
 	}	
+}
+
+
+DictionaryEditorGui : EditorGui {
+	
+	guiBody { arg layout,bounds;
+		model.editing.keysValuesDo { arg k,v;
+			layout.startRow;
+			ArgNameLabel(k,layout,minWidth:100);
+			v.gui(layout)
+		}
+	}
 }
 
