@@ -1,10 +1,10 @@
 
 
-/*
-	toolbarFunc(layout,instr)
-*/
-
 InstrBrowser {
+
+	/*
+		toolbarFunc: arg layout,instr
+	*/
 
     var <>toolbarFunc,lv,frame;
     var instrs,ugenInstrs,<>rate=nil,<>showUGenInstr=true,<>inputSpec,<>outputSpec;
@@ -13,7 +13,7 @@ InstrBrowser {
         ^super.newCopyArgs(toolbarFunc).showUGenInstr_(showUGenInstr).init
     }
     gui { arg layout,bounds;
-        this.guiBody( layout.asFlowView(bounds ?? {Rect(100,0,1000,1000)} ) );
+        this.guiBody( layout.asFlowView(bounds ?? {Rect(100,0,1000,Window.screenBounds.height - 50)} ) );
     }
     guiBody { arg layout;
         var search,rateFilter;
@@ -107,7 +107,7 @@ InstrBrowser {
     focus { arg instrname;
         var instr,ic,rr;
         frame.removeAll;
-
+        
         if(instrname.isNil,{
             ^this
         });
@@ -123,7 +123,7 @@ InstrBrowser {
         frame.scroll({ arg frame;
 	        frame.flow({ arg frame;
 	            instr.gui(frame);
-	        })
+	        },frame.bounds.moveTo(0,0))
         },frame.indentedRemaining);
     }
 }

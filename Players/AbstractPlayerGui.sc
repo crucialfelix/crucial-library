@@ -1,12 +1,11 @@
 
 
-
 AbstractPlayerGui : ObjectGui {
 
 	gui { arg parent,bounds ... args;
-		var layout;
+		var layout,inner;
 
-		layout=this.guify(parent,bounds);
+		layout = this.guify(parent,bounds);
 		if(parent.isNil,{
 			// top level controls
 			this.synthConsole(layout);
@@ -14,15 +13,16 @@ AbstractPlayerGui : ObjectGui {
 			layout.startRow;
 		});
 
-		layout.flow({ arg layout;
+		inner = layout.flow({ arg layout;
 			this.view = layout;
 			this.writeName(layout);
 			this.guiBody(layout);
 		},bounds).background_(this.background);
-
+		inner.resizeToFit;
+		
 		this.enableKeyDowns;
 
-		if(bounds.isNil or: parent.isNil,{ 
+		if(parent.isNil,{ 
 			layout.resizeToFit 
 		});
 
