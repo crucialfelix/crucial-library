@@ -1,25 +1,61 @@
 
+
 PatchGui : AbstractPlayerGui {
 
 	prWriteName { arg layout,name;
 		super.prWriteName(layout,model.class.name.asString)
 	}
-	guiBody { arg layout;
-		var bounds, maxHeight,vl,font,argNameWidth;
-		bounds = layout.bounds;
-		maxHeight = bounds.height - 20 - (model.args.size * 15) / model.args.size;
-
+	guiBody { arg layout,bounds;
+		var vl,font,argNameWidth;
+		bounds = layout.indentedRemaining;
+		
 		this.instrGui(layout);
 
 		font = GUI.font.new("Helvetica",10);
-		//vl = SCVLayoutView(layout.startRow,layout.decorator.indentedRemaining);
 		vl = layout;
 		argNameWidth = model.instr.argNames.maxValue({ |an| an.asString.bounds(font).width + 7 });
 		argNameWidth = min(100,argNameWidth ? 100);
 		model.args.do({ arg a,i;
 			var gui,disclosed=true,box;
 			layout.startRow;
-			// ArgNameLabel(model.instr.argNames.at(i),layout);
+			ArgNameLabel(model.instr.argNames.at(i),layout,minWidth:argNameWidth);
+			box = vl.flow({ arg layout;
+				if(a.tryPerform('path').notNil,{
+					Tile(a,layout);
+				},{
+					gui = a.gui(layout);
+				});
+			})
+		});
+	}
+	instrGui { arg layout;
+		ActionButton(layout,this.model.instr.dotNotation,{
+			this.model.instr.gui
+		}).background_(Color.white).labelColor_(Color.black)
+	}
+}
+
+
+InstrSpawnerGui : PatchGui {
+	guiBody { arg layout;
+		super.guiBody(layout);
+		layout.startRow;
+		CXLabel(layout,"delta pattern:");
+		model.deltaPattern.gui(layout);
+	}
+}
+
+
+InterfaceGui : AbstractPlayerGui {
+	guiBody { arg ... args;
+		model.performList(\guiBody,args);
+	}
+	writeName {}
+}
+
+
+
+			/*
 			GUI.dragSink.new(vl,Rect(0,0,argNameWidth,15))
 				.stringColor_(model.specAt(i).color).background_(model.specAt(i).background)
 				//.background_(Color( 0.47843137254902, 0.72941176470588, 0.50196078431373  ))
@@ -43,37 +79,5 @@ PatchGui : AbstractPlayerGui {
 						// layout.reflowAll;
 					});
 				});
-
-			box = vl.flow({ arg layout;
-				if(a.tryPerform('path').notNil,{
-					Tile(a,layout);
-				},{
-					gui = a.gui(layout);
-				});
-			})
-		});
-	}
-	instrGui { arg layout;
-		ActionButton(layout,this.model.instr.dotNotation,{
-			this.model.instr.gui
-		}).background_(Color.white).labelColor_(Color.black)
-	}
-}
-
-InstrSpawnerGui : PatchGui {
-	guiBody { arg layout;
-		super.guiBody(layout);
-		layout.startRow;
-		CXLabel(layout,"delta pattern:");
-		model.deltaPattern.gui(layout);
-	}
-}
-
-InterfaceGui : AbstractPlayerGui {
-	guiBody { arg ... args;
-		model.performList(\guiBody,args);
-	}
-	writeName {}
-}
-
+			*/
 
