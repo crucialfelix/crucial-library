@@ -407,28 +407,31 @@ Instr  {
 		Event.addEventType(\instr,{ arg server;
 			var instr, instrArgs,patch;
 			~server = server;
-			~freq = ~detunedFreq.value;
-			~amp = ~amp.value;
-			~sustain = ~sustain.value;
 			
-			instr = Instr(~instr);
-			instrArgs = instr.argNames.collect({ arg an,i; 
-							var inp,spec;
-							inp = currentEnvironment[an] ?? {instr.defArgAt(i)};
-							spec = instr.specs.at(i);
-							if(spec.rate == \control,{
-								if(inp.rate == \control,{
-									inp
+			instr = ~instr.asInstr;
+			if(instr.notNil,{
+				~freq = ~detunedFreq.value;
+				~amp = ~amp.value;
+				~sustain = ~sustain.value;
+				instrArgs = instr.argNames.collect({ arg an,i; 
+								var inp,spec;
+								inp = currentEnvironment[an] ?? {instr.defArgAt(i)};
+								spec = instr.specs.at(i);
+								if(spec.rate == \control,{
+									if(inp.rate == \control,{
+										inp
+									},{
+										IrNumberEditor( inp.synthArg, spec )
+									})
 								},{
-									IrNumberEditor( inp.synthArg, spec )
+									inp
 								})
-							},{
-								inp
-							})
-						});
-			patch = Patch(instr,instrArgs);
-			patch.play(~group ? server,server.latency,~bus);
-			patch.patchOut.releaseBusses; // not needed, and I wont free myself
+							});
+				patch = Patch(instr,instrArgs);
+				patch.play(~group ? server,server.latency,~bus);
+				patch.patchOut.releaseBusses; // not needed, and I wont free myself
+				~patch = patch;
+			})
 		});
 	}
 	init { arg specs,outsp;
