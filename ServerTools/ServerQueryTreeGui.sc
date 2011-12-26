@@ -85,6 +85,58 @@ ServerQueryTreeGui : ObjectGui { // model is Server
 		})		
 	}
 }
+
+
+BussesTool {
+	
+	var <>server;
+	
+	*new { arg server;
+		^super.new.server_(server ? Server.default).gui
+	}
+	gui { arg layout,bounds;
+
+		Sheet({ |layout|
+			CXLabel( layout, "Audio Busses",width:685);
+			server.audioBusAllocator.blocks.do({ |b|
+				var listen,bus;
+				listen = Patch({ In.ar( b.start, b.size ) });
+				layout.startRow;
+				ToggleButton( layout,"listen",{
+					listen.play
+				},{
+					listen.stop
+				});
+				CXLabel( layout, b.start.asString + "(" ++ b.size.asString ++ ")",100 );
+				
+				Annotations.guiFindBus(b.start,b.size,layout);
+				
+				
+				if(BusPool.notNil,{
+					bus = BusPool.findBus(server,b.start);
+					if(bus.notNil,{
+						layout.flow({ |f|
+							var ann;
+							ann = BusPool.getAnnotations(bus);
+	
+							if(ann.notNil,{
+								ann.keysValuesDo({ |client,name|
+									f.startRow;
+									InspectorLink(client,f);
+									CXLabel(f,":"++name);
+								});
+							});
+						})
+					});
+				});
+				ActionButton(layout,"search ServerLog",{
+					ServerLog.guiMsgsForBus(b.start,b.size)
+				});
+			})
+		},"Audio Busses");
+	
+	}
+}
 		
 		
 		

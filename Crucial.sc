@@ -273,38 +273,7 @@ Crucial {
 		});
 
 		Library.put(\menuItems,\test,'listen to audio busses',{
-			var s;
-			s = Server.default;
-			Sheet({ |layout|
-				CXLabel( layout, "Audio Busses",width:685);
-				s.audioBusAllocator.blocks.do({ |b|
-					var listen,bus;
-					listen = Patch({ In.ar( b.start, b.size ) });
-					layout.startRow;
-					ToggleButton( layout,"listen",{
-						listen.play
-					},{
-						listen.stop
-					});
-					CXLabel( layout, b.start.asString + "(" ++ b.size.asString ++ ")",100 );
-
-					bus = BusPool.findBus(s,b.start);
-					if(bus.notNil,{
-						layout.flow({ |f|
-							var ann;
-							ann = BusPool.getAnnotations(bus);
-
-							if(ann.notNil,{
-								ann.keysValuesDo({ |client,name|
-									f.startRow;
-									Tile(client,f);
-									CXLabel(f,":"++name);
-								});
-							});
-						})
-					});
-				})
-			},"Audio Busses");
+			BussesTool.new(Server.default)
 		});
 
 		Library.put(\menuItems,\test,'UnitTest.runAll',{
