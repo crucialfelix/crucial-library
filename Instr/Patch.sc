@@ -173,6 +173,7 @@ Patch : HasPatchIns  {
 			^args[index]
 		});
 	}
+	
 	argNames { ^this.instr.argNames }
 	argNameAt { arg i; ^instr.argNameAt(i) }
 	specAt { arg i; ^instr.specs.at(i) }
@@ -359,8 +360,19 @@ Patch : HasPatchIns  {
 			});
 		});
 	}
-	update { arg changed,changer;
+	update { arg changed,what;
 		var newArgs;
+		if(changed === this.instr,{
+			^this.removeSynthDefCache;
+		});
+		if(changed === synth,{
+			if(what == 'n_end',{
+				this.children.do(_.stop);
+				stepChildren.do(_.stop);
+				status = \isStopped;
+			});
+			^this.changed(status)
+		});
 		// one of my scalar inputs changed
 		if(this.args.includes(changed),{
 			if(this.isPlaying,{
@@ -371,9 +383,6 @@ Patch : HasPatchIns  {
 			},{
 				this.invalidateSynthDef;
 			})
-		});
-		if(changed === this.instr,{
-			this.removeSynthDefCache;
 		});
 	}
 	removeSynthDefCache {
@@ -438,6 +447,7 @@ Patch : HasPatchIns  {
 		synth = Synth.basicNew(this.defName,this.server);
 		this.annotate(synth,"synth");
 		NodeWatcher.register(synth);
+		synth.addDependant(this);
 		bundle.add(
 			synth.addToTailMsg(patchOut.group,
 				this.synthDefArgs
@@ -472,6 +482,9 @@ Patch : HasPatchIns  {
 		super.stopToBundle(bundle);
 		stepChildren.do({ |sc|
 			sc.stopToBundle(bundle)
+		});
+		bundle.addFunction({
+			synth.removeDependant(this)
 		})
 	}
 
