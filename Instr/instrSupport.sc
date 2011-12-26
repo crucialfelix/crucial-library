@@ -106,6 +106,9 @@
 	}
 	color { ^Color.black }
 	background { ^Color( 0.47843137254902, 0.72941176470588, 0.50196078431373  ) }
+	mapToSpec { arg v,spec;
+		^v
+	}
 }
 
 + ControlSpec 	{
@@ -128,6 +131,13 @@
 	}
 	color { ^rgb(125, 255, 205) }
 	background { ^Color.black }
+	mapToSpec { arg v,spec;
+		if(spec.isKindOf(ControlSpec) or: {spec.isKindOf(HasItemSpec) and: {spec.itemSpec.isKindOf(ControlSpec)}},{
+			^spec.map( this.unmap(v).clip(0.0,1.0) )
+		},{
+			^v
+		})
+	}
 }
 + StaticSpec {
 	color { ^Color.black}
