@@ -12,8 +12,8 @@ BeatSched {
 
 	*new { arg clock,tempo,tempoClock;
 		^super.newCopyArgs(clock ? SystemClock,
-			tempo ?? {Tempo.default},
-			tempoClock ?? {TempoClock.default}).init
+			tempo = tempo ?? {Tempo.default},
+			tempoClock ?? {TempoClock(tempo.tempo)}).init
 	}
 	*initClass {
 		Class.initClassTree(Tempo);
