@@ -439,6 +439,30 @@ Crucial {
 			})
 		});
 
+		Library.put(\menuItems,\introspection,\findRespondingMethodFor,{
+			GetStringDialog("Search for: Class.methodname","",{ arg ok,string;
+				Sheet({ |layout|
+					var class,method,methodName;
+					# class, methodName = string.split($.);
+					class = class.asSymbol.asClass;
+					methodName = methodName.asSymbol;
+					if(class.notNil,{
+						while({ class != Meta_Object },{
+							method = class.findMethod(methodName);
+							if(method.notNil,{
+								method.gui;
+								class = Meta_Object
+							 },{
+							 	class = class.superclass;
+							 });
+						});
+					},{
+						("Class not found" + string).gui
+					})
+				},"Method search")
+			})
+		});
+
 		Library.put(\menuItems,\introspection,\findReferencesToClass,{
 			GetStringDialog("Class name:","",{ arg ok,string;
 				Class.findAllReferences(string.asSymbol).do({ arg ref;
