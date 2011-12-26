@@ -1,4 +1,5 @@
 
+
 InstrGui : ObjectGui {
 	
 	guiBody { arg layout;
@@ -47,20 +48,21 @@ InstrGui : ObjectGui {
 			tf.string = source;
 			tf.font_(f);
 			tf.syntaxColorize;
+			up = Updater(model,{
+			    source = model.funcDef.sourceCode;
+			    if(tf.isClosed,{
+			        up.remove //sc remove gui is easily breakable
+			    },{
+				    tf.string = source;
+				    tf.syntaxColorize;
+				});
+	        }).removeOnClose(layout)
 		},{
-		    CXLabel(layout,"Source code not found",width);
+		    CXLabel(layout,"Source code is nil",width);
 		});
-		up = Updater(model,{
-		    source = model.funcDef.sourceCode;
-		    if(tf.isClosed,{
-		        up.remove //sc remove gui is easily breakable
-		    },{
-			    tf.string = source;
-			    tf.syntaxColorize;
-			});
-        }).removeOnClose(layout)
 	}
 }
+
 
 UGenInstrGui : InstrGui {
 	

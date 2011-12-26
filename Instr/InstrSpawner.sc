@@ -97,6 +97,7 @@ InstrSpawner : Patch {
 	}
 
 	makeResourcesToBundle { arg bundle;
+		// called by AbstractPlayer prepareToBundle
 		spawnGroup = Group.basicNew;
 		NodeWatcher.register(spawnGroup);
 		this.annotate(spawnGroup,"spawnGroup");

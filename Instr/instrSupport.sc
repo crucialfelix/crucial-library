@@ -1,10 +1,4 @@
 
-+ Function {
-	iplay { arg ...args;
-		Patch(this,args).play
-	}
-}
-
 + Instr {
 	asInstr {}
 }
@@ -58,6 +52,9 @@
 	}
 	asInterfaceDef {
 		^InterfaceDef("f" ++ this.hash,this)
+	}
+	iplay { arg ...args;
+		Patch(this,args).play
 	}
 }
 
