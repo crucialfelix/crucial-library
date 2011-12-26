@@ -40,6 +40,9 @@ ServerLog : NetAddr {
 	filterBySynth { arg nodeID;
 		^this.matchMsgs({arg m; m.matchSynth(nodeID) })
 	}
+	filterByBus { arg index,rate;
+		^this.matchMsgs({arg m; m.matchBus(index,rate) })
+	}
 	matchMsgs { arg matchFunc;
 		var matches;
 		matches = [];
@@ -52,17 +55,23 @@ ServerLog : NetAddr {
 	}
 				
 	*guiMsgsForSynth { arg synth,layout,showTimes=false;
-		var msgs,sl;
-		sl = this.forServer(synth.server) ?? { "ServerLog not running".inform; ^this };
-		msgs = sl.filterBySynth(synth.nodeID);
-		ServerLogGui(sl).showTimes_(showTimes).gui(layout,nil,msgs)
+		this.prGuiMsgsFor([\filterBySynth,synth.nodeID],synth.server,layout,showTimes,"where synth="+synth.nodeID.asString)
 	}
-	*guiMsgsForSynthDef { arg defName,layout,server;
+	*guiMsgsForSynthDef { arg defName,layout,server,showTimes=false;
+		this.prGuiMsgsFor([\filterBySynthDef,defName],server,layout,showTimes,"where defName="+defName.asString)
+	}
+	*guiMsgsForBus { arg index,rate,layout,server,showTimes=false;
+		this.prGuiMsgsFor([\filterByBus,index,rate],server,layout,showTimes,"where bus="+index.asString)
+	}
+	*prGuiMsgsFor { arg performList,server,layout,showTimes,title;
 		var msgs,sl;
 		sl = this.forServer(server)  ?? { "ServerLog not running".inform; ^this };
-		msgs = sl.filterBySynthDef(defName);
-		ServerLogGui(sl).gui(layout,nil,msgs)
-	}
+		msgs = sl.perform(*performList);
+		if(msgs.notEmpty or: {layout.notNil},{
+			ServerLogGui(sl).showTimes_(showTimes).gui(layout,nil,nil,msgs,title)
+		})
+	}		
+
 		
 	slinit { arg s;
 		server = s;
@@ -98,38 +107,8 @@ ServerLog : NetAddr {
 	}
 	guiClass { ^ServerLogGui }
 
-	getSortedEvents { arg tail,function;
+	getSortedEvents { arg tail,callback;
 		// list in logical time order
-
-		/*
-		// could roughly intersperse them
-		// which is closer than what we start with
-		a = Array.series(10,0,2);
-		b = Array.series(15,1,2);
-		if(b.size > a.size,{
-			t = a;
-			a = b;
-			b = t;
-		});
-		c = Array(b.size + a.size);
-		a.do({ |it,i|
-			c.add(it);
-			if(b[i].notNil,{ c.add(b[i]) })
-		});
-
-		c
-
-		c.hoareFind(5,{|a,b| a < b })
-
-		// sort just up to the end of what you will show
-		c.hoareFind(10,{|a,b| a < b })
-
-		c
-
-		// better to do this from the back then
-
-		*/
-
 		Routine({
 			var q,events,since,a,b;
 
@@ -142,9 +121,9 @@ ServerLog : NetAddr {
 				});
 
 			if(tail.notNil,{
-				function.value( events.copyRange(events.size-tail-1,events.size-1) );
+				callback.value( events.copyRange(events.size-tail-1,events.size-1) );
 			},{
-				function.value( events )
+				callback.value( events )
 			})
 		}).play(AppClock)
 	}
@@ -186,25 +165,14 @@ ServerLog : NetAddr {
 			this.gui(parent,bounds,events)
 		});
 	}
-	*report { |tail=1000|
-		if(Server.default.addr.isKindOf(ServerLog),{
-			Server.default.addr.report(tail)
-		},{
-			"ServerLog has not been running".inform;
-		});
-	}
-	report { arg tail;
-		this.events(tail).do({ |ev|
-			ev.report
-		})
-	}	
 }
 
 
 ServerLogSentEvent {
 
 	var <>delta,<>msg,<>isBundle,<>timeSent;
-
+	var unbundled;
+	
 	*new { arg delta,msg,isBundle;
 		^super.newCopyArgs(delta,msg,isBundle,Main.elapsedTime)
 	}
@@ -219,9 +187,13 @@ ServerLogSentEvent {
 		(">>> % (% + %) % %".format(this.eventTime,timeSent,delta,this.cmdString,msg.copyToEnd(1))).postln
 	}
 	cmdString { ^ServerLog.cmdString(msg[0]) }
+	
+	unbundled {
+		^unbundled ?? { unbundled = msg.collect(ServerLogSentEvent(delta,_,false,timeSent)) }
+	}
 	matchMsgs { arg func;
 		if(this.isBundle,{
-			^msg.collect(ServerLogSentEvent(delta,_,false,timeSent)).select(func)
+			^this.unbundled.select(func)
 		},{
 			if(func.value(this), { ^[this] }, { ^nil })
 		})
@@ -238,6 +210,20 @@ ServerLogSentEvent {
 	matchSynth { arg nodeID;
 		^(msg[2] == nodeID) and: {  ServerLog.cmdString(msg[0]) == "/s_new" }
 	}
+	matchBus { arg index,rate;
+		var cmd;
+		cmd = ServerLog.cmdString(msg[0]);
+		if(cmd == "/s_new",{
+			// ideally retrieve the synth def and find args of correct spec
+			^msg.any({ arg val,i;
+				val.asString.containsi("bus") and: { msg[i+1] == index }
+			})
+		});
+		// set messages
+		
+		^false
+	}
+		
 }
 
 
@@ -272,5 +258,6 @@ ServerLogReceivedEvent {
 	matchSynth { arg nodeID;
 		^(msg[1] == nodeID) and: {  ServerLog.cmdString(msg[0]) == "/n_go" }
 	}
+	matchBus { ^false }
 }
 

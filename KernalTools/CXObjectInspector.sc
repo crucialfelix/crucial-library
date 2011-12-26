@@ -125,6 +125,10 @@ CXObjectInspector : ObjectGui {
 				CXLabel(layout,cn.rate);
 				CXLabel(layout,cn.defaultValue);
 			};
+			layout.startRow;
+			if(InstrSynthDef.notNil and: {def.isKindOf(InstrSynthDef)},{
+				InspectorLink(def.instrName.asInstr ? def.instrName,layout);
+			});
 			if(def.name.notNil,{
 				ActionButton(layout,"search ServerLog...",{
 					ServerLog.guiMsgsForSynthDef(def.name);

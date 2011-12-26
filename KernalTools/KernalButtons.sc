@@ -83,5 +83,22 @@ InspectorLink : ActionButton {
 }
 
 
+DefNameLabel {
+	
+	*new { arg name,server,layout,minWidth=130;
+		var def;
+		if(InstrSynthDef.notNil,{			
+			def = InstrSynthDef.cacheAt(name,server);
+		});
+		if(def.isNil,{
+			^CXLabel(layout,name,minWidth:minWidth)
+		},{
+			^InspectorLink(def,layout,minWidth:minWidth)
+		})
+	}
+}
+
+
+
 
 

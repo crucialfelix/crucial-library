@@ -7,14 +7,18 @@ ServerLogGui : ObjectGui {
 	var <>showTimes=true;
 
 	writeName {}
-	guiBody { arg layout ... args;
-		var w,events;
+	guiBody { arg layout,events,title;
+		var w;
 		w = layout.bounds.width;
 		nodeColors = Dictionary.new;
 		error = Color(1.0, 0.0, 0.08955223880597);
-
-		events = args.first;
-
+		if(title.notNil,{
+			CXLabel(layout,title).bold;
+			layout.startRow
+		});
+		if(events.isNil,{
+			CXLabel(layout,"No events in server log")
+		});
 		events.do({ |ev|
 			this.guiEvent(ev,layout);
 		});

@@ -57,6 +57,18 @@ Annotations {
 			layout.startRow;
 		}
 	}
+	*guiFindBus { arg index,rate,layout;
+		this.findBus(index,rate).do { arg notes;
+			notes.do({ arg n;
+				if(n.isString,{
+					n.gui(layout);
+				},{
+					InspectorLink(n,layout)
+				})
+			});
+			layout.startRow;
+		}
+	}
 		
 	*prAnnotate { arg thing, notes;
 		var hash;
