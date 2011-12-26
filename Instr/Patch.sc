@@ -244,15 +244,26 @@ Patch : HasPatchIns  {
 	}
 
 	createArgs { arg argargs;
-		var argsSize;
+		var argsSize,temp;
 		argsForSynth = [];
 		argNamesForSynth = [];
 		patchIns = [];
 		synthPatchIns = [];
 		argsSize = this.instr.argsSize;
 		synthArgsIndices = Array.newClear(argsSize);
-
-		args=Array.fill(argsSize,{arg i;
+		if(argargs.isKindOf(Dictionary),{
+			temp = nil ! argsSize;
+			argargs.keysValuesDo { arg k,v;
+				var i;
+				i = this.instr.argNames.indexOf(k);
+				if(i.notNil,{
+					temp[i] = v
+				})
+			};
+			argargs = temp
+		});
+								
+		args = Array.fill(argsSize,{arg i;
 			var proto,spec,ag,patchIn,darg,inSpec;
 			spec = instr.specs.at(i);
 			if(argargs.at(i).notNil,{
@@ -294,20 +305,15 @@ Patch : HasPatchIns  {
 			patchIn = PatchIn.newByRate(spec.rate);
 			patchIns = patchIns.add(patchIn);
 
-			// although input is control, arg could overide that
+			// although input is control, an arg could overide that
 			if(spec.rate != \noncontrol
-				and: {ag.rate != \noncontrol}
-			,{
+				and: {ag.rate != \noncontrol} ,{
 				// if rate is \stream and spec is not EventStream
-				// then fail
+				// then it should fail
 				argsForSynth = argsForSynth.add(ag);
 				argNamesForSynth = argNamesForSynth.add(this.argNameAt(i));
 				synthPatchIns = synthPatchIns.add(patchIn);
 				synthArgsIndices.put(i,synthPatchIns.size - 1);
-			},{
-				// watch noncontrols for changes.
-				// if Env or Sample or quantity changed, synth def is invalid
-				//if(ag.isNumber.not,{ ag.addDependant(this); });
 			});
 			ag
 		});
