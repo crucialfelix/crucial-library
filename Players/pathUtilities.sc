@@ -105,6 +105,14 @@
 }
 
 
++ Dictionary {
+
+	enpath {
+		^this.collect({ arg obj;
+			obj.enpath
+		})
+	}
+}	
 
 
 
