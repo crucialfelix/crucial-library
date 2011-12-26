@@ -104,12 +104,6 @@ Patch : HasPatchIns  {
 	*new { arg name,inputs,outClass;
 		^super.new.loadSubject(name).createArgs(loadDocument(inputs) ? []).outClass_(outClass ? Out)
 	}
-	rand { arg standardDeviation=0.15;
-		this.inputs.do({ |in,i|
-			// at least NumberEditors will respond
-			in.tryPerform(\rand,standardDeviation,this.instr.initAt(i));
-		})
-	}
 	inputs { ^args }
 	// insert a new input into this arg position
 	setInput { arg index, newArg;
@@ -153,6 +147,12 @@ Patch : HasPatchIns  {
 		},{
 			(argg.asString + "does not respond to set").warn;
 		});
+	}
+	rand { arg standardDeviation=0.15;
+		this.inputs.do({ |in,i|
+			// at least NumberEditors will respond
+			in.tryPerform(\rand,standardDeviation,this.instr.initAt(i));
+		})
 	}
 	doesNotUnderstand { arg selector ... dnuargs;
 		var sel,setter,argName,index;
@@ -523,6 +523,17 @@ Patch : HasPatchIns  {
 			err.throw;
 		});
 		^result
+	}
+	asEvent {
+		var e;
+		e = ('type':'instr','instr':this.instr);
+		this.instr.argNames.do { arg an,i;
+			e[an] = args[i].dereference
+		};
+		^e
+	}
+	embedInStream { arg event;
+		^yield(event !? { event.copy.putAll(this.asEvent) })
 	}
 
 	children { ^args }
