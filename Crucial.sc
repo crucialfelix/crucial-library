@@ -150,7 +150,8 @@ Crucial {
 			\mul -> ControlSpec(0.0,1.0,\lin,0,1.0),
 			\add -> ControlSpec(0.0,1.0,\lin,0.0,0.0),
 			'bufnum' -> StaticIntegerSpec(0,100,0),
-			'sndbuf' -> StaticIntegerSpec(0,100,0)
+			'sndbuf' -> StaticIntegerSpec(0,100,0),
+			\instr -> InstrNameSpec()
 			
 		  ]
 		);
