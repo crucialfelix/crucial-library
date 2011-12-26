@@ -514,6 +514,7 @@ InstrNameSpec : HasItemSpec {
 	canAccept { arg ting;
 		^(ting.isString and: {Instr(ting).notNil})
 	}
+	constrain { arg instr; ^instr }
 }
 
 
