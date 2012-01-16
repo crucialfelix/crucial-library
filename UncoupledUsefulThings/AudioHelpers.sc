@@ -37,7 +37,7 @@ XFaderN  {
 		inputs = inputs.dereference;
 		whiches = PanAz.ar(inputs.size,SinOsc.ar(0.0,add:1.0),bipolar,width);
 
-		^Mix.ar(
+		^Mix.new(
 			inputs.collect({ arg sound,i;
 				sound * whiches.at(i)
 			})
@@ -48,7 +48,7 @@ XFaderN  {
 		inputs = inputs.dereference;
 		whiches = PanAz.ar(inputs.size,SinOsc.ar(0.0,add:1.0),bipolar,width);
 
-		^Mix.ar(
+		^Mix.new(
 			inputs.collect({ arg sound,i;
 				sound * whiches.at(i)
 			})

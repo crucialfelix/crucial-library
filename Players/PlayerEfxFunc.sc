@@ -53,7 +53,7 @@ XFadePauseEfxFunc : XFadeEfxFunc { // pauses the effect when xfader is 0.0
 		wet = Pause.ar({ two.value(if(pre1 == 1.0,{ dry},{ dry * pre1.value })) },controller);
 		if(pre2 != 1.0,{ wet = wet * pre2.value });
 		wet = wet * (1.0 - controller);
-		^Mix.ar([dry,wet])//XFader.ar(dry,wet,xfader.value)
+		^Mix.new([dry,wet])//XFader.ar(dry,wet,xfader.value)
 	}
 
 }
