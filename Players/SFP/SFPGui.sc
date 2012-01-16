@@ -56,11 +56,9 @@ SFPGui : AbstractSFPGui {
 	}
 
 	replaceFile {
-		GetFileDialog({ arg ok,sfPath;
-			if(ok,{
-				model.init(sfPath);
-				model.changed;
-			});
+		File.openDialog("Replace soundfile",{ arg sfPath;
+			model.init(sfPath);
+			model.changed;
 		})
 	}
 	read {

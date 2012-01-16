@@ -249,7 +249,7 @@ ClassGui : CXObjectInspector {
 				//	},minWidth:width)
 				//});
 				ActionButton(layout,"find method...",{
-					GetStringDialog("find method...","",{ arg ok,string;
+					Sheet.getString("find method...","",{ arg string;
 						var class,method;
 						string = string.asSymbol;
 						class = model;

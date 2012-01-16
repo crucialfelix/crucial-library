@@ -208,7 +208,7 @@ WavetableSampleGui : SampleGui {
 		model.write;
 	}
 	saveAs {
-		GetStringDialog("wavetable name...",model.name,{ arg ok,name;
+		Sheet.getString("wavetable name...",model.name,{ arg name;
 			var newpath;
 			if(ok,{
 				newpath = Sample.standardizePath(model.class.dir ++ name);

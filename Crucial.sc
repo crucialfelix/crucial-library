@@ -20,7 +20,7 @@ Crucial {
 				background: 	Color(1.0, 1.0, 1.0, 0.80597014925373),
 				foreground:	Color.grey(0.95),
 				onColor:		Color.new255(255, 250, 250),
-				offColor:		Color.clear,
+				offColor:		Color(0.77, 0.77, 0.77, 0.6),
 				gap:			4 @ 4,
 				margin: 		2@0,
 				buttonHeight:	17,
@@ -259,10 +259,8 @@ Crucial {
 
 		// tools
 		Library.put(\menuItems,\load,'Open Player...',{
-			GetFileDialog({ arg ok,loadPath;
-				if(ok,{
-					loadPath.loadPath.gui;
-				});
+			File.openDialog("Open player",{ arg loadPath;
+				loadPath.loadPath.gui;
 			})
 		});
 
@@ -368,14 +366,12 @@ Crucial {
 		});*/
 
 		Library.put(\menuItems,\post,'post path...',{
-			GetFileDialog({ arg ok,loadPath;
-				if(ok,{
-					PathName(loadPath).asRelativePath.asCompileString.post;
-				});
+			File.openDialog("Post path as string",{ arg loadPath;
+				PathName(loadPath).asRelativePath.asCompileString.post;
 			})
 		});
 		Library.put(\menuItems,\post,'post array of paths...',{
-			CocoaDialog.getPaths({ arg paths;
+			GUI.dialog.getPaths({ arg paths;
 				Post <<<  paths.collect({ arg p;
 							PathName(p).asRelativePath })
 					<< Char.nl;
@@ -387,7 +383,7 @@ Crucial {
 
 		Library.put(\menuItems,\introspection,\classfinder,{ 
 			var close=true;
-			GetStringDialog("Search classes...","",{ arg ok,string;
+			Sheet.getString("Search classes...","",{ arg string;
 				Sheet({ |layout|
 					var matches,first;
 					Object.allSubclasses.do({ |class|
@@ -421,7 +417,7 @@ Crucial {
 		});
 
 		Library.put(\menuItems,\introspection,\methodfinder,{
-			GetStringDialog("Search methods...","",{ arg ok,string;
+			Sheet.getString("Search methods...","",{ arg string;
 				Sheet({ |layout|
 					var matches;
 					Object.allSubclasses.do({ |class|
@@ -441,7 +437,7 @@ Crucial {
 		});
 
 		Library.put(\menuItems,\introspection,\findRespondingMethodFor,{
-			GetStringDialog("Search for: Class.methodname","",{ arg ok,string;
+			Sheet.getString("Search for: Class.methodname","",{ arg string;
 				Sheet({ |layout|
 					var class,method,methodName;
 					# class, methodName = string.split($.);
@@ -465,7 +461,7 @@ Crucial {
 		});
 
 		Library.put(\menuItems,\introspection,\findReferencesToClass,{
-			GetStringDialog("Class name:","",{ arg ok,string;
+			Sheet.getString("Class name:","",{ arg string;
 				Class.findAllReferences(string.asSymbol).do({ arg ref;
 					ref.postln;
 				});
