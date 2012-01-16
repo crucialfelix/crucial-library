@@ -43,7 +43,7 @@ InstrGui : ObjectGui {
 		source = model.funcDef.sourceCode;
 		if(source.notNil,{
 			f = GUI.font.new("Courier",12.0);
-			height = source.bounds(f).height + 5;
+			height = source.split(Char.nl).size * 15;
 			tf = TextView(layout,Rect(0,0,width,height));
 			tf.string = source;
 			tf.font_(f);
