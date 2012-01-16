@@ -55,6 +55,16 @@ Instr  {
 	    		});
 		};
 	}
+	*addExcludePaths {
+		// 3.5 + only
+		(Platform.userExtensionDir ++ "/quarks/*/Instr").pathMatch.do { arg path;
+			LanguageConfig.addExcludePath(path)
+		}
+		/*
+		Instr.addExcludePaths;
+		LanguageConfig.store;
+	*/	
+	}		
 	*clearAll {
 		Library.global.removeAt(this)
 	}
