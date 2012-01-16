@@ -26,13 +26,13 @@ span.Apple-tab-span {white-space:pre}
 </style>
 </head>
 <body>
-<p class="p1"><span class="s1"><b>GridLayout<span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></b></span><b>grid layout calculator</b></p>
+<p class="p1"><span class="s1"><b>GridLayoutCalc<span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span></b></span><b>grid layout calculator</b></p>
 <p class="p2"><br></p>
-<p class="p3">GridLayout is useful for laying out the larger sections of an interface.</p>
+<p class="p3">GridLayoutCalc is useful for laying out the larger sections of an interface.</p>
 <p class="p4"><br></p>
 <p class="p3">Grid systems are a commonly used method that graphic designers use to layout the structural sections on a page.<span class="Apple-converted-space">  </span>You can see this in most any magazine, newspaper or website.<span class="Apple-converted-space">  </span>They give a vertical and horizontal rhythm to the design and simplify decisions about where to place things.<span class="Apple-converted-space">  </span>It quantizes the visual space.</p>
 <p class="p4"><br></p>
-<p class="p3">A GridLayout is not a decorator like FlowLayout.<span class="Apple-converted-space">  </span>You create one and use it directly to calculate bounds, then Composite views or flow views can be placed at those Rects and you use those Rects when placing your views.</p>
+<p class="p3">A GridLayoutCalc is not a decorator like FlowLayout.<span class="Apple-converted-space">  </span>You create one and use it directly to calculate bounds, then Composite views or flow views can be placed at those Rects and you use those Rects when placing your views.</p>
 <p class="p2"><br></p>
 <p class="p2"><br></p>
 <p class="p2"><br></p>
@@ -40,13 +40,13 @@ span.Apple-tab-span {white-space:pre}
 <p class="p6">// a fairly large bounds</p>
 <p class="p7">b = <span class="s2">Window</span>.screenBounds.resizeBy(-100,-100);</p>
 <p class="p8"><br></p>
-<p class="p7">w = <span class="s2">Window</span>(<span class="s3">"GridLayout"</span>,b).front;</p>
+<p class="p7">w = <span class="s2">Window</span>(<span class="s3">"GridLayoutCalc"</span>,b).front;</p>
 <p class="p8"><br></p>
 <p class="p9">// create a large grid layout with 12 cols and 7 rows</p>
-<p class="p7">g = <span class="s2">GridLayout</span>.new(b,12,7);</p>
+<p class="p7">g = <span class="s2">GridLayoutCalc</span>.new(b,12,7);</p>
 <p class="p8"><br></p>
 <p class="p6">// specify using row@column Points:<span class="Apple-converted-space">  </span>left and bottom right inclusive</p>
-<p class="p6">// the GridLayout calculates the rect</p>
+<p class="p6">// the GridLayoutCalc calculates the rect</p>
 <p class="p7"><span class="s2">TextView</span>(w,g.calc(0@0,6@1)).background = <span class="s2">Color</span>.white;</p>
 <p class="p8"><br></p>
 <p class="p7"><span class="s2">TextView</span>(w,g.calc(0@2,1@9)).background = <span class="s2">Color</span>.red;</p>
@@ -63,7 +63,7 @@ span.Apple-tab-span {white-space:pre}
 <p class="p5">b = <span class="s4">Window</span>.screenBounds.resizeBy(-100,-100);</p>
 <p class="p2"><br></p>
 <p class="p9">// create a large grid layout with 12 cols and 7 rows</p>
-<p class="p5">g = <span class="s4">GridLayout</span>.new(b,12,7);</p>
+<p class="p5">g = <span class="s4">GridLayoutCalc</span>.new(b,12,7);</p>
 <p class="p5">// this shows that the larger dimension (12) consumes as much space as it can</p>
 <p class="p5">// and that determines the size of each square</p>
 <p class="p2"><br></p>
@@ -91,11 +91,11 @@ span.Apple-tab-span {white-space:pre}
 <p class="p2"><br></p>
 <p class="p5">(</p>
 <p class="p5">b = <span class="s4">GUI</span>.window.screenBounds.resizeBy(-100,-100);</p>
-<p class="p5">g = <span class="s4">GridLayout</span>.new(b,12,7);</p>
+<p class="p5">g = <span class="s4">GridLayoutCalc</span>.new(b,12,7);</p>
 <p class="p5">w = GUI.window.new(b).front;</p>
 <p class="p2"><br></p>
 <p class="p9">// 12 cols and as many rows as will fit within the bounds</p>
-<p class="p5">g = <span class="s4">GridLayout</span>.new(b,12);</p>
+<p class="p5">g = <span class="s4">GridLayoutCalc</span>.new(b,12);</p>
 <p class="p2"><br></p>
 <p class="p5">)</p>
 <p class="p2"><br></p>
@@ -107,7 +107,7 @@ span.Apple-tab-span {white-space:pre}
 <p class="p2"><br></p>
 <p class="p5">not yet implemented</p>
 <p class="p2"><br></p>
-<p class="p5">decorator = GridLayout</p>
+<p class="p5">decorator = GridLayoutCalc</p>
 <p class="p2"><br></p>
 <p class="p5">text(g,Rect(0,0,1,1))</p>
 <p class="p2"><br></p>

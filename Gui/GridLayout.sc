@@ -9,22 +9,21 @@ request a rect as A1 B2
 
 it can add gutter if you need it
 
+
+previously known as GridLayout
+
 */
 
 
-GridLayout {
+GridLayoutCalc {
 
 	var <>bounds,<>numCols,<>numRows,<>gutter;
 	var <colWidth,<rowHeight;
+	
 	*new { arg bounds,numCols=12,numRows,gutter;
 		bounds = if(bounds.isNil,{ GUI.window.screenBounds},{bounds.asRect});
 		^super.newCopyArgs(bounds,numCols.asInteger,numRows,gutter ? GUI.skin.margin).init
 	}
-	/*place { arg view;// view's bounds are expressed in integer quadrants
-		var b;
-		b = view.bounds;
-		view.bounds = this.getBounds( Rect(b.left,b.top)
-	}*/
 	// a rect encompassing grid a and grid b
 	// specify the grids as points eg. 0@0 or 12@2
 	calc { |pointA,pointB| // 0@0, 1@1
@@ -80,6 +79,6 @@ GridLayout {
 				});
 		w.front;
 	}
-	
 }
+
 
