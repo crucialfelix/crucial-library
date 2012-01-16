@@ -1,6 +1,5 @@
 
 
-
 AbstractConsole {
 
 	var <>layout,<>defaultPath;
@@ -12,7 +11,6 @@ AbstractConsole {
 }
 
 
-
 SynthConsole : AbstractConsole  {
 
 	var <>format, <>duration;
@@ -22,7 +20,7 @@ SynthConsole : AbstractConsole  {
 	var tempoG;
 
 	*new { arg ugenFunc,layout;
-		^super.new.ugenFunc_(ugenFunc).layout_(layout.asPageLayout).format_(SoundFileFormats.new)
+		^super.new.ugenFunc_(ugenFunc).layout_(layout.asFlowView).format_(SoundFileFormats.new)
 	}
 
 	play {

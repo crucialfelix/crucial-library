@@ -22,7 +22,7 @@
 				^this.guiClass.new(this).performList(\smallGui,args);
 			});
 		});
-		^Tile(this,args.first.asPageLayout)
+		^this.guiClass.new(this).performList('gui',args);
 	}
 }
 

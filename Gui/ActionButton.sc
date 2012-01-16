@@ -1,6 +1,7 @@
 
 
 // abstract
+// SC/Qt/Swing all use this
 SCButtonAdapter : SCViewHolder {
 
 	*initClass {
