@@ -7,15 +7,15 @@ ServerGui : ObjectGui {
 	writeName {}
 	guiBody { arg layout;
 
-		var active,booter,height;
-		
-		height = GUI.skin.buttonHeight;
+		var active,booter,height,skin;
+		skin = GUI.skin;
+		height = skin.buttonHeight;
 		
 		if(model.isLocal,{
-			booter = GUI.button.new(layout, Rect(0,0, 47, height));
-			booter.states = [["Boot", Color.black, Color.clear],
-						   ["Quit", Color.black, Color.clear]];
-			booter.font = GUI.font.new("Helvetica",10);
+			booter = Button(layout, Rect(0,0, 47, height));
+			booter.states = [["Boot", skin.fontColor, skin.background],
+						   ["Quit", skin.fontColor, skin.background]];
+			//booter.font = GUI.font.new("Helvetica",10);
 			booter.action = { arg view;
 				if(view.value == 1, {
 					booting.value;
