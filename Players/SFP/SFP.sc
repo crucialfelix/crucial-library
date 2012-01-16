@@ -212,11 +212,8 @@ SFP : AbstractSFP  {
 		ModalDialog({ arg layout;
 			CXLabel(layout, "SoundFile not found ! " ++ sfilePath ++ ".  Find it manually ? ");
 		},{
-			GetFileDialog({ arg ok, sfilePath;
-				var it;
-				if(ok,{
-					this.init(sfilePath);
-				})
+			File.openDialog(sfilePath.asString + "not found. Locate...", { arg sfilePath;
+				this.init(sfilePath);
 			})
 		});
 	}
