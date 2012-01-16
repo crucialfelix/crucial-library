@@ -540,7 +540,7 @@ Patch : HasPatchIns  {
 
 	printOn { arg s;
 		var n;
-		s << this.class.name << "(" <<< instr.dotNotation << ")";
+		s << this.class.name << "(" <<< (instr !? {instr.dotNotation}) << ")";
 		if((n = this.name).notNil,{
 			s << "{"++n++"}";
 		});
