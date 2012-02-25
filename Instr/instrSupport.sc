@@ -101,11 +101,11 @@
 		// many matched
 		^nil
 	}
-	color { ^Color.black }
-	background { ^Color( 0.47843137254902, 0.72941176470588, 0.50196078431373  ) }
 	mapToSpec { arg v,spec;
 		^v
 	}
+	background { ^Color.white }
+	color { ^Color( 0.47843137254902, 0.72941176470588, 0.50196078431373  ) }
 }
 
 + ControlSpec 	{
@@ -126,8 +126,6 @@
 		toSpec.maxval = this.map(linMaxVal);
 		^toSpec
 	}
-	color { ^rgb(125, 255, 205) }
-	background { ^Color.black }
 	mapToSpec { arg v,spec;
 		if(spec.isKindOf(ControlSpec) or: {spec.isKindOf(HasItemSpec) and: {spec.itemSpec.isKindOf(ControlSpec)}},{
 			^spec.map( this.unmap(v).clip(0.0,1.0) )
@@ -135,23 +133,20 @@
 			^v
 		})
 	}
+	color { ^Color.new255(125, 255, 205) }
 }
 + StaticSpec {
 	color { ^Color.black}
-	background { ^rgb(125, 255, 205) }
 }
 + NonControlSpec {
-	color { ^Color.black.alpha_(0.7) }
-	background { ^Color.yellow(alpha:0.3) }
+	color { ^Color.yellow(alpha:0.3) }
 }
 	
 + AudioSpec {
-	color { ^rgb(255, 218, 000) }
-	background { ^Color.black }
+	color { ^Color.new255(255, 218, 000) }
 }
 + StreamSpec {
-	color { ^Color.black }
-	background { ^Color.white }
+	color { ^Color.green }
 }
 
 /** spec **/
