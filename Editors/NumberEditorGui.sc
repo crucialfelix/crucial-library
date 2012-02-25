@@ -103,7 +103,7 @@ NumberEditorGui : EditorGui {
 	box { arg layout,bounds;
 		var r,startValue,range,mod,startPoint;
 		numv = NumberBox(layout,bounds)
-			.object_(model.poll)
+			.value_(model.poll)
 			.focusColor_(Color.yellow(1.0,0.5))
 			.action_({ arg nb;
 				model.activeValue_(model.spec.constrain(nb.value)).changed(numv);
@@ -142,8 +142,8 @@ NumberEditorGui : EditorGui {
 			});
 		};
 		numv.scroll = false;
-		numv.clipLo = model.spec.minval;
-		numv.clipHi = model.spec.maxval;
+		numv.clipLo = model.spec.clipLo;
+		numv.clipHi = model.spec.clipHi;
 		numv.focusColor = GUI.skin.focusColor ?? {model.spec.color};
 		/*numv.keyDownAction = { arg char,modifiers,unicode,keycode;
 			if("012356789-.".includes(char),{
@@ -177,8 +177,8 @@ NumberEditorGui : EditorGui {
 		{
 			if(changer == 'spec',{
 				if(numv.notNil,{
-					numv.clipLo = model.spec.minval;
-					numv.clipHi = model.spec.maxval;
+					numv.clipLo = model.spec.clipLo;
+					numv.clipHi = model.spec.clipHi;
 				})
 			});					
 			if(changer !== numv and: {numv.notNil} and: {numv.isClosed.not},{
