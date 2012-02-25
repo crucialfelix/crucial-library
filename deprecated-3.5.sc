@@ -20,20 +20,6 @@ MultiPageLayout : PageLayout {
 }
 
 
-+ SCCompositeView {
-
-	// shouldnt really do this to an h or v layout
-	resizeToFit {
-		var r;
-		r = Rect(0,0,0,0);
-		this.children.do({ |kid|
-			r = r.union(kid.bounds)
-		});
-		this.bounds = r;
-	}
-}
-
-
 // these were a bad idea since bounds and layout could easily be swapped
 // and this would hide the error by treating the point/rect as a layout
 
