@@ -110,10 +110,15 @@ ServerGui : ObjectGui {
 	// button to switch the output the server is connected to
 	output { |layout,width=140|
 		var switch,devs,current;
+		try {
+			devs = ServerOptions.outDevices;
+		} { |err|
+			// PrimitiveFailedError: primitive not bound on non-osx platforms
+			if(err.isKindOf(PrimitiveFailedError).not) { err.throw };
+			^this
+		};
 		switch = PopUpMenu(layout, Rect(0,0, width, GUI.skin.buttonHeight));
 		switch.focusColor = Color.clear;
-		
-		devs = ServerOptions.outDevices;
 		switch.items = devs.collect({ arg dev; dev.select({ arg c; c.isAlphaNum or: c.isSpace }) });
 		current = model.options.outDevice;
 		if(current.notNil,{
@@ -127,10 +132,15 @@ ServerGui : ObjectGui {
 	}
 	input { |layout,width=140|
 		var switch,devs,current;
+		try {
+			devs = ServerOptions.inDevices;
+		} { |err|
+			// PrimitiveFailedError: primitive not bound on non-osx platforms
+			if(err.isKindOf(PrimitiveFailedError).not) { err.throw };
+			^this
+		};
 		switch = PopUpMenu(layout, Rect(0,0, width, GUI.skin.buttonHeight));
 		switch.focusColor = Color.clear;
-		
-		devs = ServerOptions.inDevices;
 		switch.items = devs.collect({ arg dev; dev.select({ arg c; c.isAlphaNum or: c.isSpace }) });
 		current = model.options.inDevice;
 		if(current.notNil,{
