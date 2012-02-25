@@ -508,7 +508,7 @@ InstrNameSpec : HasItemSpec {
 	var <>hasGate,<>hasAudioInput; // nil means "does not care"
 
 	*new { arg outSpec,hasGate,hasAudioInput;
-		^super.new(outSpec).hasGate_(hasGate).hasAudioInput_(hasAudioInput)
+		^super.new(outSpec ?? {AudioEventSpec.new}).hasGate_(hasGate).hasAudioInput_(hasAudioInput)
 	}
 	rate {^\noncontrol }
 	canAccept { arg ting;
