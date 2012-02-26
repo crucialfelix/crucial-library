@@ -190,16 +190,7 @@ SFP : AbstractSFP  {
 				name = PathName(soundFilePath).fileName;
 				found = file.openRead(soundFilePath);
 			},{
-				// this is a personal hook for backwards compatiblity
-				// class is not in crucial but otherwise harmless
-				if(sfilePath.isKindOf(CXSoundFile),{
-					file=sfilePath;
-					soundFilePath = file.path = this.class.standardizePath(file.path);
-					name = PathName(soundFilePath).fileName;
-					found = file.openRead(file.path);
-				},{
-					die("SFP-init : not a path or a SoundFile " + sfilePath)
-				})
+				die("SFP-init : not a path or a SoundFile " + sfilePath)
 			});
 			if(found.not,{
 				("SFP-init file not found: " + soundFilePath).warn;
