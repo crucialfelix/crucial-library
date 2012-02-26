@@ -323,7 +323,7 @@ Crucial {
 					GUI.staticText.new(f,10@17).background_(Color.clear);
 					f.flow({ |f|
 						var oldColor,x;
-						if(view.respondsTo(\background) and: {view.isKindOf(StartRow).not},{
+						if(view.respondsTo(\background),{
 							if(view.isKindOf(SCViewHolder),{
 								oldColor = view.background;
 							},{
