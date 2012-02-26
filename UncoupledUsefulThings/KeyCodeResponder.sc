@@ -180,7 +180,7 @@ KeyCodeResponder {
 		^this.at(keycode).value(view, char,modifier,unicode,keycode);
 	}
 	*value { arg view,keycode,modifier,unicode;
-		^this.at(unicode).value(unicode,modifier)
+		^this.at(keycode).value(keycode,modifier)
 	}
 
 	*global {
