@@ -481,6 +481,8 @@ StreamSpec : HasItemSpec {
 	}
 	minval { ^itemSpec.minval }
 	maxval { ^itemSpec.maxval }
+	clipLo { ^itemSpec.clipLo }
+	clipHi { ^itemSpec.clipHi }
 }
 
 
