@@ -90,13 +90,13 @@ UnicodeResponder {
 
 
 	/** GLOBAL
-	  * installs itself in SCView.globalKeyDownAction
+	  * installs itself in View.globalKeyDownAction
 	  */
 	*register { arg unicode,shift,caps,opt,cntl,function;
 		this.global.register(unicode.asUnicode,shift,caps,opt,cntl,function);
 	}
 	*clear { this.global.clear }
-	*remove { SCView.globalKeyDownAction = nil; }
+	*remove { View.globalKeyDownAction = nil; }
 
 	// less useful
 	// matches only if the modifier is present
@@ -196,7 +196,7 @@ UnicodeResponder {
 	*global {
 		^global ?? {
 			global = this.new;
-			SCView.globalKeyDownAction = global;
+			View.globalKeyDownAction = global;
 			global
 		}
 	}

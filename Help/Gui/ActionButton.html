@@ -69,9 +69,9 @@ span.Apple-tab-span {white-space:pre}
 <p class="p6"><span class="s1"><span class="Apple-tab-span">	</span>b = </span><span class="s3">ActionButton</span><span class="s1">(f,</span>"i accept integers"<span class="s1">,{<span class="Apple-converted-space"> </span></span></p>
 <p class="p4"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="s2">"was hit"</span>.postln<span class="Apple-converted-space"> </span></p>
 <p class="p4"><span class="Apple-tab-span">	</span>});</p>
-<p class="p4"><span class="Apple-tab-span">	</span>b.view.canReceiveDragHandler = { <span class="s3">SCView</span>.currentDrag.isNumber };</p>
+<p class="p4"><span class="Apple-tab-span">	</span>b.view.canReceiveDragHandler = { <span class="s3">View</span>.currentDrag.isNumber };</p>
 <p class="p4"><span class="Apple-tab-span">	</span>b.view.receiveDragHandler = {<span class="Apple-converted-space"> </span></p>
-<p class="p4"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>a.items[ <span class="s3">SCView</span>.currentDrag.asInteger ].postln;<span class="Apple-converted-space"> </span></p>
+<p class="p4"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>a.items[ <span class="s3">View</span>.currentDrag.asInteger ].postln;<span class="Apple-converted-space"> </span></p>
 <p class="p4"><span class="Apple-tab-span">	</span>};</p>
 <p class="p4">})</p>
 <p class="p4">)</p>
@@ -89,9 +89,9 @@ span.Apple-tab-span {white-space:pre}
 <p class="p6"><span class="s1"><span class="Apple-tab-span">	</span>b = </span><span class="s3">ActionButton</span><span class="s1">(f,</span>"i accept strings"<span class="s1">,{<span class="Apple-converted-space"> </span></span></p>
 <p class="p4"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="s2">"butt hit"</span>.postln<span class="Apple-converted-space"> </span></p>
 <p class="p4"><span class="Apple-tab-span">	</span>});</p>
-<p class="p4"><span class="Apple-tab-span">	</span>b.view.canReceiveDrag = { <span class="s3">SCView</span>.currentDrag.isString };</p>
+<p class="p4"><span class="Apple-tab-span">	</span>b.view.canReceiveDrag = { <span class="s3">View</span>.currentDrag.isString };</p>
 <p class="p4"><span class="Apple-tab-span">	</span>b.view.receiveDrag = {<span class="Apple-converted-space"> </span></p>
-<p class="p4"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="s3">SCView</span>.currentDrag.postln;<span class="Apple-converted-space"> </span></p>
+<p class="p4"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="s3">View</span>.currentDrag.postln;<span class="Apple-converted-space"> </span></p>
 <p class="p4"><span class="Apple-tab-span">	</span>};</p>
 <p class="p4">})</p>
 <p class="p4">)</p>

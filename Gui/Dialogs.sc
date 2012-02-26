@@ -26,8 +26,8 @@ ModalDialog { // hit ok or cancel
 
 	*new { arg buildDialog,okFunc,name="?",cancelFunc;
 		var globalKeyDownFunc;
-		globalKeyDownFunc = SCView.globalKeyDownAction;
-		SCView.globalKeyDownAction = nil;
+		globalKeyDownFunc = View.globalKeyDownAction;
+		View.globalKeyDownAction = nil;
 
 		Sheet({ arg layout;
 			var returnObjects;
@@ -45,7 +45,7 @@ ModalDialog { // hit ok or cancel
 				layout.close;
 			});
 
-		},name).onClose_({ SCView.globalKeyDownAction = globalKeyDownFunc; });
+		},name).onClose_({ View.globalKeyDownAction = globalKeyDownFunc; });
 	}
 }
 
