@@ -264,12 +264,24 @@ ClassGui : CXObjectInspector {
 						});
 					})
 				});
-		
+
 				this.dependantsGui(layout);
 
 				SimpleLabel(layout.startRow,"subclasses:",minWidth:layoutWidth).bold;
 				layout.startRow;
 				this.displaySubclassesOf(model,layout,0,50);
+
+				SimpleLabel(layout.startRow,"classes referenced by" + model ++ ":",minWidth:layoutWidth).bold;
+				layout.startRow;
+				model.classesReferenced.do { arg klass;
+					ClassNameLabel(klass,layout.startRow)
+				};
+
+				SimpleLabel(layout.startRow,"references to" + model ++ ":",minWidth:layoutWidth).bold;
+				layout.startRow;
+				model.referencesTo.do { arg klass;
+					ClassNameLabel(klass,layout.startRow)
+				};
 			});
 		});
 	}
@@ -384,6 +396,12 @@ MethodGui : ObjectGui {
 			});
 		});
 		// would rather look at the source code for most things
+
+		SimpleLabel(layout.startRow,"classes referenced:",minWidth:300).bold;
+		layout.startRow;
+		model.classesReferenced.do { arg klass;
+			ClassNameLabel(klass,layout.startRow)
+		};
 	}
 }
 
