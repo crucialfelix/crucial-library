@@ -82,61 +82,58 @@ ServerQueryTreeGui : ObjectGui { // model is Server
 				});
 			};
 			renderChild.value(root);
-		})		
+		})
 	}
 }
 
 
 BussesTool {
-	
+
 	var <>server;
-	
+
 	*new { arg server;
 		^super.new.server_(server ? Server.default).gui
 	}
 	gui { arg layout,bounds;
+		var resize = false;
+		if(layout.isNil,{ layout = FlowView.new; resize=true });
+		SimpleLabel( layout, "Audio Busses",width:685);
+		server.audioBusAllocator.blocks.do({ |b|
+			var listen,bus;
+			listen = Patch({ In.ar( b.start, b.size ) });
+			layout.startRow;
+			ToggleButton( layout,"listen",{
+				listen.play
+			},{
+				listen.stop
+			});
+			SimpleLabel( layout, b.start.asString + "(" ++ b.size.asString ++ ")",100 );
 
-		Sheet({ |layout|
-			CXLabel( layout, "Audio Busses",width:685);
-			server.audioBusAllocator.blocks.do({ |b|
-				var listen,bus;
-				listen = Patch({ In.ar( b.start, b.size ) });
-				layout.startRow;
-				ToggleButton( layout,"listen",{
-					listen.play
-				},{
-					listen.stop
-				});
-				CXLabel( layout, b.start.asString + "(" ++ b.size.asString ++ ")",100 );
-				
-				Annotations.guiFindBus(b.start,b.size,layout);
-				
-				
-				if(BusPool.notNil,{
-					bus = BusPool.findBus(server,b.start);
-					if(bus.notNil,{
-						layout.flow({ |f|
-							var ann;
-							ann = BusPool.getAnnotations(bus);
-	
-							if(ann.notNil,{
-								ann.keysValuesDo({ |client,name|
-									f.startRow;
-									InspectorLink(client,f);
-									CXLabel(f,":"++name);
-								});
+			Annotations.guiFindBus(b.start,b.size,layout);
+
+			if(BusPool.notNil,{
+				bus = BusPool.findBus(server,b.start);
+				if(bus.notNil,{
+					layout.flow({ |f|
+						var ann;
+						ann = BusPool.getAnnotations(bus);
+
+						if(ann.notNil,{
+							ann.keysValuesDo({ |client,name|
+								f.startRow;
+								InspectorLink(client,f);
+								SimpleLabel(f,":"++name);
 							});
-						})
-					});
+						});
+					})
 				});
-				ActionButton(layout,"search ServerLog",{
-					ServerLog.guiMsgsForBus(b.start,b.size)
-				});
-			})
-		},"Audio Busses");
-	
+			});
+			ActionButton(layout,"search ServerLog",{
+				ServerLog.guiMsgsForBus(b.start,b.size)
+			});
+		});
+		if(resize,{ layout.resizeToFit })
 	}
 }
-		
-		
-		
+
+
