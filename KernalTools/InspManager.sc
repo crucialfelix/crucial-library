@@ -40,7 +40,7 @@ Insp {
 				if(guiInstead,{
 					subject.gui(box)
 				},{
-					CXObjectInspector(subject).gui(box);
+					ObjectInsp(subject).gui(box);
 				});
 			}/*,Rect(180,0,775,900)*/);
 			box.visible = hidden.not;

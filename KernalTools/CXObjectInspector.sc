@@ -1,6 +1,6 @@
 
 
-CXObjectInspector : ObjectGui {
+ObjectInsp : ObjectGui {
 
 	classvar displayHooks;
 	
@@ -161,7 +161,7 @@ CXObjectInspector : ObjectGui {
 }
 
 
-ClassGui : CXObjectInspector {
+ClassGui : ObjectInsp {
 
 	writeName {}
 
