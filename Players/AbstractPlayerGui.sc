@@ -51,8 +51,8 @@ AbstractPlayerGui : ObjectGui {
 
 	writeName { arg layout;
 		this.prWriteName(layout,this.model.asString);
-		if(InspectorLink.notNil,{
-			InspectorLink.icon(model,layout)
+		if(\InspButton.asClass.notNil,{
+			InspButton.icon(model,layout)
 		});
 		if(model.path.notNil,{
 			ActionButton(layout,"edit source",{

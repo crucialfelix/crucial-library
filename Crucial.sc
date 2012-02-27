@@ -337,9 +337,9 @@ Crucial {
 							},{
 								view.background = oldColor ? Color.clear;
 							});
-							InspectorLink.icon(view,f);
+							InspButton.icon(view,f);
 						},{
-							InspectorLink(view,f);
+							InspButton(view,f);
 						});
 						x = view.bounds.asString.gui(f);
 						if(view.respondsTo(\parent)
@@ -543,7 +543,7 @@ Crucial {
 							if(cv.notNil,{
 								VariableNameLabel(c.classVarNames.at(cvi),f.startRow);
 								//ClassNameLabel(cv.class,f);
-								InspectorLink(cv,f);
+								InspButton(cv,f);
 							})
 						});
 					})

@@ -51,7 +51,7 @@ Annotations {
 				if(n.isString,{
 					n.gui(layout);
 				},{
-					InspectorLink(n,layout)
+					InspButton(n,layout)
 				})
 			});
 			layout.startRow;
@@ -63,7 +63,7 @@ Annotations {
 				if(n.isString,{
 					n.gui(layout);
 				},{
-					InspectorLink(n,layout)
+					InspButton(n,layout)
 				})
 			});
 			layout.startRow;
