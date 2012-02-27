@@ -126,3 +126,18 @@ ToggleButton : SCButtonAdapter {
 	}
 }
 
+
+Tile : ActionButton { // the name comes from Squeak
+
+	*new { arg  target,layout,minWidth=100;
+		if(target.guiClass == StringGui,{
+			^target.gui(layout);
+		});
+		^super.new(layout,target.asString,{
+				target.gui;
+				//#F6F9F5
+			},minWidth,GUI.skin.buttonHeight, Color.black,			Color.new255(248, 248, 255))
+	}
+
+}
+
