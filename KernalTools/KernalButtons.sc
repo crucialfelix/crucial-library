@@ -86,6 +86,14 @@ DefNameLabel {
 }
 
 
+VariableNameLabel : CXAbstractLabel {
+
+	*new { arg name,layout,minWidth=120;
+		^super.new(layout,name,minWidth: minWidth)
+			.background_(Color( 1, 0.86666666666667, 0.38039215686275 ))
+			.align_(\right)
+	}
+}
 
 
 
