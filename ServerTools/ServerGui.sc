@@ -70,7 +70,7 @@ ServerGui : ObjectGui {
 			};
 		});
 
-		status = CXLabel(layout,"                                       ",font: GUI.font.new("Helvetica",9));
+		status = SimpleLabel(layout,"                                       ",font: GUI.font.new("Helvetica",9));
 		status.background = Color.black;
 		status.stringColor = Color.green;
 		status.align = \right;
@@ -180,7 +180,7 @@ ServerErrorGui : ObjectGui {
 
 	writeName {}
 	guiBody { arg layout;
-		errors = CXLabel(layout,"                                          ");
+		errors = SimpleLabel(layout,"                                          ");
 		errors.font = GUI.font.new("Helvetica-Bold",12);
 		errors.background = Color.grey(0.4,0.8);
 		errors.stringColor = Color.white;

@@ -31,7 +31,7 @@ CXObjectInspector : ObjectGui {
 				actions.add({ model.slotAt(i).insp(model,"@"++i) });
 			});
 			if(model.slotSize > 300,{
-				CXLabel(layout,"... slotSize is" ++ model.slotSize.asString,minWidth:160).bold;
+				SimpleLabel(layout,"... slotSize is" ++ model.slotSize.asString,minWidth:160).bold;
 			});
 		});
 
@@ -66,7 +66,7 @@ CXObjectInspector : ObjectGui {
 		});
 	}
 	dependantsGui { arg layout;
-		CXLabel(layout.startRow,"dependants:",minWidth:layout.bounds.width - 30).bold;
+		SimpleLabel(layout.startRow,"dependants:",minWidth:layout.bounds.width - 30).bold;
 		layout.startRow;
 		model.dependants.do({ arg d;
 			InspectorLink(d,layout);
@@ -122,8 +122,8 @@ CXObjectInspector : ObjectGui {
 		this.registerHook(SynthDef,{ arg def,layout;
 			def.allControlNames.do { arg cn,i;
 				ArgNameLabel(cn.name,layout.startRow);
-				CXLabel(layout,cn.rate);
-				CXLabel(layout,cn.defaultValue);
+				SimpleLabel(layout,cn.rate);
+				SimpleLabel(layout,cn.defaultValue);
 			};
 			layout.startRow;
 			if(InstrSynthDef.notNil and: {def.isKindOf(InstrSynthDef)},{
@@ -177,7 +177,7 @@ ClassGui : CXObjectInspector {
 				},{
 					width = layoutWidth;
 				});			
-				CXLabel(layout,model.asString,width,30,width,Font("Helvetica-Bold",18));
+				SimpleLabel(layout,model.asString,width,30,width,Font("Helvetica-Bold",18));
 				layout.startRow;
 				ActionButton(layout, "Source code",{
 					model.openCodeFile;
@@ -188,7 +188,7 @@ ClassGui : CXObjectInspector {
 				});
 				
 				if(model.superclass.notNil,{
-					CXLabel(layout.startRow,"superclasses:",minWidth:layoutWidth).bold;
+					SimpleLabel(layout.startRow,"superclasses:",minWidth:layoutWidth).bold;
 					supers = model.superclasses;
 					scale = supers.size;
 					supers.do({ arg sup,i;
@@ -198,7 +198,7 @@ ClassGui : CXObjectInspector {
 		
 				// explicit references
 				/*
-				CXLabel(layout.startRow,"classes explicitly referenced in source:");
+				SimpleLabel(layout.startRow,"classes explicitly referenced in source:");
 				layout.startRow;
 				model.explicitClassReferences.do({ arg c;
 					ClassNameLabel(c.asClass,layout,200);
@@ -207,7 +207,7 @@ ClassGui : CXObjectInspector {
 		
 				// classVarnames
 				if(model.classVarNames.size > 0,{
-					CXLabel(layout.startRow,"classvars:",minWidth:layoutWidth).bold;
+					SimpleLabel(layout.startRow,"classvars:",minWidth:layoutWidth).bold;
 					model.classVarNames.size.do({ arg cvi;
 						var iv;
 						VariableNameLabel(model.classVarNames.at(cvi),layout.startRow);
@@ -219,7 +219,7 @@ ClassGui : CXObjectInspector {
 		
 				//instance vars
 				if(model.instVarNames.size > 0,{
-					CXLabel(layout.startRow,"vars:",minWidth:layoutWidth).bold;
+					SimpleLabel(layout.startRow,"vars:",minWidth:layoutWidth).bold;
 					layout.startRow;
 					model.instVarNames.size.do({ arg ivi;
 						VariableNameLabel(model.instVarNames.at(ivi),layout,minWidth:width);
@@ -227,7 +227,7 @@ ClassGui : CXObjectInspector {
 					});
 				});
 
-				CXLabel(layout.startRow,"methods:",minWidth:layoutWidth).bold;
+				SimpleLabel(layout.startRow,"methods:",minWidth:layoutWidth).bold;
 				layout.startRow;
 				// meta_class methods
 				if(model.class.methods.size > 0,{
@@ -267,7 +267,7 @@ ClassGui : CXObjectInspector {
 		
 				this.dependantsGui(layout);
 
-				CXLabel(layout.startRow,"subclasses:",minWidth:layoutWidth).bold;
+				SimpleLabel(layout.startRow,"subclasses:",minWidth:layoutWidth).bold;
 				layout.startRow;
 				this.displaySubclassesOf(model,layout,0,50);
 			});
@@ -310,7 +310,7 @@ ClassGui : CXObjectInspector {
 			shown = shown + subclasses.size;
 			subclasses.do({ arg c,i;
 					layout.startRow;
-					CXLabel(layout,"",minWidth: indent).background = Color.clear;
+					SimpleLabel(layout,"",minWidth: indent).background = Color.clear;
 					ClassNameLabel(c,layout,200);
 
 					indent = indent + 50;
@@ -318,7 +318,7 @@ ClassGui : CXObjectInspector {
 						this.displaySubclassesOf(c,layout,shown,limit,indent);
 					},{
 						if(c.subclasses.size > 0,{
-							CXLabel(layout,c.subclasses.size.asString
+							SimpleLabel(layout,c.subclasses.size.asString
 								+ " subclasses",minWidth:80);
 						});
 					});
@@ -375,7 +375,7 @@ MethodGui : ObjectGui {
 
 		// show subclass implementations
 		// other class implementations of this message (command-y)
-		CXLabel(layout.startRow,"References to this message:");
+		SimpleLabel(layout.startRow,"References to this message:",minWidth:300);
 		Class.findAllReferences(model.name).do({ |r|
 			if(r.isKindOf(FunctionDef),{
 				InspectorLink(r,layout.startRow,300);

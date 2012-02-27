@@ -31,7 +31,7 @@ Insp {
 				// what's the calling method ?
 				notes.do({ arg ag;
 					if(ag.isString or: {ag.isKindOf(Symbol)},{
-						CXLabel(box,ag.asString)
+						SimpleLabel(box,ag.asString)
 					},{
 						InspectorLink(ag,box);
 					});

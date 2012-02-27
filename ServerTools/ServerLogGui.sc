@@ -13,11 +13,11 @@ ServerLogGui : ObjectGui {
 		nodeColors = Dictionary.new;
 		error = Color(1.0, 0.0, 0.08955223880597);
 		if(title.notNil,{
-			CXLabel(layout,title).bold;
+			SimpleLabel(layout,title).bold;
 			layout.startRow
 		});
 		if(events.isNil,{
-			CXLabel(layout,"No events in server log")
+			SimpleLabel(layout,"No events in server log")
 		});
 		events.do({ |ev|
 			this.guiEvent(ev,layout);
@@ -40,14 +40,14 @@ ServerLogGui : ObjectGui {
 		layout.startRow;
 		layout.flow({ |r|
 			// send/receive
-			CXLabel(r,dir,30).background_(bg);
+			SimpleLabel(r,dir,30).background_(bg);
 			if(showTimes,{
 				// time
-				CXLabel(r,eventTime,100);
+				SimpleLabel(r,eventTime,100);
 				// sent
-				CXLabel(r,timeSent,100);
+				SimpleLabel(r,timeSent,100);
 				// delta
-				CXLabel(r,delta,30);
+				SimpleLabel(r,delta,30);
 			});
 			// msg
 			if(ev.isBundle,{
@@ -59,7 +59,7 @@ ServerLogGui : ObjectGui {
 							ev.msg.do({ |m,i|
 								if(i>0,{
 									r.startRow;
-									CXLabel(r,"",272).background_(Color.clear);
+									SimpleLabel(r,"",272).background_(Color.clear);
 								});
 								this.formatMsg(r,m);
 							})
@@ -83,7 +83,7 @@ ServerLogGui : ObjectGui {
 					msgs.do({ |m,i|
 						if(i>0,{
 							r.startRow;
-							CXLabel(r,"",272).background_(Color.clear);
+							SimpleLabel(r,"",272).background_(Color.clear);
 						});
 						slg.formatMsg(r,m);
 					})
@@ -244,9 +244,9 @@ ServerLogGui : ObjectGui {
 		// show any default args not sent
 		if(seen.size > 0,{
 			r.startRow;
-			CXLabel(r,"Unspecified args:");
+			SimpleLabel(r,"Unspecified args:");
 			seen.do { arg key;
-				CXLabel(r,key.asString);
+				SimpleLabel(r,key.asString);
 				// TODO find default value from cnames
 			};
 		});

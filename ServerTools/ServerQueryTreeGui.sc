@@ -46,7 +46,7 @@ ServerQueryTreeGui : ObjectGui { // model is Server
 						node = nodeWatcher.nodes.at(~id) ?? {Group.basicNew(server,~id)};
 	
 						renderBox.value({ arg l;
-							CXLabel(l,("Group(" ++ ~id ++ ")")).background_(ServerLogGui.colorForNodeID(~id) ).bold;
+							SimpleLabel(l,("Group(" ++ ~id ++ ")")).background_(ServerLogGui.colorForNodeID(~id) ).bold;
 							//ToggleButton(l,"pause",{ arg way; node.run(way) },init:true);
 							ActionButton(l,"free",{ node.free });
 							Annotations.guiFindNode(~id,l);
@@ -61,7 +61,7 @@ ServerQueryTreeGui : ObjectGui { // model is Server
 					},{
 						node = nodeWatcher.nodes.at(~id) ?? {Synth.basicNew(~defName,server,~id)};
 						renderBox.value({ arg l;
-							CXLabel(l,("Synth(" ++ ~id ++ ")")).background_(ServerLogGui.colorForNodeID(~id) ).bold;
+							SimpleLabel(l,("Synth(" ++ ~id ++ ")")).background_(ServerLogGui.colorForNodeID(~id) ).bold;
 							DefNameLabel(~defName,server,l);
 							ActionButton(l,"trace",{
 								node.trace;
@@ -74,8 +74,8 @@ ServerQueryTreeGui : ObjectGui { // model is Server
 							Annotations.guiFindNode(~id,l);
 							~controls.keysValuesDo { arg k,v;
 								l.startRow;
-								ArgNameLabel(k,l,100);
-								CXLabel(l,v,100);
+								ArgName(k,l,100);
+								SimpleLabel(l,v,100);
 							};
 						})
 					});

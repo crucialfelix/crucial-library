@@ -64,7 +64,7 @@ InspectorLink : ActionButton {
 			.font_(GUI.font.new("Helvetica",9));
 	}
 	*captioned { arg caption,target,layout,minWidth=150;
-		CXLabel(layout,caption,minWidth:minWidth);
+		SimpleLabel(layout,caption,minWidth:minWidth);
 		this.new(target,layout);
 	}
 }
@@ -78,7 +78,7 @@ DefNameLabel {
 			def = InstrSynthDef.cacheAt(name,server);
 		});
 		if(def.isNil,{
-			^CXLabel(layout,name,minWidth:minWidth)
+			^SimpleLabel(layout,name,minWidth:minWidth)
 		},{
 			^InspectorLink(def,layout,minWidth:minWidth)
 		})
