@@ -235,7 +235,7 @@ ServerLogGui : ObjectGui {
 					seen.remove(key.asSymbol);	
 				})
 			});
-			anl = ArgNameLabel(key,r,5);
+			anl = ArgName(key,r,5);
 			if(err) {
 				anl.background = error
 			};
