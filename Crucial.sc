@@ -581,12 +581,6 @@ Crucial {
 			x.gui
 		});
 
-		// browse all currently loaded Instr
-//		Library.put(\menuItems,\sounds,\orcs,{ arg onSelect;
-//			// if there's nothing in Instr it does the top
-//			MLIDbrowser(\Instr,onSelect).gui
-//		});
-
 		Library.put(\menuItems,\post,'Instr Browser',{
 		    InstrBrowser({ arg layout,instr;
 		        ActionButton(layout,"post Instr name",{
