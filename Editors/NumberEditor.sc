@@ -100,14 +100,6 @@ Editor {
 					p.mul = Editor.for(p.mul,\mul);
 					p
 				},
-				ModalFreq -> { arg m;
-					m.degree = Editor.for(m.degree,\degree);
-					m.scale = Editor.for(m.scale,\scale);
-					m.root = Editor.for(m.root,\root);
-					m.octave = Editor.for(m.octave,\octave);
-					m.stepsPerOctave = Editor.for(m.stepsPerOctave,\stepsPerOctave);
-					m
-				},
 				
 				Array -> { arg arr; arr.collect({ arg obj; Editor.for(obj) }) },
 				
