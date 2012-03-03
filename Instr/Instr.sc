@@ -350,7 +350,7 @@ Instr  {
 		(rootPath++"*").pathMatch.do({ |path|
 			var file,orcname,symbols,pn;
 			file = path.copyRange(rootPath.size,path.size-1);
-			if(file.last == $/,{
+			if(PathName(file).isFolder,{
 				if(file.copyRange(0,file.size-2) == pathPartsFirst,{
 					^this.findFileInDir(symbolized.copyRange(1,symbolized.size-1),
 										rootPath ++ file,
