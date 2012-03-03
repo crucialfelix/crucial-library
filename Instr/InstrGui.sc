@@ -74,6 +74,42 @@ UGenInstrGui : InstrGui {
 	        model.ugenClass.openHelpFile
 	    });
 	}
+}
+
+CompositeInstrGui : InstrGui {
 	
+	guiBody { arg layout;
+		var defs,h,w,specWidth;
+        var width;
+
+        width = min(layout.indentedRemaining.width,600);
+		specWidth = width - 150 - 100 - 6;
+
+		model.argNames.do({ arg a,i;
+			if(i == 0,{
+				ActionButton(layout.startRow,model.a.dotNotation,{
+					model.a.gui
+				});
+			});
+			if(i == model.a.argsSize,{
+				ActionButton(layout.startRow,model.b.dotNotation,{
+					model.b.gui
+				});
+			});
+			layout.startRow;
+			ArgNameLabel(  a ,layout,150);
+			CXLabel(layout, " = " ++ model.defArgAt(i).asString,100);
+			model.specs.at(i).asCompileString.gui(layout,specWidth@GUI.skin.buttonHeight);
+		});
+		layout.startRow;
+		CXLabel(layout,"outSpec:",150);
+		CXLabel(layout, model.outSpec.asString, 100);
+		model.outSpec.asCompileString.gui(layout,specWidth@GUI.skin.buttonHeight);
+
+		layout.startRow;
+		ActionButton(layout,"make a Patch",{ Patch(model).topGui });
+		// model.a.  sourceGui
+		// model.b  sourceGui
+	}	
 }
 

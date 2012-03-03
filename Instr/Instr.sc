@@ -701,7 +701,7 @@ CompositeInstr : Instr {
 	storeableFuncReference { ^this }
 	asString { ^this.dotNotation }
 	asInstr { ^this }
-	// guiClass { ^UGenInstrGui }
+	guiClass { ^CompositeInstrGui }
 }
 	
 	
