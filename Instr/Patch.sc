@@ -549,12 +549,7 @@ Patch : HasPatchIns  {
 		var last;
 		if(this.class === Patch,{ // an indulgence ...
 			last = args.size - 1;
-			// anything with a path gets stored as abreviated
-			if(this.instr.path.notNil,{
-				stream << "(" <<< this.instr.dotNotation << ",[";
-			},{
-				stream << "(" << this.instr.func.def.sourceCode << ",[";
-			});
+			stream << "(" <<< this.instr.storeableFuncReference << ",[";
 			
 			if(stream.isKindOf(PrettyPrintStream),{ stream.indent(1); });
 			args.do({ arg ag,i;
