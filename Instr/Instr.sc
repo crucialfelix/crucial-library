@@ -383,20 +383,6 @@ Instr  {
 		})
 	}
 
-	// this is a tilda delimited version of the name
-	asSingleName {
-		^String.streamContents({ arg s;
-			name.do({ arg n,i;
-				if(i > 0,{ s << $~ });
-				s << n;
-			})
-		})
-	}
-	*singleNameAsNames { arg singleName;
-		^singleName.asString.split($~).collect({ arg n; n.asSymbol })
-	}
-
-
 	asString { ^"%(%)".format(this.class.name, this.defName.asCompileString) }
 	storeArgs {
 		if(this.path.notNil,{

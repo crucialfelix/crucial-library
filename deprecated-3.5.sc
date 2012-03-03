@@ -35,4 +35,21 @@ MultiPageLayout : PageLayout {
 	}
 }
 
++ Instr {
+
+	// this is a tilda delimited version of the name
+	asSingleName {
+		this.deprecated(thisMethod);
+		^String.streamContents({ arg s;
+			name.do({ arg n,i;
+				if(i > 0,{ s << $~ });
+				s << n;
+			})
+		})
+	}
+	*singleNameAsNames { arg singleName;
+		this.deprecated(thisMethod);
+		^singleName.asString.split($~).collect({ arg n; n.asSymbol })
+	}
+}
 
