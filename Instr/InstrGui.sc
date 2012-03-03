@@ -28,7 +28,7 @@ InstrGui : ObjectGui {
 		if(model.path.notNil and: { File.exists(model.path) },{
 			ActionButton(layout,"open file",{ model.path.openTextFile });
 		});
-		ActionButton(layout,"make a Patch",{ Patch(model.dotNotation).topGui });
+		ActionButton(layout,"make a Patch",{ Patch(model).topGui });
 		ActionButton(layout,"post Instr name",{
 		    model.dotNotation.post;
 		}).beginDragAction = {model.dotNotation};
