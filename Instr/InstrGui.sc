@@ -45,7 +45,7 @@ InstrGui : ObjectGui {
 			source = funcDef.sourceCode;
 			if(source.notNil,{
 				f = GUI.font.new("Courier",12.0);
-				height = source.split(Char.nl).size * 15;
+				height = source.split(Char.nl).size * 15 + 20;
 				tf = TextView(layout,Rect(0,0,width,height));
 				tf.string = source;
 				tf.font_(f);
