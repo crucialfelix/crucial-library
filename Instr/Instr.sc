@@ -26,6 +26,9 @@ Instr  {
 		});
 		^super.newCopyArgs(name,func).init(specs,outSpec)
 	}
+	*prNew {
+		^super.new
+	}
 	*at { arg  name;
 		^this.objectAt(name);
 	}
@@ -141,9 +144,14 @@ Instr  {
 		event.play;	
 	}
 	
-	// using in a stream	
+	// using in a stream
 	next { arg ... inputs;
 		^func.valueArray(inputs)
+	}
+	// function composition :
+	// create an instr that passes output of this to the first input of that
+	<>> { arg that;
+		^CompositeInstr(this,that.asInstr)
 	}
 
 	// set the directory where your library of Instr is to be found
@@ -342,7 +350,7 @@ Instr  {
 		(rootPath++"*").pathMatch.do({ |path|
 			var file,orcname,symbols,pn;
 			file = path.copyRange(rootPath.size,path.size-1);
-			if(file.last == $/,{
+			if(PathName(file).isFolder,{
 				if(file.copyRange(0,file.size-2) == pathPartsFirst,{
 					^this.findFileInDir(symbolized.copyRange(1,symbolized.size-1),
 										rootPath ++ file,
@@ -383,20 +391,6 @@ Instr  {
 		})
 	}
 
-	// this is a tilda delimited version of the name
-	asSingleName {
-		^String.streamContents({ arg s;
-			name.do({ arg n,i;
-				if(i > 0,{ s << $~ });
-				s << n;
-			})
-		})
-	}
-	*singleNameAsNames { arg singleName;
-		^singleName.asString.split($~).collect({ arg n; n.asSymbol })
-	}
-
-
 	asString { ^"%(%)".format(this.class.name, this.defName.asCompileString) }
 	storeArgs {
 		if(this.path.notNil,{
@@ -404,6 +398,13 @@ Instr  {
 		},{
 			^[this.dotNotation,this.func,this.specs,this.outSpec]
 		});
+	}
+	storeableFuncReference {
+		if(this.path.notNil,{
+			^this.dotNotation
+		},{
+			^this.func.def.sourceCode
+		})
 	}
 	copy { ^this } // unless you change the address its the same instr
 
@@ -572,6 +573,7 @@ UGenInstr {
 	            );
 	}
 	dotNotation { ^ugenClass }
+	storeableFuncReference { ^this.dotNotation }
 	funcDef { 
 	    ^ugenClass.class.findMethod(rate) ?? {
 	        ugenClass.superclasses.do { arg sc;
@@ -638,9 +640,71 @@ UGenInstr {
 			ll
 		}
 	}
-
 }
 
+
+CompositeInstr : Instr {
+	
+	var <>a,<>b;
+	var <argNames,<defArgs;
+
+	*new { arg a,b;
+		^super.prNew.a_(a.asInstr).b_(b.asInstr).init
+	}
+	storeArgs {
+		^[a.dotNotation,b.dotNotation]
+	}
+	init {
+		var compname;
+		compname = a.name.last ++ "|" ++ b.name.last;
+		name = ['<>>', (a.dotNotation ++ "|" ++ b.dotNotation)];
+		specs = a.specs ++ b.specs.copyToEnd(1);
+		explicitSpecs = [];
+		argNames = a.argNames.copy;
+		b.argNames.copyToEnd(1).do { |an|
+			if(argNames.includes(an),{
+				argNames = argNames.add( (b.name.last.asString ++ "_" ++ an.asString).asSymbol )
+			},{
+				argNames = argNames.add( an )
+			})
+		};
+		defArgs = a.defArgs ++ b.defArgs.copyToEnd(1);
+		this.class.put(this);
+		this.class.changed(this);
+	}
+
+	value { arg ... args;
+		^this.valueArray(args)
+	}
+	valueArray { arg args;
+		var f;
+		f = a.value( args.copyRange(0,a.argsSize-1) );
+		^b.value( [f] ++ args.copyToEnd(a.argsSize) )
+	}
+
+	ar { arg ... args; ^this.value(args) }
+	kr { arg ... args; ^this.value(args) }
+	outSpec {
+		^b.outSpec
+	}
+	maxArgs { ^this.argsSize }
+	argsSize { ^argNames.size }
+
+	initAt { arg i;  ^(defArgs.at(i) ?? {specs.at(i).tryPerform(\default)}) }
+	argNameAt { arg i;
+		^argNames[i]
+	}
+	defArgAt { arg i;
+		^defArgs.at(i)
+	}
+	funcDef { ^nil }
+	storeableFuncReference { ^this }
+	asString { ^this.dotNotation }
+	asInstr { ^this }
+	guiClass { ^CompositeInstrGui }
+}
+	
+	
 // see Interface
 InterfaceDef : Instr {
 

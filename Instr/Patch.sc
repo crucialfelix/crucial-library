@@ -528,7 +528,13 @@ Patch : HasPatchIns  {
 		var e;
 		e = ('type':'instr','instr':this.instr);
 		this.instr.argNames.do { arg an,i;
-			e[an] = args[i].dereference
+			if(an == \tempo and: {args[i].isKindOf(TempoPlayer)},{
+				// normally TempoPlayer is correct to pass to a Patch
+				// but Event will set tempo if ~tempo is set
+				e[an] = args[i].tempo.tempo
+			},{
+				e[an] = args[i].dereference
+			})
 		};
 		^e
 	}
@@ -549,12 +555,7 @@ Patch : HasPatchIns  {
 		var last;
 		if(this.class === Patch,{ // an indulgence ...
 			last = args.size - 1;
-			// anything with a path gets stored as abreviated
-			if(this.instr.path.notNil,{
-				stream << "(" <<< this.instr.dotNotation << ",[";
-			},{
-				stream << "(" << this.instr.func.def.sourceCode << ",[";
-			});
+			stream << "(" <<< this.instr.storeableFuncReference << ",[";
 			
 			if(stream.isKindOf(PrettyPrintStream),{ stream.indent(1); });
 			args.do({ arg ag,i;
