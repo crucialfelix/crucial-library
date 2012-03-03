@@ -36,30 +36,33 @@ InstrGui : ObjectGui {
         this.sourceGui(layout,width);
 	}
 	sourceGui { arg layout,width;
-	    var source,up;
+	    var source,up,funcDef;
 		var tf,lines,height,f;
-	    
-		layout.startRow;
-		source = model.funcDef.sourceCode;
-		if(source.notNil,{
-			f = GUI.font.new("Courier",12.0);
-			height = source.split(Char.nl).size * 15;
-			tf = TextView(layout,Rect(0,0,width,height));
-			tf.string = source;
-			tf.font_(f);
-			tf.syntaxColorize;
-			up = Updater(model,{
-			    source = model.funcDef.sourceCode;
-			    if(tf.isClosed,{
-			        up.remove //sc remove gui is easily breakable
-			    },{
-				    tf.string = source;
-				    tf.syntaxColorize;
-				});
-	        }).removeOnClose(layout)
-		},{
-		    CXLabel(layout,"Source code is nil",width);
-		});
+
+		funcDef = model.funcDef;
+	    if(funcDef.notNil,{
+			layout.startRow;
+			source = funcDef.sourceCode;
+			if(source.notNil,{
+				f = GUI.font.new("Courier",12.0);
+				height = source.split(Char.nl).size * 15;
+				tf = TextView(layout,Rect(0,0,width,height));
+				tf.string = source;
+				tf.font_(f);
+				tf.syntaxColorize;
+				up = Updater(model,{
+				    source = model.funcDef.sourceCode;
+				    if(tf.isClosed,{
+				        up.remove //sc remove gui is easily breakable
+				    },{
+					    tf.string = source;
+					    tf.syntaxColorize;
+					});
+		        }).removeOnClose(layout)
+			},{
+			    CXLabel(layout,"Source code is nil",width);
+			});
+		})
 	}
 }
 
