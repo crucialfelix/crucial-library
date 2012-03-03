@@ -248,6 +248,9 @@ InstrSynthDef : SynthDef {
 		outputProxies = nil;
 		instr = nil; // could hold onto stuff
 	}
+	instr {
+		^(instr ?? {instrName.asInstr})
+	}
 	buildErrorString {
 		^String.streamContents({ arg stream;
 				stream << Char.nl << "ERROR: Instr build failed; " <<< instr << Char.nl;
