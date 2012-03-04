@@ -4,7 +4,7 @@ InstrGui : ObjectGui {
 	
 	guiBody { arg layout;
 		var defs,h,w,specWidth;
-        var width;
+        var width,test;
 
         width = min(layout.indentedRemaining.width,600);
 		specWidth = width - 150 - 100 - 6;
@@ -29,6 +29,12 @@ InstrGui : ObjectGui {
 			ActionButton(layout,"open file",{ model.path.openTextFile });
 		});
 		ActionButton(layout,"make a Patch",{ Patch(model).topGui });
+		ToggleButton(layout,"Test",{ 
+		    test = Patch(model).rand;
+		    test.play
+		},{
+		    test.free;
+		});
 		ActionButton(layout,"post Instr name",{
 		    model.dotNotation.post;
 		}).beginDragAction = {model.dotNotation};
