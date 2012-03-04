@@ -36,6 +36,7 @@ InstrBrowser {
                  this.init.refresh;
             })
         };
+        topBarFunc.value(layout,this);
         layout.startRow;
         layout.horz({ arg layout;
             lv = ListView(layout,250@layout.bounds.height);
@@ -91,15 +92,23 @@ InstrBrowser {
                 );
     }
     allInstr {
-	    ^instrs
+        ^instrs
     }
     refresh {
-	    lv.items = instrs;
-	    lv.refresh;
+        if(filterFunc.notNil,{
+            lv.items = instrs.select(filterFunc)
+        },{
+            lv.items = instrs;
+        });
+        lv.refresh;
     }
     // only if gui is active
     search { arg q;
         var base;
+        base = instrs;
+        if(filterFunc.notNil,{
+            base = base.select(filterFunc)
+        });
         if(q != "",{
             lv.items = (instrs.select(_.containsi(q)));
         },{
