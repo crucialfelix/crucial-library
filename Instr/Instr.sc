@@ -643,10 +643,85 @@ UGenInstr {
 }
 
 
-CompositeInstr : Instr {
+PappliedInstr : Instr { // partial application
 
-    var <>a,<>b;
-    var <argNames,<defArgs;
+    var <>a,<appliedArgs;
+    var <argNames,<defArgs,pindices;
+
+    *new { arg a,args;
+        ^super.prNew.a_(a.asInstr).appliedArgs_(args).init
+    }
+    storeArgs {
+        ^[a.dotNotation,appliedArgs]
+    }
+    appliedArgs_ { arg args;
+        if(args.isKindOf(Dictionary),{
+            appliedArgs = a.argNames.collect({ arg an; args[an] });
+        },{
+            appliedArgs = args.extend(a.argNames.size,nil);
+        })
+    }
+    init {
+        var compname;
+        compname = a.name.last ++ "|" ++ appliedArgs.hash;
+        name = ['_papply', (a.dotNotation ++ "|" ++ appliedArgs.hash)];
+        specs = a.specs.select({ arg sp,i; appliedArgs[i].isNil });
+        explicitSpecs = [];
+        argNames = a.argNames.select({ arg sp,i; appliedArgs[i].isNil });
+        defArgs = a.defArgs.select({ arg sp,i; appliedArgs[i].isNil });
+        pindices = a.argNames.collect({ arg sp,i; if(appliedArgs[i].notNil,i,nil) });
+        this.class.put(this);
+        this.class.changed(this);
+    }
+
+    value { arg ... args;
+        ^this.valueArray(args)
+    }
+    valueArray { arg args;
+        var agz;
+        // expand args to line up indices with master
+        agz = Array.fill(a.argsSize,{ arg i; 
+                if(pindices[i].isNil,{
+                    if(args.notEmpty,{
+                        args.removeAt(0)
+                    },{
+                        nil
+                    })
+                },{
+                    appliedArgs[pindices[i]]
+                })
+            });
+        ^a.valueArray(agz)
+    }
+
+    ar { arg ... args; ^this.valueArray(args) }
+    kr { arg ... args; ^this.valueArray(args) }
+    outSpec {
+        ^a.outSpec
+    }
+    maxArgs { ^this.argsSize }
+    argsSize { ^argNames.size }
+
+    initAt { arg i;  ^(defArgs.at(i) ?? {specs.at(i).tryPerform(\default)}) }
+    argNameAt { arg i;
+        ^argNames[i]
+    }
+    defArgAt { arg i;
+        ^defArgs.at(i)
+    }
+    funcDef { ^nil }
+    storeableFuncReference { ^this }
+    asString { ^this.dotNotation }
+    asInstr { ^this }
+    guiClass { ^PappliedInstrGui }
+}
+
+
+CompositeInstr : PappliedInstr {
+
+    // output of a goes to the first input of b
+
+    var <>b;
 
     *new { arg a,b;
         ^super.prNew.a_(a.asInstr).b_(b.asInstr).init
@@ -673,34 +748,15 @@ CompositeInstr : Instr {
         this.class.changed(this);
     }
 
-    value { arg ... args;
-        ^this.valueArray(args)
-    }
     valueArray { arg args;
         var f;
         f = a.value( args.copyRange(0,a.argsSize-1) );
         ^b.value( [f] ++ args.copyToEnd(a.argsSize) )
     }
 
-    ar { arg ... args; ^this.value(args) }
-    kr { arg ... args; ^this.value(args) }
     outSpec {
         ^b.outSpec
     }
-    maxArgs { ^this.argsSize }
-    argsSize { ^argNames.size }
-
-    initAt { arg i;  ^(defArgs.at(i) ?? {specs.at(i).tryPerform(\default)}) }
-    argNameAt { arg i;
-        ^argNames[i]
-    }
-    defArgAt { arg i;
-        ^defArgs.at(i)
-    }
-    funcDef { ^nil }
-    storeableFuncReference { ^this }
-    asString { ^this.dotNotation }
-    asInstr { ^this }
     guiClass { ^CompositeInstrGui }
 }
 
