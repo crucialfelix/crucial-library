@@ -2,518 +2,518 @@
 
 Instr  {
 
-	classvar <dir;
+    classvar <dir;
 
-	var  <>name, <>func, <>specs, <>outSpec, >path;
-	var <explicitSpecs;// specs that were explicitly stated on construction (not guessed)
+    var  <>name, <>func, <>specs, <>outSpec, >path;
+    var <explicitSpecs;// specs that were explicitly stated on construction (not guessed)
 
-	// specs are optional : can be guessed from the argnames
-	// outSpec is optional but recommended : can be determined by evaluating the func and examining the result
-	*new { arg name, func, specs, outSpec;
-		var previous;
-		if(func.isNil,{ ^this.at(name) });
-		name = this.symbolizeName(name);
-		previous = Library.atList(name.copy.addFirst(this));
-		if(previous.notNil,{
-			if(previous.isKindOf(Instr).not,{
-				Error("The Instr name address " + name +
-					"is already occupied by a branch node. You may only add new Instr to the leaves").throw;
-			});
-			previous.func = func;
-			previous.init(specs,outSpec);
-			previous.changed(this);
-			^previous
-		});
-		^super.newCopyArgs(name,func).init(specs,outSpec)
-	}
-	*prNew {
-		^super.new
-	}
-	*at { arg  name;
-		^this.objectAt(name);
-	}
-	*load { arg name;
-	    // forces a reload from file
-		name = this.symbolizeName(name);
-		Library.global.removeAtPath(name.copy.addFirst(this));
-	    ^this.at(name)
-	}
-	*loadAll {
-		this.prLoadDir(this.dir);
-		this.prLoadDir(Platform.userExtensionDir ++ "/quarks/*/Instr");
-	}
-	*prLoadDir { arg dir;
-		var paths;
-		paths = (dir +/+ "*").pathMatch.reject { |path| path.splitext[1] == "sc" };
-		paths.do { |path|
-	        if(path.last == $/,{
-	            this.prLoadDir(path)
-	        },{
-	    			{
-					path.loadPath(false);
-	    			}.try({ arg err;
-	    				("ERROR while loading " + path).postln;
-	    				err.throw;
-	    			});
-	    		});
-		};
-	}
-	*addExcludePaths {
-		// 3.5 + only
-		(Platform.userExtensionDir ++ "/quarks/*/Instr").pathMatch.do { arg path;
-			LanguageConfig.addExcludePath(path)
-		}
-		/*
-		Instr.addExcludePaths;
-		LanguageConfig.store;
-	*/	
-	}		
-	*clearAll {
-		Library.global.removeAt(this)
-	}
+    // specs are optional : can be guessed from the argnames
+    // outSpec is optional but recommended : can be determined by evaluating the func and examining the result
+    *new { arg name, func, specs, outSpec;
+        var previous;
+        if(func.isNil,{ ^this.at(name) });
+        name = this.symbolizeName(name);
+        previous = Library.atList(name.copy.addFirst(this));
+        if(previous.notNil,{
+            if(previous.isKindOf(Instr).not,{
+                Error("The Instr name address " + name +
+                    "is already occupied by a branch node. You may only add new Instr to the leaves").throw;
+            });
+            previous.func = func;
+            previous.init(specs,outSpec);
+            previous.changed(this);
+            ^previous
+        });
+        ^super.newCopyArgs(name,func).init(specs,outSpec)
+    }
+    *prNew {
+        ^super.new
+    }
+    *at { arg  name;
+        ^this.objectAt(name);
+    }
+    *load { arg name;
+        // forces a reload from file
+        name = this.symbolizeName(name);
+        Library.global.removeAtPath(name.copy.addFirst(this));
+        ^this.at(name)
+    }
+    *loadAll {
+        this.prLoadDir(this.dir);
+        this.prLoadDir(Platform.userExtensionDir ++ "/quarks/*/Instr");
+    }
+    *prLoadDir { arg dir;
+        var paths;
+        paths = (dir +/+ "*").pathMatch.reject { |path| path.splitext[1] == "sc" };
+        paths.do { |path|
+            if(path.last == $/,{
+                this.prLoadDir(path)
+            },{
+                {
+                    path.loadPath(false);
+                }.try({ arg err;
+                    ("ERROR while loading " + path).postln;
+                    err.throw;
+                });
+            });
+        };
+    }
+    *addExcludePaths {
+        // 3.5 + only
+        (Platform.userExtensionDir ++ "/quarks/*/Instr").pathMatch.do { arg path;
+            LanguageConfig.addExcludePath(path)
+        }
+        /*
+        Instr.addExcludePaths;
+        LanguageConfig.store;
+    */
+    }
+    *clearAll {
+        Library.global.removeAt(this)
+    }
 
-	*ar { arg name, args;
-		var instr;
-		instr=this.at(name);
-		if(instr.isNil,{
-			die("Instr not found !!"
-					+ name.asCompileString + "in Meta_Instr:ar");
-		},{
-			^instr.valueArray(args)
-		})
-	}
-	ar { arg ... inputs;
-		^func.valueArray(inputs);
-	}
-	value { arg inputs;
-		^func.valueArray(inputs ? [])
-	}
-	valueEnvir { arg inputs;
-		^func.valueArrayEnvir(inputs ? []);
-	}
-	valueArray { arg inputs;
-		^func.valueArray(inputs)
-	}
-	*kr { arg name, args;
-		^this.ar(name,args)
-	}
-	kr { arg ... inputs;
-		^func.valueArrayEnvir(inputs);
-	}
-	asSynthDef { arg args,outClass=\Out;
-		var synthDef;
-		synthDef = InstrSynthDef.new;
-		synthDef.build(this,args ? [],outClass);
-		^synthDef
-	}
-	writeDefFile { arg dir;
-		this.asSynthDef.writeDefFile(dir);
-	}
-	write { arg dir;
-		var synthDef;
-		synthDef = this.asSynthDef;
-		synthDef.writeDefFile(dir);
-	}
-	// for use in patterns
-	add { arg args, libname, completionMsg, keepDef = true;
-		^this.asSynthDef(args).add(libname,completionMsg, keepDef);
-	}
-	store { arg args;
-		^this.asSynthDef(args).store
-	}
-	// create a synth
-	after { arg anode,args,bundle,atTime;
-		^this.prMakeSynth(\addAfterMsg,anode,args,bundle,atTime)
-	}
-	before { arg anode,args,bundle,atTime;
-		^this.prMakeSynth(\addBeforeMsg,anode,args,bundle,atTime)
-	}
-	head { arg anode,args,bundle,atTime;
-		^this.prMakeSynth(\addToHeadMsg,anode,args,bundle,atTime)
-	}
-	tail { arg anode,args,bundle,atTime;
-		^this.prMakeSynth(\addToTailMsg,anode,args,bundle,atTime)
-	}
-	replace { arg anode,args,bundle,atTime;
-		^this.prMakeSynth(\addReplaceMsg,anode,args,bundle,atTime)
-	}
+    *ar { arg name, args;
+        var instr;
+        instr=this.at(name);
+        if(instr.isNil,{
+            die("Instr not found !!"
+                    + name.asCompileString + "in Meta_Instr:ar");
+        },{
+            ^instr.valueArray(args)
+        })
+    }
+    ar { arg ... inputs;
+        ^func.valueArray(inputs);
+    }
+    value { arg inputs;
+        ^func.valueArray(inputs ? [])
+    }
+    valueEnvir { arg inputs;
+        ^func.valueArrayEnvir(inputs ? []);
+    }
+    valueArray { arg inputs;
+        ^func.valueArray(inputs)
+    }
+    *kr { arg name, args;
+        ^this.ar(name,args)
+    }
+    kr { arg ... inputs;
+        ^func.valueArrayEnvir(inputs);
+    }
+    asSynthDef { arg args,outClass=\Out;
+        var synthDef;
+        synthDef = InstrSynthDef.new;
+        synthDef.build(this,args ? [],outClass);
+        ^synthDef
+    }
+    writeDefFile { arg dir;
+        this.asSynthDef.writeDefFile(dir);
+    }
+    write { arg dir;
+        var synthDef;
+        synthDef = this.asSynthDef;
+        synthDef.writeDefFile(dir);
+    }
+    // for use in patterns
+    add { arg args, libname, completionMsg, keepDef = true;
+        ^this.asSynthDef(args).add(libname,completionMsg, keepDef);
+    }
+    store { arg args;
+        ^this.asSynthDef(args).store
+    }
+    // create a synth
+    after { arg anode,args,bundle,atTime;
+        ^this.prMakeSynth(\addAfterMsg,anode,args,bundle,atTime)
+    }
+    before { arg anode,args,bundle,atTime;
+        ^this.prMakeSynth(\addBeforeMsg,anode,args,bundle,atTime)
+    }
+    head { arg anode,args,bundle,atTime;
+        ^this.prMakeSynth(\addToHeadMsg,anode,args,bundle,atTime)
+    }
+    tail { arg anode,args,bundle,atTime;
+        ^this.prMakeSynth(\addToTailMsg,anode,args,bundle,atTime)
+    }
+    replace { arg anode,args,bundle,atTime;
+        ^this.prMakeSynth(\addReplaceMsg,anode,args,bundle,atTime)
+    }
 
-	spawnEvent { arg event;
-		event['type'] = \instr;
-		event['instr'] = this;
-		event.play;	
-	}
-	
-	// using in a stream
-	next { arg ... inputs;
-		^func.valueArray(inputs)
-	}
-	// function composition :
-	// create an instr that passes output of this to the first input of that
-	<>> { arg that;
-		^CompositeInstr(this,that.asInstr)
-	}
+    spawnEvent { arg event;
+        event['type'] = \instr;
+        event['instr'] = this;
+        event.play;
+    }
 
-	// set the directory where your library of Instr is to be found
-	*dir_ { arg p;
-		dir = p.standardizePath.withTrailingSlash;
-	}
+    // using in a stream
+    next { arg ... inputs;
+        ^func.valueArray(inputs)
+    }
+    // function composition :
+    // create an instr that passes output of this to the first input of that
+    <>> { arg that;
+        ^CompositeInstr(this,that.asInstr)
+    }
 
-	rate {
-		^if(outSpec.notNil,{
-			outSpec.rate;
-		},{
-			// if you aren't audio, you must specify an outSpec
-			\audio
-		})
-	}
-	numChannels {
-		^if(outSpec.notNil,{
-			outSpec.numChannels
-		},{ // if you are more than one channel, you must specify an outSpec
-			1
-		});
-	}
-	path { ^path }
+    // set the directory where your library of Instr is to be found
+    *dir_ { arg p;
+        dir = p.standardizePath.withTrailingSlash;
+    }
 
-	maxArgs { ^this.argsSize }
-	argsSize { ^func.def.argNames.size }
-	argNames { ^(func.def.argNames ? []).asList }
-	defArgs { ^(func.def.prototypeFrame ? []).asList }
+    rate {
+        ^if(outSpec.notNil,{
+            outSpec.rate;
+        },{
+            // if you aren't audio, you must specify an outSpec
+            \audio
+        })
+    }
+    numChannels {
+        ^if(outSpec.notNil,{
+            outSpec.numChannels
+        },{ // if you are more than one channel, you must specify an outSpec
+            1
+        });
+    }
+    path { ^path }
 
-	argNameAt { arg i;
-		var nn;
-		nn=func.def.argNames;
-		^if(nn.notNil,{nn.at(i)},nil);
-	}
-	defArgAt { arg i;
-		var nn;
-		nn = func.def.prototypeFrame;
-		^nn.at(i)
-	}
-	// the default value supplied in the function
-	initAt { arg i;
-		^(this.defArgAt(i) ?? {this.specs.at(i).tryPerform(\default)})
-	}
+    maxArgs { ^this.argsSize }
+    argsSize { ^func.def.argNames.size }
+    argNames { ^(func.def.argNames ? []).asList }
+    defArgs { ^(func.def.prototypeFrame ? []).asList }
 
-	defName { ^this.class.symbolizeName(name).collect(_.asString).join($.) }
-	// used by Synth
-	asDefName { arg args;
-		^this.asSynthDef(args).name
-	}
-					
-	prepareToBundle { arg group,bundle;
-		this.asSynthDef.prepareToBundle(group,bundle);
-	}
+    argNameAt { arg i;
+        var nn;
+        nn=func.def.argNames;
+        ^if(nn.notNil,{nn.at(i)},nil);
+    }
+    defArgAt { arg i;
+        var nn;
+        nn = func.def.prototypeFrame;
+        ^nn.at(i)
+    }
+    // the default value supplied in the function
+    initAt { arg i;
+        ^(this.defArgAt(i) ?? {this.specs.at(i).tryPerform(\default)})
+    }
 
-	funcDef { ^func.def }
+    defName { ^this.class.symbolizeName(name).collect(_.asString).join($.) }
+    // used by Synth
+    asDefName { arg args;
+        ^this.asSynthDef(args).name
+    }
 
-	
-	prMakeSynth { arg targetStyle,anode,args,bundle,atTime;
-		var b,def, synth,synthDefArgs;
-		anode = anode.asTarget;
-		b = bundle ?? {MixedBundle.new};
-		args = args ?? { this.specs.collect(_.default) };
-		def = this.asSynthDef(args);
-		InstrSynthDef.loadDefFileToBundle(def,b,anode.server);
-		synth = Synth.basicNew(def.name,anode.server);
-		synthDefArgs = Array.new(args.size);
-		this.specs.do { arg sp,i;
-			if(sp.rate != 'noncontrol',{
-				synthDefArgs.add( args[i] )
-			})
-		};
-		b.add( synth.perform(targetStyle,anode,synthDefArgs) );
-		if(bundle.isNil,{
-			b.sendAtTime(anode.server,atTime)
-		});
-		^synth
-	}		
+    prepareToBundle { arg group,bundle;
+        this.asSynthDef.prepareToBundle(group,bundle);
+    }
 
-	test { arg ... args;
-		var p;
-		p = Patch(this.name,args);
-		p.topGui;
-		^p
-	}
-	play { arg ... args;
-		^Patch(this.name,args).play
-	}
-	plot { arg args,duration=5.0;
-		^Patch(this.name,args).plot(duration)
-	}
-	
-	
-	*choose { arg start;
-		// this is only choosing from Instr in memory,
-		// it is not loading all possible Instr from file
-		^if(start.isNil,{
-			Library.global.choose(this)
-		},{
-			Library.global.performList(\choose,([this] ++ this.symbolizeName(start)))
-		})
-	}
-	*leaves { arg startAt; // address array
-		var dict;
-		if(startAt.isNil,{
-			dict = Library.global.at(this);
-			if(dict.isNil,{ ^[] });
-		},{
-			dict = this.at(this.symbolizeName(startAt).first);
-		});
-		if(dict.isNil,{
-			Error("Instr address not found:" + startAt.asCompileString).throw;
-		});
-		^Library.global.prNestedValuesFromDict(dict).flat
-	}
-	// select instr in your entire library that output the given spec
-	*selectBySpec { arg outSpec;
-		outSpec = outSpec.asSpec;
-		^this.leaves.select({ |ins| ins.outSpec == outSpec })
-	}
-	// i'm feeling lucky...
-	*chooseBySpec { arg outSpec;
-		^this.selectBySpec(outSpec).choose
-	}
+    funcDef { ^func.def }
 
-	//private
-	*put { arg instr;
-		^Library.putList([this,this.symbolizeName(instr.name),instr].flatten )
-	}
-	*remove { arg instr;
-		^Library.global.removeAt([this,this.symbolizeName(instr.name)].flatten )
-	}
-	// bulk insert an orchestra of instr
-	*orc { arg name, pairs, outSpec = \audio;
-		forBy(0,pairs.size-1,2,	{ arg i;
-			this.new( [name,pairs@i ],pairs@(i+1),nil,outSpec)
-		})
-	}
 
-	*symbolizeName { arg name;
-		if(name.isString,{
-			^name.split($.).collect(_.asSymbol);
-		 });
-	 	if(name.isKindOf(Symbol),{
-			^[name];
-		});
-		if(name.isSequenceableCollection,{
-			^name.collect(_.asSymbol);
-		});
-		error("Invalid name for Instr : "++name);
-	}
-	*isDefined { arg name;
-		^Library.atList([this] ++ this.symbolizeName(name)).notNil;
-	}		
-	*objectAt { arg name;
-		var symbolized,search;
-		symbolized = this.symbolizeName(name);
-		search = Library.atList([this] ++ symbolized);
-		if(search.notNil,{ ^search });
-		symbolized.debug("Instr not found, loading file...");
-		this.findFileFor(symbolized);
+    prMakeSynth { arg targetStyle,anode,args,bundle,atTime;
+        var b,def, synth,synthDefArgs;
+        anode = anode.asTarget;
+        b = bundle ?? {MixedBundle.new};
+        args = args ?? { this.specs.collect(_.default) };
+        def = this.asSynthDef(args);
+        InstrSynthDef.loadDefFileToBundle(def,b,anode.server);
+        synth = Synth.basicNew(def.name,anode.server);
+        synthDefArgs = Array.new(args.size);
+        this.specs.do { arg sp,i;
+            if(sp.rate != 'noncontrol',{
+                synthDefArgs.add( args[i] )
+            })
+        };
+        b.add( synth.perform(targetStyle,anode,synthDefArgs) );
+        if(bundle.isNil,{
+            b.sendAtTime(anode.server,atTime)
+        });
+        ^synth
+    }
 
-		// its either loaded now or its nil
-		^Library.atList([this] ++ symbolized);
-	}
-	*findFileFor { arg symbolized;
-		var quarkInstr,found;
-		// the user's primary Instr directory
-		found = this.findFileInDir(symbolized,this.dir);
-		if(found.notNil,{ ^found });
+    test { arg ... args;
+        var p;
+        p = Patch(this.name,args);
+        p.topGui;
+        ^p
+    }
+    play { arg ... args;
+        ^Patch(this.name,args).play
+    }
+    plot { arg args,duration=5.0;
+        ^Patch(this.name,args).plot(duration)
+    }
 
-		// look in each quark with an Instr directory
-		quarkInstr = (Platform.userExtensionDir ++ "/quarks/*/Instr").pathMatch;
-		quarkInstr.do({ |path|
-			found = this.findFileInDir(symbolized,path);
-			if(found.notNil,{ ^found });
-		});
-		^nil
-	}
-	// .rtf .txt .sc .scd or plain
-	*findFileInDir { arg symbolized, rootPath,
-						fullInstrName;// only needed for recursion
-		var pathParts,pathPartsFirst;
 
-		pathParts = symbolized.collect(_.asString);
+    *choose { arg start;
+        // this is only choosing from Instr in memory,
+        // it is not loading all possible Instr from file
+        ^if(start.isNil,{
+            Library.global.choose(this)
+        },{
+            Library.global.performList(\choose,([this] ++ this.symbolizeName(start)))
+        })
+    }
+    *leaves { arg startAt; // address array
+        var dict;
+        if(startAt.isNil,{
+            dict = Library.global.at(this);
+            if(dict.isNil,{ ^[] });
+        },{
+            dict = this.at(this.symbolizeName(startAt).first);
+        });
+        if(dict.isNil,{
+            Error("Instr address not found:" + startAt.asCompileString).throw;
+        });
+        ^Library.global.prNestedValuesFromDict(dict).flat
+    }
+    // select instr in your entire library that output the given spec
+    *selectBySpec { arg outSpec;
+        outSpec = outSpec.asSpec;
+        ^this.leaves.select({ |ins| ins.outSpec == outSpec })
+    }
+    // i'm feeling lucky...
+    *chooseBySpec { arg outSpec;
+        ^this.selectBySpec(outSpec).choose
+    }
 
-		pathPartsFirst = pathParts.first;
-		if(fullInstrName.isNil,{ fullInstrName = symbolized.copy });
+    //private
+    *put { arg instr;
+        ^Library.putList([this,this.symbolizeName(instr.name),instr].flatten )
+    }
+    *remove { arg instr;
+        ^Library.global.removeAt([this,this.symbolizeName(instr.name)].flatten )
+    }
+    // bulk insert an orchestra of instr
+    *orc { arg name, pairs, outSpec = \audio;
+        forBy(0,pairs.size-1,2, { arg i;
+            this.new( [name,pairs@i ],pairs@(i+1),nil,outSpec)
+        })
+    }
 
-		// if its a multi-part name then could be
-		// [\synths,\stereo,\SinOsc,\pmod]
-		// possible files:
-		// synths.scd
-		// or synths/stereo.scd
-		// or synths/stereo/SinOsc/pmod.scd
+    *symbolizeName { arg name;
+        if(name.isString,{
+            ^name.split($.).collect(_.asSymbol);
+         });
+        if(name.isKindOf(Symbol),{
+            ^[name];
+        });
+        if(name.isSequenceableCollection,{
+            ^name.collect(_.asSymbol);
+        });
+        error("Invalid name for Instr : "++name);
+    }
+    *isDefined { arg name;
+        ^Library.atList([this] ++ this.symbolizeName(name)).notNil;
+    }
+    *objectAt { arg name;
+        var symbolized,search;
+        symbolized = this.symbolizeName(name);
+        search = Library.atList([this] ++ symbolized);
+        if(search.notNil,{ ^search });
+        symbolized.debug("Instr not found, loading file...");
+        this.findFileFor(symbolized);
 
-		(rootPath++"*").pathMatch.do({ |path|
-			var file,orcname,symbols,pn;
-			file = path.copyRange(rootPath.size,path.size-1);
-			if(PathName(file).isFolder,{
-				if(file.copyRange(0,file.size-2) == pathPartsFirst,{
-					^this.findFileInDir(symbolized.copyRange(1,symbolized.size-1),
-										rootPath ++ file,
-										fullInstrName );
-				});
-			},{
-			    pn = PathName(file);
-			    if(["scd","rtf",""].includesEqual(pn.extension),{
-    				orcname = pn.fileNameWithoutExtension;
-    				if(orcname == pathPartsFirst,{
-    				    ("Loading instr file:" + path).debug(orcname);
-    					
-    					// compiles and creates all Instr
-    					// which are now findable in the Library
-    					path.load;
-					
-    					// set path on all those within this file that we just loaded
-    					symbols = [];
-    					fullInstrName.any({ |n|
-    						symbols = symbols.add(n.asSymbol);
-    						n.asSymbol === orcname.asSymbol
-    					});
-    					Instr.leaves(symbols).do({ |instr| instr.path = path });
-    					^path
-    				});
-    			})
-			});
-		});
+        // its either loaded now or its nil
+        ^Library.atList([this] ++ symbolized);
+    }
+    *findFileFor { arg symbolized;
+        var quarkInstr,found;
+        // the user's primary Instr directory
+        found = this.findFileInDir(symbolized,this.dir);
+        if(found.notNil,{ ^found });
 
-		^nil
-	}
-	dotNotation { // "dir.subdir.file.instrName"
-		^String.streamContents({ arg s;
-			name.do({ arg n,i;
-				if(i > 0,{ s << $. });
-				s << n;
-			})
-		})
-	}
+        // look in each quark with an Instr directory
+        quarkInstr = (Platform.userExtensionDir ++ "/quarks/*/Instr").pathMatch;
+        quarkInstr.do({ |path|
+            found = this.findFileInDir(symbolized,path);
+            if(found.notNil,{ ^found });
+        });
+        ^nil
+    }
+    // .rtf .txt .sc .scd or plain
+    *findFileInDir { arg symbolized, rootPath,
+                        fullInstrName;// only needed for recursion
+        var pathParts,pathPartsFirst;
 
-	asString { ^"%(%)".format(this.class.name, this.defName.asCompileString) }
-	storeArgs {
-		if(this.path.notNil,{
-			^[this.dotNotation]
-		},{
-			^[this.dotNotation,this.func,this.specs,this.outSpec]
-		});
-	}
-	storeableFuncReference {
-		if(this.path.notNil,{
-			^this.dotNotation
-		},{
-			^this.func.def.sourceCode
-		})
-	}
-	copy { ^this } // unless you change the address its the same instr
+        pathParts = symbolized.collect(_.asString);
 
-	*initClass {
-		Class.initClassTree(Document);
-		
-		// default is relative to your doc directory
-		if(dir.isNil,{ dir = Document.dir ++ "Instr/"; });
-		
-		Class.initClassTree(Event);
-		Event.addEventType(\instr,{ arg server;
-			var instr, instrArgs,patch;
-			~server = server;
-			
-			instr = ~instr.asInstr;
-			if(instr.notNil,{
-				~freq = ~detunedFreq.value;
-				~amp = ~amp.value;
-				~sustain = ~sustain.value;
-				instrArgs = instr.argNames.collect({ arg an,i; 
-								var inp,spec;
-								inp = currentEnvironment[an] ?? {instr.defArgAt(i)};
-								spec = instr.specs.at(i);
-								if(spec.rate == \control,{
-									if(inp.rate == \control,{
-										inp
-									},{
-										IrNumberEditor( inp.synthArg, spec )
-									})
-								},{
-									inp
-								})
-							});
-				patch = Patch(instr,instrArgs);
-				patch.play(~group ? server,server.latency,~bus);
-				patch.patchOut.releaseBusses; // not needed, and I wont free myself
-				~patch = patch;
-			})
-		});
-	}
-	init { arg specs,outsp;
-		if(path.isNil,{
-			path = thisProcess.nowExecutingPath; //  ?? { Document.current.path };
-		});
-		specs = specs ? #[];
-		if(specs.isKindOf(SequenceableCollection).not,{
-			Error("Specs should be of type array or nil.").throw
-		});
-		this.makeSpecs(specs ? #[]);
-		if(outsp.isNil,{
-			outSpec = nil;
-		},{
-			outSpec = outsp.asSpec;
-			if(outSpec.isNil,{
-				("Out spec not found: " + outsp.asCompileString + "for" + this).warn
-			});
-		});
-		this.class.put(this);
-		this.class.changed(this)
-	}
-	makeSpecs { arg argspecs;
-		explicitSpecs = argspecs ? [];
-		specs =
-			Array.fill(this.argsSize,{ arg i;
-				var sp,name;
-				name = this.argNameAt(i);
-				sp = explicitSpecs.at(i);
-				// backwards compatibility with old spec style
-				if(sp.isSequenceableCollection,{
-					// [\envperc]
-					// [[0,1]]
-					// [StaticSpec()]
-					// [0,1]
-					if(sp.first.isNumber,{
-						sp = sp.asSpec;
-					},{
-						sp = (sp.first ? name).asSpec
-					});
-				},{
-					sp = (sp ? name).asSpec ?? {ControlSpec.new};
-				});
-				sp
-			});
-	}
-	// a filter is any instr that has an input the same spec as its output
-	isFilter { ^this.specs.any({ |sp| sp == this.outSpec }) }
-	
-	guiClass { ^InstrGui }
-	
+        pathPartsFirst = pathParts.first;
+        if(fullInstrName.isNil,{ fullInstrName = symbolized.copy });
+
+        // if its a multi-part name then could be
+        // [\synths,\stereo,\SinOsc,\pmod]
+        // possible files:
+        // synths.scd
+        // or synths/stereo.scd
+        // or synths/stereo/SinOsc/pmod.scd
+
+        (rootPath++"*").pathMatch.do({ |path|
+            var file,orcname,symbols,pn;
+            file = path.copyRange(rootPath.size,path.size-1);
+            if(PathName(file).isFolder,{
+                if(file.copyRange(0,file.size-2) == pathPartsFirst,{
+                    ^this.findFileInDir(symbolized.copyRange(1,symbolized.size-1),
+                                        rootPath ++ file,
+                                        fullInstrName );
+                });
+            },{
+                pn = PathName(file);
+                if(["scd","rtf",""].includesEqual(pn.extension),{
+                    orcname = pn.fileNameWithoutExtension;
+                    if(orcname == pathPartsFirst,{
+                        ("Loading instr file:" + path).debug(orcname);
+
+                        // compiles and creates all Instr
+                        // which are now findable in the Library
+                        path.load;
+
+                        // set path on all those within this file that we just loaded
+                        symbols = [];
+                        fullInstrName.any({ |n|
+                            symbols = symbols.add(n.asSymbol);
+                            n.asSymbol === orcname.asSymbol
+                        });
+                        Instr.leaves(symbols).do({ |instr| instr.path = path });
+                        ^path
+                    });
+                })
+            });
+        });
+
+        ^nil
+    }
+    dotNotation { // "dir.subdir.file.instrName"
+        ^String.streamContents({ arg s;
+            name.do({ arg n,i;
+                if(i > 0,{ s << $. });
+                s << n;
+            })
+        })
+    }
+
+    asString { ^"%(%)".format(this.class.name, this.defName.asCompileString) }
+    storeArgs {
+        if(this.path.notNil,{
+            ^[this.dotNotation]
+        },{
+            ^[this.dotNotation,this.func,this.specs,this.outSpec]
+        });
+    }
+    storeableFuncReference {
+        if(this.path.notNil,{
+            ^this.dotNotation
+        },{
+            ^this.func.def.sourceCode
+        })
+    }
+    copy { ^this } // unless you change the address its the same instr
+
+    *initClass {
+        Class.initClassTree(Document);
+
+        // default is relative to your doc directory
+        if(dir.isNil,{ dir = Document.dir ++ "Instr/"; });
+
+        Class.initClassTree(Event);
+        Event.addEventType(\instr,{ arg server;
+            var instr, instrArgs,patch;
+            ~server = server;
+
+            instr = ~instr.asInstr;
+            if(instr.notNil,{
+                ~freq = ~detunedFreq.value;
+                ~amp = ~amp.value;
+                ~sustain = ~sustain.value;
+                instrArgs = instr.argNames.collect({ arg an,i;
+                                var inp,spec;
+                                inp = currentEnvironment[an] ?? {instr.defArgAt(i)};
+                                spec = instr.specs.at(i);
+                                if(spec.rate == \control,{
+                                    if(inp.rate == \control,{
+                                        inp
+                                    },{
+                                        IrNumberEditor( inp.synthArg, spec )
+                                    })
+                                },{
+                                    inp
+                                })
+                            });
+                patch = Patch(instr,instrArgs);
+                patch.play(~group ? server,server.latency,~bus);
+                patch.patchOut.releaseBusses; // not needed, and I wont free myself
+                ~patch = patch;
+            })
+        });
+    }
+    init { arg specs,outsp;
+        if(path.isNil,{
+            path = thisProcess.nowExecutingPath; //  ?? { Document.current.path };
+        });
+        specs = specs ? #[];
+        if(specs.isKindOf(SequenceableCollection).not,{
+            Error("Specs should be of type array or nil.").throw
+        });
+        this.makeSpecs(specs ? #[]);
+        if(outsp.isNil,{
+            outSpec = nil;
+        },{
+            outSpec = outsp.asSpec;
+            if(outSpec.isNil,{
+                ("Out spec not found: " + outsp.asCompileString + "for" + this).warn
+            });
+        });
+        this.class.put(this);
+        this.class.changed(this)
+    }
+    makeSpecs { arg argspecs;
+        explicitSpecs = argspecs ? [];
+        specs =
+            Array.fill(this.argsSize,{ arg i;
+                var sp,name;
+                name = this.argNameAt(i);
+                sp = explicitSpecs.at(i);
+                // backwards compatibility with old spec style
+                if(sp.isSequenceableCollection,{
+                    // [\envperc]
+                    // [[0,1]]
+                    // [StaticSpec()]
+                    // [0,1]
+                    if(sp.first.isNumber,{
+                        sp = sp.asSpec;
+                    },{
+                        sp = (sp.first ? name).asSpec
+                    });
+                },{
+                    sp = (sp ? name).asSpec ?? {ControlSpec.new};
+                });
+                sp
+            });
+    }
+    // a filter is any instr that has an input the same spec as its output
+    isFilter { ^this.specs.any({ |sp| sp == this.outSpec }) }
+
+    guiClass { ^InstrGui }
+
 }
 
 
 // an object that points to an Instr and is saveable/loadable as a compile string
 // rarely needed these days.  to be deprec.
 InstrAt {
-	var <>name,<>path,instr;
-	*new { arg name;
-		^super.new.name_(name).init
-	}
-	init {
-		instr = Instr.at(name);
-	}
-	value { arg ... args; instr.valueArray(args) }
-	valueEnvir { arg ... args; ^instr.valueEnvir(args) }
-	prepareToBundle { arg group,bundle;
-		instr.prepareToBundle(group,bundle);
-	}
-	asDefName { ^instr.asDefName }
-	storeArgs { ^[name] }
+    var <>name,<>path,instr;
+    *new { arg name;
+        ^super.new.name_(name).init
+    }
+    init {
+        instr = Instr.at(name);
+    }
+    value { arg ... args; instr.valueArray(args) }
+    valueEnvir { arg ... args; ^instr.valueEnvir(args) }
+    prepareToBundle { arg group,bundle;
+        instr.prepareToBundle(group,bundle);
+    }
+    asDefName { ^instr.asDefName }
+    storeArgs { ^[name] }
 
 }
 
@@ -523,210 +523,210 @@ InstrAt {
 
 UGenInstr {
 
-	var <ugenClass,<rate,<specs;
+    var <ugenClass,<rate,<specs;
 
-	*new { arg ugenClass,rate=\ar;
-		^super.new.init(ugenClass,rate)
-	}
-	storeArgs {
-		^[ugenClass , rate ]
-	}
-	init { arg uc,r;
-		ugenClass = uc.asClass;
-		rate = r;
+    *new { arg ugenClass,rate=\ar;
+        ^super.new.init(ugenClass,rate)
+    }
+    storeArgs {
+        ^[ugenClass , rate ]
+    }
+    init { arg uc,r;
+        ugenClass = uc.asClass;
+        rate = r;
 
-		//specs
-		specs = this.argNames.collect({ arg ag,i;
-		    var da,sp;
-			ag.asSpec ?? {
-			    da = this.defArgAt(i) ? 0;
-			    if(da.isNumber) {
-    			    if(da.inclusivelyBetween(0.0,1.0),{
-    				    //("UGenInstr:init Spec.specs has no entry for: % so guessing default ControlSpec".format(ag.asCompileString)).warn;
-    				    nil.asSpec
-    				},{
-    				    sp = ControlSpec(da,da,default:da);
-    				    ("UGenInstr:init Spec.specs has no entry for: % so creating spec: %".format(ag.asCompileString,sp)).warn;
-    				    sp
-    				});
-    			} {
-    			    ObjectSpec.new
-    			};
-			}
-		});
-	}
+        //specs
+        specs = this.argNames.collect({ arg ag,i;
+            var da,sp;
+            ag.asSpec ?? {
+                da = this.defArgAt(i) ? 0;
+                if(da.isNumber) {
+                    if(da.inclusivelyBetween(0.0,1.0),{
+                        //("UGenInstr:init Spec.specs has no entry for: % so guessing default ControlSpec".format(ag.asCompileString)).warn;
+                        nil.asSpec
+                    },{
+                        sp = ControlSpec(da,da,default:da);
+                        ("UGenInstr:init Spec.specs has no entry for: % so creating spec: %".format(ag.asCompileString,sp)).warn;
+                        sp
+                    });
+                } {
+                    ObjectSpec.new
+                };
+            }
+        });
+    }
 
-	value { arg args;
-		^ugenClass.performList(rate,args)
-	}
-	valueArray { arg args;
-		^ugenClass.performList(rate,args)
-	}
+    value { arg args;
+        ^ugenClass.performList(rate,args)
+    }
+    valueArray { arg args;
+        ^ugenClass.performList(rate,args)
+    }
 
-	ar { arg ... args; ^this.value(args) }
-	kr { arg ... args; ^this.value(args) }
-	outSpec {
-		^rate.switch(
-	            \ar,\audio,
-	            \kr,\control,
-	            \new,\fft // temp hack
-	            );
-	}
-	dotNotation { ^ugenClass }
-	storeableFuncReference { ^this.dotNotation }
-	funcDef { 
-	    ^ugenClass.class.findMethod(rate) ?? {
-	        ugenClass.superclasses.do { arg sc;
-	            var fd;
-	            if(sc == UGen) {
-	                ^nil
-	            };
-	            fd = sc.class.findMethod(rate);
-	            if(fd.notNil,{
-	                ^fd
-	            });
-	        }
-	    };
-	}
-	path { ^ugenClass.filenameSymbol.asString }
-	maxArgs { ^this.argsSize }
-	argsSize { ^this.funcDef.argNames.size - 1 }
-	argNames {
-		var an;
-		an = this.funcDef.argNames;
-		^if(an.isNil,{
-			[]
-		},{
-			an.copyRange(1,an.size - 1)
-		})
-	}
+    ar { arg ... args; ^this.value(args) }
+    kr { arg ... args; ^this.value(args) }
+    outSpec {
+        ^rate.switch(
+                \ar,\audio,
+                \kr,\control,
+                \new,\fft // temp hack
+                );
+    }
+    dotNotation { ^ugenClass }
+    storeableFuncReference { ^this.dotNotation }
+    funcDef {
+        ^ugenClass.class.findMethod(rate) ?? {
+            ugenClass.superclasses.do { arg sc;
+                var fd;
+                if(sc == UGen) {
+                    ^nil
+                };
+                fd = sc.class.findMethod(rate);
+                if(fd.notNil,{
+                    ^fd
+                });
+            }
+        };
+    }
+    path { ^ugenClass.filenameSymbol.asString }
+    maxArgs { ^this.argsSize }
+    argsSize { ^this.funcDef.argNames.size - 1 }
+    argNames {
+        var an;
+        an = this.funcDef.argNames;
+        ^if(an.isNil,{
+            []
+        },{
+            an.copyRange(1,an.size - 1)
+        })
+    }
 
-	//defaultArgs
-	defArgs {
-		var nn;
-		nn=this.funcDef.prototypeFrame;
-		^if(nn.notNil,{nn.copyRange(1,nn.size-1)},{[]});
-	}
+    //defaultArgs
+    defArgs {
+        var nn;
+        nn=this.funcDef.prototypeFrame;
+        ^if(nn.notNil,{nn.copyRange(1,nn.size-1)},{[]});
+    }
 
-	initAt { arg i;  ^(this.defArgAt(i) ?? {this.specs.at(i).tryPerform(\default)}) }
-	argNameAt { arg i;
-		var nn;
-		nn=this.funcDef.argNames;
-		^if(nn.notNil,{nn.at(i + 1)},{nil});
-	}
-	defArgAt {
-		 arg i;
-		var nn;
-		nn=this.funcDef.prototypeFrame;
-		^if(nn.notNil,{nn.at(i + 1)},{nil});
-	}
+    initAt { arg i;  ^(this.defArgAt(i) ?? {this.specs.at(i).tryPerform(\default)}) }
+    argNameAt { arg i;
+        var nn;
+        nn=this.funcDef.argNames;
+        ^if(nn.notNil,{nn.at(i + 1)},{nil});
+    }
+    defArgAt {
+         arg i;
+        var nn;
+        nn=this.funcDef.prototypeFrame;
+        ^if(nn.notNil,{nn.at(i + 1)},{nil});
+    }
 
-	guiClass { ^UGenInstrGui }
-	asString { ^"UGenInstr " ++ ugenClass.name.asString }
-	asInstr { ^this }
-	name { ^ugenClass.asString }
-	
-	*leaves { arg rateMethod; // ar kr new
-		var ll;
-		^Library.atList([this,'leaves',rateMethod ? 'all']) ?? {
-			ll = UGen.allSubclasses;
-			if(rateMethod.notNil,{
-				ll = ll.select({ arg cls; cls.class.findMethod(rateMethod).notNil })
-			});
-			ll = ll.sort({ arg a,b; a.charPos <= b.charPos });
-			ll = ll.sort({ arg a,b; a.filenameSymbol.asString <= b.filenameSymbol.asString });
-			ll = ll.collect(UGenInstr(_));
-			Library.putList([this,'leaves',rateMethod ? 'all',ll]);
-			ll
-		}
-	}
+    guiClass { ^UGenInstrGui }
+    asString { ^"UGenInstr " ++ ugenClass.name.asString }
+    asInstr { ^this }
+    name { ^ugenClass.asString }
+
+    *leaves { arg rateMethod; // ar kr new
+        var ll;
+        ^Library.atList([this,'leaves',rateMethod ? 'all']) ?? {
+            ll = UGen.allSubclasses;
+            if(rateMethod.notNil,{
+                ll = ll.select({ arg cls; cls.class.findMethod(rateMethod).notNil })
+            });
+            ll = ll.sort({ arg a,b; a.charPos <= b.charPos });
+            ll = ll.sort({ arg a,b; a.filenameSymbol.asString <= b.filenameSymbol.asString });
+            ll = ll.collect(UGenInstr(_));
+            Library.putList([this,'leaves',rateMethod ? 'all',ll]);
+            ll
+        }
+    }
 }
 
 
 CompositeInstr : Instr {
-	
-	var <>a,<>b;
-	var <argNames,<defArgs;
 
-	*new { arg a,b;
-		^super.prNew.a_(a.asInstr).b_(b.asInstr).init
-	}
-	storeArgs {
-		^[a.dotNotation,b.dotNotation]
-	}
-	init {
-		var compname;
-		compname = a.name.last ++ "|" ++ b.name.last;
-		name = ['<>>', (a.dotNotation ++ "|" ++ b.dotNotation)];
-		specs = a.specs ++ b.specs.copyToEnd(1);
-		explicitSpecs = [];
-		argNames = a.argNames.copy;
-		b.argNames.copyToEnd(1).do { |an|
-			if(argNames.includes(an),{
-				argNames = argNames.add( (b.name.last.asString ++ "_" ++ an.asString).asSymbol )
-			},{
-				argNames = argNames.add( an )
-			})
-		};
-		defArgs = a.defArgs ++ b.defArgs.copyToEnd(1);
-		this.class.put(this);
-		this.class.changed(this);
-	}
+    var <>a,<>b;
+    var <argNames,<defArgs;
 
-	value { arg ... args;
-		^this.valueArray(args)
-	}
-	valueArray { arg args;
-		var f;
-		f = a.value( args.copyRange(0,a.argsSize-1) );
-		^b.value( [f] ++ args.copyToEnd(a.argsSize) )
-	}
+    *new { arg a,b;
+        ^super.prNew.a_(a.asInstr).b_(b.asInstr).init
+    }
+    storeArgs {
+        ^[a.dotNotation,b.dotNotation]
+    }
+    init {
+        var compname;
+        compname = a.name.last ++ "|" ++ b.name.last;
+        name = ['<>>', (a.dotNotation ++ "|" ++ b.dotNotation)];
+        specs = a.specs ++ b.specs.copyToEnd(1);
+        explicitSpecs = [];
+        argNames = a.argNames.copy;
+        b.argNames.copyToEnd(1).do { |an|
+            if(argNames.includes(an),{
+                argNames = argNames.add( (b.name.last.asString ++ "_" ++ an.asString).asSymbol )
+            },{
+                argNames = argNames.add( an )
+            })
+        };
+        defArgs = a.defArgs ++ b.defArgs.copyToEnd(1);
+        this.class.put(this);
+        this.class.changed(this);
+    }
 
-	ar { arg ... args; ^this.value(args) }
-	kr { arg ... args; ^this.value(args) }
-	outSpec {
-		^b.outSpec
-	}
-	maxArgs { ^this.argsSize }
-	argsSize { ^argNames.size }
+    value { arg ... args;
+        ^this.valueArray(args)
+    }
+    valueArray { arg args;
+        var f;
+        f = a.value( args.copyRange(0,a.argsSize-1) );
+        ^b.value( [f] ++ args.copyToEnd(a.argsSize) )
+    }
 
-	initAt { arg i;  ^(defArgs.at(i) ?? {specs.at(i).tryPerform(\default)}) }
-	argNameAt { arg i;
-		^argNames[i]
-	}
-	defArgAt { arg i;
-		^defArgs.at(i)
-	}
-	funcDef { ^nil }
-	storeableFuncReference { ^this }
-	asString { ^this.dotNotation }
-	asInstr { ^this }
-	guiClass { ^CompositeInstrGui }
+    ar { arg ... args; ^this.value(args) }
+    kr { arg ... args; ^this.value(args) }
+    outSpec {
+        ^b.outSpec
+    }
+    maxArgs { ^this.argsSize }
+    argsSize { ^argNames.size }
+
+    initAt { arg i;  ^(defArgs.at(i) ?? {specs.at(i).tryPerform(\default)}) }
+    argNameAt { arg i;
+        ^argNames[i]
+    }
+    defArgAt { arg i;
+        ^defArgs.at(i)
+    }
+    funcDef { ^nil }
+    storeableFuncReference { ^this }
+    asString { ^this.dotNotation }
+    asInstr { ^this }
+    guiClass { ^CompositeInstrGui }
 }
-	
-	
+
+
 // see Interface
 InterfaceDef : Instr {
 
-	var <>onLoad,
-		<>onPlay,
-		<>onStop,
-		<>onFree,
+    var <>onLoad,
+        <>onPlay,
+        <>onStop,
+        <>onFree,
 
-		<>onNoteOn,
-		<>onNoteOff,
-		<>onPitchBend,
-		<>onCC,
+        <>onNoteOn,
+        <>onNoteOff,
+        <>onPitchBend,
+        <>onCC,
 
-		<guiBodyFunction,
-		<>keyDownAction,
-		<>keyUpAction;
+        <guiBodyFunction,
+        <>keyDownAction,
+        <>keyUpAction;
 
-		// do your own views to handle these
-		//<>beginDragAction,
-		//<>mouseDownAction,
-		//<>mouseUpAction,
-	gui_ { arg function; guiBodyFunction = function; }
+        // do your own views to handle these
+        //<>beginDragAction,
+        //<>mouseDownAction,
+        //<>mouseUpAction,
+    gui_ { arg function; guiBodyFunction = function; }
 
 }
 
