@@ -6,11 +6,12 @@ InstrBrowser {
 		toolbarFunc: arg layout,instr
 	*/
 
-    var <>toolbarFunc,lv,frame;
+    var <>toolbarFunc,<>topBarFunc,lv,frame;
     var instrs,ugenInstrs,<>rate=nil,<>showUGenInstr=true,<>inputSpec,<>outputSpec;
+    var <>filterFunc;
 
-    *new { arg toolbarFunc,showUGenInstr=false;
-        ^super.newCopyArgs(toolbarFunc).showUGenInstr_(showUGenInstr).init
+    *new { arg toolbarFunc,topBarFunc,showUGenInstr=false;
+        ^super.newCopyArgs(toolbarFunc,topBarFunc).showUGenInstr_(showUGenInstr).init
     }
     gui { arg layout,bounds;
         this.guiBody( layout.asFlowView(bounds ?? {Rect(100,0,1000,Window.screenBounds.height - 50)} ) );
@@ -19,7 +20,9 @@ InstrBrowser {
         var search,rateFilter;
         search = TextField(layout,Rect(0,0,240,17));
         search.string = "";
-        search.keyDownAction = {true};
+        if(GUI.id != 'qt',{
+            search.keyDownAction = {true};
+        });
         search.action = {this.search(search.value)};
 
         rateFilter = PopUpMenu(layout,120@17);
