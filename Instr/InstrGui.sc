@@ -76,6 +76,18 @@ UGenInstrGui : InstrGui {
 	}
 }
 
+
+PappliedInstrGui : InstrGui {
+
+    writeName { arg layout;
+        CXLabel(layout,"Partial application of:");
+        ActionButton(layout,model.a.dotNotation,{
+            model.a.gui
+        });
+    }
+}
+
+
 CompositeInstrGui : InstrGui {
 	
 	guiBody { arg layout;
