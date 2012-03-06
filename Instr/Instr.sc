@@ -317,11 +317,11 @@ Instr  {
         symbolized = this.symbolizeName(name);
         search = Library.atList([this] ++ symbolized);
         if(search.notNil,{ ^search });
-        symbolized.debug("Instr not found, loading file...");
+        symbolized.debug("Instr does not exist. Loading from file");
         this.findFileFor(symbolized);
 
         // its either loaded now or its nil
-        ^Library.atList([this] ++ symbolized);
+        ^Library.atList([this] ++ symbolized) ?? {("Instr " + symbolized + "still not found after loading from file").warn; nil};
     }
     *findFileFor { arg symbolized;
         var quarkInstr,found;
@@ -337,58 +337,39 @@ Instr  {
         });
         ^nil
     }
-    // .rtf .txt .sc .scd or plain
-    *findFileInDir { arg symbolized, rootPath,
-                        fullInstrName;// only needed for recursion
-        var pathParts,pathPartsFirst;
+    // .scd .rtf .txt
+    *findFileInDir { arg symbolized, rootPath;
+		var pathParts;
 
-        pathParts = symbolized.collect(_.asString);
+		pathParts = symbolized.collect(_.asString);
+		pathParts.size.do { arg i;
+			var pn;
+			pn = rootPath +/+ pathParts[ (0..pathParts.size - i - 1)].join(thisProcess.platform.pathSeparator);
+			
+			(pn ++ ".*").pathMatch.do { arg path;
+				var pathName;
+				var symbols,orcname;
+				pathName = PathName(path);
+				if(["scd","rtf","txt"].includesEqual( pathName.extension ),{
+					path.load;
 
-        pathPartsFirst = pathParts.first;
-        if(fullInstrName.isNil,{ fullInstrName = symbolized.copy });
+					orcname = pathName.fileNameWithoutExtension;
 
-        // if its a multi-part name then could be
-        // [\synths,\stereo,\SinOsc,\pmod]
-        // possible files:
-        // synths.scd
-        // or synths/stereo.scd
-        // or synths/stereo/SinOsc/pmod.scd
+					// set path on all those within this file that we just loaded
+					symbols = [];
+					symbolized.any({ |n|
+						n = n.asSymbol;
+						symbols = symbols.add(n);
+						n === orcname.asSymbol
+					});
+					Instr.leaves(symbols).do({ |instr| instr.path = path });
+					^path
+				})
+			}
+		};
+		^nil
+	}
 
-        (rootPath++"*").pathMatch.do({ |path|
-            var file,orcname,symbols,pn;
-            file = path.copyRange(rootPath.size,path.size-1);
-            if(PathName(file).isFolder,{
-                if(file.copyRange(0,file.size-2) == pathPartsFirst,{
-                    ^this.findFileInDir(symbolized.copyRange(1,symbolized.size-1),
-                                        rootPath ++ file,
-                                        fullInstrName );
-                });
-            },{
-                pn = PathName(file);
-                if(["scd","rtf",""].includesEqual(pn.extension),{
-                    orcname = pn.fileNameWithoutExtension;
-                    if(orcname == pathPartsFirst,{
-                        ("Loading instr file:" + path).debug(orcname);
-
-                        // compiles and creates all Instr
-                        // which are now findable in the Library
-                        path.load;
-
-                        // set path on all those within this file that we just loaded
-                        symbols = [];
-                        fullInstrName.any({ |n|
-                            symbols = symbols.add(n.asSymbol);
-                            n.asSymbol === orcname.asSymbol
-                        });
-                        Instr.leaves(symbols).do({ |instr| instr.path = path });
-                        ^path
-                    });
-                })
-            });
-        });
-
-        ^nil
-    }
     dotNotation { // "dir.subdir.file.instrName"
         ^String.streamContents({ arg s;
             name.do({ arg n,i;
