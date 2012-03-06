@@ -673,7 +673,8 @@ PappliedInstr : Instr { // partial application
                     if(args.notEmpty,{
                         args.removeAt(0)
                     },{
-                        nil
+						// ordinarily function would fill in unsupplied args with defArgs
+                        a.defArgAt(i)
                     })
                 },{
                     appliedArgs[pindices[i]]
