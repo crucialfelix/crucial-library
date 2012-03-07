@@ -1,6 +1,9 @@
 
 + Instr {
 	asInstr {}
+	instr { arg ...args;
+		^this.valueArray(args)
+	}
 }
 + InterfaceDef {
 	asInterfaceDef {}
