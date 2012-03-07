@@ -337,7 +337,7 @@ DictionaryEditor : Editor {
 		var edited;
 		edited = editing.copy;
 		edited.keysValuesDo { arg k,v;
-			edited.put(k, v.value )
+			edited.put(k, v.dereference )
 		};
 		^edited
 	}
