@@ -708,39 +708,51 @@ PappliedInstr : Instr { // partial application
 
 CompositeInstr : PappliedInstr {
 
-    // output of a goes to the first input of b
+    // output of a goes to the {index} input of b
 
-    var <>b;
+    var <>b,<>index=0;
 
-    *new { arg a,b;
-        ^super.prNew.a_(a.asInstr).b_(b.asInstr).init
+    *new { arg a,b,index=0;
+        ^super.prNew.a_(a.asInstr).b_(b.asInstr).index_(index).init
     }
     storeArgs {
-        ^[a.dotNotation,b.dotNotation]
+        ^[a.dotNotation,b.dotNotation,index]
     }
     init {
         var compname;
         compname = a.name.last ++ "|" ++ b.name.last;
-        name = ['<>>', (a.dotNotation ++ "|" ++ b.dotNotation)];
-        specs = a.specs ++ b.specs.copyToEnd(1);
+        name = ['<>>', (a.dotNotation ++ "|@" ++ index ++ "|" ++ b.dotNotation)];
+        specs = a.specs ++ b.specs.select({ arg sp,i; i != index });
         explicitSpecs = [];
         argNames = a.argNames.copy;
-        b.argNames.copyToEnd(1).do { |an|
-            if(argNames.includes(an),{
-                argNames = argNames.add( (b.name.last.asString ++ "_" ++ an.asString).asSymbol )
-            },{
-                argNames = argNames.add( an )
-            })
+        b.argNames.do { |an,i|
+			if(i != index,{
+				if(argNames.includes(an),{
+					argNames = argNames.add( (b.name.last.asString ++ "_" ++ an.asString).asSymbol )
+				},{
+					argNames = argNames.add( an )
+				})
+			})
         };
-        defArgs = a.defArgs ++ b.defArgs.copyToEnd(1);
+        defArgs = a.defArgs ++ b.defArgs.select({ arg da,i; i != index });
         this.class.put(this);
         this.class.changed(this);
     }
 
     valueArray { arg args;
-        var f;
-        f = a.value( args.copyRange(0,a.argsSize-1) );
-        ^b.value( [f] ++ args.copyToEnd(a.argsSize) )
+        var f,second,defArgs;
+        f = a.valueArray( args.copyRange(0,a.argsSize-1);
+
+		second = b.defArgs;
+		second[index] = f;
+		args.copyToEnd(a.argsSize).do { arg ag,i;
+			if(i < index,{
+				second[i] = ag
+			},{
+				second[i+1] = ag
+			})
+		};
+        ^b.valueArray( second )
     }
 
     outSpec {
