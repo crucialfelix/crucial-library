@@ -741,7 +741,7 @@ CompositeInstr : PappliedInstr {
 
     valueArray { arg args;
         var f,second,defArgs;
-        f = a.valueArray( args.copyRange(0,a.argsSize-1);
+        f = a.valueArray( args.copyRange(0,a.argsSize-1) );
 
 		second = b.defArgs;
 		second[index] = f;
