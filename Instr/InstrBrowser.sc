@@ -18,6 +18,7 @@ InstrBrowser {
     }
     guiBody { arg layout;
         var search,rateFilter;
+        ActionButton(layout,"Load all Instr",{ Instr.loadAll });
         search = TextField(layout,Rect(0,0,240,17));
         search.string = "";
         if(GUI.id != 'qt',{
