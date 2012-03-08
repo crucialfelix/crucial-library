@@ -118,7 +118,7 @@ InstrSynthDef : SynthDef {
 		if(firstName.size > 18,{
 			firstName = firstName.copyRange(0,16);
 		});
-		name = firstName ++ "#" ++ longName.hash;
+		name = firstName ++ "#" ++ longName.hash.asStringToBase(36);
 		^[longName,name]
 	}
 
