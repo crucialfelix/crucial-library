@@ -341,7 +341,21 @@ InstrSynthDef : SynthDef {
 			Library.global.removeAt(SynthDef,s,defName.asSymbol);
 		})
 	}
-	
+	*freeDef { arg defName,server;
+		(server ? Server.allRunningServers).do({ |s|
+			s.sendMsg("/d_free",defName);
+			Library.global.removeAt(SynthDef,s,defName.asSymbol);
+		})
+	}
+	*freeAll { arg server;
+		(server ? Server.allRunningServers).do({ |s|
+			Library.at(SynthDef,s).keys.do({ arg defName;
+				s.sendMsg("/d_free",defName);
+				Library.global.removeAt(SynthDef,s,defName.asSymbol);
+			})
+		})
+	}
+			
 	*buildSynthDef {
 		var sd;
 		sd = UGen.buildSynthDef;
