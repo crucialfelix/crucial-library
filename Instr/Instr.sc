@@ -640,7 +640,14 @@ PappliedInstr : Instr { // partial application
         ^super.prNew.a_(a.asInstr).appliedArgs_(args).init
     }
     storeArgs {
-        ^[a.dotNotation,appliedArgs]
+		var ans;
+		ans = ();
+		a.argNames.do { arg an,i;
+			if(appliedArgs[i].notNil,{
+				ans[an] = appliedArgs[i]
+			})
+		};
+        ^[if(a.class==Instr,{a.dotNotation},{a}), ans]
     }
     appliedArgs_ { arg args;
         if(args.isKindOf(Dictionary),{
@@ -716,7 +723,9 @@ CompositeInstr : PappliedInstr {
         ^super.prNew.a_(a.asInstr).b_(b.asInstr).index_(index).init
     }
     storeArgs {
-        ^[a.dotNotation,b.dotNotation,index]
+        ^[	if(a.class==Instr,{a.dotNotation},{a}),
+			if(b.class==Instr,{b.dotNotation},{b}),
+			index]
     }
     init {
         var compname;
