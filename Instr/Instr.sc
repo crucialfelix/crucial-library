@@ -728,7 +728,7 @@ CompositeInstr : PappliedInstr {
         b.argNames.do { |an,i|
 			if(i != index,{
 				if(argNames.includes(an),{
-					argNames = argNames.add( (b.name.last.asString ++ "_" ++ an.asString).asSymbol )
+					argNames = argNames.add( this.findUniqueNameForArg(an,argNames) )
 				},{
 					argNames = argNames.add( an )
 				})
@@ -738,6 +738,16 @@ CompositeInstr : PappliedInstr {
         this.class.put(this);
         this.class.changed(this);
     }
+	findUniqueNameForArg { arg argName,argNames;
+		var sy;
+		argName = argName.asString;
+		inf.do { arg i;
+			sy = (argName ++ (i+2).asString).asSymbol;
+			if(argNames.includes(sy).not,{
+				^sy
+			})
+		}
+	}
 
     valueArray { arg args;
         var f,second,defArgs;
