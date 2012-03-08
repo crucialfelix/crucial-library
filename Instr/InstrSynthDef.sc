@@ -121,6 +121,26 @@ InstrSynthDef : SynthDef {
 		name = firstName ++ "#" ++ longName.hash.asStringToBase(36);
 		^[longName,name]
 	}
+	*hashEncode { arg object;
+		var fromdigits,todigits,res,x=0,digit;
+		fromdigits = "-0123456789";
+		todigits = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890";
+		object.hash.asString.do { arg char;
+			x = x * fromdigits.size + fromdigits.indexOf(char);
+		};
+		if(x == 0,{
+			^todigits[0]
+		});
+		res = "";
+		loop {
+			digit = x % todigits.size;
+			res = todigits[digit].asString ++ res;
+			x = (x / todigits.size).floor.asInteger;
+			if(x <= 0,{
+				^res
+			})
+		}
+	}
 
 	// passed to Instr function but not to synth
 	addInstrOnlyArg { arg name,value;
