@@ -236,7 +236,7 @@ BooleanEditorGui : EditorGui {
 	guiBody { arg layout,bounds;
 		var bg,b,skin;
 		skin = GUI.skin;
-		if(bounds.isNil,{ bounds = layout.bounds; });
+		bounds = (bounds ?? { layout.bounds; }).asRect;
 
 		b = Rect(0,0,skin.buttonHeight,skin.buttonHeight);
 		if(bounds.notNil,{
