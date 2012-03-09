@@ -35,10 +35,8 @@ SynthConsole : AbstractConsole  {
 		ActionButton(layout,"scope",{this.doScope(duration)})
 	}
 	fftScope {
-		if(SCFreqScope.notNil,{
-			ActionButton(layout,"FreqScope",{this.doFreqScope})
-				.background_(Color.green);
-		})
+		ActionButton(layout,"FreqScope",{this.doFreqScope})
+			.background_(Color.green);
 	}
 	record { arg defpath;
 		/*if(defpath.notNil,{ defaultPath = defpath });
@@ -82,9 +80,11 @@ SynthConsole : AbstractConsole  {
 	    this.ugenFunc.scope(duration)
 	}
 	doFreqScope {
-		if(SCFreqScopeWindow.notNil,{
-			SCFreqScopeWindow(400, 200, 0);
-		})
+		var w,f;
+		w = Window("Freq Scope", Rect(0, 0, 511, 300));
+		f = FreqScopeView(w, w.view.bounds);
+		w.onClose_({ f.kill });
+		w.front;	
 	}
 
 	doStop { arg stopFunc;
