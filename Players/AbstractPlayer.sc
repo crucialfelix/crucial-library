@@ -141,7 +141,11 @@ AbstractPlayer : AbstractFunction  {
 	}
 	topMakePatchOut { arg agroup,private = false,bus;
 		this.group = agroup;
-		bus = bus ?? {BusSpec(this.rate,this.numChannels,private)};
+		bus = bus ?? {
+			BusSpec(this.rate,
+					this.numChannels ?? {Error("numChannels is nil"+this).throw},
+					private)
+		};
 		if(patchOut.isNil,{
 			patchOut = PatchOut(this,group,bus)
 		});
