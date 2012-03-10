@@ -75,10 +75,16 @@ KeyResponder : UnicodeResponder {
 		var r;
 		r = keycodes.at(keycode);
 		if(r.notNil,{
-			^r.value(view,keycode,modifier)
+			r.value(view,keycode,modifier);
+			^true
 		},{
-			^this.at(unicode).value(view, unicode,modifier)
-		})
+			r = this.at(unicode);
+			if(r.notNil,{
+				r.value(view, unicode,modifier)
+				^true
+			})
+		});
+		^false
 	}
 
 	registerKeycode { arg keycode,shift,caps,opt,cntl,function,description;
