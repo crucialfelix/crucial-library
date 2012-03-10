@@ -52,7 +52,7 @@ KeyResponder : UnicodeResponder {
 			// because modifiers change and keycodes don't
 			// ['enter', 16777221, 76], // numerical pad
 		].do { arg ll;
-			keycodeMap['qt'][ll[0]] = ll[1];
+			keycodeMap['qt'][ll[0]] = ll[2];
 			keycodeMap['cocoa'][ll[0]] = ll[2];
 		};
 	}
