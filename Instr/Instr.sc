@@ -323,7 +323,7 @@ Instr  {
         symbolized = this.symbolizeName(name);
         search = Library.atList([this] ++ symbolized);
         if(search.notNil,{ ^search });
-        symbolized.debug("Instr does not exist. Loading from file");
+        symbolized.debug("Instr not loaded. Loading from file");
         this.findFileFor(symbolized);
 
         // its either loaded now or its nil
@@ -664,8 +664,8 @@ PappliedInstr : Instr { // partial application
     }
     init {
         var compname;
-        compname = a.name.last ++ "|" ++ appliedArgs.hash;
-        name = ['_papply', (a.dotNotation ++ "|" ++ appliedArgs.hash)];
+        compname = a.name.last ++ "|" ++ InstrSynthDef.hashEncode(appliedArgs);
+        name = ['_papply', (a.dotNotation ++ "|" ++ InstrSynthDef.hashEncode(appliedArgs))];
         specs = a.specs.select({ arg sp,i; appliedArgs[i].isNil });
         explicitSpecs = [];
         argNames = a.argNames.select({ arg sp,i; appliedArgs[i].isNil });
