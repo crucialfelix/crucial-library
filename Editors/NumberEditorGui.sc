@@ -16,9 +16,9 @@ NumberEditorGui : EditorGui {
 		this.box(l,Rect(0,0,40,GUI.skin.buttonHeight));
 		if(layout.isNil,{ l.front });
 	}
-	guiBody { arg layout,slider=true, box=true;
-		var bounds,h,w;
-		bounds = layout.indentedRemaining;
+	guiBody { arg layout,bounds,slider=true, box=true;
+		var h,w;
+		bounds = (bounds ?? {layout.indentedRemaining}).asRect;
 
 		// massive space,
 			// box, slider horz
@@ -267,12 +267,20 @@ BooleanEditorGui : EditorGui {
 
 DictionaryEditorGui : EditorGui {
 	
-	guiBody { arg layout,bounds;
+	var <>onSave;
+	
+	guiBody { arg layout,bounds,onSave;
+		this.onSave = onSave;
 		model.editing.keysValuesDo { arg k,v;
 			layout.startRow;
 			ArgNameLabel(k,layout,minWidth:100);
 			v.gui(layout)
-		}
+		};
+		if(this.onSave.notNil,{
+			ActionButton(layout.startRow,"SAVE",{
+				this.onSave.value(model.value)
+			})
+		})
 	}
 }
 
