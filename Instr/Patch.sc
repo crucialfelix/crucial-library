@@ -369,7 +369,7 @@ Patch : HasPatchIns  {
 			if(what == 'n_end',{
 				this.children.do(_.stop);
 				stepChildren.do(_.stop);
-				status = \isStopped;
+				this.prSetStatus(\isStopped);
 			});
 			^this.changed(status)
 		});

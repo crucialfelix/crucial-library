@@ -301,7 +301,7 @@ VSFP : SFP {
 	}
 	didSpawn {
 		//super.didSpawn;
-		status = \isPlaying;
+		this.prSetStatus(\isPlaying);
 		/*
 		 * the tank tread algorithm
 		 */
