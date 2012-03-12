@@ -68,6 +68,10 @@ AbstractPlayer : AbstractFunction  {
 		this.spawnToBundle(bundle);
 		bundle.sendAtTime(this.server,atTime ? this.defaultAtTime,timeOfRequest);
 	}
+	prSetStatus { arg newStatus;
+		status = newStatus;
+		NotificationCenter.notify(this,\statusDidChange,status);
+	}
 	isPrepared {
 		^#[\readyForPlay, \isPlaying,\isStopped, \isStopping].includes(status)
 	}
@@ -79,10 +83,10 @@ AbstractPlayer : AbstractFunction  {
 	}
 
 	prepareToBundle { arg agroup,bundle,private = false, bus;
-		status = \isPreparing;
+		this.prSetStatus(\isPreparing);
 		bundle.addFunction({
 			if(status == \isPreparing,{
-				status = \readyForPlay;
+				this.prSetStatus(\readyForPlay);
 			})
 		});
 		group = agroup.asGroup;
@@ -194,7 +198,7 @@ AbstractPlayer : AbstractFunction  {
 		this.spawnToBundle(bundle);
 	}
 	didSpawn {
-		status = \isPlaying;
+		this.prSetStatus(\isPlaying);
 	}
 
 	isPlaying { ^synth.isPlaying ? false }
@@ -218,7 +222,7 @@ AbstractPlayer : AbstractFunction  {
 	}
 	stopToBundle { arg bundle;
 		if([\isStopped,\isStopping,\isFreed,\isFreeing].includes(status).not,{
-			status = \isStopping;
+			this.prSetStatus(\isStopping);
 			this.children.do({ arg child;
 				child.stopToBundle(bundle);
 			});
@@ -228,7 +232,7 @@ AbstractPlayer : AbstractFunction  {
 	}
 	didStop {
 		if(status === \isStopping,{
-			status = \isStopped;
+			this.prSetStatus(\isStopped);
 			NotificationCenter.notify(this,\didStop);
 		});
 	}
@@ -272,14 +276,14 @@ AbstractPlayer : AbstractFunction  {
 			this.freeResourcesToBundle(bundle);
 			this.freePatchOutToBundle(bundle);
 
-			status = \isFreeing;
+			this.prSetStatus(\isFreeing);
 			bundle.addMessage(this,\didFree);
 		})
 	}
 	freeResourcesToBundle {}
 	didFree {
 		if(status == \isFreeing,{
-			status = \isFreed;
+			this.prSetStatus(\isFreed);
 			^true
 		},{
 			^false
@@ -669,7 +673,7 @@ AbstractPlayerProxy : AbstractPlayer { // won't play if source is nil
 	isPlaying { ^status == \isPlaying }
 	didSpawn {
 		super.didSpawn;
-		status = \isPlaying;
+		this.prSetStatus(\isPlaying);
 		if(this.source.notNil, {
 			socketStatus = \isPlaying;
 		});
@@ -688,7 +692,7 @@ AbstractPlayerProxy : AbstractPlayer { // won't play if source is nil
 	didStop {
 		//isPlaying = false;
 		//isSleeping = true;
-		status = \isStopped;
+		this.prSetStatus(\isStopped);
 		socketStatus = \isSleeping;
 	}
 	children {
