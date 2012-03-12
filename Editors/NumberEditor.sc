@@ -160,6 +160,21 @@ NumberEditor : Editor {
 	copy { ^this.class.new(value,spec) }
 	guiClass { ^NumberEditorGui }
 
+	*bind { arg model,varname,spec,layout,bounds,labelWidth=100;
+		// create an editor on layout for <>varname on model using spec
+		var setter,e,g;
+		layout = layout.asFlowView(bounds);
+		CXLabel(layout,varname.asString,width:labelWidth);
+		setter = (varname.asString ++ "_").asSymbol;
+		e = this.new(model.perform(varname.asSymbol),spec).action_({ arg n; model.perform(setter, n.value) });
+		layout.removeOnClose(
+			Updater(model,{
+				e.value = model.perform(varname.asSymbol)
+			})
+		);
+		g = e.gui(layout,bounds);
+		^g		
+	}
 }
 
 
