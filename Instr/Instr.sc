@@ -82,17 +82,23 @@ Instr  {
             ^instr.valueArray(args)
         })
     }
+    convertArgs { arg args;
+        if(args.isKindOf(Dictionary),{
+	        ^this.argNames.collect({ arg an,i; args.at(an) ?? {this.defArgAt(i)} })
+        });
+        ^args ? []
+    }	    
     ar { arg ... inputs;
         ^func.valueArray(inputs);
     }
     value { arg inputs;
-        ^func.valueArray(inputs ? [])
+        ^func.valueArray(this.convertArgs(inputs))
     }
     valueEnvir { arg inputs;
         ^func.valueArrayEnvir(inputs ? []);
     }
     valueArray { arg inputs;
-        ^func.valueArray(inputs)
+        ^func.valueArray(this.convertArgs(inputs))
     }
     *kr { arg name, args;
         ^this.ar(name,args)
@@ -103,15 +109,15 @@ Instr  {
     asSynthDef { arg args,outClass=\Out;
         var synthDef;
         synthDef = InstrSynthDef.new;
-        synthDef.build(this,args ? [],outClass);
+        synthDef.build(this,this.convertArgs(args),outClass);
         ^synthDef
     }
-    writeDefFile { arg dir;
-        this.asSynthDef.writeDefFile(dir);
+    writeDefFile { arg dir,args;
+        this.asSynthDef(args).writeDefFile(dir);
     }
-    write { arg dir;
+    write { arg dir,args;
         var synthDef;
-        synthDef = this.asSynthDef;
+        synthDef = this.asSynthDef(args);
         synthDef.writeDefFile(dir);
     }
     // for use in patterns
@@ -190,7 +196,7 @@ Instr  {
 
     argNameAt { arg i;
         var nn;
-        nn=func.def.argNames;
+        nn = func.def.argNames;
         ^if(nn.notNil,{nn.at(i)},nil);
     }
     defArgAt { arg i;
