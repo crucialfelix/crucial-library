@@ -36,6 +36,9 @@ AudioSpec : Spec {
 	canAccept { arg thing;
 		^(thing.isKindOf(AbstractPlayer) and: { thing.spec == this })
 	}
+	constrain { arg ... args;
+		Error("AudioSpec cannot constrain").throw;
+	}
 }
 
 
