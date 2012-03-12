@@ -215,10 +215,6 @@ Crucial {
 		ActionButton(menu.startRow,"Listen to Buses",{
 			Library.at(\menuItems,\tools,'listen to audio busses').value;		},minWidth: width);
 
-		ActionButton(menu.startRow,"Gui debugger",{
-			Library.at(\menuItems,\tools,\guiDebugger).value;
-		},minWidth: width);
-
 		ActionButton(menu.startRow,"Annotated Nodes",{
 			Library.at(\menuItems,\tools,'Server Node Report').value;		},minWidth: width);
 
@@ -302,63 +298,6 @@ Crucial {
 		    KeyCodeResponder.tester;
 		});
 
-
-		Library.put(\menuItems,\tools,\guiDebugger,{
-			var g;
-			CXMenu.newWith(
-				GUI.window.allWindows.collect({ |w|
-					w.name -> {
-						Sheet({ |f|
-							f.flow({ |f|
-								g.value(w.view,f)
-							}).reflowDeep.resizeToFit;
-						},"GUI: " + w.name)
-						.resizeToFit
-					}
-				})
-			).gui;
-
-			g = { arg view,f,indent=0;
-					f.startRow;
-					GUI.staticText.new(f,10@17).background_(Color.clear);
-					f.flow({ |f|
-						var oldColor,x;
-						if(view.respondsTo(\background),{
-							if(view.isKindOf(SCViewHolder),{
-								oldColor = view.background;
-							},{
-								oldColor = view.background;
-							});
-							ToggleButton(f,view.asString,{
-								// various views wont be that noticeable
-								// some highlight/focus is needed
-								view.background = Color.cyan;
-								if(view.canFocus ? false,{view.focus});
-							},{
-								view.background = oldColor ? Color.clear;
-							});
-							InspButton.icon(view,f);
-						},{
-							InspButton(view,f);
-						});
-						x = view.bounds.asString.gui(f);
-						if(view.respondsTo(\parent)
-							and: {view.parent.notNil}
-							and: {view.parent.respondsTo('absoluteBounds')}
-							and: {view.parent.absoluteBounds.containsRect(view.absoluteBounds).not},{
-							x.background_(Color.red);
-							"View exceeds parent bounds !".gui(f);
-							(view.asString + "bounds exceeds parent !").warn;
-						});
-						if(view.respondsTo(\children),{
-							view.children.do({ |kiddy|
-								g.value(kiddy,f,25);
-							});
-						});
-					},Rect(indent,0,f.bounds.width,f.bounds.height))
-					.background_(Color.cyan(0.1,alpha: 0.08))
-				};
-		});
 		/*Library.put(\menuItems,\post,'post color...',{
 			GetColorDialog("Color",Color.white,{ arg ok,color;
 				if(ok,{ color.post;})
