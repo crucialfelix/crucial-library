@@ -28,7 +28,7 @@ NumberEditorGui : EditorGui {
 			h = min(h, GUI.skin.buttonHeight);
 			w = min(w, GUI.skin.buttonHeight * 16);
 			if(box, { this.box(layout,Rect(0,0,40,h)); });
-			if(slider,{ this.slider(layout,Rect(0,0,w-40-4,h)); });
+			if(slider,{ this.slider(layout,Rect(0,0,w-40-(GUI.skin.gap.x*2),h)); });
 			^this
 		});
 		// width < height
