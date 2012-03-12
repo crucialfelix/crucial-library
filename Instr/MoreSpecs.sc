@@ -130,7 +130,7 @@ FFTSpec : Spec {
 		])
 	}	
 	defaultControl {
-		^Patch(Instr("FFTblank",{FFT(LocalBuf(2048),Silent.ar)}))
+		^Patch(Instr("FFTblank",{FFT(LocalBuf(2048),Silent.ar)},[],\fft))
 	}
 }
 
