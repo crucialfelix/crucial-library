@@ -211,6 +211,44 @@ AbstractPlayer : AbstractFunction  {
 		// sending the OSC is irrelevant since the root node already freed
 	}
 
+	onPlay { arg func,timeout,listener,oneShot=true,throwErrorOnTimeout=nil;
+		^this.prOn(\isPlaying,func,timeout,listener,oneShot,throwErrorOnTimeout)
+	}
+	onStop { arg func,timeout,listener,oneShot=true,throwErrorOnTimeout=nil;
+		^this.prOn(\isStopped,func,timeout,listener,oneShot,throwErrorOnTimeout)
+	}
+	onReady { arg func,timeout,listener,oneShot=true,throwErrorOnTimeout=nil;
+		^this.prOn(\readyForPlay,func,timeout,listener,oneShot,throwErrorOnTimeout)
+	}
+	freeOnStop {
+		^this.prOn(\isStopped,{this.free},nil,this,true,false)
+	}
+	prOn { arg status,func,timeout,listener,oneShot=true,throwErrorOnTimeout=nil;
+		var nr,key,happened=false,msg;
+		key = [listener ? func,status];
+		nr = NotificationCenter.register(this,\statusDidChange,key ,{ arg newStatus;
+				if(newStatus === status,{
+					if(oneShot,{ nr.remove; happened=true });
+					func.value(this)
+				})
+			});
+		if(timeout.notNil,{
+			{
+				if(happened.not,{
+					msg = status.asString + "timeout" +this+listener;
+					if(throwErrorOnTimeout,{ 
+						Error(msg).throw
+					},{
+						msg.warn
+					});
+					nr.remove
+				});
+				nil
+			}.defer(timeout)
+		});
+		^nr
+	}
+
 	// these always call children
 	stop { arg atTime;
 		if(server.notNil,{
