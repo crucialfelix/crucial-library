@@ -160,8 +160,8 @@ InstrSpawner : Patch {
 
 	spawnToBundle { arg bundle;
 		if(patchOut.isNil,{
-			(thisMethod.asString
-				+ "patchOut is nil. This has not been prepared for play.").die(this);
+			Error(thisMethod.asString
+				+ "patchOut is nil. This has not been prepared for play." + this).throw;
 		});
 		this.makeTask;
 

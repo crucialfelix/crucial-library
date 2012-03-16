@@ -118,8 +118,28 @@ InstrSynthDef : SynthDef {
 		if(firstName.size > 18,{
 			firstName = firstName.copyRange(0,16);
 		});
-		name = firstName ++ "#" ++ longName.hash;
+		name = firstName ++ "#" ++ this.hashEncode(longName);
 		^[longName,name]
+	}
+	*hashEncode { arg object;
+		var fromdigits,todigits,res,x=0,digit;
+		fromdigits = "-0123456789";
+		todigits = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890";
+		object.hash.asString.do { arg char;
+			x = x * fromdigits.size + fromdigits.indexOf(char);
+		};
+		if(x == 0,{
+			^todigits[0]
+		});
+		res = "";
+		loop {
+			digit = x % todigits.size;
+			res = todigits[digit].asString ++ res;
+			x = (x / todigits.size).floor.asInteger;
+			if(x <= 0,{
+				^res
+			})
+		}
 	}
 
 	// passed to Instr function but not to synth
@@ -248,6 +268,9 @@ InstrSynthDef : SynthDef {
 		outputProxies = nil;
 		instr = nil; // could hold onto stuff
 	}
+	instr {
+		^(instr ?? {instrName.asInstr})
+	}
 	buildErrorString {
 		^String.streamContents({ arg stream;
 				stream << Char.nl << "ERROR: Instr build failed; " <<< instr << Char.nl;
@@ -318,7 +341,21 @@ InstrSynthDef : SynthDef {
 			Library.global.removeAt(SynthDef,s,defName.asSymbol);
 		})
 	}
-	
+	*freeDef { arg defName,server;
+		(server ? Server.allRunningServers).do({ |s|
+			s.sendMsg("/d_free",defName);
+			Library.global.removeAt(SynthDef,s,defName.asSymbol);
+		})
+	}
+	*freeAll { arg server;
+		(server ? Server.allRunningServers).do({ |s|
+			Library.at(SynthDef,s).keys.do({ arg defName;
+				s.sendMsg("/d_free",defName);
+				Library.global.removeAt(SynthDef,s,defName.asSymbol);
+			})
+		})
+	}
+			
 	*buildSynthDef {
 		var sd;
 		sd = UGen.buildSynthDef;

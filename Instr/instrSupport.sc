@@ -1,6 +1,9 @@
 
 + Instr {
 	asInstr {}
+	instr { arg ...args;
+		^this.valueArray(args)
+	}
 }
 + InterfaceDef {
 	asInterfaceDef {}
@@ -30,12 +33,15 @@
 	asInterfaceDef {
 		^InterfaceDef.at(this)
 	}
-	ar { arg ... args;
+	instr { arg ... args;
+	    ^this.asInstr.valueArray(args)
+	}
+	/*ar { arg ... args;
 		^this.asInstr.ar(*args)
 	}
 	kr { arg ... args;
 		^this.asInstr.kr(*args)
-	}
+	}*/
 }
 
 + Class { // eg. SinOsc the class becomes a UGenInstr

@@ -6,20 +6,24 @@ InstrBrowser {
 		toolbarFunc: arg layout,instr
 	*/
 
-    var <>toolbarFunc,lv,frame;
+    var <>toolbarFunc,<>topBarFunc,lv,frame;
     var instrs,ugenInstrs,<>rate=nil,<>showUGenInstr=true,<>inputSpec,<>outputSpec;
+    var <>filterFunc;
 
-    *new { arg toolbarFunc,showUGenInstr=false;
-        ^super.newCopyArgs(toolbarFunc).showUGenInstr_(showUGenInstr).init
+    *new { arg toolbarFunc,topBarFunc,showUGenInstr=false;
+        ^super.newCopyArgs(toolbarFunc,topBarFunc).showUGenInstr_(showUGenInstr).init
     }
     gui { arg layout,bounds;
         this.guiBody( layout.asFlowView(bounds ?? {Rect(100,0,1000,Window.screenBounds.height - 50)} ) );
     }
     guiBody { arg layout;
         var search,rateFilter;
+        ActionButton(layout,"Load all Instr",{ Instr.loadAll });
         search = TextField(layout,Rect(0,0,240,17));
         search.string = "";
-        search.keyDownAction = {true};
+        if(GUI.id != 'qt',{
+            search.keyDownAction = {true};
+        });
         search.action = {this.search(search.value)};
 
         rateFilter = PopUpMenu(layout,120@17);
@@ -33,6 +37,7 @@ InstrBrowser {
                  this.init.refresh;
             })
         };
+        topBarFunc.value(layout,this);
         layout.startRow;
         layout.horz({ arg layout;
             lv = ListView(layout,250@layout.bounds.height);
@@ -88,15 +93,23 @@ InstrBrowser {
                 );
     }
     allInstr {
-	    ^instrs
+        ^instrs
     }
     refresh {
-	    lv.items = instrs;
-	    lv.refresh;
+        if(filterFunc.notNil,{
+            lv.items = instrs.select(filterFunc)
+        },{
+            lv.items = instrs;
+        });
+        lv.refresh;
     }
     // only if gui is active
     search { arg q;
         var base;
+        base = instrs;
+        if(filterFunc.notNil,{
+            base = base.select(filterFunc)
+        });
         if(q != "",{
             lv.items = (instrs.select(_.containsi(q)));
         },{

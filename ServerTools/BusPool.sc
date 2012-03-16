@@ -25,10 +25,13 @@ BusPool {
 		this.watchServer(bus.server);
 	}
 	*release { |bus,client|
-		var dict,key;
+		var dict;
+		if(bus.index.isNil,{
+			("Bus already freed" + bus + client + annotations.at(bus,client)).warn
+		});
 		counts.remove(bus);
 		annotations.removeAt(bus,client);
-		if(counts.itemCount(bus) == 0,{
+		if(counts.itemCount(bus) == 0 and: {bus.index.notNil},{
 			bus.free;
 		})
 	}
@@ -55,7 +58,7 @@ BusPool {
 	*gui {
 		Sheet({ |f|
 			var sortedBusses;
-			sortedBusses = counts.contents.keys.as(Array).sort({ |a,b| a.index < b.index });
+			sortedBusses = counts.contents.keys.as(Array).sort({ |a,b| (a.index?0) < (b.index?0) });
 			sortedBusses.do({ |bus|
 				var count;
 				count = this.itemCount(bus);

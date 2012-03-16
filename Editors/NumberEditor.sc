@@ -100,14 +100,6 @@ Editor {
 					p.mul = Editor.for(p.mul,\mul);
 					p
 				},
-				ModalFreq -> { arg m;
-					m.degree = Editor.for(m.degree,\degree);
-					m.scale = Editor.for(m.scale,\scale);
-					m.root = Editor.for(m.root,\root);
-					m.octave = Editor.for(m.octave,\octave);
-					m.stepsPerOctave = Editor.for(m.stepsPerOctave,\stepsPerOctave);
-					m
-				},
 				
 				Array -> { arg arr; arr.collect({ arg obj; Editor.for(obj) }) },
 				
@@ -168,6 +160,21 @@ NumberEditor : Editor {
 	copy { ^this.class.new(value,spec) }
 	guiClass { ^NumberEditorGui }
 
+	*bind { arg model,varname,spec,layout,bounds,labelWidth=100;
+		// create an editor on layout for <>varname on model using spec
+		var setter,e,g;
+		layout = layout.asFlowView(bounds);
+		CXLabel(layout,varname.asString,width:labelWidth);
+		setter = (varname.asString ++ "_").asSymbol;
+		e = this.new(model.perform(varname.asSymbol),spec).action_({ arg n; model.perform(setter, n.value) });
+		layout.removeOnClose(
+			Updater(model,{
+				e.value = model.perform(varname.asSymbol)
+			})
+		);
+		g = e.gui(layout,bounds);
+		^g		
+	}
 }
 
 
@@ -345,7 +352,7 @@ DictionaryEditor : Editor {
 		var edited;
 		edited = editing.copy;
 		edited.keysValuesDo { arg k,v;
-			edited.put(k, v.value )
+			edited.put(k, v.dereference )
 		};
 		^edited
 	}

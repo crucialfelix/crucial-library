@@ -33,7 +33,7 @@ TempoPlayer : KrPlayer { //Synthless
 	spawnAtTime {}
 	spawnToBundle {}
 	loadDefFileToBundle {}
-	asSynthDef { ("shouldn't call this" + thisMethod).die; }
+	asSynthDef { Error("shouldn't call this" + thisMethod).throw; }
 	spec { ^\tempo.asSpec }
 }
 

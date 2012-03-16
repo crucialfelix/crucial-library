@@ -190,7 +190,7 @@ SFP : AbstractSFP  {
 				name = PathName(soundFilePath).fileName;
 				found = file.openRead(soundFilePath);
 			},{
-				die("SFP-init : not a path or a SoundFile " + sfilePath)
+				Error("SFP-init : not a path or a SoundFile " + sfilePath).throw
 			});
 			if(found.not,{
 				("SFP-init file not found: " + soundFilePath).warn;
@@ -301,7 +301,7 @@ VSFP : SFP {
 	}
 	didSpawn {
 		//super.didSpawn;
-		status = \isPlaying;
+		this.prSetStatus(\isPlaying);
 		/*
 		 * the tank tread algorithm
 		 */

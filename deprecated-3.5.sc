@@ -35,4 +35,37 @@ MultiPageLayout : PageLayout {
 	}
 }
 
++ Instr {
+
+	// this is a tilda delimited version of the name
+	asSingleName {
+		this.deprecated(thisMethod);
+		^String.streamContents({ arg s;
+			name.do({ arg n,i;
+				if(i > 0,{ s << $~ });
+				s << n;
+			})
+		})
+	}
+	*singleNameAsNames { arg singleName;
+		this.deprecated(thisMethod);
+		^singleName.asString.split($~).collect({ arg n; n.asSymbol })
+	}
+}
+
+
++ Object {
+	die { arg ... culprits;
+		"\n\nFATAL ERROR:\n".postln;
+		culprits.do({ arg c; if(c.isString,{c.postln},{c.dump}) });
+		this.dump;
+		Error("FATAL ERROR").throw;
+	}
+	checkKind { arg shouldBeKindOf;
+		if(this.isKindOf(shouldBeKindOf).not,{
+			Error("Type check failed:" + this + "should be kind of:" + shouldBeKindOf).throw;
+		})
+	}
+}
+
 

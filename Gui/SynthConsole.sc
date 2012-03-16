@@ -15,16 +15,56 @@ SynthConsole : AbstractConsole  {
 
 	var <>format, <>duration;
 	var <>ugenFunc,<>onRecordOrWrite;
-	var pauseControl;
-
+	var pauseControl,playControl;
+	
 	var tempoG;
 
 	*new { arg ugenFunc,layout;
-		^super.new.ugenFunc_(ugenFunc).layout_(layout.asFlowView).format_(SoundFileFormats.new)
+		^super.new.ugenFunc_(ugenFunc).layout_(layout.asFlowView).format_(SoundFileFormats.new).init
 	}
-
+	init {
+		NotificationCenter.register(ugenFunc,\statusDidChange,this,{ arg status;
+			{this.update(status)}.defer
+		});
+		layout.removeOnClose(this)
+	}
+	remove {
+		NotificationCenter.removeForListener(this)
+	}
+	update { arg status;
+		// isPreparing, readyForPlay, isPlaying,isStopped, isStopping, isFreeing, isFreed
+		var colors;
+		if(playControl.notNil,{
+			if(playControl.isClosed,{^this.remove});
+			playControl.background = 
+				switch(status,
+					\isPreparing,{ 
+						Color(0.87450980392157, 0.96470588235294, 0.19607843137255, 0.92941176470588)
+					},
+					\readyForPlay, {
+						Color(0.67450980392157, 1.0,0)
+					},
+					\isPlaying, {
+						Color(0.27058823529412, 1.0,0.0)
+					},
+					\isStopping, {
+						Color(0.96470588235294, 0.63529411764706, 0.4078431372549, 0.35294117647059)
+					},					
+					\isStopped, {
+						Color(0.9843137254902, 1.0, 0.1843137254902)
+					},
+					\isFreeing, {
+						Color(0.0, 0.96470588235294, 0.91372549019608, 0.28627450980392)
+					},
+					\isFreed, {
+						Color(0.0, 0.96470588235294, 0.91372549019608, 0.082352941176471)
+					},
+					Color(0.0, 0.86567164179104, 0.28425038984184)
+				);
+		})					
+	}
 	play {
-		ActionButton(layout,">",{this.doPlay })
+		playControl = ActionButton(layout,">",{this.doPlay })
 		    .background_(Color(0.0, 0.86567164179104, 0.28425038984184));
 	}
 	prepare {
@@ -35,10 +75,8 @@ SynthConsole : AbstractConsole  {
 		ActionButton(layout,"scope",{this.doScope(duration)})
 	}
 	fftScope {
-		if(SCFreqScope.notNil,{
-			ActionButton(layout,"FreqScope",{this.doFreqScope})
-				.background_(Color.green);
-		})
+		ActionButton(layout,"FreqScope",{this.doFreqScope})
+			.background_(Color.green);
 	}
 	record { arg defpath;
 		/*if(defpath.notNil,{ defaultPath = defpath });
@@ -82,9 +120,11 @@ SynthConsole : AbstractConsole  {
 	    this.ugenFunc.scope(duration)
 	}
 	doFreqScope {
-		if(SCFreqScopeWindow.notNil,{
-			SCFreqScopeWindow(400, 200, 0);
-		})
+		var w,f;
+		w = Window("Freq Scope", Rect(0, 0, 511, 300));
+		f = FreqScopeView(w, w.view.bounds);
+		w.onClose_({ f.kill });
+		w.front;	
 	}
 
 	doStop { arg stopFunc;
