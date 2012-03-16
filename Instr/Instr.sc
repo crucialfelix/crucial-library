@@ -76,8 +76,8 @@ Instr  {
         var instr;
         instr=this.at(name);
         if(instr.isNil,{
-            die("Instr not found !!"
-                    + name.asCompileString + "in Meta_Instr:ar");
+            Error("Instr not found !!"
+                    + name.asCompileString + "in Meta_Instr:ar").throw;
         },{
             ^instr.valueArray(args)
         })

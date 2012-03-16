@@ -239,7 +239,7 @@ Patch : HasPatchIns  {
 		});
 		instr = name.asInstr;
 		if(instr.isNil,{
-			("Instrument not found !!" + name).die;
+			Error("Instrument not found !!" + name).throw;
 		});
 		//instr.addDependant(this);
 	}
@@ -417,7 +417,7 @@ Patch : HasPatchIns  {
 	spawnToBundle { arg bundle;
 		var synthArgs;
 		if(patchOut.isNil,{
-			"PatchOut is nil. Has this been prepared for play ?".die(this,thisMethod.asString);
+			Error("PatchOut is nil. Has this been prepared for play ?" + this + thisMethod.asString).throw;
 		});
 
 		// experimental but harmless
