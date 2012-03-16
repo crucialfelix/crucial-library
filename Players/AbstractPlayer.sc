@@ -147,7 +147,7 @@ AbstractPlayer : AbstractFunction  {
 		this.group = agroup;
 		bus = bus ?? {
 			BusSpec(this.rate,
-					this.numChannels ?? {Error("numChannels is nil"+this).throw},
+					this.numChannels ?? {Error("numChannels is nil"+this.class+this).throw},
 					private)
 		};
 		if(patchOut.isNil,{
