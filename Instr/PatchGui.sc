@@ -14,7 +14,7 @@ PatchGui : AbstractPlayerGui {
 		font = GUI.font.new("Helvetica",10);
 		vl = layout;
 		argNameWidth = model.instr.argNames.maxValue({ |an| an.asString.bounds(font).width + 7 });
-		argNameWidth = min(100,argNameWidth ? 100);
+		argNameWidth = max(100,argNameWidth ? 100);
 		model.args.do({ arg a,i;
 			var gui,disclosed=true,box;
 			layout.startRow;
