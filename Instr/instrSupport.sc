@@ -288,6 +288,12 @@
 		});
 		^InstrSynthDef.buildSynthDef.onTrig(this,func,value)
 	}
+	onPoll { |func,trig=10|
+		if(trig.isNumber,{
+			trig = Impulse.kr(trig);
+		});
+		^trig.onTrig({ arg time,value; func.value(value) },this)
+	}
 }
 
 
