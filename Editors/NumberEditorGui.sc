@@ -17,9 +17,9 @@ NumberEditorGui : EditorGui {
 		if(layout.isNil,{ l.front });
 	}
 	guiBody { arg layout,bounds,slider=true, box=true;
-		var h,w;
+		var h,w,p,gap;
 		bounds = (bounds ?? {layout.indentedRemaining}).asRect;
-
+		gap = GUI.skin.gap;
 		// massive space,
 			// box, slider horz
 		w = bounds.width;
@@ -28,7 +28,7 @@ NumberEditorGui : EditorGui {
 			h = min(h, GUI.skin.buttonHeight);
 			w = min(w, GUI.skin.buttonHeight * 16);
 			if(box, { this.box(layout,Rect(0,0,40,h)); });
-			if(slider,{ this.slider(layout,Rect(0,0,w-40-(GUI.skin.gap.x*2),h)); });
+			if(slider,{ this.slider(layout,Rect(0,0,w-40-(gap.x*2),h)); });
 			^this
 		});
 		// width < height
@@ -37,16 +37,17 @@ NumberEditorGui : EditorGui {
 			// height > 100
 				// box, slider
 			if(h > 100 and: {w >= 30},{
+				h = h.max(130);
 				layout.comp({ |l|
 					var y;
-					this.box(l,Rect(0,0,min(70,w),y = GUI.skin.buttonHeight));
-					y = y + 4;
-					this.slider(l,Rect(0,y,min(70,w),h-y));
-				},Rect(0,0,w,h = h.max(130)))
+					this.box(l,Rect(0,0,min(70,w)-(gap.x),y = GUI.skin.buttonHeight));
+					y = y + gap.y;
+					this.slider(l,Rect(0,y,min(70,w)-(gap.x),h-y-gap.y));
+				},Rect(0,0,w-gap.x,h-gap.y))
 				^this
 			});
 			if(h > 100 ,{
-				this.slider(layout,Rect(0,0,min(40,w),h.min(150)));
+				this.slider(layout,Rect(0,0,w-gap.x,h-gap.y));
 				^this
 			});
 			// height < 100, > 30
