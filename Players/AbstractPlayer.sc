@@ -611,26 +611,22 @@ AbstractPlayer : AbstractFunction  {
 	simplifyStoreArgs { arg args; ^args }
 
 	annotate { arg thing,note;
-		if(Annotations.notNil,{
+		if(\Annotations.asClass.notNil,{
 			Annotations.register(this);
-			if(note.notNil,{
-				Annotations.put(thing,this,note)
-			},{
-				Annotations.put(thing,this)
-			})
+			Annotations.put(thing,this,note)
 		})
 	}
 	*annotate { arg thing,note;
-		if(Annotations.notNil,{
+		if(\Annotations.asClass.notNil,{
 			Annotations.put(thing,note)
 		})
 	}
 	*getAnnotation { arg thing;
-		if(Annotations.isNil, { ^nil });
+		if(\Annotations.asClass.isNil, { ^nil });
 		^Annotations.at(thing)
 	}
 	*removeAnnotation { arg thing; 
-		if(Annotations.isNil, { ^nil });
+		if(\Annotations.asClass.isNil, { ^nil });
 		Annotations.unregister(thing) 
 	}
 
