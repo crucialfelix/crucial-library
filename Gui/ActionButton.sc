@@ -11,11 +11,11 @@ SCButtonAdapter : SCViewHolder {
 		var rect;
 		if((layout.isNil or: { layout.isKindOf(PageLayout) }),{ layout = layout.asFlowView; });
 		this.view = GUI.button.new(layout,Rect(0,0,x,y ? GUI.skin.buttonHeight));
-		if(consumeKeyDowns,{ this.view.keyDownAction_({nil}) });
+		if(consumeKeyDowns,{ this.view.keyDownAction_({true}) });
 	}
 	flowMakeView { arg layout,x,y;
 		this.view = GUI.button.new(layout.asFlowView,Rect(0,0,x,y ? GUI.skin.buttonHeight));
-		if(consumeKeyDowns,{ this.view.keyDownAction_({nil}); });
+		if(consumeKeyDowns,{ this.view.keyDownAction_({true}); });
 	}
 
 	makeViewWithStringSize { arg layout,optimalWidth,minWidth,minHeight;
@@ -74,7 +74,7 @@ ActionButton : SCButtonAdapter {
 		view.font_(font);
 		view.action_(function);
 		view.focusColor_((skin.focusColor ?? {Color.grey(0.5,0.1)}).alpha_(0.1));
-		if(consumeKeyDowns,{ this.keyDownAction = {nil}; });
+		if(consumeKeyDowns,{ this.keyDownAction = {true}; });
 	}
 }
 
