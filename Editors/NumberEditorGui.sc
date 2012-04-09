@@ -220,11 +220,11 @@ PopUpEditorGui : EditorGui {
 		popV.focusColor = GUI.skin.focusColor ?? {Color.grey(0.5,0.5)};
 		popV.background = GUI.skin.background;
 		if(consumeKeyDowns,{ popV.keyDownAction = {nil}; });
-		popV.setProperty(\value,model.selectedIndex)
+		popV.value = model.selectedIndex
 	}
 	update { arg changed,changer;
 		if(changer !== this,{
-			popV.setProperty(\value,model.selectedIndex)
+			popV.value = model.selectedIndex;
 		});
 	}
 }
