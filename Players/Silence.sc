@@ -3,6 +3,7 @@ Silence is a player that doesn't have any output at all.
 */
 Silence : SynthlessPlayer {
 	*ar { |...args| ^Silent.ar(*args) }
+	ar { ^Silent.ar }
 }
 
 
@@ -28,6 +29,7 @@ PlayerInputProxy : Silence { // audio
 	synthArg {
 		^initValue
 	}
+	ar { ^Silent.ar(this.numChannels) }
 
 	makePatchOut { arg agroup,private = false,bus,bundle;
 		// bus is usually given to me via setInputBus
