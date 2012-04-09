@@ -377,6 +377,19 @@ AbstractPlayer : AbstractFunction  {
 			group = g.asGroup;
 		})
 	}
+	setGroupToBundle { arg g,b;
+		if(synth.notNil,{
+			g = g.asGroup;
+			b.add( synth.moveToHeadMsg(g) );
+			this.subGroups.do { arg sg;
+				b.add( sg.moveToHeadMsg(g) );
+			};
+			b.addFunction({
+				group = g;
+				patchOut.group = g; // duplication
+			})
+		})
+	}
 
 	/** SUBCLASSES SHOULD IMPLEMENT **/
 	//  this works for simple audio function subclasses
@@ -414,6 +427,7 @@ AbstractPlayer : AbstractFunction  {
 			// or trig
 		})
 	}
+	subGroups { ^[] }
 
 	addToSynthDef {  arg synthDef,name;
 		// the value doesn't matter, just building the synth def now.
