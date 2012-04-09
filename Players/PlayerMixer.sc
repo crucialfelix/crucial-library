@@ -133,6 +133,7 @@ GroupedPlayerMixer : PlayerMixer {
 			})
 		})
 	}
+	subGroups { ^groups }
 
 	freeResourcesToBundle { arg bundle;
 		groups.do(_.freeToBundle(bundle));
