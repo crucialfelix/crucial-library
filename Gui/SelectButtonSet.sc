@@ -5,8 +5,6 @@ SelectButtonSet  {
 	var butts,<selected=0,<>action,<>colorFunc,<>selectedColor,<>labelArray;
 
 	*new { arg layout,
-		/*buttonSizeX,
-		buttonSizeY,*/
 		labelArrayOrQnty=10,	// integer generates numerical labels
 		action,				// action.value(selectedIndex,this)
 		color,
@@ -25,11 +23,9 @@ SelectButtonSet  {
 	init { arg layout,x,y,arglabelArray,argaction,
 					argcolorFunc,argselectedColor;
 
-		//layout=layout.asFlowView;//PageLayout;
-		//layout=layout.asPageLayout;
 		action = argaction;
-		colorFunc = argcolorFunc ?? { Color.white };
-		selectedColor = argselectedColor ?? {Color.red(alpha:0.7)};
+		colorFunc = argcolorFunc ?? { GUI.skin.offColor };
+		selectedColor = argselectedColor ?? {GUI.skin.onColor};
 
 		if(arglabelArray.isNumber,{
 			labelArray = Array.series(arglabelArray,0,1)
@@ -71,7 +67,6 @@ SelectButtonSet  {
 	}
 
 	refresh {
-		//butts.do({arg bt,i; this.setButtonColor(bt,colorFunc.value(i)) });
 		this.colorSelected(selected);
 	}
 
@@ -86,7 +81,7 @@ SelectButtonSet  {
 		var s;
 		s = butt.states;
 		s.at(0).put(2,color);
-		butt.states_(s);//.refresh;
+		butt.states_(s);
 	}
 	colorNormal { arg i;
 		butts.at(i).setProperty(\value, 0);
