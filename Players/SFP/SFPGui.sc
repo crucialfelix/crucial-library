@@ -62,7 +62,7 @@ SFPGui : AbstractSFPGui {
 		})
 	}
 	read {
-		if(model.file.notNil,{
+		if(model.file.notNil and: {model.file.path.notNil},{
 			a.soundfile = model.file;
 			a.read(0, model.file.numFrames);
 		});
