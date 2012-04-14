@@ -41,7 +41,7 @@ CCBank([
 
 CCBank {
 
-	var <>sets,ccresponders,tbs;
+	var <>sets,responders,tbs;
 	
 	*new { arg sets;
 		^super.newCopyArgs(sets ? []).init
@@ -53,8 +53,9 @@ CCBank {
 		sets = sets.collect({ arg na; 
 								if(na.isKindOf(Association).not,{ na -> nil },{ na 	})
 							});
-		ccresponders = IdentityDictionary.new;
+		responders = IdentityDictionary.new;
 	}
+	*responderClass { ^CCResponder }	
 	guiBody { arg layout;
 		SaveConsole(this,nil,layout).print.save;
 		tbs = Array.newClear(sets.size);
@@ -68,7 +69,7 @@ CCBank {
 		var tb,oneShot,ne;
 		tb = ToggleButton(layout,"Learn",{ arg tb,state;
 				tbs.do { arg t; if(t !== tb,{ t.toggle(false) }) };
-				oneShot = CCResponder({ |port,chan,num,value|
+				oneShot = this.class.responderClass.new({ |port,chan,num,value|
 								{ ne.activeValue = num; 	}.defer
 							},nil,nil,nil,nil,true,true);
 				layout.removeOnClose(oneShot);
@@ -83,7 +84,7 @@ CCBank {
 			var ccr;
 			sets[i].value = if(cnum == 128,{nil},{cnum.asInteger});
 			// set any currently active one
-			ccr = ccresponders[assc.key];
+			ccr = responders[assc.key];
 			if(ccr.notNil,{
 				ccr.matchEvent = MIDIEvent(nil,ccr.matchEvent.port,ccr.matchEvent.chan,sets[i].value,nil);
 			})
@@ -93,25 +94,25 @@ CCBank {
 	}
 	at { arg key;
 		var ccr,assc;
-		^ccresponders[key] ?? {
-			assc = this.findSet(key) ?? { (key.asString + "not found in CCBank").warn };
+		^responders[key] ?? {
+			assc = this.findSet(key) ?? { (key.asString + "not found in" + this).warn };
 			// would be better: if nil then do not install but allow it to learn and get installed later
-			ccr = CCResponder(nil, nil, nil, assc.value ? 127, nil);
-			ccresponders[key] = ccr;
+			ccr = this.class.responderClass.new(nil, nil, nil, assc.value ? 127, nil);
+			responders[key] = ccr;
 			ccr
 		}
 	}
 	responder { arg key, function;
 		var ccr;
 		ccr = this.at(key);
-		ccr.function = { |src,chan,num,value| function.debug(value).value(value) }.insp;
+		ccr.function = { |src,chan,num,value| function.value(value) };
 		^ccr
 	}
 	doesNotUnderstand { |key ... args|
 		var	result,set;
 		set = this.findSet(key);
 		if(set.isNil,{
-			(key.asString + "not found in CCBank").error;
+			(key.asString + "not found in " + this).error;
 			DoesNotUnderstandError(this, key, args).throw;
 		},{
 			^this.at(key)
@@ -119,10 +120,10 @@ CCBank {
 	}
 		
 	free {
-		ccresponders.keysValuesDo { arg k,ccr;
+		responders.keysValuesDo { arg k,ccr;
 			ccr.remove
 		};
-		ccresponders = IdentityDictionary.new;
+		responders = IdentityDictionary.new;
 	}
 	keys {
 		^sets.collect(_.key)
@@ -132,3 +133,9 @@ CCBank {
 	}
 }
 
+
+NoteOnBank : CCBank {
+	
+	*responderClass { ^NoteOnResponder }
+	
+}
