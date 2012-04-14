@@ -83,8 +83,8 @@ ToggleButton : SCButtonAdapter {
 
 	var <state,<>onFunction,<>offFunction;
 
-	*new { arg layout,title,onFunction,offFunction,init=false,minWidth=20,minHeight;
-			^super.new.init(layout,init, title,minWidth,minHeight)
+	*new { arg layout,title,onFunction,offFunction,init=false,minWidth=20,minHeight,onColor,offColor;
+			^super.new.init(layout,init, title,minWidth,minHeight,onColor,offColor)
 				.onFunction_(onFunction).offFunction_(offFunction)
 	}
 	value { ^state }
@@ -100,20 +100,20 @@ ToggleButton : SCButtonAdapter {
 		view.setProperty(\value,state.binaryValue);
 	}
 	// private
-	init { arg layout,init,title,minWidth,minHeight;
+	init { arg layout,init,title,minWidth,minHeight,onc,offc;
 		var font,skin;
 		skin = GUI.skin;
 		font = GUI.font.new(*GUI.skin.fontSpecs);
 		this.makeViewWithStringSize(layout,title.bounds(font).width,minWidth,minHeight);
 		view.states = [
-			[title,skin.fontColor,skin.offColor],
-			[title,skin.fontColor,skin.onColor]
+			[title,skin.fontColor,offc ? skin.offColor],
+			[title,skin.fontColor,onc ? skin.onColor]
 		];
 		state=init;
 		view.value_(state.binaryValue);
 		view.action_({this.prSetState(state.not)});
 		view.font = font;
-		view.focusColor = skin.focusColor ?? {Color(0.0, 0.85714285714286, 1.0, 0.1)};
+		view.focusColor = skin.focusColor ?? {Color(0.0, 0.85714285714286, 1.0, 0.4)};
 	}
 	prSetState { arg newstate;
 		state = newstate;
