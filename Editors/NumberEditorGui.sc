@@ -106,6 +106,7 @@ NumberEditorGui : EditorGui {
 		numv = NumberBox(layout,bounds)
 			.value_(model.poll)
 			.focusColor_(Color.yellow(1.0,0.5))
+			.font_(Font("Helvetica",10))
 			.action_({ arg nb;
 				model.activeValue_(model.spec.constrain(nb.value)).changed(numv);
 			});
