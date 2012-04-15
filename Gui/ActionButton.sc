@@ -11,11 +11,11 @@ SCButtonAdapter : SCViewHolder {
 		var rect;
 		if((layout.isNil or: { layout.isKindOf(PageLayout) }),{ layout = layout.asFlowView; });
 		this.view = GUI.button.new(layout,Rect(0,0,x,y ? GUI.skin.buttonHeight));
-		if(consumeKeyDowns,{ this.view.keyDownAction_({nil}) });
+		if(consumeKeyDowns,{ this.view.keyDownAction_({true}) });
 	}
 	flowMakeView { arg layout,x,y;
 		this.view = GUI.button.new(layout.asFlowView,Rect(0,0,x,y ? GUI.skin.buttonHeight));
-		if(consumeKeyDowns,{ this.view.keyDownAction_({nil}); });
+		if(consumeKeyDowns,{ this.view.keyDownAction_({true}); });
 	}
 
 	makeViewWithStringSize { arg layout,optimalWidth,minWidth,minHeight;
@@ -74,7 +74,7 @@ ActionButton : SCButtonAdapter {
 		view.font_(font);
 		view.action_(function);
 		view.focusColor_((skin.focusColor ?? {Color.grey(0.5,0.1)}).alpha_(0.1));
-		if(consumeKeyDowns,{ this.keyDownAction = {nil}; });
+		if(consumeKeyDowns,{ this.keyDownAction = {true}; });
 	}
 }
 
@@ -83,8 +83,8 @@ ToggleButton : SCButtonAdapter {
 
 	var <state,<>onFunction,<>offFunction;
 
-	*new { arg layout,title,onFunction,offFunction,init=false,minWidth=20,minHeight;
-			^super.new.init(layout,init, title,minWidth,minHeight)
+	*new { arg layout,title,onFunction,offFunction,init=false,minWidth=20,minHeight,onColor,offColor;
+			^super.new.init(layout,init, title,minWidth,minHeight,onColor,offColor)
 				.onFunction_(onFunction).offFunction_(offFunction)
 	}
 	value { ^state }
@@ -100,20 +100,20 @@ ToggleButton : SCButtonAdapter {
 		view.setProperty(\value,state.binaryValue);
 	}
 	// private
-	init { arg layout,init,title,minWidth,minHeight;
+	init { arg layout,init,title,minWidth,minHeight,onc,offc;
 		var font,skin;
 		skin = GUI.skin;
 		font = GUI.font.new(*GUI.skin.fontSpecs);
 		this.makeViewWithStringSize(layout,title.bounds(font).width,minWidth,minHeight);
 		view.states = [
-			[title,skin.fontColor,skin.offColor],
-			[title,skin.fontColor,skin.onColor]
+			[title,skin.fontColor,offc ? skin.offColor],
+			[title,skin.fontColor,onc ? skin.onColor]
 		];
 		state=init;
 		view.value_(state.binaryValue);
 		view.action_({this.prSetState(state.not)});
 		view.font = font;
-		view.focusColor = skin.focusColor ?? {Color(0.0, 0.85714285714286, 1.0, 0.1)};
+		view.focusColor = skin.focusColor ?? {Color(0.0, 0.85714285714286, 1.0, 0.4)};
 	}
 	prSetState { arg newstate;
 		state = newstate;

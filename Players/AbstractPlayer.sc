@@ -377,6 +377,19 @@ AbstractPlayer : AbstractFunction  {
 			group = g.asGroup;
 		})
 	}
+	setGroupToBundle { arg g,b;
+		if(synth.notNil,{
+			g = g.asGroup;
+			b.add( synth.moveToHeadMsg(g) );
+			this.subGroups.do { arg sg;
+				b.add( sg.moveToHeadMsg(g) );
+			};
+			b.addFunction({
+				group = g;
+				patchOut.group = g; // duplication
+			})
+		})
+	}
 
 	/** SUBCLASSES SHOULD IMPLEMENT **/
 	//  this works for simple audio function subclasses
@@ -414,6 +427,7 @@ AbstractPlayer : AbstractFunction  {
 			// or trig
 		})
 	}
+	subGroups { ^[] }
 
 	addToSynthDef {  arg synthDef,name;
 		// the value doesn't matter, just building the synth def now.
@@ -597,26 +611,22 @@ AbstractPlayer : AbstractFunction  {
 	simplifyStoreArgs { arg args; ^args }
 
 	annotate { arg thing,note;
-		if(Annotations.notNil,{
+		if(\Annotations.asClass.notNil,{
 			Annotations.register(this);
-			if(note.notNil,{
-				Annotations.put(thing,this,note)
-			},{
-				Annotations.put(thing,this)
-			})
+			Annotations.put(thing,this,note)
 		})
 	}
 	*annotate { arg thing,note;
-		if(Annotations.notNil,{
+		if(\Annotations.asClass.notNil,{
 			Annotations.put(thing,note)
 		})
 	}
 	*getAnnotation { arg thing;
-		if(Annotations.isNil, { ^nil });
+		if(\Annotations.asClass.isNil, { ^nil });
 		^Annotations.at(thing)
 	}
 	*removeAnnotation { arg thing; 
-		if(Annotations.isNil, { ^nil });
+		if(\Annotations.asClass.isNil, { ^nil });
 		Annotations.unregister(thing) 
 	}
 

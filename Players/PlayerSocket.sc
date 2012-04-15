@@ -148,7 +148,7 @@ PlayerSocket : AbstractPlayerProxy {
 		dum.freeToBundle(bundle);
 		super.freeToBundle(bundle);
 	}
-
+	subGroups { ^[socketGroup] }
 	// no synth of my own
 	loadDefFileToBundle { arg bundle,server;}
 

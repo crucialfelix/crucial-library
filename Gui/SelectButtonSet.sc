@@ -3,10 +3,9 @@
 SelectButtonSet  {
 
 	var butts,<selected=0,<>action,<>colorFunc,<>selectedColor,<>labelArray;
-
+	var <>altAction;
+	
 	*new { arg layout,
-		/*buttonSizeX,
-		buttonSizeY,*/
 		labelArrayOrQnty=10,	// integer generates numerical labels
 		action,				// action.value(selectedIndex,this)
 		color,
@@ -24,12 +23,10 @@ SelectButtonSet  {
 
 	init { arg layout,x,y,arglabelArray,argaction,
 					argcolorFunc,argselectedColor;
-
-		//layout=layout.asFlowView;//PageLayout;
-		//layout=layout.asPageLayout;
+		
 		action = argaction;
-		colorFunc = argcolorFunc ?? { Color.white };
-		selectedColor = argselectedColor ?? {Color.red(alpha:0.7)};
+		colorFunc = argcolorFunc ?? { GUI.skin.offColor };
+		selectedColor = argselectedColor ?? {GUI.skin.onColor};
 
 		if(arglabelArray.isNumber,{
 			labelArray = Array.series(arglabelArray,0,1)
@@ -37,12 +34,19 @@ SelectButtonSet  {
 			labelArray = arglabelArray
 		});
 
-	   butts=
+		butts =
 		labelArray.collect({ arg la,i;
 			GUI.button.new(layout,(x@y))
 				.states_([[la.asString,Color.black,colorFunc.value(i)],
 						[la.asString,Color.black,selectedColor.value(i)]])
-				.action_({this.select(i)})
+				.action_({ arg b,modifiers;
+					if(altAction.notNil and: {(modifiers ? 0).isAlt},{
+						b.value = (i == selected);// do not toggle, keep it however it is
+						altAction.value(i,b,this);
+					},{
+						this.select(i)
+					})
+				})
 		});
 		this.refresh;
 	}
@@ -71,7 +75,6 @@ SelectButtonSet  {
 	}
 
 	refresh {
-		//butts.do({arg bt,i; this.setButtonColor(bt,colorFunc.value(i)) });
 		this.colorSelected(selected);
 	}
 
@@ -86,7 +89,7 @@ SelectButtonSet  {
 		var s;
 		s = butt.states;
 		s.at(0).put(2,color);
-		butt.states_(s);//.refresh;
+		butt.states_(s);
 	}
 	colorNormal { arg i;
 		butts.at(i).setProperty(\value, 0);

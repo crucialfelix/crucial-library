@@ -156,12 +156,16 @@ UnicodeResponder {
 					});
 
 					words.post; " ".post;
-					if(c.isPrint,{
-						c.postln;
+					if(c.isKindOf(String),{
+						c.postln
 					},{
-						u.postln;
+						if(c.isPrint,{
+							c.postln;
+						},{
+							u.postln;
+						});
 					});
-
+					
 					("k.register(  " + u + " , " + boos + "{").postln;
 					"".postln;
 					"});".postln;

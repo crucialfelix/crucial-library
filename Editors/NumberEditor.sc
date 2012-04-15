@@ -45,6 +45,9 @@ Editor {
 		this.value_(val);
 		action.value(value);
 	}
+	valueAction_ { arg val; // standard sc
+		this.activeValue = val;
+	}
 	spec { ^thisMethod.subclassResponsibility }
 	copy { ^this.class.new.value_(value.copy) }
 

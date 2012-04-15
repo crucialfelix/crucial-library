@@ -18,7 +18,6 @@ AbstractPlayerGui : ObjectGui {
 			this.writeName(layout);
 			this.guiBody(layout);
 		},bounds).background_(this.background);
-		inner.resizeToFit;
 		
 		this.enableKeyDowns;
 

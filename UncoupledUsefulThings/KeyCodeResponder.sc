@@ -117,10 +117,14 @@ KeyCodeResponder {
 					});
 
 					words.post; " ".post;
-					if(c.isPrint,{
-						c.postln;
+					if(c.isKindOf(String),{
+						c.postln
 					},{
-						k.postln;
+						if(c.isPrint,{
+							c.postln;
+						},{
+							u.postln;
+						});
 					});
 
 					("k.register(  " + k + " , " + boos + "{").postln;

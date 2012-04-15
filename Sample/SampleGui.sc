@@ -14,7 +14,7 @@ SampleGui : ObjectGui {
 		this.prWriteName(layout,model.class.asString);
 	}
 	guiBody { arg layout;
-		var xfade, r, size,absBounds;
+		var xfade, r, size,absBounds,test;
 
 		divs = 1;
 		zout = 1.1; zin = zout.reciprocal;
@@ -43,7 +43,7 @@ SampleGui : ObjectGui {
 					.action_({arg th; model.beats_(th.value).changed(this) });
 		beatsG.smallGui(layout);
 
-		ActionButton(layout,">",{model.play},minWidth:70).background_(Color.green(alpha:0.5));
+		ToggleButton(layout,">",{ test = model.play},{ test.free },minWidth:70);
 
 		size = min(800,layout.asView.bounds.width - 220);
 		layout.startRow;

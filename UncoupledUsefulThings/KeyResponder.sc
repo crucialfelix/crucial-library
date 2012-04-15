@@ -1,8 +1,8 @@
 
 
-KeyResponder : UnicodeResponder {
+KeyResponder : KeyCodeResponder {
 	/*
-		this is a a UnicodeResponder
+		this is a a KeycodeResponder
 		which uses a KeycodeResponder for special keys like arrows, del, backspace
 		thus guaranteeing that it will use the correct keycodes for the GUI you are using
 	*/
@@ -47,10 +47,10 @@ KeyResponder : UnicodeResponder {
 			['f18', nil,79 ],
 			['f19', nil,80 ],
 			['clear', 16777227  , 71],
-			['esc',  16777216 , 53] //,
+			['esc',  16777216 , 53],
 			// these will have to be more thought out
 			// because modifiers change and keycodes don't
-			// ['enter', 16777221, 76], // numerical pad
+			['enter', 16777221, 76] // numerical pad
 		].do { arg ll;
 			keycodeMap['qt'][ll[0]] = ll[2];
 			keycodeMap['cocoa'][ll[0]] = ll[2];
@@ -60,8 +60,7 @@ KeyResponder : UnicodeResponder {
 		/*
 			key may be: 
 				a symbol referring to one of the special keys above
-				a char like $c
-				a unicode number
+				a keycode
 		*/
 		if(key.class === Symbol,{
 			keycodes.register(keycodeMap[GUI.id][key] ?? {Error("Invalid keyName" + key).throw},
@@ -78,13 +77,8 @@ KeyResponder : UnicodeResponder {
 			r.value(view,keycode,modifier);
 			^true
 		},{
-			r = this.at(unicode);
-			if(r.notNil,{
-				r.value(view, unicode,modifier)
-				^true
-			})
+			^super.value(view,char,modifier,unicode,keycode)
 		});
-		^false
 	}
 
 	registerKeycode { arg keycode,shift,caps,opt,cntl,function,description;
