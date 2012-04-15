@@ -47,10 +47,10 @@ KeyResponder : KeyCodeResponder {
 			['f18', nil,79 ],
 			['f19', nil,80 ],
 			['clear', 16777227  , 71],
-			['esc',  16777216 , 53] //,
+			['esc',  16777216 , 53],
 			// these will have to be more thought out
 			// because modifiers change and keycodes don't
-			// ['enter', 16777221, 76], // numerical pad
+			['enter', 16777221, 76] // numerical pad
 		].do { arg ll;
 			keycodeMap['qt'][ll[0]] = ll[2];
 			keycodeMap['cocoa'][ll[0]] = ll[2];
