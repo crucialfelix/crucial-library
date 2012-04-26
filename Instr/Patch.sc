@@ -98,7 +98,8 @@ Patch : HasPatchIns  {
 
 	var <synthDef,<>outClass;
 	var numChannels,rate; // determined after making synthdef
-
+	var <>respawnOnChange = nil;
+	
 	var <stepChildren;
 
 	*new { arg name,inputs,outClass;
@@ -360,10 +361,25 @@ Patch : HasPatchIns  {
 			});
 		});
 	}
+	respawn { arg atTime;
+		// will improve this implementation later
+		this.onStop({ 
+			{
+				this.play(atTime:atTime) 
+			}.defer(0.5)
+		});
+		this.stop;
+	}
 	update { arg changed,what;
 		var newArgs;
 		if(changed === this.instr,{
-			^this.removeSynthDefCache;
+			this.removeSynthDefCache;
+			if(this.isPlaying) {
+				if(respawnOnChange.notNil) {
+					^this.respawn(respawnOnChange)
+				};
+			};
+			^this		
 		});
 		if(changed === synth,{
 			if(what == 'n_end',{
@@ -373,13 +389,19 @@ Patch : HasPatchIns  {
 			});
 			^this.changed(status)
 		});
-		// one of my scalar inputs changed
+		// one of my inputs changed
 		if(this.args.includes(changed),{
 			if(this.isPlaying,{
+				if(changed.spec.rate != \control,{
+					if(respawnOnChange.notNil,{
+						this.invalidateSynthDef;
+						^this.respawn(respawnOnChange)
+					})
+				});
 				newArgs = synthDef.secretDefArgs(this.args);
 				if(newArgs.notEmpty,{
 					synth.performList(\set,newArgs);
-				})
+				});
 			},{
 				this.invalidateSynthDef;
 			})
