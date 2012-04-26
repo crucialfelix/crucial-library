@@ -41,7 +41,7 @@ CCBank([
 
 CCBank {
 
-	var <>sets,responders,tbs;
+	var <>sets,responders,oneShot,prev;
 	
 	*new { arg sets;
 		^super.newCopyArgs(sets ? []).init
@@ -58,38 +58,44 @@ CCBank {
 	*responderClass { ^CCResponder }	
 	guiBody { arg layout;
 		SaveConsole(this,nil,layout).print.save;
-		tbs = Array.newClear(sets.size);
 		sets.do { arg assc,i;
 			var n,c;
 			layout.startRow;
 			this.guiOne(layout,assc,i);
 		};
 	}
-	guiOne { arg layout,assc,i;
-		var tb,oneShot,ne;
+	guiOne { arg layout,assc,minWidth=100;
+		var tb,ne;
 		tb = ToggleButton(layout,"Learn",{ arg tb,state;
-				tbs.do { arg t; if(t !== tb,{ t.toggle(false) }) };
-				oneShot = this.class.responderClass.new({ |port,chan,num,value|
-								{ ne.activeValue = num; 	}.defer
-							},nil,nil,nil,nil,true,true);
-				layout.removeOnClose(oneShot);
-			},{
 				oneShot.remove;
 				oneShot = nil;
+				if(prev.notNil,{
+					prev.toggle(false,false)
+				});
+				oneShot = this.class.responderClass.new({|port,chan,num,value|
+						{ ne.activeValue = num; 	}.defer
+					},nil,nil,nil,nil,true,true);
+
+				layout.removeOnClose(oneShot);
+				prev = tb;
+			},{
+				this.class.responderClass.remove(oneShot);
+				oneShot = nil;
+				prev = nil;
 			});
-		tbs[i] = tb;
-		CXLabel(layout,assc.key.asString,minWidth:100);
 		ne = NumberEditor(assc.value ? 128,ControlSpec(1,128,\lin,1));
 		ne.action = { arg cnum;
 			var ccr;
-			sets[i].value = if(cnum == 128,{nil},{cnum.asInteger});
+			assc.value = if(cnum == 128,{nil},{cnum.asInteger});
 			// set any currently active one
 			ccr = responders[assc.key];
+			// TODO different for note
 			if(ccr.notNil,{
-				ccr.matchEvent = MIDIEvent(nil,ccr.matchEvent.port,ccr.matchEvent.chan,sets[i].value,nil);
-			})
+				this.setCtlnum(ccr,cnum)
+			});
 		};
 		ne.smallGui(layout);
+		CXLabel(layout,assc.key.asString,minWidth:minWidth);
 		//ve = CXLabel(layout,"",minWidth:50);
 	}
 	at { arg key;
@@ -101,6 +107,18 @@ CCBank {
 			responders[key] = ccr;
 			ccr
 		}
+	}
+	setCtlnum { arg ccr,ctlnum;
+		var me;
+		ctlnum = ctlnum.asInteger;
+		// there's a bug in matchEvent for changing the ctlnum
+		me = MIDIEvent(nil,ccr.matchEvent.port,ccr.matchEvent.chan,ctlnum,nil);
+		ccr.remove;
+		ccr.matchEvent = me;
+		// in case the bug is fixed
+		if((CCResponder.ccnumr[ctlnum] ? []).includes(ccr).not,{
+			this.class.responderClass.add(ccr);
+		})
 	}
 	responder { arg key, function;
 		var ccr;
