@@ -98,6 +98,9 @@ CCBank {
 		CXLabel(layout,assc.key.asString,minWidth:minWidth);
 		//ve = CXLabel(layout,"",minWidth:50);
 	}
+	add { arg key,ccnum;
+		sets = sets.add( key -> ccnum )
+	}
 	at { arg key;
 		var ccr,assc;
 		^responders[key] ?? {
@@ -108,6 +111,7 @@ CCBank {
 			ccr
 		}
 	}
+	isMapped { arg key; ^this.findSet(key).value.notNil }
 	setCtlnum { arg ccr,ctlnum;
 		var me;
 		ctlnum = ctlnum.asInteger;
