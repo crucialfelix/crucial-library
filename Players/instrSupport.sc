@@ -50,9 +50,10 @@
 + SequenceableCollection {
 	asBufnum {
 		var bp;
-		bp = ArrayBuffer(this);
+		^LocalBuf.newFrom(this)
+		//bp = ArrayBuffer(this);
 		// UGen.buildSynthDef.addSecretObject(bp);
-		^bp.bufnumIr
+		//^bp.bufnumIr
 	}
 }
 
