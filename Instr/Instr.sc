@@ -128,20 +128,20 @@ Instr  {
         ^this.asSynthDef(args).store
     }
     // create a synth
-    after { arg anode,args,bundle,atTime;
-        ^this.prMakeSynth(\addAfterMsg,anode,args,bundle,atTime)
+    after { arg anode,args,bundle,atTime,out=0;
+        ^this.prMakeSynth(\addAfterMsg,anode,args,bundle,atTime,out)
     }
-    before { arg anode,args,bundle,atTime;
-        ^this.prMakeSynth(\addBeforeMsg,anode,args,bundle,atTime)
+    before { arg anode,args,bundle,atTime,out=0;
+        ^this.prMakeSynth(\addBeforeMsg,anode,args,bundle,atTime,out)
     }
-    head { arg anode,args,bundle,atTime;
-        ^this.prMakeSynth(\addToHeadMsg,anode,args,bundle,atTime)
+    head { arg anode,args,bundle,atTime,out=0;
+        ^this.prMakeSynth(\addToHeadMsg,anode,args,bundle,atTime,out)
     }
-    tail { arg anode,args,bundle,atTime;
-        ^this.prMakeSynth(\addToTailMsg,anode,args,bundle,atTime)
+    tail { arg anode,args,bundle,atTime,out=0;
+        ^this.prMakeSynth(\addToTailMsg,anode,args,bundle,atTime,out)
     }
-    replace { arg anode,args,bundle,atTime;
-        ^this.prMakeSynth(\addReplaceMsg,anode,args,bundle,atTime)
+    replace { arg anode,args,bundle,atTime,out=0;
+        ^this.prMakeSynth(\addReplaceMsg,anode,args,bundle,atTime,out)
     }
 
     spawnEvent { arg event;
@@ -222,19 +222,32 @@ Instr  {
     funcDef { ^func.def }
 
 
-    prMakeSynth { arg targetStyle,anode,args,bundle,atTime;
-        var b,def, synth,synthDefArgs;
+    prMakeSynth { arg targetStyle,anode,args,bundle,atTime,out=0;
+        var b,def, synth,synthDefArgs,argNames;
         anode = anode.asTarget;
         b = bundle ?? {MixedBundle.new};
         args = args ?? { this.specs.collect(_.default) };
+        args = this.convertArgs(args);
         def = this.asSynthDef(args);
         InstrSynthDef.loadDefFileToBundle(def,b,anode.server);
         synth = Synth.basicNew(def.name,anode.server);
         synthDefArgs = Array.new(args.size);
-        this.specs.do { arg sp,i;
-            if(sp.rate != 'noncontrol',{
-                synthDefArgs.add( args[i] )
-            })
+        argNames = this.argNames;
+        def.allControlNames.do { arg cn,i;
+	        var ai;
+	        if(cn.rate != \noncontrol,{
+		        ai = argNames.indexOf(cn.name);
+		        if(ai.notNil,{
+			         synthDefArgs.add( args.at(ai) )
+		        },{
+			        // probably the \out
+			        if(cn.name == \out,{
+				        synthDefArgs.add( out )
+			        },{
+				     	Error("% unmatched controlName %".format(this,cn)).throw;
+			        })
+		        })
+	        })
         };
         b.add( synth.perform(targetStyle,anode,synthDefArgs) );
         if(bundle.isNil,{
