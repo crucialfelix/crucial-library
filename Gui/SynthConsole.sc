@@ -16,6 +16,7 @@ SynthConsole : AbstractConsole  {
 	var <>format, <>duration;
 	var <>ugenFunc,<>onRecordOrWrite;
 	var pauseControl,playControl;
+	var colors;
 	
 	var tempoG;
 
@@ -26,46 +27,45 @@ SynthConsole : AbstractConsole  {
 		NotificationCenter.register(ugenFunc,\statusDidChange,this,{ arg status;
 			{this.update(status)}.defer
 		});
-		layout.removeOnClose(this)
+		layout.removeOnClose(this);
+		colors = 
+			Dictionary[
+				\isPreparing ->
+					Color(0.87450980392157, 0.96470588235294, 0.19607843137255, 0.92941176470588)
+				,
+				\readyForPlay -> 
+					Color(0.67450980392157, 1.0,0)
+				,
+				\isPlaying -> 
+					Color(0.27058823529412, 1.0,0.0)
+				,
+				\isStopping -> 
+					Color(0.96470588235294, 0.63529411764706, 0.4078431372549, 0.35294117647059)
+				,					
+				\isStopped -> 
+					Color(0.93725490196078, 1.0, 0.72549019607843)
+				,
+				\isFreeing -> 
+					Color(0.0, 0.96470588235294, 0.91372549019608, 0.28627450980392)
+				,
+				\isFreed -> 
+					Color(0.74509803921569, 0.77647058823529, 1.0)
+				,
+				\default  -> Color(0.0, 0.86567164179104, 0.28425038984184)];
 	}
 	remove {
 		NotificationCenter.removeForListener(this)
 	}
 	update { arg status;
 		// isPreparing, readyForPlay, isPlaying,isStopped, isStopping, isFreeing, isFreed
-		var colors;
 		if(playControl.notNil,{
 			if(playControl.isClosed,{^this.remove});
-			playControl.background = 
-				switch(status,
-					\isPreparing,{ 
-						Color(0.87450980392157, 0.96470588235294, 0.19607843137255, 0.92941176470588)
-					},
-					\readyForPlay, {
-						Color(0.67450980392157, 1.0,0)
-					},
-					\isPlaying, {
-						Color(0.27058823529412, 1.0,0.0)
-					},
-					\isStopping, {
-						Color(0.96470588235294, 0.63529411764706, 0.4078431372549, 0.35294117647059)
-					},					
-					\isStopped, {
-						Color(0.9843137254902, 1.0, 0.1843137254902)
-					},
-					\isFreeing, {
-						Color(0.0, 0.96470588235294, 0.91372549019608, 0.28627450980392)
-					},
-					\isFreed, {
-						Color(0.0, 0.96470588235294, 0.91372549019608, 0.082352941176471)
-					},
-					Color(0.0, 0.86567164179104, 0.28425038984184)
-				);
+			playControl.background = colors[status] ?? {colors['default']};
 		})					
 	}
 	play {
 		playControl = ActionButton(layout,">",{this.doPlay })
-		    .background_(Color(0.0, 0.86567164179104, 0.28425038984184));
+		    .background_(colors[\isStopped])
 	}
 	prepare {
 		ActionButton(layout,"pre",{this.doPrepare})
