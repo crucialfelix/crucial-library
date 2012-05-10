@@ -31,6 +31,9 @@
 	topGui { arg ... args;
 		this.performList(\gui, args);
 	}
+	defer { arg function;
+		if(this.canCallOS,function,{function.defer})
+	}
 }
 
 + Pattern {
