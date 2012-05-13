@@ -78,12 +78,16 @@ SynthConsole : AbstractConsole  {
 		ActionButton(layout,"FreqScope",{this.doFreqScope})
 			.background_(Color.green);
 	}
-	record { arg defpath;
-		/*if(defpath.notNil,{ defaultPath = defpath });
-		ActionButton(layout,"|*|",{
-			this.getPathThen(\doRecord);
-		}).background_(Color.red);
-		*/
+	record {
+		// instant no-dialog live record
+		var recorder;
+		ToggleButton(layout,"REC",{
+			recorder = PlayerRecorder(ugenFunc);
+			recorder.liveRecord
+		},{
+			recorder.stop;
+			recorder = nil;
+		},onColor:Color.red)
 	}
 	write {arg dur,defpath;
 		//		if(defpath.notNil,{ defaultPath = defpath });
@@ -131,18 +135,6 @@ SynthConsole : AbstractConsole  {
 		stopFunc.value;
 		ugenFunc.stop;
 		NotificationCenter.notify(this,\didStop);
-	}
-
-	doRecord {	arg path;
-//		var hformat,sformat;
-//		# hformat, sformat = this.getFormats;
-//
-//		Synth.record({arg synth;
-//			Tempo.setTempo;
-//			this.ugenFunc.value(synth)
-//		},duration,path,hformat,sformat);
-//		onRecordOrWrite.value(path);
-//		NotificationCenter.notify(this,\didRecordOrWrite);
 	}
 
 	doWrite { arg path, argduration;
