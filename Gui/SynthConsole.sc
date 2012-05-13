@@ -31,7 +31,7 @@ SynthConsole : AbstractConsole  {
 		colors = 
 			Dictionary[
 				\isPreparing ->
-					Color(0.87450980392157, 0.96470588235294, 0.19607843137255, 0.92941176470588)
+					Color(0.87450980392157, 0.96470588235294, 0.19607843137255)
 				,
 				\readyForPlay -> 
 					Color(0.67450980392157, 1.0,0)
@@ -40,18 +40,18 @@ SynthConsole : AbstractConsole  {
 					Color(0.27058823529412, 1.0,0.0)
 				,
 				\isStopping -> 
-					Color(0.96470588235294, 0.63529411764706, 0.4078431372549, 0.35294117647059)
+					Color(0.96470588235294, 0.63529411764706, 0.4078431372549)
 				,					
 				\isStopped -> 
 					Color(0.93725490196078, 1.0, 0.72549019607843)
 				,
 				\isFreeing -> 
-					Color(0.0, 0.96470588235294, 0.91372549019608, 0.28627450980392)
+					Color(0.0, 0.96470588235294, 0.91372549019608)
 				,
 				\isFreed -> 
-					Color(0.74509803921569, 0.77647058823529, 1.0)
+					Color(0.82745098039216, 0.87058823529412, 1.0)
 				,
-				\default  -> Color(0.0, 0.86567164179104, 0.28425038984184)];
+				\default  -> Color(0.82745098039216, 0.87058823529412, 1.0)];
 	}
 	remove {
 		NotificationCenter.removeForListener(this)
@@ -64,14 +64,14 @@ SynthConsole : AbstractConsole  {
 		})					
 	}
 	play {
-		playControl = ActionButton(layout,">",{this.doPlay })
-		    .background_(colors[\isStopped])
+		playControl = ActionButton(layout,"PLAY",{this.doPlay })
+		    .background_(colors[\isFreed])
 	}
 	prepare {
 		ActionButton(layout,"pre",{this.doPrepare})
 		    .background_(Color(0.41676819981724, 0.92857142857143, 0.2771855010661, 0.2089552238806))
 	}
-	scope {arg duration=0.5;
+	scope { arg duration=0.5;
 		ActionButton(layout,"scope",{this.doScope(duration)})
 	}
 	fftScope {
@@ -95,14 +95,14 @@ SynthConsole : AbstractConsole  {
 	}
 
 	stop { arg stopFunc;
-		ActionButton(layout,"stop",{
+		ActionButton(layout,"STOP",{
 			this.doStop(stopFunc)
-		}).background_(Color(0.7910447761194, 0.20998949813831, 0.16529293829361));
+		}).background_(colors['isStopped']);
 	}
 	free {
-		ActionButton(layout,"free",{
+		ActionButton(layout,"FREE",{
 			ugenFunc.free;
-		});
+		}).background_(colors['isFreed']);
 	}
 	formats {
 		format.gui(layout);
