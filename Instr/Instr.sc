@@ -304,7 +304,7 @@ Instr  {
 
     //private
     *put { arg instr;
-        ^Library.putList([this,this.symbolizeName(instr.name),instr].flatten )
+        ^Library.putList([Instr,this.symbolizeName(instr.name),instr].flatten )
     }
     *remove { arg instr;
         ^Library.global.removeAt([this,this.symbolizeName(instr.name)].flatten )
