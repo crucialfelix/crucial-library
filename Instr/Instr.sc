@@ -89,7 +89,7 @@ Instr  {
         ^args ? []
     }	    
     ar { arg ... inputs;
-        ^func.valueArray(inputs);
+        ^func.valueArray(this.convertArgs(inputs));
     }
     value { arg inputs;
         ^func.valueArray(this.convertArgs(inputs))
