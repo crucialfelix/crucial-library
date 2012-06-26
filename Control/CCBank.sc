@@ -41,10 +41,10 @@ CCBank([
 
 CCBank {
 
-	var <>sets,responders,oneShot,prev;
+	var <>sets,<>src,responders,oneShot,prev;
 	
-	*new { arg sets;
-		^super.newCopyArgs(sets ? []).init
+	*new { arg sets,src;
+		^super.newCopyArgs(sets ? [],src).init
 	}
 	storeArgs {
 		^[sets]
@@ -74,7 +74,7 @@ CCBank {
 				});
 				oneShot = this.class.responderClass.new({|port,chan,num,value|
 						{ ne.activeValue = num; 	}.defer
-					},nil,nil,nil,nil,true,true);
+					},src,nil,nil,nil,true,true);
 
 				layout.removeOnClose(oneShot);
 				prev = tb;
@@ -106,7 +106,7 @@ CCBank {
 		^responders[key] ?? {
 			assc = this.findSet(key) ?? { (key.asString + "not found in" + this).warn };
 			// would be better: if nil then do not install but allow it to learn and get installed later
-			ccr = this.class.responderClass.new(nil, nil, nil, assc.value ? 127, nil);
+			ccr = this.class.responderClass.new(nil, src, nil, assc.value ? 127, nil);
 			responders[key] = ccr;
 			ccr
 		}
