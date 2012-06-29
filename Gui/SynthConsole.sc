@@ -49,9 +49,9 @@ SynthConsole : AbstractConsole  {
 					Color(0.0, 0.96470588235294, 0.91372549019608)
 				,
 				\isFreed -> 
-					Color(0.82745098039216, 0.87058823529412, 1.0)
+					Color(0.92941176470588, 0.98823529411765, 1.0)
 				,
-				\default  -> Color(0.82745098039216, 0.87058823529412, 1.0)];
+				\default  -> Color(0.92941176470588, 0.98823529411765, 1.0)];
 	}
 	remove {
 		NotificationCenter.removeForListener(this)
@@ -87,7 +87,7 @@ SynthConsole : AbstractConsole  {
 		},{
 			recorder.stop;
 			recorder = nil;
-		},onColor:Color.red)
+		},onColor:Color.red,offColor:colors['default'])
 	}
 	write {arg dur,defpath;
 		//		if(defpath.notNil,{ defaultPath = defpath });
