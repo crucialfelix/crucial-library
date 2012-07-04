@@ -1,0 +1,202 @@
+CLASS:: Tempo
+summary:: for control of tempo and for use in tempo based calculations
+categories:: Libraries>crucial>Scheduling
+related:: Classes/TempoClock
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: default
+
+
+returns::
+
+METHOD:: new
+
+
+argument:: tempo
+
+
+argument:: tempoClock
+
+
+returns::
+
+METHOD:: initClass
+
+
+returns::
+
+METHOD:: bpm
+
+
+argument:: bpm
+
+
+returns::
+
+METHOD:: next
+
+
+returns::
+
+METHOD:: beats2secs
+
+
+argument:: beats
+
+
+returns::
+
+METHOD:: secs2beats
+
+
+argument:: secs
+
+
+returns::
+
+METHOD:: tempo
+
+
+argument:: tempo
+
+
+returns::
+
+METHOD:: kr
+
+
+returns::
+
+METHOD:: beats2secsKr
+
+
+argument:: beats
+
+
+returns::
+
+METHOD:: makeClock
+
+
+argument:: owner
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: tempo
+
+
+argument:: t
+
+
+returns::
+
+METHOD:: beatsPerBar
+
+
+argument:: b
+
+
+returns::
+
+METHOD:: init
+
+
+argument:: t
+
+
+returns::
+
+METHOD:: bpm
+
+
+argument:: bpm
+
+
+returns::
+
+METHOD:: next
+
+
+returns::
+
+METHOD:: beats2secs
+
+
+argument:: beats
+
+
+returns::
+
+METHOD:: secs2beats
+
+
+argument:: secs
+
+
+returns::
+
+METHOD:: bars2secs
+
+
+argument:: bars
+
+
+returns::
+
+METHOD:: secs2bars
+
+
+argument:: secs
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+METHOD:: kr
+
+
+returns::
+
+METHOD:: destroy
+
+
+returns::
+
+METHOD:: makeClock
+
+
+argument:: owner
+
+
+returns::
+
+METHOD:: cmdPeriod
+
+
+returns::
+
+METHOD:: clearClocks
+
+
+returns::
+
+METHOD:: clockDidClear
+
+
+returns::
+
+
+

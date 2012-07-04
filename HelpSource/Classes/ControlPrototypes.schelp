@@ -1,0 +1,100 @@
+CLASS:: ControlPrototypes
+summary:: creates default objects for Spec / argName combinations
+categories:: Libraries>crucial>Instr
+related:: Classes/Spec
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: registery
+
+
+returns::
+
+METHOD:: initClass
+
+
+returns::
+
+METHOD:: define
+
+
+argument::  ... assns
+
+
+returns::
+
+METHOD:: at
+
+
+argument:: key
+
+
+argument:: spec
+
+
+returns::
+
+METHOD:: forSpec
+
+
+argument:: argName
+
+
+argument:: spec
+
+
+returns::
+
+METHOD:: firstAt
+
+
+argument:: argName
+
+
+argument:: spec
+
+
+returns::
+
+METHOD:: chooseAt
+
+
+argument:: argName
+
+
+argument:: spec
+
+
+returns::
+
+METHOD:: chooseForSpec
+
+
+argument:: argName
+
+
+argument:: spec
+
+
+returns::
+
+METHOD:: listForSpec
+
+
+argument:: argName
+
+
+argument:: spec
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+
+

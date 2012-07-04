@@ -1,0 +1,24 @@
+CLASS:: IsNotIn
+summary::
+categories:: Libraries>crucial>Constraints
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: value
+
+
+argument:: obj
+
+
+returns::
+
+
+

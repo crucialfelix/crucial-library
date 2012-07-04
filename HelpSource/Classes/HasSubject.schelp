@@ -1,0 +1,78 @@
+CLASS:: HasSubject
+summary:: parent class for Players that have subplayers
+categories:: Libraries>crucial>Players>abstract
+related:: Classes/PlayerSocket
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: subject
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: subject
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: ar
+
+
+returns::
+
+METHOD:: children
+
+
+returns::
+
+METHOD:: inputs
+
+
+returns::
+
+METHOD:: numChannels
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+METHOD:: state
+
+
+argument:: state
+
+
+returns::
+
+METHOD:: swappableChildren
+
+
+argument:: parentForSpec
+
+
+argument:: parentForArgName
+
+
+returns::
+
+
+

@@ -1,0 +1,140 @@
+CLASS:: StreamKrDur
+summary:: a 'control' rate player that combines a stream of values with a stream of durations and plays them
+categories:: Libraries>crucial>Players
+related:: Classes/Stream2Trig, Classes/StreamKr
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: values
+
+
+argument:: durations
+
+
+argument:: lag
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: values
+
+
+returns::
+
+METHOD:: durations
+
+
+returns::
+
+METHOD:: lastValue
+
+
+returns::
+
+METHOD:: delta
+
+
+returns::
+
+METHOD:: beat
+
+
+returns::
+
+METHOD:: skdinit
+
+
+returns::
+
+METHOD:: didStop
+
+
+returns::
+
+METHOD:: stopRoutine
+
+
+returns::
+
+METHOD:: resetRoutine
+
+
+returns::
+
+METHOD:: spawnToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: didSpawn
+
+
+returns::
+
+METHOD:: poll
+
+
+returns::
+
+METHOD:: spec
+
+
+returns::
+
+METHOD:: children
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+METHOD:: swappable
+
+
+argument:: spec
+
+
+argument:: argName
+
+
+returns::
+
+METHOD:: swappableChildren
+
+
+argument:: parentForSpec
+
+
+argument:: parentForArgName
+
+
+returns::
+
+METHOD:: wigglyness
+
+
+returns::
+
+
+

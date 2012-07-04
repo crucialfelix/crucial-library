@@ -1,0 +1,99 @@
+CLASS:: HasPatchIns
+summary:: parent class for Players that have PatchIns such as Patch
+categories:: Libraries>crucial>Players>abstract
+related:: Classes/Patch
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: patchIns
+
+
+returns::
+
+METHOD:: connectPatchIns
+
+
+returns::
+
+METHOD:: synthArgsIndices
+
+
+returns::
+
+METHOD:: inputs
+
+
+returns::
+
+METHOD:: mapInputToBus
+
+
+argument:: i
+
+
+argument:: bus
+
+
+returns::
+
+METHOD:: inputProxies
+
+
+returns::
+
+METHOD:: annotatedInputProxies
+
+
+argument:: offset
+
+
+argument:: array
+
+
+returns::
+
+METHOD:: setInput
+
+
+argument:: ai
+
+
+argument:: ag
+
+
+returns::
+
+METHOD:: setDeepInput
+
+
+argument:: ai
+
+
+argument:: ag
+
+
+argument:: offset
+
+
+returns::
+
+METHOD:: deepSpecAt
+
+
+argument:: argi
+
+
+argument:: offset
+
+
+returns::
+
+
+

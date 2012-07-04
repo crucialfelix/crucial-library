@@ -1,0 +1,187 @@
+CLASS:: UGenInstr
+summary:: converts a single UGen into an Instr eg. UGenInstr(RLPF)
+categories:: Libraries>crucial>Instr
+related:: Classes/Instr
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: ugenClass
+
+
+argument:: rate
+
+
+returns::
+
+METHOD:: leaves
+
+
+argument:: rateMethod
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: ugenClass
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: specs
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: init
+
+
+argument:: uc
+
+
+argument:: r
+
+
+returns::
+
+METHOD:: value
+
+
+argument:: args
+
+
+returns::
+
+METHOD:: valueArray
+
+
+argument:: args
+
+
+returns::
+
+METHOD:: ar
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: kr
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: outSpec
+
+
+returns::
+
+METHOD:: dotNotation
+
+
+returns::
+
+METHOD:: storeableFuncReference
+
+
+returns::
+
+METHOD:: funcDef
+
+
+returns::
+
+METHOD:: path
+
+
+returns::
+
+METHOD:: maxArgs
+
+
+returns::
+
+METHOD:: argsSize
+
+
+returns::
+
+METHOD:: argNames
+
+
+returns::
+
+METHOD:: defArgs
+
+
+returns::
+
+METHOD:: initAt
+
+
+argument:: i
+
+
+returns::
+
+METHOD:: argNameAt
+
+
+argument:: i
+
+
+returns::
+
+METHOD:: defArgAt
+
+
+argument:: i
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+METHOD:: asString
+
+
+returns::
+
+METHOD:: asInstr
+
+
+returns::
+
+METHOD:: name
+
+
+returns::
+
+
+

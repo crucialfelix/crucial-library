@@ -1,0 +1,81 @@
+CLASS:: ServerGui
+summary::
+categories:: Libraries>crucial>GuiClasses
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: writeName
+
+
+returns::
+
+METHOD:: guiBody
+
+
+argument:: layout
+
+
+returns::
+
+METHOD:: output
+
+
+argument:: layout
+
+
+argument:: width
+
+
+returns::
+
+METHOD:: input
+
+
+argument:: layout
+
+
+argument:: width
+
+
+returns::
+
+METHOD:: meters
+
+
+argument:: layout
+
+
+argument:: bounds
+
+
+returns::
+
+METHOD:: tail
+
+
+argument:: layout
+
+
+returns::
+
+METHOD:: update
+
+
+argument:: changer
+
+
+argument:: what
+
+
+returns::
+
+
+

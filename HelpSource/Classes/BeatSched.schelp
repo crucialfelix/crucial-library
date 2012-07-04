@@ -1,0 +1,342 @@
+CLASS:: BeatSched
+summary:: just in time scheduler utility
+categories:: Scheduling, Libraries>crucial>Scheduling
+related:: Classes/OSCSched
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: global
+
+
+returns::
+
+METHOD:: new
+
+
+argument:: clock
+
+
+argument:: tempo
+
+
+argument:: tempoClock
+
+
+returns::
+
+METHOD:: initClass
+
+
+returns::
+
+METHOD:: xblock
+
+
+returns::
+
+METHOD:: time
+
+
+argument:: seconds
+
+
+returns::
+
+METHOD:: beat
+
+
+argument:: beat
+
+
+returns::
+
+METHOD:: clear
+
+
+returns::
+
+METHOD:: deltaTillNext
+
+
+argument:: quantize
+
+
+returns::
+
+METHOD:: tdeltaTillNext
+
+
+argument:: quantize
+
+
+returns::
+
+METHOD:: tsched
+
+
+argument:: seconds
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: xtsched
+
+
+argument:: seconds
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: sched
+
+
+argument:: beats
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: xsched
+
+
+argument:: beats
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: qsched
+
+
+argument:: quantize
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: xqsched
+
+
+argument:: quantize
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: tschedAbs
+
+
+argument:: time
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: xtschedAbs
+
+
+argument:: time
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: schedAbs
+
+
+argument:: beat
+
+
+argument:: function
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: tempo
+
+
+returns::
+
+METHOD:: tempoClock
+
+
+returns::
+
+METHOD:: init
+
+
+returns::
+
+METHOD:: xblock
+
+
+returns::
+
+METHOD:: time
+
+
+argument:: seconds
+
+
+returns::
+
+METHOD:: beat
+
+
+argument:: beat
+
+
+returns::
+
+METHOD:: clear
+
+
+returns::
+
+METHOD:: deltaTillNext
+
+
+argument:: quantize
+
+
+returns::
+
+METHOD:: tdeltaTillNext
+
+
+argument:: quantize
+
+
+returns::
+
+METHOD:: tsched
+
+
+argument:: seconds
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: xtsched
+
+
+argument:: seconds
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: sched
+
+
+argument:: beats
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: xsched
+
+
+argument:: beats
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: qsched
+
+
+argument:: quantize
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: xqsched
+
+
+argument:: quantize
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: tschedAbs
+
+
+argument:: time
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: xtschedAbs
+
+
+argument:: time
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: schedAbs
+
+
+argument:: beat
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: tschedAbsNext
+
+
+returns::
+
+
+

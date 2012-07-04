@@ -1,0 +1,46 @@
+CLASS:: Sheet
+summary:: utility to create a  single auto-resized window
+categories:: Libraries>crucial>GUI
+related::
+
+DESCRIPTION::  The name sheet comes from Cocoa where a Sheet is the window that slides down asking you to deal with something (like a license agreement).
+
+In practice, since the Sheet syntax is so convienient, its been used for many cases where a window with auto-resizing is wanted.
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: buildDialog
+
+
+argument:: name
+
+
+argument:: bounds
+
+
+returns::
+
+METHOD:: getString
+
+
+argument:: prompt
+
+
+argument:: defaultString
+
+
+argument:: callback
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+
+

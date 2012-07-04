@@ -1,0 +1,104 @@
+CLASS:: AbstractPlayerGui
+summary:: base class for all Player guis
+categories:: Libraries>crucial>GuiClasses
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: gui
+
+
+argument:: parent
+
+
+argument:: bounds
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: background
+
+
+argument:: b
+
+
+returns::
+
+METHOD:: topGui
+
+
+argument:: parent
+
+
+argument:: bounds
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: writeName
+
+
+argument:: layout
+
+
+returns::
+
+METHOD:: viewDidClose
+
+
+returns::
+
+METHOD:: keyDownResponder
+
+
+returns::
+
+METHOD:: saveConsole
+
+
+argument:: layout
+
+
+returns::
+
+METHOD:: synthConsole
+
+
+argument:: layout
+
+
+returns::
+
+METHOD:: durationString
+
+
+returns::
+
+METHOD:: durationGui
+
+
+argument:: layout
+
+
+returns::
+
+METHOD:: enableMIDI
+
+
+returns::
+
+
+

@@ -1,0 +1,80 @@
+CLASS:: IrNumberEditor
+summary:: a number box and slider for editing a float value [\ir rate]
+categories:: Libraries>crucial>Editors
+related:: Classes/Editor, Classes/KrEditor, Classes/Patch
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: init
+
+
+argument:: val
+
+
+argument:: aspec
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: addToSynthDef
+
+
+argument:: synthDef
+
+
+argument:: name
+
+
+returns::
+
+METHOD:: instrArgFromControl
+
+
+argument:: control
+
+
+returns::
+
+METHOD:: makePatchOut
+
+
+returns::
+
+METHOD:: connectToPatchIn
+
+
+returns::
+
+METHOD:: addToDefName
+
+
+argument:: stream
+
+
+returns::
+
+METHOD:: swappable
+
+
+argument:: spec
+
+
+argument:: argName
+
+
+returns::
+
+
+

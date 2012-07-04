@@ -1,0 +1,115 @@
+CLASS:: AnnotatedDebugNodeWatcher
+summary:: Watches server replies for node ended/started events using AbstractPlayer's Node annotation system
+categories:: Libraries>crucial>Debugging
+related:: Classes/DebugNodeWatcher, Clases/Annotations
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: getAnnotation
+
+
+argument:: server
+
+
+argument:: nodeID
+
+
+returns::
+
+METHOD:: doPost
+
+
+argument:: action
+
+
+argument:: nodeID
+
+
+argument:: groupID
+
+
+argument:: prevID
+
+
+argument:: nextID
+
+
+returns::
+
+METHOD:: n_go
+
+
+argument:: nodeID
+
+
+argument:: groupID
+
+
+argument:: prevID
+
+
+argument:: nextID
+
+
+returns::
+
+METHOD:: n_end
+
+
+argument:: nodeID
+
+
+argument:: groupID
+
+
+argument:: prevID
+
+
+argument:: nextID
+
+
+returns::
+
+METHOD:: n_off
+
+
+argument:: nodeID
+
+
+argument:: groupID
+
+
+argument:: prevID
+
+
+argument:: nextID
+
+
+returns::
+
+METHOD:: n_on
+
+
+argument:: nodeID
+
+
+argument:: groupID
+
+
+argument:: prevID
+
+
+argument:: nextID
+
+
+returns::
+
+
+

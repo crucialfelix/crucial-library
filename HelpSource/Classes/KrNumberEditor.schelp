@@ -1,0 +1,109 @@
+CLASS:: KrNumberEditor
+summary:: a number box and slider for editing a float value [\kr rate]
+categories:: Libraries>crucial>Editors
+related:: Classes/Patch, Classes/NumberEditor
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: defaultLag
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: lag
+
+
+returns::
+
+METHOD:: init
+
+
+argument:: val
+
+
+argument:: aspec
+
+
+returns::
+
+METHOD:: canDoSpec
+
+
+argument:: aspec
+
+
+returns::
+
+METHOD:: addToSynthDef
+
+
+argument:: synthDef
+
+
+argument:: name
+
+
+returns::
+
+METHOD:: instrArgFromControl
+
+
+argument:: control
+
+
+returns::
+
+METHOD:: makePatchOut
+
+
+returns::
+
+METHOD:: connectToPatchIn
+
+
+argument:: patchIn
+
+
+argument:: needsValueSetNow
+
+
+returns::
+
+METHOD:: copy
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+METHOD:: addToDefName
+
+
+argument:: stream
+
+
+returns::
+
+METHOD:: swappable
+
+
+argument:: spec
+
+
+argument:: argName
+
+
+returns::
+
+
+

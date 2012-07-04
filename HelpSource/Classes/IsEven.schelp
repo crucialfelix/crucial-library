@@ -1,0 +1,32 @@
+CLASS:: IsEven
+summary::
+categories:: Libraries>crucial>Constraints
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: value
+
+
+argument:: obj
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: value
+
+
+argument:: obj
+
+
+returns::
+
+
+

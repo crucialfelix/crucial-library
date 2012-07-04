@@ -1,0 +1,105 @@
+CLASS:: PatchIn
+summary:: manages a Player's input when connecting to other Players
+categories:: Libraries>crucial>internals
+related::
+
+
+DESCRIPTION:: These objects hold information about a Player's inputs and outputs. They are used to make connections to other Players, and to manage that connection and all subsequent repatching or disconnections.
+
+This is the predecessor system to Mx, which has a better system and is not limited to just Players.
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: nodeControl
+
+
+returns::
+
+METHOD:: newByRate
+
+
+argument:: rate
+
+
+argument:: nodeControl
+
+
+returns::
+
+METHOD:: audio
+
+
+argument:: nodeControl
+
+
+returns::
+
+METHOD:: control
+
+
+argument:: nodeControl
+
+
+returns::
+
+METHOD:: scalar
+
+
+argument:: nodeControl
+
+
+returns::
+
+METHOD:: stream
+
+
+argument:: nodeControl
+
+
+returns::
+
+METHOD:: noncontrol
+
+
+argument:: nodeControl
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: nodeControl
+
+
+returns::
+
+METHOD:: connectedTo
+
+
+returns::
+
+METHOD:: server
+
+
+returns::
+
+METHOD:: group
+
+
+returns::
+
+METHOD:: disconnectFrom
+
+
+argument:: patchOut
+
+
+returns::
+
+
+

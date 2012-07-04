@@ -1,0 +1,90 @@
+CLASS:: NamedIntegersSpec
+summary:: datatype specifying an option list with names and an integer output type
+categories:: Spec, Libraries>crucial>Spec
+related:: Classes/PopUpEditor
+
+DESCRIPTION::  Where the human readable list should have names for each option and the output supplied to the input should be an Integer.
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: names
+
+
+argument:: default
+
+
+argument:: static
+
+
+returns::
+
+METHOD:: newFrom
+
+
+argument:: similar
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: values
+
+
+returns::
+
+METHOD:: names
+
+
+returns::
+
+METHOD:: static
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: nisinit
+
+
+argument:: n
+
+
+argument:: s
+
+
+argument:: d
+
+
+returns::
+
+METHOD:: canKr
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: defaultControl
+
+
+argument:: val
+
+
+returns::
+
+
+

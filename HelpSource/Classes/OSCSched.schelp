@@ -1,0 +1,370 @@
+CLASS:: OSCSched
+summary:: scheduling utility for just-in-time scheduling of OSC bundles
+categories:: Scheduling, Libraries>crucial>Scheduling
+related:: Classes/BeatSched
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: global
+
+
+returns::
+
+METHOD:: initClass
+
+
+returns::
+
+METHOD:: tsched
+
+
+argument:: seconds
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+returns::
+
+METHOD:: xtsched
+
+
+argument:: seconds
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+returns::
+
+METHOD:: sched
+
+
+argument:: beats
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+returns::
+
+METHOD:: xsched
+
+
+argument:: beats
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+returns::
+
+METHOD:: qsched
+
+
+argument:: quantize
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+returns::
+
+METHOD:: xqsched
+
+
+argument:: quantize
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+returns::
+
+METHOD:: tschedAbs
+
+
+argument:: time
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+returns::
+
+METHOD:: schedAbs
+
+
+argument:: beat
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: tsched
+
+
+argument:: seconds
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+returns::
+
+METHOD:: xtsched
+
+
+argument:: seconds
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+returns::
+
+METHOD:: xtschedFunc
+
+
+argument:: seconds
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: sched
+
+
+argument:: beats
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+argument:: onSend
+
+
+returns::
+
+METHOD:: xsched
+
+
+argument:: beats
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+returns::
+
+METHOD:: qsched
+
+
+argument:: quantize
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+returns::
+
+METHOD:: xqsched
+
+
+argument:: quantize
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+returns::
+
+METHOD:: tschedAbs
+
+
+argument:: time
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+returns::
+
+METHOD:: schedAbs
+
+
+argument:: beat
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+argument:: onArrival
+
+
+returns::
+
+METHOD:: aschedFunc
+
+
+argument:: beat
+
+
+argument:: func
+
+
+returns::
+
+METHOD:: schedAtTime
+
+
+argument:: atTime
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: xschedAtTime
+
+
+argument:: atTime
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: xschedBundle
+
+
+argument:: beatDelta
+
+
+argument:: server
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: tschedAbsNext
+
+
+returns::
+
+
+

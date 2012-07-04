@@ -1,0 +1,389 @@
+CLASS:: Patch
+summary:: Pairs an Instr with inputs that that will be passed to the Instr
+categories:: Libraries>crucial>Instr, Libraries>crucial>Players
+related:: Classes/Instr
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: name
+
+
+argument:: inputs
+
+
+argument:: outClass
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: instr
+
+
+argument:: newInstr
+
+
+returns::
+
+METHOD:: args
+
+
+argument:: inputs
+
+
+returns::
+
+METHOD:: argsForSynth
+
+
+returns::
+
+METHOD:: argNamesForSynth
+
+
+returns::
+
+METHOD:: synthArgsIndices
+
+
+returns::
+
+METHOD:: synthDef
+
+
+returns::
+
+METHOD:: outClass
+
+
+returns::
+
+METHOD:: respawnOnChange
+
+
+returns::
+
+METHOD:: stepChildren
+
+
+returns::
+
+METHOD:: inputs
+
+
+returns::
+
+METHOD:: setInput
+
+
+argument:: index
+
+
+argument:: newArg
+
+
+returns::
+
+METHOD:: set
+
+
+argument:: index
+
+
+argument:: value
+
+
+returns::
+
+METHOD:: rand
+
+
+argument:: standardDeviation
+
+
+returns::
+
+METHOD:: doesNotUnderstand
+
+
+argument:: selector
+
+
+argument::  ... dnuargs
+
+
+returns::
+
+METHOD:: argNames
+
+
+returns::
+
+METHOD:: argNameAt
+
+
+argument:: i
+
+
+returns::
+
+METHOD:: specAt
+
+
+argument:: i
+
+
+returns::
+
+METHOD:: spec
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: numChannels
+
+
+returns::
+
+METHOD:: indexFromName
+
+
+argument:: argName
+
+
+returns::
+
+METHOD:: argFromName
+
+
+argument:: argName
+
+
+returns::
+
+METHOD:: loadSubject
+
+
+argument:: name
+
+
+returns::
+
+METHOD:: createArgs
+
+
+argument:: argargs
+
+
+returns::
+
+METHOD:: defName
+
+
+returns::
+
+METHOD:: asSynthDef
+
+
+returns::
+
+METHOD:: watchNoncontrols
+
+
+returns::
+
+METHOD:: respawn
+
+
+argument:: atTime
+
+
+returns::
+
+METHOD:: update
+
+
+argument:: changed
+
+
+argument:: what
+
+
+returns::
+
+METHOD:: removeSynthDefCache
+
+
+returns::
+
+METHOD:: invalidateSynthDef
+
+
+returns::
+
+METHOD:: releaseArgs
+
+
+returns::
+
+METHOD:: didFree
+
+
+returns::
+
+METHOD:: prepareChildrenToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: spawnToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: didSpawn
+
+
+returns::
+
+METHOD:: synthDefArgs
+
+
+returns::
+
+METHOD:: stopToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: value
+
+
+argument::  ... overideArgs
+
+
+returns::
+
+METHOD:: valueArray
+
+
+argument:: overideArgs
+
+
+returns::
+
+METHOD:: asEvent
+
+
+returns::
+
+METHOD:: embedInStream
+
+
+argument:: event
+
+
+returns::
+
+METHOD:: children
+
+
+returns::
+
+METHOD:: printOn
+
+
+argument:: s
+
+
+returns::
+
+METHOD:: storeParamsOn
+
+
+argument:: stream
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+METHOD:: state
+
+
+argument:: state
+
+
+returns::
+
+METHOD:: hasAudioInput
+
+
+returns::
+
+METHOD:: busReport
+
+
+argument:: f
+
+
+argument:: slogan
+
+
+returns::
+
+METHOD:: swappable
+
+
+argument:: spec
+
+
+argument:: argName
+
+
+returns::
+
+METHOD:: swappableChildren
+
+
+argument:: parentForSpec
+
+
+argument:: parentForArgName
+
+
+returns::
+
+
+

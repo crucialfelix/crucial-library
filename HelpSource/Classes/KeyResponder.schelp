@@ -1,0 +1,111 @@
+CLASS:: KeyResponder
+summary:: combines KeyCodeResponder and UnicodeResponder
+categories:: Libraries>crucial>GUI, External Control>Keyboard
+related:: Classes/KeyCodeResponder, Classes/UnicodeResponder
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: initKeycodeMap
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: keycodes
+
+
+returns::
+
+METHOD:: register
+
+
+argument:: key
+
+
+argument:: shift
+
+
+argument:: caps
+
+
+argument:: opt
+
+
+argument:: cntl
+
+
+argument:: function
+
+
+argument:: description
+
+
+returns::
+
+METHOD:: value
+
+
+argument:: view
+
+
+argument:: char
+
+
+argument:: modifier
+
+
+argument:: unicode
+
+
+argument:: keycode
+
+
+returns::
+
+METHOD:: registerKeycode
+
+
+argument:: keycode
+
+
+argument:: shift
+
+
+argument:: caps
+
+
+argument:: opt
+
+
+argument:: cntl
+
+
+argument:: function
+
+
+argument:: description
+
+
+returns::
+
+METHOD:: ++
+
+
+argument:: that
+
+
+returns::
+
+METHOD:: clear
+
+
+returns::
+
+
+

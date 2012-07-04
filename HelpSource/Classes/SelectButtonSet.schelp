@@ -1,0 +1,203 @@
+CLASS:: SelectButtonSet
+summary:: a set of radio buttons
+categories:: Libraries>crucial>GUI
+related:: Classes/PopUpMenu
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: layout
+
+
+argument:: labelArrayOrQnty
+
+
+argument:: action
+
+
+argument:: color
+
+
+argument:: selectedColor
+
+
+argument:: width
+
+
+argument:: height
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: selected
+
+
+returns::
+
+METHOD:: action
+
+
+returns::
+
+METHOD:: colorFunc
+
+
+returns::
+
+METHOD:: selectedColor
+
+
+returns::
+
+METHOD:: labelArray
+
+
+returns::
+
+METHOD:: altAction
+
+
+returns::
+
+METHOD:: init
+
+
+argument:: layout
+
+
+argument:: x
+
+
+argument:: y
+
+
+argument:: arglabelArray
+
+
+argument:: argaction
+
+
+argument:: argcolorFunc
+
+
+argument:: argselectedColor
+
+
+returns::
+
+METHOD:: select
+
+
+argument:: x
+
+
+returns::
+
+METHOD:: selectItem
+
+
+argument:: item
+
+
+returns::
+
+METHOD:: passiveSelect
+
+
+argument:: x
+
+
+returns::
+
+METHOD:: update
+
+
+argument:: x
+
+
+returns::
+
+METHOD:: refresh
+
+
+returns::
+
+METHOD:: selectedIndex
+
+
+returns::
+
+METHOD:: selectedLabel
+
+
+returns::
+
+METHOD:: selectedItem
+
+
+returns::
+
+METHOD:: deselect
+
+
+returns::
+
+METHOD:: setButtonColor
+
+
+argument:: butt
+
+
+argument:: color
+
+
+returns::
+
+METHOD:: colorNormal
+
+
+argument:: i
+
+
+returns::
+
+METHOD:: colorSelected
+
+
+argument:: i
+
+
+returns::
+
+METHOD:: doAction
+
+
+returns::
+
+METHOD:: addAction
+
+
+argument:: func
+
+
+returns::
+
+METHOD:: font
+
+
+argument:: f
+
+
+returns::
+
+
+

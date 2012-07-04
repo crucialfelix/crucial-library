@@ -1,0 +1,321 @@
+CLASS:: InstrSynthDef
+summary:: Extends SynthDef enabling the extra capabilities of Instr with Patch
+categories:: Libraries>crucial>Instr
+related:: Classes/SynthDef
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+returns::
+
+METHOD:: build
+
+
+argument:: instr
+
+
+argument:: args
+
+
+argument:: outClass
+
+
+returns::
+
+METHOD:: makeDefName
+
+
+argument:: instr
+
+
+argument:: args
+
+
+argument:: outClass
+
+
+returns::
+
+METHOD:: hashEncode
+
+
+argument:: object
+
+
+returns::
+
+METHOD:: cacheAt
+
+
+argument:: defName
+
+
+argument:: server
+
+
+returns::
+
+METHOD:: cachePut
+
+
+argument:: def
+
+
+argument:: server
+
+
+returns::
+
+METHOD:: loadDefFileToBundle
+
+
+argument:: def
+
+
+argument:: bundle
+
+
+argument:: server
+
+
+returns::
+
+METHOD:: watchServer
+
+
+argument:: server
+
+
+returns::
+
+METHOD:: clearCache
+
+
+argument:: server
+
+
+returns::
+
+METHOD:: loadCacheFromDir
+
+
+argument:: server
+
+
+argument:: dir
+
+
+returns::
+
+METHOD:: cacheRemoveAt
+
+
+argument:: defName
+
+
+argument:: server
+
+
+returns::
+
+METHOD:: freeDef
+
+
+argument:: defName
+
+
+argument:: server
+
+
+returns::
+
+METHOD:: freeAll
+
+
+argument:: server
+
+
+returns::
+
+METHOD:: buildSynthDef
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: longName
+
+
+returns::
+
+METHOD:: instrName
+
+
+returns::
+
+METHOD:: tempTempoKr
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: numChannels
+
+
+returns::
+
+METHOD:: build
+
+
+argument:: instr
+
+
+argument:: args
+
+
+argument:: outClass
+
+
+returns::
+
+METHOD:: buildUgenGraph
+
+
+argument:: argInstr
+
+
+argument:: args
+
+
+argument:: outClass
+
+
+returns::
+
+METHOD:: addInstrOnlyArg
+
+
+argument:: name
+
+
+argument:: value
+
+
+returns::
+
+METHOD:: addSecretIr
+
+
+argument:: object
+
+
+argument:: initialValue
+
+
+argument:: selector
+
+
+returns::
+
+METHOD:: addSecretKr
+
+
+argument:: object
+
+
+argument:: initialValue
+
+
+argument:: selector
+
+
+returns::
+
+METHOD:: playerIn
+
+
+argument:: object
+
+
+returns::
+
+METHOD:: secretObjects
+
+
+returns::
+
+METHOD:: secretDefArgs
+
+
+returns::
+
+METHOD:: buildControlsWithObjects
+
+
+argument:: instr
+
+
+argument:: objects
+
+
+returns::
+
+METHOD:: checkInputs
+
+
+returns::
+
+METHOD:: finishBuild
+
+
+returns::
+
+METHOD:: instr
+
+
+returns::
+
+METHOD:: buildErrorString
+
+
+returns::
+
+METHOD:: tempoKr
+
+
+argument:: object
+
+
+argument:: selector
+
+
+returns::
+
+METHOD:: onTrig
+
+
+argument:: trig
+
+
+argument:: func
+
+
+argument:: value
+
+
+returns::
+
+
+

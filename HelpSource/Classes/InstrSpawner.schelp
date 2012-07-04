@@ -1,0 +1,194 @@
+CLASS:: InstrSpawner
+summary:: a Pbind-like spawner that plays an Instr with streams supplied to its inputs
+categories:: Libraries>crucial>Instr, Libraries>crucial>Players
+related:: Classes/Instr, Classes/Pbind, Classes/InstrGateSpawner
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: latency
+
+
+returns::
+
+METHOD:: new
+
+
+argument:: func
+
+
+argument:: args
+
+
+argument:: deltaPattern
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: deltaPattern
+
+
+returns::
+
+METHOD:: deltaStream
+
+
+returns::
+
+METHOD:: delta
+
+
+returns::
+
+METHOD:: clock
+
+
+returns::
+
+METHOD:: spawnGroup
+
+
+returns::
+
+METHOD:: storeParamsOn
+
+
+argument:: stream
+
+
+returns::
+
+METHOD:: asSynthDef
+
+
+returns::
+
+METHOD:: makeTask
+
+
+returns::
+
+METHOD:: spawnNext
+
+
+returns::
+
+METHOD:: update
+
+
+argument:: changed
+
+
+argument:: changer
+
+
+returns::
+
+METHOD:: makeResourcesToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: prepareToBundle
+
+
+argument:: agroup
+
+
+argument:: bundle
+
+
+argument:: private
+
+
+argument:: bus
+
+
+argument:: defWasLoaded
+
+
+returns::
+
+METHOD:: freeResourcesToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: children
+
+
+returns::
+
+METHOD:: prepareChildrenToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: spawnToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: didSpawn
+
+
+returns::
+
+METHOD:: startTask
+
+
+returns::
+
+METHOD:: isPlaying
+
+
+returns::
+
+METHOD:: didStop
+
+
+returns::
+
+METHOD:: didFree
+
+
+returns::
+
+METHOD:: cmdPeriod
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+METHOD:: swappable
+
+
+argument:: spec
+
+
+returns::
+
+
+

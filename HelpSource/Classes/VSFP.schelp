@@ -1,0 +1,87 @@
+CLASS:: VSFP
+summary:: Varispeed sound file player
+categories:: Libraries>crucial>Players, Libraries>crucial>SoundFiles
+related:: Classes/SFP
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: pchRatio
+
+
+argument:: p
+
+
+returns::
+
+METHOD:: init
+
+
+argument:: path
+
+
+returns::
+
+METHOD:: preloadData
+
+
+argument:: startAt
+
+
+argument:: endAt
+
+
+argument:: group
+
+
+argument:: bundle
+
+
+argument:: parentSegmentBuffers
+
+
+returns::
+
+METHOD:: asSynthDef
+
+
+returns::
+
+METHOD:: synthDefArgs
+
+
+returns::
+
+METHOD:: didSpawn
+
+
+returns::
+
+METHOD:: didStop
+
+
+returns::
+
+METHOD:: currentFrame
+
+
+returns::
+
+METHOD:: beat
+
+
+returns::
+
+METHOD:: time
+
+
+returns::
+
+
+

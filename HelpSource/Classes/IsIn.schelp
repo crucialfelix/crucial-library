@@ -1,0 +1,37 @@
+CLASS:: IsIn
+summary::
+categories:: Libraries>crucial>Constraints
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: collection
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: collection
+
+
+returns::
+
+METHOD:: value
+
+
+argument:: obj
+
+
+returns::
+
+
+

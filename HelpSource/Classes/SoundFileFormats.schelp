@@ -1,0 +1,34 @@
+CLASS:: SoundFileFormats
+summary:: a widget for selecting SoundFile format for recording
+categories:: Libraries>crucial>GUI
+related:: Classes/SynthConsole
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: gui
+
+
+argument:: layout
+
+
+returns::
+
+METHOD:: headerFormat
+
+
+returns::
+
+METHOD:: sampleFormat
+
+
+returns::
+
+
+

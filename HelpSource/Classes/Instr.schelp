@@ -1,0 +1,730 @@
+CLASS:: Instr
+summary:: An extended version of SynthDef with enhanced capabilities
+categories:: Libraries>crucial>Instr
+related:: Classes/Patch
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: dir
+
+
+argument:: p
+
+
+returns::
+
+METHOD:: new
+
+
+argument:: name
+
+
+argument:: func
+
+
+argument:: specs
+
+
+argument:: outSpec
+
+
+returns::
+
+METHOD:: prNew
+
+
+returns::
+
+METHOD:: at
+
+
+argument:: name
+
+
+returns::
+
+METHOD:: load
+
+
+argument:: name
+
+
+returns::
+
+METHOD:: loadAll
+
+
+returns::
+
+METHOD:: prLoadDir
+
+
+argument:: dir
+
+
+returns::
+
+METHOD:: addExcludePaths
+
+
+returns::
+
+METHOD:: clearAll
+
+
+returns::
+
+METHOD:: ar
+
+
+argument:: name
+
+
+argument:: args
+
+
+returns::
+
+METHOD:: kr
+
+
+argument:: name
+
+
+argument:: args
+
+
+returns::
+
+METHOD:: choose
+
+
+argument:: start
+
+
+returns::
+
+METHOD:: leaves
+
+
+argument:: startAt
+
+
+returns::
+
+METHOD:: selectBySpec
+
+
+argument:: outSpec
+
+
+returns::
+
+METHOD:: chooseBySpec
+
+
+argument:: outSpec
+
+
+returns::
+
+METHOD:: put
+
+
+argument:: instr
+
+
+returns::
+
+METHOD:: remove
+
+
+argument:: instr
+
+
+returns::
+
+METHOD:: orc
+
+
+argument:: name
+
+
+argument:: pairs
+
+
+argument:: outSpec
+
+
+returns::
+
+METHOD:: symbolizeName
+
+
+argument:: name
+
+
+returns::
+
+METHOD:: isDefined
+
+
+argument:: name
+
+
+returns::
+
+METHOD:: objectAt
+
+
+argument:: name
+
+
+returns::
+
+METHOD:: findFileFor
+
+
+argument:: symbolized
+
+
+returns::
+
+METHOD:: findFileInDir
+
+
+argument:: symbolized
+
+
+argument:: rootPath
+
+
+returns::
+
+METHOD:: initClass
+
+
+returns::
+
+METHOD:: singleNameAsNames
+
+
+argument:: singleName
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: name
+
+
+returns::
+
+METHOD:: func
+
+
+returns::
+
+METHOD:: specs
+
+
+returns::
+
+METHOD:: outSpec
+
+
+returns::
+
+METHOD:: explicitSpecs
+
+
+returns::
+
+METHOD:: convertArgs
+
+
+argument:: args
+
+
+returns::
+
+METHOD:: ar
+
+
+argument::  ... inputs
+
+
+returns::
+
+METHOD:: value
+
+
+argument:: inputs
+
+
+returns::
+
+METHOD:: valueEnvir
+
+
+argument:: inputs
+
+
+returns::
+
+METHOD:: valueArray
+
+
+argument:: inputs
+
+
+returns::
+
+METHOD:: kr
+
+
+argument::  ... inputs
+
+
+returns::
+
+METHOD:: asSynthDef
+
+
+argument:: args
+
+
+argument:: outClass
+
+
+returns::
+
+METHOD:: writeDefFile
+
+
+argument:: dir
+
+
+argument:: args
+
+
+returns::
+
+METHOD:: write
+
+
+argument:: dir
+
+
+argument:: args
+
+
+returns::
+
+METHOD:: add
+
+
+argument:: args
+
+
+argument:: libname
+
+
+argument:: completionMsg
+
+
+argument:: keepDef
+
+
+returns::
+
+METHOD:: store
+
+
+argument:: args
+
+
+returns::
+
+METHOD:: after
+
+
+argument:: anode
+
+
+argument:: args
+
+
+argument:: bundle
+
+
+argument:: atTime
+
+
+argument:: out
+
+
+returns::
+
+METHOD:: before
+
+
+argument:: anode
+
+
+argument:: args
+
+
+argument:: bundle
+
+
+argument:: atTime
+
+
+argument:: out
+
+
+returns::
+
+METHOD:: head
+
+
+argument:: anode
+
+
+argument:: args
+
+
+argument:: bundle
+
+
+argument:: atTime
+
+
+argument:: out
+
+
+returns::
+
+METHOD:: tail
+
+
+argument:: anode
+
+
+argument:: args
+
+
+argument:: bundle
+
+
+argument:: atTime
+
+
+argument:: out
+
+
+returns::
+
+METHOD:: replace
+
+
+argument:: anode
+
+
+argument:: args
+
+
+argument:: bundle
+
+
+argument:: atTime
+
+
+argument:: out
+
+
+returns::
+
+METHOD:: spawnEvent
+
+
+argument:: event
+
+
+returns::
+
+METHOD:: next
+
+
+argument::  ... inputs
+
+
+returns::
+
+METHOD:: <>>
+
+
+argument:: that
+
+
+returns::
+
+METHOD:: papply
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: numChannels
+
+
+returns::
+
+METHOD:: path
+
+
+returns::
+
+METHOD:: maxArgs
+
+
+returns::
+
+METHOD:: argsSize
+
+
+returns::
+
+METHOD:: argNames
+
+
+returns::
+
+METHOD:: defArgs
+
+
+returns::
+
+METHOD:: argNameAt
+
+
+argument:: i
+
+
+returns::
+
+METHOD:: defArgAt
+
+
+argument:: i
+
+
+returns::
+
+METHOD:: initAt
+
+
+argument:: i
+
+
+returns::
+
+METHOD:: defName
+
+
+returns::
+
+METHOD:: asDefName
+
+
+argument:: args
+
+
+returns::
+
+METHOD:: prepareToBundle
+
+
+argument:: group
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: funcDef
+
+
+returns::
+
+METHOD:: prMakeSynth
+
+
+argument:: targetStyle
+
+
+argument:: anode
+
+
+argument:: args
+
+
+argument:: bundle
+
+
+argument:: atTime
+
+
+argument:: out
+
+
+returns::
+
+METHOD:: test
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: play
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: plot
+
+
+argument:: args
+
+
+argument:: duration
+
+
+returns::
+
+METHOD:: dotNotation
+
+
+returns::
+
+METHOD:: asString
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: storeableFuncReference
+
+
+returns::
+
+METHOD:: copy
+
+
+returns::
+
+METHOD:: init
+
+
+argument:: specs
+
+
+argument:: outsp
+
+
+returns::
+
+METHOD:: makeSpecs
+
+
+argument:: argspecs
+
+
+returns::
+
+METHOD:: isFilter
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+METHOD:: asSingleName
+
+
+returns::
+
+METHOD:: asInstr
+
+
+returns::
+
+METHOD:: instr
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: proxyControlClass
+
+
+returns::
+
+METHOD:: wrapInFader
+
+
+argument:: bus
+
+
+returns::
+
+METHOD:: papplyEnvir
+
+
+argument:: recursions
+
+
+returns::
+
+METHOD:: papplyOther
+
+
+argument:: other
+
+
+argument:: argi
+
+
+returns::
+
+
+

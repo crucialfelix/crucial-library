@@ -1,0 +1,42 @@
+CLASS:: CCPlayer
+summary:: adds a MIDI CC responder and plays it to a bus as control rate
+categories:: Libraries>crucial>Players, External Control>MIDI
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: num
+
+
+argument:: spec
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: num
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: initResponders
+
+
+returns::
+
+
+

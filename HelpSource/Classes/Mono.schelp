@@ -1,0 +1,24 @@
+CLASS:: Mono
+summary:: mixes the input to mono if it isn't already
+categories:: UGens>Multichannel
+related:: Classes/NumChannels
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: input
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+
+

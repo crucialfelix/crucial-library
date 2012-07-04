@@ -1,0 +1,60 @@
+CLASS:: PlayerBinop
+summary:: the result of a binary op on a Player
+categories:: Libraries>crucial>Players
+related:: Classes/PlayerUnop
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: operator
+
+
+argument:: a
+
+
+argument:: b
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: operator
+
+
+returns::
+
+METHOD:: a
+
+
+returns::
+
+METHOD:: b
+
+
+returns::
+
+METHOD:: ar
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+
+

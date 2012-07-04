@@ -1,0 +1,79 @@
+CLASS:: BusDriver
+summary:: parent class for players that send changes to a 'control' rate bus
+categories:: Libraries>crucial>Players>abstract
+related:: Classes/Bus, Classes/StreamKrDur
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: value
+
+
+argument:: spec
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: value
+
+
+argument:: v
+
+
+returns::
+
+METHOD:: spec
+
+
+returns::
+
+METHOD:: poll
+
+
+returns::
+
+METHOD:: activeValue
+
+
+argument:: v
+
+
+returns::
+
+METHOD:: spawnToBundle
+
+
+argument:: b
+
+
+returns::
+
+METHOD:: storeOn
+
+
+argument:: stream
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+
+

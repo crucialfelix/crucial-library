@@ -1,0 +1,84 @@
+CLASS:: InterfaceDef
+summary:: defines event, midi and GUI handlers for an Interface
+categories:: Libraries>crucial>Instr
+related:: Classes/Interface
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: onLoad
+
+
+returns::
+
+METHOD:: onPlay
+
+
+returns::
+
+METHOD:: onStop
+
+
+returns::
+
+METHOD:: onFree
+
+
+returns::
+
+METHOD:: onNoteOn
+
+
+returns::
+
+METHOD:: onNoteOff
+
+
+returns::
+
+METHOD:: onPitchBend
+
+
+returns::
+
+METHOD:: onCC
+
+
+returns::
+
+METHOD:: guiBodyFunction
+
+
+returns::
+
+METHOD:: keyDownAction
+
+
+returns::
+
+METHOD:: keyUpAction
+
+
+returns::
+
+METHOD:: gui
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: asInterfaceDef
+
+
+returns::
+
+
+

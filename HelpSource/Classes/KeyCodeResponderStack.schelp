@@ -1,0 +1,108 @@
+CLASS:: KeyCodeResponderStack
+summary:: internal
+categories:: Libraries>crucial>internals
+related:: Classes/KeyCodeResponder
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: stack
+
+
+returns::
+
+METHOD:: addMaskTester
+
+
+argument:: requireMask
+
+
+argument:: denyMask
+
+
+argument:: function
+
+
+argument:: description
+
+
+returns::
+
+METHOD:: addSimple
+
+
+argument:: modifier
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: addKDR
+
+
+argument:: newGuy
+
+
+returns::
+
+METHOD:: reset
+
+
+returns::
+
+METHOD:: value
+
+
+argument:: view
+
+
+argument:: char
+
+
+argument:: modifier
+
+
+argument:: unicode
+
+
+argument:: keycode
+
+
+returns::
+
+METHOD:: ++
+
+
+argument:: that
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+METHOD:: report
+
+
+argument:: key
+
+
+returns::
+
+
+

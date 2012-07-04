@@ -1,0 +1,83 @@
+CLASS:: StreamSpec
+summary:: datatype specifying that the input or output is stream or pattern
+categories:: Spec, Libraries>crucial>Spec, Streams-Patterns-Events>Patterns>Spec
+related:: Classes/Pattern
+
+DESCRIPTION::
+
+Note that 4.asStream will return an endless stream of 4, and is thus compatible for use as a StreamSpec input.
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: constrain
+
+
+argument:: value
+
+
+returns::
+
+METHOD:: canAccept
+
+
+argument:: ting
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: defaultControl
+
+
+argument:: val
+
+
+returns::
+
+METHOD:: minval
+
+
+returns::
+
+METHOD:: maxval
+
+
+returns::
+
+METHOD:: clipLo
+
+
+returns::
+
+METHOD:: clipHi
+
+
+returns::
+
+METHOD:: color
+
+
+returns::
+
+METHOD:: swappableFor
+
+
+argument:: source
+
+
+argument:: argName
+
+
+returns::
+
+
+

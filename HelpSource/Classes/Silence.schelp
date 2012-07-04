@@ -1,0 +1,29 @@
+CLASS:: Silence
+summary:: A placeholder audio rate player that makes no sound
+categories:: Libraries>crucial>Players
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: ar
+
+
+argument::  ... args
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: ar
+
+
+returns::
+
+
+

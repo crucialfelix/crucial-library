@@ -1,0 +1,106 @@
+CLASS:: SaveConsole
+summary:: widget with Save/SaveAs/Open controls
+categories:: Libraries>crucial>GUI
+related:: Classes/SynthConsole
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: object
+
+
+argument:: path
+
+
+argument:: layout
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: object
+
+
+returns::
+
+METHOD:: path
+
+
+returns::
+
+METHOD:: onSaveAs
+
+
+returns::
+
+METHOD:: print
+
+
+returns::
+
+METHOD:: printPath
+
+
+returns::
+
+METHOD:: save
+
+
+argument:: title
+
+
+argument:: minWidth
+
+
+returns::
+
+METHOD:: saveAs
+
+
+argument:: onSaveF
+
+
+argument:: default
+
+
+returns::
+
+METHOD:: open
+
+
+argument:: onOpenF
+
+
+returns::
+
+METHOD:: getPathThen
+
+
+argument:: then
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: doSave
+
+
+returns::
+
+METHOD:: doSaveAs
+
+
+returns::
+
+
+

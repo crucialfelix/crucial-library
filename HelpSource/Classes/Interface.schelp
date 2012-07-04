@@ -1,0 +1,199 @@
+CLASS:: Interface
+summary:: Sets up an environment in which you can build a player, a GUI and responders for midi and keyboard control
+categories:: Libraries>crucial>Instr, Libraries>crucial>Players
+related:: Classes/Instr, Classes/Patch, Classes/Mx
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: interfaceDef
+
+
+argument:: args
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: interfaceDef
+
+
+returns::
+
+METHOD:: args
+
+
+returns::
+
+METHOD:: onPrepareToBundle
+
+
+returns::
+
+METHOD:: onPlay
+
+
+returns::
+
+METHOD:: onStop
+
+
+returns::
+
+METHOD:: onFree
+
+
+returns::
+
+METHOD:: onNoteOn
+
+
+returns::
+
+METHOD:: onNoteOff
+
+
+returns::
+
+METHOD:: onCC
+
+
+returns::
+
+METHOD:: guiFunction
+
+
+returns::
+
+METHOD:: guiBodyFunction
+
+
+returns::
+
+METHOD:: keyDownAction
+
+
+returns::
+
+METHOD:: keyUpAction
+
+
+returns::
+
+METHOD:: init
+
+
+argument:: i
+
+
+argument:: a
+
+
+returns::
+
+METHOD:: createArgs
+
+
+argument:: argargs
+
+
+returns::
+
+METHOD:: prepareToBundle
+
+
+argument:: agroup
+
+
+argument:: bundle
+
+
+argument:: private
+
+
+argument:: bus
+
+
+argument:: defWasLoaded
+
+
+returns::
+
+METHOD:: didSpawn
+
+
+returns::
+
+METHOD:: didStop
+
+
+returns::
+
+METHOD:: freeToBundle
+
+
+argument:: b
+
+
+returns::
+
+METHOD:: gui
+
+
+argument:: f
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+METHOD:: guiBody
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: use
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: defer
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: storeModifiersOn
+
+
+argument:: stream
+
+
+returns::
+
+
+

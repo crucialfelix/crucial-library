@@ -1,0 +1,310 @@
+CLASS:: PlayerSocket
+summary:: a player that can play other players using a cross-faded and fuse-protected socket
+categories:: Libraries>crucial>Players
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: rate
+
+
+argument:: numChannels
+
+
+argument:: round
+
+
+argument:: env
+
+
+returns::
+
+METHOD:: prNew
+
+
+argument:: rate
+
+
+argument:: numChannels
+
+
+argument:: round
+
+
+argument:: env
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: round
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: numChannels
+
+
+returns::
+
+METHOD:: env
+
+
+returns::
+
+METHOD:: socketGroup
+
+
+returns::
+
+METHOD:: lastPlayer
+
+
+returns::
+
+METHOD:: envdSource
+
+
+returns::
+
+METHOD:: fuseBlown
+
+
+returns::
+
+METHOD:: psinit
+
+
+returns::
+
+METHOD:: prepareAndSpawn
+
+
+argument:: player
+
+
+argument:: releaseTime
+
+
+returns::
+
+METHOD:: prepareAndQSpawn
+
+
+argument:: player
+
+
+argument:: releaseTime
+
+
+returns::
+
+METHOD:: preparePlayer
+
+
+argument:: player
+
+
+argument:: onComplete
+
+
+returns::
+
+METHOD:: spawnPlayer
+
+
+argument:: player
+
+
+argument:: releaseTime
+
+
+argument:: beatDelta
+
+
+argument:: forceRespawn
+
+
+returns::
+
+METHOD:: qspawnPlayer
+
+
+argument:: player
+
+
+argument:: releaseTime
+
+
+returns::
+
+METHOD:: qrespawnPlayer
+
+
+argument:: releaseTime
+
+
+returns::
+
+METHOD:: releaseVoice
+
+
+argument:: releaseTime
+
+
+returns::
+
+METHOD:: isSleeping
+
+
+returns::
+
+METHOD:: qwake
+
+
+returns::
+
+METHOD:: makeResourcesToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: freeResourcesToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: prepareChildrenToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: freeToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: subGroups
+
+
+returns::
+
+METHOD:: loadDefFileToBundle
+
+
+argument:: bundle
+
+
+argument:: server
+
+
+returns::
+
+METHOD:: instrArgFromControl
+
+
+argument:: control
+
+
+returns::
+
+METHOD:: spawnToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: synthArg
+
+
+returns::
+
+METHOD:: setSource
+
+
+argument:: s
+
+
+argument:: atTime
+
+
+argument:: releaseTime
+
+
+returns::
+
+METHOD:: setSourceToBundle
+
+
+argument:: s
+
+
+argument:: bundle
+
+
+argument:: releaseTime
+
+
+returns::
+
+METHOD:: didFree
+
+
+returns::
+
+METHOD:: fuseDidBlow
+
+
+argument:: value
+
+
+returns::
+
+METHOD:: socketFreeAll
+
+
+returns::
+
+METHOD:: name
+
+
+returns::
+
+METHOD:: limit
+
+
+argument:: boo
+
+
+returns::
+
+
+

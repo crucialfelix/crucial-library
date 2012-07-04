@@ -1,0 +1,42 @@
+CLASS:: Not
+summary::
+categories:: Libraries>crucial>Constraints
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: constraint
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: constraint
+
+
+returns::
+
+METHOD:: value
+
+
+argument:: obj
+
+
+returns::
+
+METHOD:: reset
+
+
+returns::
+
+
+

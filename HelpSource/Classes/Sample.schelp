@@ -1,0 +1,237 @@
+CLASS:: Sample
+summary:: a soundfile small enough to be loaded in memory
+categories:: Libraries>crucial>Buffers
+related:: Classes/SoundFile
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: soundFilePath
+
+
+argument:: tempo
+
+
+argument:: startFrame
+
+
+argument:: endFrame
+
+
+returns::
+
+METHOD:: newClear
+
+
+argument:: numFrames
+
+
+argument:: numChannels
+
+
+argument:: sampleRate
+
+
+returns::
+
+METHOD:: roster
+
+
+argument:: perItems
+
+
+argument:: globals
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: soundFile
+
+
+returns::
+
+METHOD:: beats
+
+
+argument:: bt
+
+
+returns::
+
+METHOD:: tempo
+
+
+argument:: tm
+
+
+returns::
+
+METHOD:: beatsize
+
+
+returns::
+
+METHOD:: end
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: printOn
+
+
+argument:: stream
+
+
+returns::
+
+METHOD:: load
+
+
+argument:: thing
+
+
+argument:: tempo
+
+
+argument:: argStartFrame
+
+
+argument:: argEndFrame
+
+
+returns::
+
+METHOD:: prLoad
+
+
+argument:: thing
+
+
+argument:: t
+
+
+returns::
+
+METHOD:: reloadBuffer
+
+
+returns::
+
+METHOD:: bpm
+
+
+argument:: bpm
+
+
+returns::
+
+METHOD:: calculate
+
+
+returns::
+
+METHOD:: guessBeats
+
+
+argument:: min
+
+
+argument:: max
+
+
+returns::
+
+METHOD:: initForSynthDef
+
+
+argument:: synthDef
+
+
+argument:: argi
+
+
+returns::
+
+METHOD:: pchRatioKr
+
+
+returns::
+
+METHOD:: getTempoBus
+
+
+returns::
+
+METHOD:: beatsizeIr
+
+
+returns::
+
+METHOD:: sampleTempoIr
+
+
+returns::
+
+METHOD:: prepareToBundle
+
+
+argument:: group
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+METHOD:: play
+
+
+returns::
+
+METHOD:: asSignal
+
+
+argument:: channel
+
+
+returns::
+
+METHOD:: addToDefName
+
+
+argument:: stream
+
+
+returns::
+
+METHOD:: spec
+
+
+returns::
+
+METHOD:: rand
+
+
+returns::
+
+
+

@@ -1,0 +1,61 @@
+CLASS:: AbstractPlayerEffect
+summary:: parent class for any player that takes another player and adds effects
+categories:: Libraries>crucial>Players>abstract
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: subjectGroup
+
+
+returns::
+
+METHOD:: effectGroup
+
+
+returns::
+
+METHOD:: makeResourcesToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: freeResourcesToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: spawnToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: preparePlayer
+
+
+argument:: player
+
+
+argument:: bus
+
+
+returns::
+
+
+

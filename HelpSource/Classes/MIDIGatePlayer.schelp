@@ -1,0 +1,34 @@
+CLASS:: MIDIGatePlayer
+summary::
+categories:: External Control>MIDI, Libraries>crucial>MIDI
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: spec
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: initResponders
+
+
+returns::
+
+
+

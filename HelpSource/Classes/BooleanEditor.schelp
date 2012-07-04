@@ -1,0 +1,50 @@
+CLASS:: BooleanEditor
+summary:: holds and edits a boolean
+categories:: Libraries>crucial>Editors
+related:: Classes/Editor, Classes/Boolean
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: val
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: instrArgFromControl
+
+
+argument:: control
+
+
+returns::
+
+METHOD:: value
+
+
+argument:: v
+
+
+returns::
+
+METHOD:: rand
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+
+

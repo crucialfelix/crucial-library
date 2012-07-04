@@ -1,0 +1,109 @@
+CLASS:: PlayerMixer
+summary:: takes multiple players as input, mixes them to a single (stereo) output
+categories:: Libraries>crucial>Players
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: players
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: players
+
+
+returns::
+
+METHOD:: asSynthDef
+
+
+returns::
+
+METHOD:: defName
+
+
+returns::
+
+METHOD:: synthDefArgs
+
+
+returns::
+
+METHOD:: respawnMixerToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: addPlayer
+
+
+argument:: player
+
+
+returns::
+
+METHOD:: removePlayerAt
+
+
+argument:: pli
+
+
+returns::
+
+METHOD:: putPlayer
+
+
+argument:: i
+
+
+argument:: pl
+
+
+returns::
+
+METHOD:: beatDuration
+
+
+returns::
+
+METHOD:: children
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: numChannels
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+
+

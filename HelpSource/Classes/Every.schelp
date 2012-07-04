@@ -1,0 +1,50 @@
+CLASS:: Every
+summary::
+categories:: Libraries>crucial>Constraints
+related:: Classes/Any
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: list
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: list
+
+
+returns::
+
+METHOD:: value
+
+
+argument:: obj
+
+
+returns::
+
+METHOD:: add
+
+
+argument:: constraint
+
+
+returns::
+
+METHOD:: reset
+
+
+returns::
+
+
+

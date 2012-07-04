@@ -1,0 +1,29 @@
+CLASS:: MIDIFreqPlayer
+summary:: classic analog monophonic style including trills
+categories:: External Control>MIDI, Libraries>crucial>MIDI
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: init
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: initResponders
+
+
+returns::
+
+
+

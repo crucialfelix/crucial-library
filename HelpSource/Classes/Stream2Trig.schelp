@@ -1,0 +1,34 @@
+CLASS:: Stream2Trig
+summary:: a 'control' rate player that takes a stream of durations and emits triggers
+categories:: Libraries>crucial>Players
+related:: Classes/StreamKrDur, Classes/SimpleTrigger
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: instrArgFromControl
+
+
+argument:: control
+
+
+returns::
+
+METHOD:: poll
+
+
+returns::
+
+METHOD:: spec
+
+
+returns::
+
+
+

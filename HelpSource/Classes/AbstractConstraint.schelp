@@ -1,0 +1,66 @@
+CLASS:: AbstractConstraint
+summary:: abstract parent class for the Constraints micro-library
+categories:: Libraries>crucial>Constraints>abstract
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: not
+
+
+returns::
+
+METHOD:: or
+
+
+argument:: constraint
+
+
+returns::
+
+METHOD:: and
+
+
+argument:: constraint
+
+
+returns::
+
+METHOD:: xor
+
+
+argument:: constraint
+
+
+returns::
+
+METHOD:: reject
+
+
+argument:: constraint
+
+
+returns::
+
+METHOD:: select
+
+
+argument:: constraint
+
+
+returns::
+
+METHOD:: reset
+
+
+returns::
+
+
+

@@ -1,0 +1,88 @@
+CLASS:: ArrayBuffer
+summary:: given an array, will allocate and fill a Buffer for use in Patch etc
+categories:: Libraries>crucial>Buffers
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: array
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: array
+
+
+argument:: a
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: prepareToBundle
+
+
+argument:: group
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: makePatchOut
+
+
+returns::
+
+METHOD:: put
+
+
+argument:: i
+
+
+argument:: v
+
+
+returns::
+
+METHOD:: at
+
+
+argument:: i
+
+
+returns::
+
+METHOD:: zero
+
+
+returns::
+
+METHOD:: setArrayToBundle
+
+
+argument:: a
+
+
+argument:: b
+
+
+returns::
+
+
+

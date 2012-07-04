@@ -1,0 +1,94 @@
+CLASS:: EnvelopedPlayer
+summary:: takes a Player as input and plays it through an Env with fused protection
+categories:: Libraries>crucial>Players, Envelopes
+related:: Classes/Enveloper2
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: player
+
+
+argument:: env
+
+
+argument:: numChannels
+
+
+argument:: limit
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: env
+
+
+returns::
+
+METHOD:: numChannels
+
+
+returns::
+
+METHOD:: limit
+
+
+returns::
+
+METHOD:: onFuseBlown
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: asSynthDef
+
+
+returns::
+
+METHOD:: defName
+
+
+returns::
+
+METHOD:: synthDefArgs
+
+
+returns::
+
+METHOD:: didSpawn
+
+
+returns::
+
+METHOD:: didStop
+
+
+returns::
+
+METHOD:: releaseToBundle
+
+
+argument:: releaseTime
+
+
+argument:: bundle
+
+
+returns::
+
+
+

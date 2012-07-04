@@ -1,0 +1,42 @@
+CLASS:: DictionaryEditor
+summary:: presents an Editor for each value in a dictionary
+categories:: Libraries>crucial>Editors
+related:: Classes/Dictionary, Classes/Editor
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: dict
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: editing
+
+
+returns::
+
+METHOD:: value
+
+
+argument:: dict
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+
+

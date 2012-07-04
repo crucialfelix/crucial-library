@@ -1,0 +1,81 @@
+CLASS:: AudioSpec
+summary:: datatype expressing an 'audio' rate object
+categories:: Spec, Libraries>crucial>Spec
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: numChannels
+
+
+returns::
+
+METHOD:: initClass
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: numChannels
+
+
+returns::
+
+METHOD:: defaultControl
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: canAccept
+
+
+argument:: thing
+
+
+returns::
+
+METHOD:: constrain
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: color
+
+
+returns::
+
+METHOD:: swappableFor
+
+
+argument:: source
+
+
+argument:: argName
+
+
+returns::
+
+
+

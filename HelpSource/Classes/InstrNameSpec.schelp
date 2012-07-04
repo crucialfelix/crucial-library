@@ -1,0 +1,61 @@
+CLASS:: InstrNameSpec
+summary:: datatype specifying an Instr name as either a Symbol or String
+categories:: Spec, Libraries>crucial>Spec, Libraries>crucial>Instr
+related:: Classes/Instr
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: outSpec
+
+
+argument:: hasGate
+
+
+argument:: hasAudioInput
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: hasGate
+
+
+returns::
+
+METHOD:: hasAudioInput
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: canAccept
+
+
+argument:: ting
+
+
+returns::
+
+METHOD:: constrain
+
+
+argument:: instr
+
+
+returns::
+
+
+

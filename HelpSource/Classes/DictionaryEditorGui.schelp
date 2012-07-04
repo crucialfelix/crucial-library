@@ -1,0 +1,35 @@
+CLASS:: DictionaryEditorGui
+summary:: gui class
+categories:: Libraries>crucial>GuiClasses
+related:: Classes/DictionaryEditor
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: onSave
+
+
+returns::
+
+METHOD:: guiBody
+
+
+argument:: layout
+
+
+argument:: bounds
+
+
+argument:: onSave
+
+
+returns::
+
+
+

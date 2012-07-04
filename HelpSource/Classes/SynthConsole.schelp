@@ -1,0 +1,169 @@
+CLASS:: SynthConsole
+summary:: a widget with controls: play/stop/record/scope
+categories:: Libraries>crucial>GUI
+related:: Classes/SaveConsole
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: ugenFunc
+
+
+argument:: layout
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: format
+
+
+returns::
+
+METHOD:: duration
+
+
+returns::
+
+METHOD:: ugenFunc
+
+
+returns::
+
+METHOD:: onRecordOrWrite
+
+
+returns::
+
+METHOD:: init
+
+
+returns::
+
+METHOD:: remove
+
+
+returns::
+
+METHOD:: update
+
+
+argument:: status
+
+
+returns::
+
+METHOD:: play
+
+
+returns::
+
+METHOD:: prepare
+
+
+returns::
+
+METHOD:: scope
+
+
+argument:: duration
+
+
+returns::
+
+METHOD:: fftScope
+
+
+returns::
+
+METHOD:: record
+
+
+returns::
+
+METHOD:: write
+
+
+argument:: dur
+
+
+argument:: defpath
+
+
+returns::
+
+METHOD:: stop
+
+
+argument:: stopFunc
+
+
+returns::
+
+METHOD:: free
+
+
+returns::
+
+METHOD:: formats
+
+
+returns::
+
+METHOD:: tempo
+
+
+returns::
+
+METHOD:: doPlay
+
+
+returns::
+
+METHOD:: doPrepare
+
+
+returns::
+
+METHOD:: doScope
+
+
+argument:: duration
+
+
+returns::
+
+METHOD:: doFreqScope
+
+
+returns::
+
+METHOD:: doStop
+
+
+argument:: stopFunc
+
+
+returns::
+
+METHOD:: doWrite
+
+
+argument:: path
+
+
+argument:: argduration
+
+
+returns::
+
+
+

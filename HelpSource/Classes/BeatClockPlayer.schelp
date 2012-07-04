@@ -1,0 +1,83 @@
+CLASS:: BeatClockPlayer
+summary:: 'trig' rate player that plays steady beats locked to tempo
+categories:: Libraries>crucial>Players, Libraries>crucial>Scheduling
+related:: Classes/Tempo
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: tempoFactor
+
+
+argument:: mul
+
+
+argument:: tempoBase
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: tempoFactor
+
+
+returns::
+
+METHOD:: tempoBase
+
+
+returns::
+
+METHOD:: mul
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: makeResourcesToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: asSynthDef
+
+
+returns::
+
+METHOD:: defName
+
+
+returns::
+
+METHOD:: synthDefArgs
+
+
+returns::
+
+METHOD:: spec
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+
+

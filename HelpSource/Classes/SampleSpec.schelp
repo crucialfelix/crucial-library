@@ -1,0 +1,50 @@
+CLASS:: SampleSpec
+summary:: datatype specifying a Sample
+categories:: Spec, Libraries>crucial>Spec, Libraries>crucial>Buffers
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: initClass
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: defaultControl
+
+
+returns::
+
+METHOD:: default
+
+
+returns::
+
+METHOD:: canAccept
+
+
+argument:: ting
+
+
+returns::
+
+METHOD:: swappableFor
+
+
+argument:: source
+
+
+argument:: argName
+
+
+returns::
+
+
+

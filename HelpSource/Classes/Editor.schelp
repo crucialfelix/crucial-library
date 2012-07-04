@@ -1,0 +1,188 @@
+CLASS:: Editor
+summary:: holds a value that can be edited with a GUI, saves as the value
+categories:: Libraries>crucial>Editors
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: for
+
+
+argument:: object
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: editorFor
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: action
+
+
+returns::
+
+METHOD:: value
+
+
+returns::
+
+METHOD:: patchOut
+
+
+returns::
+
+METHOD:: storeOn
+
+
+argument:: stream
+
+
+returns::
+
+METHOD:: next
+
+
+returns::
+
+METHOD:: poll
+
+
+returns::
+
+METHOD:: dereference
+
+
+returns::
+
+METHOD:: embedInStream
+
+
+argument:: inval
+
+
+returns::
+
+METHOD:: asStream
+
+
+returns::
+
+METHOD:: setPatchOut
+
+
+argument:: po
+
+
+returns::
+
+METHOD:: makePatchOut
+
+
+returns::
+
+METHOD:: stopToBundle
+
+
+argument:: b
+
+
+returns::
+
+METHOD:: freePatchOutToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: synthArg
+
+
+returns::
+
+METHOD:: instrArgFromControl
+
+
+argument:: control
+
+
+returns::
+
+METHOD:: editWithCallback
+
+
+argument:: callback
+
+
+returns::
+
+METHOD:: set
+
+
+argument:: val
+
+
+returns::
+
+METHOD:: activeValue
+
+
+argument:: val
+
+
+returns::
+
+METHOD:: valueAction
+
+
+argument:: val
+
+
+returns::
+
+METHOD:: spec
+
+
+returns::
+
+METHOD:: copy
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+METHOD:: addToDefName
+
+
+argument:: stream
+
+
+returns::
+
+METHOD:: state
+
+
+argument:: val
+
+
+returns::
+
+
+

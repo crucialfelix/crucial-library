@@ -1,0 +1,39 @@
+CLASS:: ObjectSpec
+summary:: datatype for specifying untyped, unrestricted inputs
+categories:: Spec, Libraries>crucial>Spec
+related:: Classes/Object
+
+DESCRIPTION:: This can be used for situations where a function (such as an Instr) returns an object (since obviously everything is an object, it most certainly is an object) but the class of that object could be many possible things.
+
+Supercollider is an untyped language and the Spec system is a very rough system for specifying types.
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: defaultControl
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: defaultControl
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+argument:: stream
+
+
+returns::
+
+
+

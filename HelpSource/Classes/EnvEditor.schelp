@@ -1,0 +1,132 @@
+CLASS:: EnvEditor
+summary:: edits an Env
+categories:: Libraries>crucial>Editors, Envelopes>Editors
+related:: Classes/Env, Classes/EnvelopeView, Classes/SCEnvelopeEdit
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: env
+
+
+argument:: levelSpec
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: levelSpec
+
+
+returns::
+
+METHOD:: instrArgFromControl
+
+
+argument:: control
+
+
+returns::
+
+METHOD:: value
+
+
+returns::
+
+METHOD:: putTime
+
+
+argument:: i
+
+
+argument:: t
+
+
+returns::
+
+METHOD:: putLevel
+
+
+argument:: i
+
+
+argument:: l
+
+
+returns::
+
+METHOD:: setCurve
+
+
+argument:: c
+
+
+returns::
+
+METHOD:: putCurve
+
+
+argument:: i
+
+
+argument:: c
+
+
+returns::
+
+METHOD:: times
+
+
+returns::
+
+METHOD:: levels
+
+
+returns::
+
+METHOD:: curves
+
+
+returns::
+
+METHOD:: spec
+
+
+returns::
+
+METHOD:: env
+
+
+returns::
+
+METHOD:: copy
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+METHOD:: swappable
+
+
+argument:: spec
+
+
+argument:: argName
+
+
+returns::
+
+
+

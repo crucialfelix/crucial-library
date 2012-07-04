@@ -1,0 +1,73 @@
+CLASS:: Updater
+summary:: adds itself as a dependant on a Model and calls an update handler when the model changes
+categories:: Libraries>crucial>GUI
+related:: Classes/ObjectGui, Classes/SimpleController
+
+DESCRIPTION:: A simple utility object that adds itself as a dependant on a model and calls the handler whenever the model is changed.
+
+
+Note: SimpleController isn't really a full controller.  Its the exact same thing as this (and was written after Updater).  A controller mediates in both directions between view and model, and these classes are simple updaters that just update views.  ObjectGui is more of a proper controller in that it knows the model and the view(s) and mediates between them.
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: model
+
+
+argument:: updateFunc
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: model
+
+
+returns::
+
+METHOD:: updateFunc
+
+
+returns::
+
+METHOD:: init
+
+
+returns::
+
+METHOD:: update
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: remove
+
+
+returns::
+
+METHOD:: removeOnClose
+
+
+argument:: layout
+
+
+returns::
+
+METHOD:: findWindow
+
+
+argument:: layout
+
+
+returns::
+
+
+

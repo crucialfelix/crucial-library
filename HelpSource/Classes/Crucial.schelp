@@ -1,0 +1,26 @@
+CLASS:: Crucial
+summary::
+categories:: Libraries>crucial
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: initClass
+
+
+returns::
+
+METHOD:: initSpecs
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+
+

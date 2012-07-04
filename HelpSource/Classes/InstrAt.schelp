@@ -1,0 +1,76 @@
+CLASS:: InstrAt
+summary:: a reference to an Instr by name. obsolete
+categories:: Libraries>crucial>Instr
+related:: Classes/Instr
+
+DESCRIPTION:: This is now happily obsolete.
+
+pending deprecation
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: name
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: name
+
+
+returns::
+
+METHOD:: path
+
+
+returns::
+
+METHOD:: init
+
+
+returns::
+
+METHOD:: value
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: valueEnvir
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: prepareToBundle
+
+
+argument:: group
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: asDefName
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+
+

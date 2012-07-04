@@ -1,0 +1,30 @@
+CLASS:: Enveloper2
+summary:: audio function plays continously but is gated by an envelope
+categories:: UGens>Envelopes, Libraries>crucial>UGens
+related:: Classes/Env
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: ar
+
+
+argument:: audio
+
+
+argument:: gate
+
+
+argument:: env
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+
+

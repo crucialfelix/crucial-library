@@ -1,0 +1,50 @@
+CLASS:: Xor
+summary:: either or
+categories:: Libraries>crucial>Constraints
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: a
+
+
+argument:: b
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: a
+
+
+returns::
+
+METHOD:: b
+
+
+returns::
+
+METHOD:: value
+
+
+argument:: obj
+
+
+returns::
+
+METHOD:: reset
+
+
+returns::
+
+
+

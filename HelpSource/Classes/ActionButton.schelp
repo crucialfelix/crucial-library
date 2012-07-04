@@ -1,0 +1,83 @@
+CLASS:: ActionButton
+summary:: a simple button with a name and an action
+categories:: Libraries>crucial>GUI
+related:: Classes/SimpleButton, Classes/Button
+
+DESCRIPTION:: Sizes itself to fit the name.  Nice, simple constructor saves fiddling around with a raw Button.
+
+SimpleButton in ServerTools is basically the same thing but I wanted that library to have no dependencies on crucial.
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: layout
+
+
+argument:: title
+
+
+argument:: function
+
+
+argument:: minWidth
+
+
+argument:: minHeight
+
+
+argument:: color
+
+
+argument:: backcolor
+
+
+argument:: font
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: action
+
+
+argument:: f
+
+
+returns::
+
+METHOD:: init
+
+
+argument:: layout
+
+
+argument:: title
+
+
+argument:: function
+
+
+argument:: minWidth
+
+
+argument:: minHeight
+
+
+argument:: color
+
+
+argument:: backcolor
+
+
+argument:: font
+
+
+returns::
+
+
+

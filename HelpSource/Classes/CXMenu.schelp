@@ -1,0 +1,135 @@
+CLASS:: CXMenu
+summary:: a basic nav menu
+categories:: Libraries>crucial>GUI
+related:: Classes/PopUpMenu
+
+DESCRIPTION::  This is an old class.  Pending deprecation.
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument::  ... nameFuncs
+
+
+returns::
+
+METHOD:: newWith
+
+
+argument:: nameFuncs
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: nameFuncs
+
+
+argument:: nf
+
+
+returns::
+
+METHOD:: layout
+
+
+returns::
+
+METHOD:: backColor
+
+
+returns::
+
+METHOD:: stringColor
+
+
+returns::
+
+METHOD:: closeOnSelect
+
+
+returns::
+
+METHOD:: gui
+
+
+argument:: parent
+
+
+argument:: windowWidth
+
+
+argument:: height
+
+
+argument:: argButtonWidth
+
+
+returns::
+
+METHOD:: guiBody
+
+
+argument:: resize
+
+
+returns::
+
+METHOD:: add
+
+
+argument:: nf
+
+
+returns::
+
+METHOD:: addToGui
+
+
+argument:: nf
+
+
+argument:: resize
+
+
+returns::
+
+METHOD:: resize
+
+
+argument:: r
+
+
+returns::
+
+METHOD:: doAction
+
+
+returns::
+
+METHOD:: keyDownResponder
+
+
+returns::
+
+METHOD:: focus
+
+
+returns::
+
+METHOD:: focusOn
+
+
+argument:: f
+
+
+returns::
+
+
+

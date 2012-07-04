@@ -1,0 +1,52 @@
+CLASS:: AudioInPlayer
+summary:: plays the computers audio in — microphone or record busses
+categories:: Libraries>crucial>Players
+related:: Classes/AudioIn
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: amp
+
+
+returns::
+
+METHOD:: new
+
+
+argument:: numChannels
+
+
+argument:: firstChannel
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: numChannels
+
+
+returns::
+
+METHOD:: firstChannel
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: ar
+
+
+returns::
+
+
+

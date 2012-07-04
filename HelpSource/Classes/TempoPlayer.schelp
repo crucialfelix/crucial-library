@@ -1,0 +1,90 @@
+CLASS:: TempoPlayer
+summary:: a control rate player that plays the TempoBus [which is the current Tempo]
+categories:: Libraries>crucial>Players, Libraries>crucial>Scheduling
+related:: Classes/Tempo, Classes/TempoBus
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: tempo
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: tempo
+
+
+returns::
+
+METHOD:: kr
+
+
+returns::
+
+METHOD:: synthArg
+
+
+returns::
+
+METHOD:: makeResourcesToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: makePatchOut
+
+
+returns::
+
+METHOD:: freeResourcesToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: spawnAtTime
+
+
+returns::
+
+METHOD:: spawnToBundle
+
+
+returns::
+
+METHOD:: loadDefFileToBundle
+
+
+returns::
+
+METHOD:: asSynthDef
+
+
+returns::
+
+METHOD:: spec
+
+
+returns::
+
+METHOD:: swappable
+
+
+returns::
+
+
+

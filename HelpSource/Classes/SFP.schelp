@@ -1,0 +1,127 @@
+CLASS:: SFP
+summary:: Sound File Player
+categories:: Libraries>crucial>Players, Libraries>crucial>SoundFiles
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: path
+
+
+argument:: tempo
+
+
+argument:: firstBeatIsAtFrame
+
+
+returns::
+
+METHOD:: getNew
+
+
+argument:: receivingFunction
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: firstBeatIsAt
+
+
+returns::
+
+METHOD:: found
+
+
+returns::
+
+METHOD:: soundFilePath
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: init
+
+
+argument:: sfilePath
+
+
+returns::
+
+METHOD:: fileNotFound
+
+
+argument:: sfilePath
+
+
+returns::
+
+METHOD:: preloadData
+
+
+argument:: startAt
+
+
+argument:: endAt
+
+
+argument:: group
+
+
+argument:: bundle
+
+
+argument:: parentSegmentBuffers
+
+
+returns::
+
+METHOD:: fileName
+
+
+returns::
+
+METHOD:: fileDuration
+
+
+returns::
+
+METHOD:: timeDuration
+
+
+returns::
+
+METHOD:: tempo
+
+
+argument:: t
+
+
+returns::
+
+METHOD:: children
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+
+

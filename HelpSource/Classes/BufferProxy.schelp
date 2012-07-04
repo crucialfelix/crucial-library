@@ -1,0 +1,233 @@
+CLASS:: BufferProxy
+summary:: holds size and numChannels definition for a buffer, allocates it on play
+categories:: Libraries>crucial>Buffers
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: numFrames
+
+
+argument:: numChannels
+
+
+argument:: sampleRate
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: buffer
+
+
+returns::
+
+METHOD:: patchOut
+
+
+returns::
+
+METHOD:: readyForPlay
+
+
+returns::
+
+METHOD:: server
+
+
+returns::
+
+METHOD:: size
+
+
+returns::
+
+METHOD:: numChannels
+
+
+returns::
+
+METHOD:: sampleRate
+
+
+returns::
+
+METHOD:: forArgi
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: prepareToBundle
+
+
+argument:: group
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: makePatchOut
+
+
+returns::
+
+METHOD:: free
+
+
+returns::
+
+METHOD:: freeToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: freePatchOutToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: freeHeavyResources
+
+
+returns::
+
+METHOD:: initForSynthDef
+
+
+argument:: synthDef
+
+
+argument:: argi
+
+
+returns::
+
+METHOD:: numFrames
+
+
+returns::
+
+METHOD:: bufnum
+
+
+returns::
+
+METHOD:: asUgenInput
+
+
+returns::
+
+METHOD:: synthArg
+
+
+returns::
+
+METHOD:: bufnumIr
+
+
+returns::
+
+METHOD:: bufnumKr
+
+
+returns::
+
+METHOD:: sampleRateIr
+
+
+returns::
+
+METHOD:: sampleRateKr
+
+
+returns::
+
+METHOD:: bufRateScaleKr
+
+
+returns::
+
+METHOD:: bufRateScaleIr
+
+
+returns::
+
+METHOD:: bufFramesKr
+
+
+returns::
+
+METHOD:: bufFramesIr
+
+
+returns::
+
+METHOD:: bufSamplesKr
+
+
+returns::
+
+METHOD:: bufSamplesIr
+
+
+returns::
+
+METHOD:: bufDurKr
+
+
+returns::
+
+METHOD:: bufDurIr
+
+
+returns::
+
+METHOD:: bufChannelsKr
+
+
+returns::
+
+METHOD:: bufChannelsIr
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: spec
+
+
+returns::
+
+METHOD:: swappable
+
+
+returns::
+
+
+

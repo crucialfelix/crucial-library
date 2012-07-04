@@ -1,0 +1,73 @@
+CLASS:: BufferProxySpec
+summary:: datatype specifying an input of BufferProxy
+categories:: Spec, Libraries>crucial>Spec, Libraries>crucial>Buffers
+related:: Classes/BufferProxy
+
+DESCRIPTION:: This Spec will create a BufferProxy as its defaultControl, and Patch created with an Instr with this type will be supplied the BufferProxy "automagically".
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: numFrames
+
+
+argument:: numChannels
+
+
+argument:: sampleRate
+
+
+returns::
+
+METHOD:: initClass
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: numFrames
+
+
+returns::
+
+METHOD:: numChannels
+
+
+returns::
+
+METHOD:: sampleRate
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: defaultControl
+
+
+returns::
+
+METHOD:: default
+
+
+returns::
+
+METHOD:: canAccept
+
+
+argument:: thing
+
+
+returns::
+
+
+

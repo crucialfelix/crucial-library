@@ -1,0 +1,373 @@
+CLASS:: KeyCodeResponder
+summary:: register responder functions for keycode and modifier combinations
+categories:: Libraries>crucial>GUI, External Control>Keyboard
+related:: Classes/UnicodeResponder, Classes/KeyResponder
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: normalModifier
+
+
+returns::
+
+METHOD:: capsModifier
+
+
+returns::
+
+METHOD:: shiftModifier
+
+
+returns::
+
+METHOD:: controlModifier
+
+
+returns::
+
+METHOD:: optionModifier
+
+
+returns::
+
+METHOD:: functionKeyModifier
+
+
+returns::
+
+METHOD:: commandModifier
+
+
+returns::
+
+METHOD:: register
+
+
+argument:: keycode
+
+
+argument:: shift
+
+
+argument:: caps
+
+
+argument:: opt
+
+
+argument:: cntl
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: registerAll
+
+
+argument::  ... sets
+
+
+returns::
+
+METHOD:: clear
+
+
+returns::
+
+METHOD:: remove
+
+
+returns::
+
+METHOD:: resetKeycode
+
+
+argument:: keycode
+
+
+returns::
+
+METHOD:: tester
+
+
+returns::
+
+METHOD:: new
+
+
+returns::
+
+METHOD:: registerKeycode
+
+
+argument:: modifier
+
+
+argument:: keycode
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: registerKeycodeAll
+
+
+argument::  ... sets
+
+
+returns::
+
+METHOD:: value
+
+
+argument:: view
+
+
+argument:: keycode
+
+
+argument:: modifier
+
+
+argument:: unicode
+
+
+returns::
+
+METHOD:: global
+
+
+returns::
+
+METHOD:: at
+
+
+argument:: address
+
+
+returns::
+
+METHOD:: put
+
+
+argument:: address
+
+
+argument:: val
+
+
+returns::
+
+METHOD:: pushForKeycode
+
+
+argument:: keycode
+
+
+argument:: requireMask
+
+
+argument:: denyMask
+
+
+argument:: function
+
+
+argument:: description
+
+
+returns::
+
+METHOD:: maskToString
+
+
+argument:: m
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: dict
+
+
+returns::
+
+METHOD:: normal
+
+
+argument::  ... asses
+
+
+returns::
+
+METHOD:: shift
+
+
+argument::  ... asses
+
+
+returns::
+
+METHOD:: control
+
+
+argument::  ... asses
+
+
+returns::
+
+METHOD:: option
+
+
+argument::  ... asses
+
+
+returns::
+
+METHOD:: register
+
+
+argument:: keycode
+
+
+argument:: shift
+
+
+argument:: caps
+
+
+argument:: opt
+
+
+argument:: cntl
+
+
+argument:: function
+
+
+argument:: description
+
+
+returns::
+
+METHOD:: clear
+
+
+returns::
+
+METHOD:: remove
+
+
+returns::
+
+METHOD:: ++
+
+
+argument:: that
+
+
+returns::
+
+METHOD:: registerKeycode
+
+
+argument:: modifier
+
+
+argument:: keycode
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: registerKeycodeAll
+
+
+argument::  ... sets
+
+
+returns::
+
+METHOD:: value
+
+
+argument:: view
+
+
+argument:: char
+
+
+argument:: modifier
+
+
+argument:: unicode
+
+
+argument:: keycode
+
+
+returns::
+
+METHOD:: at
+
+
+argument:: key
+
+
+returns::
+
+METHOD:: put
+
+
+argument:: key
+
+
+argument:: value
+
+
+returns::
+
+METHOD:: pushForKeycode
+
+
+argument:: keycode
+
+
+argument:: requireMask
+
+
+argument:: denyMask
+
+
+argument:: function
+
+
+argument:: description
+
+
+returns::
+
+METHOD:: report
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+
+

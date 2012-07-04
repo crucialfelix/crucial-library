@@ -1,0 +1,38 @@
+CLASS:: PlayerEffectSocket
+summary:: a socket that can play players that are effects (have inputs)
+categories:: Libraries>crucial>Players
+related:: Classes/PlayerSocket
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: setInputBus
+
+
+argument:: abus
+
+
+returns::
+
+METHOD:: setSourceToBundle
+
+
+argument:: aplayer
+
+
+argument:: bundle
+
+
+argument:: releaseTime
+
+
+returns::
+
+
+

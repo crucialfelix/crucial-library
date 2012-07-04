@@ -1,0 +1,68 @@
+CLASS:: HasItemSpec
+summary:: abstract parent class for datatypes that wrap other datatypes eg. ArraySpec
+categories:: Spec, Libraries>crucial>Spec
+related:: Classes/ArraySpec
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: itemSpec
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: itemSpec
+
+
+returns::
+
+METHOD:: defaultControl
+
+
+returns::
+
+METHOD:: default
+
+
+returns::
+
+METHOD:: map
+
+
+argument:: val
+
+
+returns::
+
+METHOD:: unmap
+
+
+argument:: val
+
+
+returns::
+
+METHOD:: constrain
+
+
+argument:: val
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+
+

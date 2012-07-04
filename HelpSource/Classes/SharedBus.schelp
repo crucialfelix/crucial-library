@@ -1,0 +1,50 @@
+CLASS:: SharedBus
+summary:: a Bus that is used by several objects and implements reference counting
+categories:: Libraries>crucial>internals
+related:: Classes/BusPool, Classes/Bus
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: newFrom
+
+
+argument:: bus
+
+
+argument:: owner
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: owner
+
+
+returns::
+
+METHOD:: releaseBus
+
+
+argument:: supposedOwner
+
+
+returns::
+
+METHOD:: free
+
+
+returns::
+
+METHOD:: realloc
+
+
+returns::
+
+
+

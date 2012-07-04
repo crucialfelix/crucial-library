@@ -1,0 +1,44 @@
+CLASS:: CountLimit
+summary::
+categories:: Libraries>crucial>Constraints
+related:: Classes/Contraint
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: limit
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: count
+
+
+returns::
+
+METHOD:: limit
+
+
+returns::
+
+METHOD:: value
+
+
+returns::
+
+METHOD:: reset
+
+
+returns::
+
+
+

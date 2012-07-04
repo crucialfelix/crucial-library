@@ -1,0 +1,61 @@
+CLASS:: GroupedPlayerMixer
+summary:: Mixes multiple players together, clumping them under Groups
+categories:: Libraries>crucial>Players
+related:: Classes/PlayerMixer
+
+DESCRIPTION::  A very useful tool to mix multiple players together while clumping them into separate Groups to ensure correct Node order.
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument::  ... players
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: gpminit
+
+
+argument:: pls
+
+
+returns::
+
+METHOD:: makeResourcesToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: prepareChildrenToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: subGroups
+
+
+returns::
+
+METHOD:: freeResourcesToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+
+
