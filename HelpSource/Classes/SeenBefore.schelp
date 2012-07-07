@@ -1,7 +1,7 @@
 CLASS:: SeenBefore
 summary:: eliminates duplicates by saving a history of objects it has tested
 categories:: Libraries>crucial>Constraints
-related::
+related:: Guides/Constraints
 
 DESCRIPTION:: Most constraints do not have any state or internal variables. This one saves each object in a history list and returns false if it has already seen an object.
 
@@ -23,9 +23,8 @@ f = { 100.rand }; // or choose a random soundfile path
 CLASSMETHODS::
 
 METHOD:: new
+No arguments
 
-
-returns::
 
 
 INSTANCEMETHODS::

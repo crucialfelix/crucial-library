@@ -1,7 +1,7 @@
 CLASS:: Any
 summary::
 categories:: Libraries>crucial>Constraints
-related::
+related:: Guides/Constraints
 
 DESCRIPTION::
 
@@ -19,6 +19,4 @@ argument:: obj
 
 
 returns::
-
-
 

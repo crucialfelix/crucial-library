@@ -1,13 +1,11 @@
 CLASS:: AbstractConstraint
 summary:: abstract parent class for the Constraints micro-library
 categories:: Libraries>crucial>Constraints>abstract
-related::
+related:: Guides/Constraints
 
-DESCRIPTION::
+DESCRIPTION:: See the link::Guides/Constraints:: first.
 
-
-
-CLASSMETHODS::
+One of the main purposes of the Constraints is that they can all be combined and filtered with other Constraints.
 
 
 INSTANCEMETHODS::
