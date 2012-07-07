@@ -5,7 +5,35 @@ related:: Classes/ActionButton
 
 DESCRIPTION::
 
+code::
+ToggleButton.new(parent,title,onFunction,offFunction,initialState,minWidth,minHeight)
+::
 
+code::
+t = ToggleButton(nil,"push me",{ arg button,bool;
+	"on".postln;
+},{
+	"off".postln;
+},false);
+
+t.toggle;
+
+// set to false, doing the action
+t.toggle(false)
+
+// set to false, not doing the action
+t.toggle(false,false)
+
+
+// using only one function
+t = ToggleButton(nil,"push me",{ arg button,bool;
+	if(bool,{
+		"on".postln;
+	},{
+		"off".postln;
+	})
+});
+::
 
 CLASSMETHODS::
 
@@ -28,10 +56,11 @@ argument:: init
 
 
 argument:: minWidth
-
+	button width is calculated to fit the title
+	setting minWidth will widen the button to a minimum width
 
 argument:: minHeight
-
+	default is the GUI.skin.buttonHeight
 
 argument:: onColor
 
@@ -60,7 +89,7 @@ METHOD:: offFunction
 returns::
 
 METHOD:: value
-
+set the value, not doing the action
 
 argument:: way
 
@@ -68,13 +97,14 @@ argument:: way
 returns::
 
 METHOD:: toggle
-
+	with no arguments it toggles the state, doing the action
+	or may set the value explicitly (like value_ but doing the action as well)
 
 argument:: way
 
 
 argument:: doAction
-
+boolean: if the action handler should be run
 
 returns::
 

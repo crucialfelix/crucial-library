@@ -3,9 +3,27 @@ summary:: a set of radio buttons
 categories:: Libraries>crucial>GUI
 related:: Classes/PopUpMenu
 
-DESCRIPTION::
+DESCRIPTION:: Radio button style set, fashioned as a single object.
 
+code::
+(
 
+	SelectButtonSet( nil,  [ "one", "two","three","four"] ,
+		{ arg selectedIndex,selectButtonSet;
+			[ selectedIndex, selectButtonSet ].postln;
+		},width: 60
+	)
+)
+
+(
+	SelectButtonSet( nil,
+		16 , //  make 16 buttons
+		{ arg selectedIndex,selectButtonSet;
+			[ selectedIndex, selectButtonSet ].postln;
+		}
+	)
+)
+::
 
 CLASSMETHODS::
 
@@ -39,7 +57,7 @@ returns::
 INSTANCEMETHODS::
 
 METHOD:: selected
-
+selected index
 
 returns::
 
@@ -111,7 +129,7 @@ argument:: item
 returns::
 
 METHOD:: passiveSelect
-
+action is not performed
 
 argument:: x
 
@@ -137,7 +155,7 @@ METHOD:: selectedIndex
 returns::
 
 METHOD:: selectedLabel
-
+the string label of currently selected item
 
 returns::
 
@@ -200,4 +218,52 @@ argument:: f
 returns::
 
 
+EXAMPLES::
 
+code::
+
+(
+SelectButtonSet(
+	nil,
+		["1", "2"],
+		{|i| ("Input" + i).postln},
+		width: 40, height: 30
+	);
+)
+
+(
+SelectButtonSet(
+	FlowView.new,
+		["1", "2"],
+		{|i| ("Input" + i).postln},
+		width: 40, height: 30
+	);
+)
+(
+SelectButtonSet(
+	GUI.window.new.front,
+		["1", "2"],
+		{|i| ("Input" + i).postln},
+		width: 40, height: 30
+	);
+)
+(
+SelectButtonSet(
+	GUI.hLayoutView.new(GUI.window.new.front,400@400),
+		["1", "2"],
+		{|i| ("Input" + i).postln},
+		width: 40, height: 30
+	);
+)
+
+(
+// vertical
+SelectButtonSet(
+	GUI.vLayoutView.new(GUI.window.new.front,100@400),
+		["1", "2"],
+		{|i| ("Input" + i).postln},
+		width: 40, height: 30
+	);
+
+)
+::
