@@ -7,6 +7,10 @@ DESCRIPTION:: This is now happily obsolete.
 
 pending deprecation
 
+a compile-string-saveable, reloadable reference to an Instr by its name.
+
+This solves an obscure problem, and you probably won't find use for it.
+
 CLASSMETHODS::
 
 METHOD:: new

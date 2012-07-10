@@ -1,43 +1,166 @@
 CLASS:: Instr
-summary:: An extended version of SynthDef with enhanced capabilities
+summary:: An enhanced version of SynthDef with a library
 categories:: Libraries>crucial>Instr
-related:: Classes/Patch
+related:: Classes/Patch, Guides/Instr-library, Guides/Instr-SynthDefs, Guides/Instr-Patterns, Classes/InstrBrowser
 
-DESCRIPTION::
+DESCRIPTION:: An Instrument is a function that has a unique name attached to it and link::Classes/Spec::s that describe the input and output datatypes.
+
+	link::Guides/Instr-library::
+
+	It is stored in a library by its name and can be retrieved by that name.  They can be used to create SynthDefs but also as a general use library of resuable functions.
+
+	Instr can be looked up by their name and will be loaded from disk. Every package or quark can have a folder called Instr which will be searched when loading an Instr.  So Quarks can be used to share collections of Instr / SynthDefs.
+
+	link::Guides/Instr-SynthDefs::
+
+	Unlike SynthDef, Instr can take any kind of input for its arguments, not just  (including an Integer quantity, symbols or even other functions) and so while a SynthDef has a fixed architecture for a Synth, an Instr can generate multiple SynthDefs of varying architectures. For instance you could specify an Env or a fixed time duration or a quantity (how many parallel voices to create, detuned against each other) or even the name of a UGen (LFSaw, Pulse) to use for the oscillator.
+
+	There are methods detailed below for creating SynthDefs from Instr.  Instr also support partial application (supplying some of the arguments in advance) and function composition (chaining them together to make a new Instr)
 
 
+	link::Guides/Instr-Patterns::
+
+	Instr can also be used in Patterns.
+
+	link::Guides/Instr-functional-tricks::
+
+
+Whenever you create an Instr it is stored in the library:
+
+code::
+(
+	Instr(\sin, { arg freq,amp;
+		SinOsc.ar(freq,0.0, amp)
+	});
+)
+::
+
+and can be retrieved:
+
+code::
+	Instr(\sin)
+::
+
+or redefined:
+
+code::
+(
+	Instr(\sin, { arg freq,amp;
+		SinOsc.ar(freq,0.0, LFNoise1.kr(0.1,amp)
+	});
+)
+::
+
+Make a SynthDef:
+code::
+(
+	Instr(\sin).asSynthDef( (amp:0.2) )
+)
+::
+
+Make a Synth:
+code::
+(
+	Instr(\sin).head(s, (amp:0.2) )
+)
+::
+
+	see also link::Guides/Instr-making-Synths::
+
+A simple reference gui:
+code::
+(
+	// default gui display for Instr
+	Instr(\sin).gui
+)
+::
+
+Browse your Instr library:
+code::
+InstrBrowser.new
+::
 
 CLASSMETHODS::
-
-METHOD:: dir
-
-
-argument:: p
-
-
-returns::
 
 METHOD:: new
 
 
 argument:: name
+Valid formats:
+code::
+\sin  // by convention used for
+"oscillators.sin" // this will be found in the file oscillators
+"folder.subfolder.oscillators.sin" // in folder/subfolder/oscillators
+::
 
+All quarks/Instr folders are searched
 
 argument:: func
+the ugenFunc
 
+	Note: when using your Instrument with Patch THERE IS NO NEED TO USE Out.ar
+	though you may explicitly use it if you wish.
+	It will be appended to your ugen graph func if needed.
 
 argument:: specs
+Specify what kind of input is required, and the working range of values.
+	somewhat optional - these can be guessed from the argnames.
 
+	if no spec is supplied, Instr will use the function's argument name to
+	lookup a spec in Spec.specs.  eg arg  freq ->  looks for Spec.specs.at(\freq)
+	If nothing is found there, it will default to a  ControlSpec with a range of 0 .. 1
+
+	These specs are used by Patch to determine the suitable type of input.
+	They may be used in many other situations, and you will find many uses
+	where you will wish to query the specs.
+
+	The default/initial value for the Spec is taken from the function defaults.
+
+
+	different lazy ways to specify the spec...
+
+code::
+(
+Instr("minimoog.one",{ arg freq=440,int1=5,int2 = -5,
+						width1=0.1,width2=0.1,width3=0.1,
+						ffreqInterval=0,rq=0.4;
+	var p;
+	p=Pulse.ar([ freq  * int1.midiratio, freq, freq * int2.midiratio],
+			[ width1,width2,width3],0.3);
+	RLPF.ar(Mix.ar(p),freq * ffreqInterval.midiratio,rq)
+},#[
+	nil, // nil, so use function's arg name (\freq)
+		// to look up in Spec.specs
+	[-48,48,\linear,1], // as(Spec,[-48,48,\linear,1])
+						//   =>   ControlSpec.new(-48,48,\linear,1)
+	[-48,48,\linear,1],
+	\unipolar, 		// try Spec.specs.at(\unipolar)
+	nil,				// try the argname width2, that fails,
+					//  so the default is ControlSpec(0,1,\linear)
+	\unipolar,
+	[-48,48,\linear,1]
+]);
+)
+::
 
 argument:: outSpec
-
+	optional - link::Classes/InstrSynthDef:: can determine the outputSpec by evaluating the ugenGraph
+	and finding what the spec of the result is.
+	An Instr can be .ar, .kr or can even return an object, a player, or a pattern.
 
 returns::
 
 METHOD:: prNew
-
+private
 
 returns::
+
+METHOD:: dir
+
+argument:: p
+
+returns::
+
 
 METHOD:: at
 
@@ -79,7 +202,25 @@ METHOD:: clearAll
 returns::
 
 METHOD:: ar
+As a class method, this looks up (or loads) the Instr and values it with supplied args.  It can thus be used as a kind of subroutine or easily reusable function.
 
+code::
+SynthDef("mini",{
+	Out.ar( 0,
+		Instr.ar("minimoog.two", SinOsc.kr(1.0).range(300,500) )
+	)
+}).send(s);
+::
+
+Equivalent usage when using an already loaded Instr:
+
+code::
+SynthDef("mini",{
+	Out.ar( 0,
+		Instr("minimoog.two").ar( SinOsc.kr(1.0).range(300,500) )
+	)
+}).send(s);
+::
 
 argument:: name
 
@@ -90,7 +231,7 @@ argument:: args
 returns::
 
 METHOD:: kr
-
+see ar
 
 argument:: name
 

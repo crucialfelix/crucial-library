@@ -3,8 +3,41 @@ summary:: Pairs an Instr with inputs that that will be passed to the Instr
 categories:: Libraries>crucial>Instr, Libraries>crucial>Players
 related:: Classes/Instr
 
-DESCRIPTION::
+DESCRIPTION:: An Instr (Instrument) is a function that has a unique name attached to it.
+A Patch specifies an Instr by name and specifies inputs that will be passed to the Instr function when it is actually played.  A Patch is the player that actually plays an Instr's sound function.
 
+Note that an Instr can also be connected with other things using link::Classes/Mx:: and SynthDefs can be made from Instr in other ways than using Patch.
+
+code::
+(
+// given a simple instrument
+Instr(\Pulse,{ arg freq=440.0,width=0.5,mul=0.1;
+
+	Pulse.ar( freq, width, mul )
+
+});
+
+// a patch specifies inputs (arguments) to that instrument
+p = Patch( \Pulse, [
+					300,
+					0.2,
+					0.1
+				]);
+
+//the default server will be booted, the SynthDef written and loaded
+p.play;
+
+)
+
+p.stop;
+::
+
+Guides
+
+link::Guides/Patch-inputs::
+link::Guides/Patch-Busses-and-Groups::
+link::Guides/Patch-spawning-and-patterns::
+link::Guides/Patch-client-server-magic::
 
 
 CLASSMETHODS::
@@ -12,14 +45,69 @@ CLASSMETHODS::
 METHOD:: new
 
 
-argument:: name
+argument:: instr
+The Instr can be specified as:
+
+an Instr name
+code::
+(
+	// given that an Instr is defined by name:
+	Instr(\bubbles, { arg amp=1.0;
+		var f, zout;
+		f = LFSaw.kr(0.4, 0, 24, LFSaw.kr([8,7.23], 0, 3, 80)).midicps;
+		zout = CombN.ar(SinOsc.ar(f, 0, 0.04), 0.2, 0.2, 4);
+		zout * amp
+	});
+
+	// the patch retrieves it by name
+	p = Patch(\bubbles,[0.4] );
+	p.gui
+)
+::
+
+a direct function that will be used to create an Instr in place
+code::
+(
+	p = Patch({ arg freq=100,amp=1.0;
+		SinOsc.ar([freq,freq + 30],0,amp)
+	},[
+		500,
+		0.3
+	]);
+	p.gui
+)
+::
+
+or directly pass an Instr object
+code::
+(
+	i = Instr("help-Patch",{ arg freq=100,amp=1.0;
+			SinOsc.ar([freq,freq + 30],0,amp)
+		});
+	p = Patch(i,[ 500,	0.3 ]);
+	p.gui
+)
+::
+
 
 
 argument:: inputs
+an array of arguments for the Instr function.
 
+Can also be a dictionary:  (argName: value, ... )
+
+code::
+Patch({ arg freq,amp;
+
+	SinOsc.ar(freq,amp)
+},(
+	amp: 0.4
+)).gui
+::
 
 argument:: outClass
 
+default is Out.ar You could supply ReplaceOut to do effect processing on a Bus
 
 returns::
 
@@ -385,5 +473,28 @@ argument:: parentForArgName
 
 returns::
 
+
+EXAMPLES::
+
+Patch inside a patch
+
+code::
+Instr(\bubbles, { arg amp=1.0;
+	var f, zout;
+	f = LFSaw.kr(0.4, 0, 24, LFSaw.kr([8,7.23], 0, 3, 80)).midicps;
+	zout = CombN.ar(SinOsc.ar(f, 0, 0.04), 0.2, 0.2, 4);
+	zout * amp
+});
+
+Instr(\rlpf,{ arg audio=0,freq=500,rq=0.1;
+	RLPF.ar(audio, freq, rq)
+});
+
+p = Patch(\rlpf,[
+	q = Patch(\bubbles)
+]);
+
+p.gui
+::
 
 

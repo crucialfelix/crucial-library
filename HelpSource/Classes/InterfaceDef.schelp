@@ -3,7 +3,7 @@ summary:: defines event, midi and GUI handlers for an Interface
 categories:: Libraries>crucial>Instr
 related:: Classes/Interface
 
-DESCRIPTION::
+DESCRIPTION::see link::Classes/Interface::
 
 
 

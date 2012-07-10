@@ -1,0 +1,80 @@
+title:: Instr making Synths
+summary:: Methods for spawning synths from Instr
+categories:: Libraries>crucial>Instr
+
+Playing
+
+
+(
+Instr.new("minimoog.two",{ arg freq=440,int1=5,int2 = -5,
+						width1=0.1,width2=0.1,width3=0.1,
+						ffreqInterval=0,rq=0.4;
+	var p;
+
+	p=Pulse.ar([ freq  * int1.midiratio, freq, freq * int2.midiratio],
+			[ width1,width2,width3],0.3);
+
+	RLPF.ar(Mix.ar(p),freq * ffreqInterval.midiratio,rq)
+
+},#[ // specs
+	\freq,
+	[-48,48,\linear,1],
+	[-48,48,\linear,1],
+	\unipolar,
+	\unipolar,
+	\unipolar,
+	[-48,48,\linear,1]
+]);
+
+)
+
+.play will create a Patch
+
+(
+	Instr.at("minimoog.two").play
+)
+
+A string called with .ar will actually look up an Instr and play that:
+(
+	{
+		"minimoog.two".ar( LFNoise1.kr(0.1,300,700) )
+	}.play
+)
+
+(
+	{
+		Instr.at("minimoog.two")
+			.ar( LFNoise1.kr(0.1,300,700) );
+	}.play
+)
+
+
+Use Instr as a library of audio functions for use in SynthDefs
+(
+SynthDef("mini",{
+	Out.ar( 0,
+		Instr("minimoog.two").ar( SinOsc.kr(1.0).range(300,500) )
+	)
+}).send(s);
+)
+
+Synth("mini")
+
+or even:
+
+SynthDef("mini",{
+	var out;
+
+	out = "minimoog.two".ar( SinOsc.kr(1.0).range(300,500) );
+	// do more filtering etc ...
+
+	Out.ar( 0, out )
+}).send(s);
+
+
+
+but by far the best way is to use Patch :
+
+Patch("minimoog.two",[1000]).play
+
+Patch("minimoog.two").gui

@@ -1,0 +1,87 @@
+title:: Instr Patterns
+summary:: Using Instr in Patterns
+categories:: LIbraries>crucial/>Instr
+
+
+section::Patterns
+
+Just as for SynthDef, an Instr supports .add which will compile a SynthDef and add it to the SynthDescLib that the Pattern system uses.
+
+have to recheck this
+
+code::
+(
+	Instr("minimoog.two",{ arg freq=440,int1=5,int2 = -5,width1=0.1,width2=0.1,width3=0.1,
+			ffreqInterval=0,rq=0.4;
+		var p;
+
+		p=Pulse.ar([ freq  * int1.midiratio, freq, freq * int2.midiratio],
+				[ width1,width2,width3],0.3);
+
+		RLPF.ar(Mix.ar(p),freq * ffreqInterval.midiratio,rq)
+			* EnvGen.kr(Env.perc,doneAction: 2)
+
+	});
+
+	p.add;
+
+	Pbind(
+		\type, \instr,
+		\instr, d.name,
+		// note is converted to freq by things in NotePlayer
+		\note,Prand([10,20,30],inf),
+		// args are passed into the function
+		\int1, Prand([-3,0,7,11,13],inf)
+	).play
+)
+
+::
+
+
+p.asSynthDef.store;
+
+
+code::
+(
+	Instr("minimoog.two",{ arg freq=440,int1=5,int2 = -5,width1=0.1,width2=0.1,width3=0.1,
+			ffreqInterval=0,rq=0.4;
+		var p;
+
+		p=Pulse.ar([ freq  * int1.midiratio, freq, freq * int2.midiratio],
+				[ width1,width2,width3],0.3);
+
+		RLPF.ar(Mix.ar(p),freq * ffreqInterval.midiratio,rq)
+			* EnvGen.kr(Env.perc,doneAction: 2)
+
+	});
+
+	p = Patch("minimoog.two"); // no args, Patch automagically creates KrNumberEditors
+	// and therefore kr inputs to the SynthDef
+
+	// this writes it to disk
+	d = p.asSynthDef.store;
+
+	Pbind(
+		\instrument, d.name,
+		// note is converted to freq by things in NotePlayer
+		\note,Prand([10,20,30],inf),
+		// args are passed into the function
+		\int1, Prand([-3,0,7,11,13],inf)
+	).play
+)
+
+::
+
+see also InstrGateSpawner and InstrSpawner
+
+
+section:: Creating a single Event and spawning it
+
+METHOD:: spawnEvent
+
+
+argument:: event
+
+
+returns::
+
