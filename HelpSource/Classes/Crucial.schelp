@@ -1,9 +1,9 @@
 CLASS:: Crucial
-summary::
+summary:: library initializer
 categories:: Libraries>crucial
 related::
 
-DESCRIPTION::
+DESCRIPTION::  pending deprecation.
 
 
 
@@ -11,16 +11,16 @@ CLASSMETHODS::
 
 METHOD:: initClass
 
+Adds a GUI skin named \crucial.
 
-returns::
+This skin is slightly cleaner and more basic than the default.
+Put GUI.setSkin(\crucial) in your startup if you wish to use it.
+
+
 
 METHOD:: initSpecs
 
 
-returns::
-
-
-INSTANCEMETHODS::
-
+This defines a bunch of Specs which I find are useful.  Nothing depends on these.
 
 

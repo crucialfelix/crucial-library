@@ -5,6 +5,29 @@ related:: Classes/PlayerRecorder
 
 DESCRIPTION:: This is a utility for recording an array of supplied Busses to multiple files.  Recording can be paused/resumed. The busses can be optionally mixed and monitored through the main outs.
 
+code::
+b = [
+	Bus(\audio,2,2),
+	Bus(\audio,4,2),
+	Bus(\audio,6,2)
+	];
+
+m = MultiChanRecorder(b);
+
+// each file is named: basePath + _chanNum
+// if basePath is nil then recordings go into the global recordings directory
+m.prepareForRecord(basePath);
+
+// mix the busses onto the main outs if desired
+m.monitor;
+
+m.record;
+// record may also specify a start time :
+// m.record(atTime)
+// see atTime help
+
+m.stop;
+::
 
 
 CLASSMETHODS::
@@ -21,7 +44,9 @@ returns::
 INSTANCEMETHODS::
 
 METHOD:: limit
+boolean
 
+By default it uses a Limiter on each channel.  Set limit to false to defeat this.
 
 returns::
 

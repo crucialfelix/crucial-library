@@ -108,7 +108,7 @@ returns::
 INSTANCEMETHODS::
 
 METHOD:: path
-
+ if loaded or saved, the player knows its path
 
 argument:: p
 
@@ -144,16 +144,22 @@ METHOD:: status
 returns::
 
 METHOD:: play
+	boots the server, prepares the player for play (loading resources like samples etc.)
+	and spawns the player
 
+	all args are optional
 
 argument:: group
-
+	a Server (will use the root node)
+	a Group
+	nil (default server's root node)
 
 argument:: atTime
-
+	atTime - see atTime (Nil,Float,Integer or Date)
 
 argument:: bus
-
+	bus - (Bus,Integer,Nil)
+		a specific Bus to play on, otherwise will default to the main audio outs
 
 returns::
 
@@ -190,15 +196,21 @@ METHOD:: readyForPlay
 returns::
 
 METHOD:: prepareForPlay
-
+	this loads the synthDef to the server for the player and all of its children,
+	and allocates any resources such as buffers, loading sound files etc.
 
 argument:: group
-
+	group -	a Server, a Group or Nil
 
 argument:: private
-
+	isPrivate: a public bus is one of the main audio outputs of your soundcard.
+		a private bus is one that will be patched and mixed further down the line.
+		When makePatchOut is called on the top player (the one that actually was sent .play)
+		it plays to a public (main audio output), and any internal children are told to
+		allocate and play onto a private bus.
 
 argument:: bus
+	bus -    a specific Bus to play on.  this will cause isPrivate to be ignored
 
 
 returns::
@@ -294,6 +306,7 @@ argument:: po
 returns::
 
 METHOD:: spawn
+	assumes the player has been prepared.  see prepareForPlay
 
 
 argument:: atTime
@@ -450,6 +463,8 @@ argument:: throwErrorOnTimeout
 returns::
 
 METHOD:: stop
+	stops playing but does not deallocate any resources (buffers etc.)
+	You need to .free to deallocate it
 
 
 argument:: atTime
@@ -471,7 +486,9 @@ METHOD:: didStop
 returns::
 
 METHOD:: release
-
+	call release on the synth, with the releaseTime
+	then calls stop on the player, so even if the synthDef does not have a \gate
+	input, it will function the same as stop after a short delay.
 
 argument:: releaseTime
 
@@ -493,6 +510,8 @@ argument:: bundle
 returns::
 
 METHOD:: free
+	frees all allocated resources (buffers etc.)
+	if it is playing then it also stops it
 
 
 argument:: atTime
@@ -699,12 +718,18 @@ METHOD:: disconnect
 returns::
 
 METHOD:: children
+for players that hold other players or objects, return those children
+	player classes should implement where appropriate.
+	a Patch has its args as children
+	SFP has its underlying object as child
 
+	using this.children.do({arg item; .... })  can save you from having to muck up
+	the Player class with extra methods.
 
 returns::
 
 METHOD:: deepDo
-
+ do to allChildren
 
 argument:: function
 
@@ -712,8 +737,7 @@ argument:: function
 returns::
 
 METHOD:: allChildren
-
-
+and all your children's children, and their children...
 returns::
 
 METHOD:: composeUnaryOp
@@ -770,7 +794,7 @@ METHOD:: delta
 returns::
 
 METHOD:: name
-
+ if loaded or saved then the name is the filename, else its the normal asString for an object (eg. "a Patch")
 
 returns::
 

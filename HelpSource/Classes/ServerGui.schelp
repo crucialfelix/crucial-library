@@ -1,9 +1,11 @@
 CLASS:: ServerGui
-summary::
-categories:: Libraries>crucial>GuiClasses
-related::
+summary:: an alternate small server view
+categories:: Libraries>crucial>GUI
+related:: Classes/Server, Classes/ServerErrorGui
 
-DESCRIPTION::
+DESCRIPTION:: This is more compact and conforms to the .gui convention in that it can be placed on any window or view.
+
+Its an MVC design so there can be many of them for a single server and they can be closed and will clean up after themselves.
 
 
 

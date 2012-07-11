@@ -5,6 +5,28 @@ related::
 
 DESCRIPTION::
 
+code::
+Silence.new.play
+::
+
+
+code::
+// this causes an error
+Patch({ arg audio;
+	RLPF.ar(audio,1300)
+},[
+	0.0
+]).play;
+::
+
+code::
+// Silence uses no cpu at all
+Patch({ arg audio;
+	RLPF.ar(audio,1300)
+},[
+	Silence.new
+]).play
+::
 
 
 CLASSMETHODS::

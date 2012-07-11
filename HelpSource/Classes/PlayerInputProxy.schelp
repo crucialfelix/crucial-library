@@ -3,8 +3,26 @@ summary:: placeholder for Patch inputs for a player that will be supplied later
 categories:: Libraries>crucial>Players
 related::
 
-DESCRIPTION::
+DESCRIPTION:: represents an audio or control input for a player that is to be filled with a player later.
 
+eg. 	an input to an effect.
+	a potential controller/interface input
+
+code::
+p = Patch({ arg audio,ffreq;
+	RLPF.ar(audio,ffreq)
+},[
+	PlayerInputProxy.new
+]);
+::
+
+it holds the place.  if the patch is played, it is silent.
+
+p.play
+
+other classes can detect these inputs and patch into them.
+
+The audioSpec would specify the number of channels.
 
 
 CLASSMETHODS::

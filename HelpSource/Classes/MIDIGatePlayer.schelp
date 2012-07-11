@@ -5,7 +5,29 @@ related::
 
 DESCRIPTION::
 
+code::
+(
 
+Instr(\monosynth,{ arg gate=0.0,freq=440.0,ffreq=500,rq=0.1,width=0.3;
+	var amp;
+	amp = Latch.kr(gate,gate);
+
+	RLPF.ar(
+		Pulse.ar(freq,width),
+		ffreq,
+		rq)
+
+	* EnvGen.kr(Env.adsr,gate,amp)
+
+});
+
+Patch(\monosynth,[
+	MIDIGatePlayer.new,
+	MIDIFreqPlayer.new
+]).gui
+
+)
+::
 
 CLASSMETHODS::
 

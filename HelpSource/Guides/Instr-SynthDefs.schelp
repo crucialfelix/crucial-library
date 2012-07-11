@@ -5,6 +5,8 @@ categories:: Libraries>crucial>Instr
 
 section:: An Instr is not a SynthDef
 
+link::blah::
+
 An Instr can create an InstrSynthDef which is a subclass of SynthDef.
 
 Each argument in the function for a SynthDef creates a Control input to the Synth that will eventually play on the server.
