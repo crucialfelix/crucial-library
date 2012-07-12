@@ -10,7 +10,7 @@ ServerGui : ObjectGui {
 		var active,booter,height,skin;
 		skin = GUI.skin;
 		height = skin.buttonHeight;
-		
+
 		if(model.isLocal,{
 			booter = Button(layout, Rect(0,0, 47, height));
 			booter.states = [["Boot", skin.fontColor, skin.background],
@@ -153,16 +153,18 @@ ServerGui : ObjectGui {
 		};
 	}
 	meters { |layout,bounds|
-	    ActionButton(layout,"Meters",{
-	        model.meter
-	    })
-    }
+		ActionButton(layout,"Meters",{
+			model.meter
+		})
+	}
 	tail { |layout|
-	    ToggleButton(layout,"tail",{
-	        ServerLog.start(model).tail = true;
-	    },{
-	        ServerLog.stop(model);
-	    })
+		if(\ServerLog.asClass.notNil,{
+			ToggleButton(layout,"tail",{
+				ServerLog.start(model).tail = true;
+			},{
+				ServerLog.stop(model);
+			})
+		})
 	}
 
 	update { arg changer,what;
