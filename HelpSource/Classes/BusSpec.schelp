@@ -1,0 +1,45 @@
+CLASS:: BusSpec
+summary:: datatype specifying a Bus object
+categories:: Spec, Libraries>crucial>Spec
+related:: Classes/Bus, Classes/Spec
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: rate
+
+
+argument:: numChannels
+
+
+argument:: private
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: numChannels
+
+
+returns::
+
+METHOD:: private
+
+
+returns::
+
+
+

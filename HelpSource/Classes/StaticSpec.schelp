@@ -1,0 +1,37 @@
+CLASS:: StaticSpec
+summary:: datatype specifying a non-modulatable float
+categories:: Spec, Libraries>crucial>Spec
+related:: Classes/ControlSpec, Classes/StaticIntegerSpec
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: canKr
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: defaultControl
+
+
+argument:: val
+
+
+returns::
+
+METHOD:: color
+
+
+returns::
+

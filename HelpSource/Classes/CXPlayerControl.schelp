@@ -1,0 +1,72 @@
+CLASS:: CXPlayerControl
+summary:: adapter class for JITLib to control players
+categories:: Libraries>JITLib>Adapters, Libraries>crucial>internals
+related:: Classes/AbstractPlayControl
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: bus
+
+
+returns::
+
+METHOD:: build
+
+
+argument:: argProxy
+
+
+returns::
+
+METHOD:: playToBundle
+
+
+argument:: bundle
+
+
+argument:: extraArgs
+
+
+argument:: target
+
+
+argument:: addAction
+
+
+returns::
+
+METHOD:: stopToBundle
+
+
+argument:: bundle
+
+
+argument:: fadeTime
+
+
+returns::
+
+METHOD:: pause
+
+
+returns::
+
+METHOD:: resume
+
+
+returns::
+
+METHOD:: isPlaying
+
+
+returns::
+
+
+

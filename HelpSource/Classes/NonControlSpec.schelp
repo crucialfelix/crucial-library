@@ -1,0 +1,31 @@
+CLASS:: NonControlSpec
+summary:: datatype specifying an input to an Instr that will not be in the SynthDef/Synth
+categories:: Spec, Libraries>crucial>Spec
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: canKr
+
+
+returns::
+
+METHOD:: color
+
+
+returns::
+
+
+

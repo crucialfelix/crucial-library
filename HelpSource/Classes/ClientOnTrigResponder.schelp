@@ -1,0 +1,55 @@
+CLASS:: ClientOnTrigResponder
+summary:: a helper object used by Instr to implement { }.onTrig inside of Instr functions
+categories:: Libraries>crucial>Instr
+related:: Classes/Patch
+
+DESCRIPTION:: a helper object used by Instr to implement { }.onTrig inside of Instr functions
+
+see link::Guides/Patch-client-server-magic::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: triggerID
+
+
+argument:: func
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: triggerID
+
+
+returns::
+
+METHOD:: func
+
+
+returns::
+
+METHOD:: didSpawn
+
+
+argument:: synth
+
+
+returns::
+
+METHOD:: stopToBundle
+
+
+argument:: b
+
+
+returns::
+
+
+

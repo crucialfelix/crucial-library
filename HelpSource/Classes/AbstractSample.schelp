@@ -1,0 +1,104 @@
+CLASS:: AbstractSample
+summary:: base class for the BufferProxy and Sample classes
+categories:: Libraries>crucial>Buffers>abstract
+related:: Classes/Sample, Classes/BufferProxy
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: dir
+
+
+argument:: p
+
+
+returns::
+
+METHOD:: standardizePath
+
+
+argument:: path
+
+
+returns::
+
+METHOD:: abrevPath
+
+
+argument:: path
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: soundFilePath
+
+
+argument:: string
+
+
+returns::
+
+METHOD:: name
+
+
+returns::
+
+METHOD:: startFrame
+
+
+returns::
+
+METHOD:: endFrame
+
+
+returns::
+
+METHOD:: size
+
+
+returns::
+
+METHOD:: abrevPath
+
+
+returns::
+
+METHOD:: duration
+
+
+returns::
+
+METHOD:: asString
+
+
+returns::
+
+METHOD:: totalMemory
+
+
+returns::
+
+METHOD:: prepareToBundle
+
+
+argument:: group
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: makePatchOut
+
+
+returns::
+
+
+

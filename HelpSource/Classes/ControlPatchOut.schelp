@@ -1,0 +1,58 @@
+CLASS:: ControlPatchOut
+summary::
+categories:: Libraries>crucial>internals
+related:: Classes/PatchOut
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: init
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: synthArg
+
+
+returns::
+
+METHOD:: control
+
+
+argument:: controlPatchIn
+
+
+argument:: needsValueSetNow
+
+
+returns::
+
+METHOD:: audio
+
+
+argument:: audioPatchIn
+
+
+returns::
+
+METHOD:: scalar
+
+
+argument:: scalarPatchIn
+
+
+returns::
+
+
+

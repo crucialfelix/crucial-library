@@ -1,0 +1,159 @@
+CLASS:: PlayerRecorder
+summary:: utility class to prepare and precisely record a player to a soundfile
+categories:: Libraries>crucial>Players
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: player
+
+
+argument:: recHeaderFormat
+
+
+argument:: recSampleFormat
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: player
+
+
+returns::
+
+METHOD:: recHeaderFormat
+
+
+returns::
+
+METHOD:: recSampleFormat
+
+
+returns::
+
+METHOD:: limit
+
+
+returns::
+
+METHOD:: record
+
+
+argument:: path
+
+
+argument:: endBeat
+
+
+argument:: onComplete
+
+
+argument:: atTime
+
+
+returns::
+
+METHOD:: liveRecord
+
+
+argument:: path
+
+
+argument:: onComplete
+
+
+argument:: atTime
+
+
+returns::
+
+METHOD:: stop
+
+
+returns::
+
+METHOD:: cmdPeriod
+
+
+returns::
+
+METHOD:: makePath
+
+
+returns::
+
+METHOD:: server
+
+
+returns::
+
+METHOD:: bufferAndThen
+
+
+argument:: path
+
+
+argument:: then
+
+
+returns::
+
+METHOD:: prRecord
+
+
+argument:: path
+
+
+argument:: endBeat
+
+
+argument:: atTime
+
+
+argument:: timeOfRequest
+
+
+returns::
+
+METHOD:: prLiveRecord
+
+
+argument:: path
+
+
+argument:: atTime
+
+
+argument:: timeOfRequest
+
+
+returns::
+
+METHOD:: synthDefToBundle
+
+
+argument:: bundle
+
+
+argument:: listen
+
+
+returns::
+
+METHOD:: free
+
+
+returns::
+
+
+

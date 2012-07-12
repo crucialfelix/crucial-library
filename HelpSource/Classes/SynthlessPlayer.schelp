@@ -1,0 +1,76 @@
+CLASS:: SynthlessPlayer
+summary:: parent class for Players that will not spawn a synth
+categories:: Libraries>crucial>Players>abstract
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: isPlaying
+
+
+returns::
+
+METHOD:: loadDefFileToBundle
+
+
+returns::
+
+METHOD:: spawnToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: didSpawn
+
+
+returns::
+
+METHOD:: didStop
+
+
+returns::
+
+METHOD:: releaseToBundle
+
+
+argument:: releaseTime
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: connectToPatchIn
+
+
+argument:: patchIn
+
+
+argument:: needsValueSetNow
+
+
+returns::
+
+METHOD:: proxyControlClass
+
+
+returns::
+
+METHOD:: wrapInFader
+
+
+returns::
+
+
+

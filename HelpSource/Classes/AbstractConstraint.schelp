@@ -1,0 +1,64 @@
+CLASS:: AbstractConstraint
+summary:: abstract parent class for the Constraints micro-library
+categories:: Libraries>crucial>Constraints>abstract
+related:: Guides/Constraints
+
+DESCRIPTION:: See the link::Guides/Constraints:: first.
+
+One of the main purposes of the Constraints is that they can all be combined and filtered with other Constraints.
+
+
+INSTANCEMETHODS::
+
+METHOD:: not
+
+
+returns::
+
+METHOD:: or
+
+
+argument:: constraint
+
+
+returns::
+
+METHOD:: and
+
+
+argument:: constraint
+
+
+returns::
+
+METHOD:: xor
+
+
+argument:: constraint
+
+
+returns::
+
+METHOD:: reject
+
+
+argument:: constraint
+
+
+returns::
+
+METHOD:: select
+
+
+argument:: constraint
+
+
+returns::
+
+METHOD:: reset
+
+
+returns::
+
+
+

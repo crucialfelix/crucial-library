@@ -1,0 +1,30 @@
+CLASS:: ArgNameLabel
+summary::
+categories:: Libraries>crucial>GUI>utils
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: name
+
+
+argument:: layout
+
+
+argument:: minWidth
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+
+

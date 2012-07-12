@@ -1,0 +1,54 @@
+CLASS:: KrPlayer
+summary:: parent class for control rate Players
+categories:: Libraries>crucial>Players>abstract
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: spec
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: instrArgFromControl
+
+
+argument:: control
+
+
+returns::
+
+METHOD:: ar
+
+
+returns::
+
+METHOD:: value
+
+
+returns::
+
+METHOD:: poll
+
+
+returns::
+
+METHOD:: wigglyness
+
+
+returns::
+
+
+

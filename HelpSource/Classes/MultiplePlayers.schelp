@@ -1,0 +1,36 @@
+CLASS:: MultiplePlayers
+summary:: parent class for players that have multiple tracks / voices
+categories:: Libraries>crucial>Players>abstract
+related:: Classes/MultiTrackAudioSpec
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: voices
+
+
+returns::
+
+METHOD:: children
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: numChannels
+
+
+returns::
+
+
+

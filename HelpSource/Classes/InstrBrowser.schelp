@@ -1,0 +1,120 @@
+CLASS:: InstrBrowser
+summary:: Browse your instrument library, with customizable actions
+categories:: Libraries>crucial>Instr
+related:: Classes/Instr
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: toolbarFunc
+
+
+argument:: topBarFunc
+
+
+argument:: showUGenInstr
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: toolbarFunc
+
+
+returns::
+
+METHOD:: topBarFunc
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: showUGenInstr
+
+
+returns::
+
+METHOD:: inputSpec
+
+
+returns::
+
+METHOD:: outputSpec
+
+
+returns::
+
+METHOD:: filterFunc
+
+
+returns::
+
+METHOD:: gui
+
+
+argument:: layout
+
+
+argument:: bounds
+
+
+returns::
+
+METHOD:: guiBody
+
+
+argument:: layout
+
+
+returns::
+
+METHOD:: init
+
+
+returns::
+
+METHOD:: rateMethod
+
+
+returns::
+
+METHOD:: allInstr
+
+
+returns::
+
+METHOD:: refresh
+
+
+returns::
+
+METHOD:: search
+
+
+argument:: q
+
+
+returns::
+
+METHOD:: focus
+
+
+argument:: instrname
+
+
+returns::
+
+
+

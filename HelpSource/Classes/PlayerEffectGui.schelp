@@ -1,0 +1,24 @@
+CLASS:: PlayerEffectGui
+summary::
+categories::
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: guiBody
+
+
+argument:: layout
+
+
+returns::
+
+
+

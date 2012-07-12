@@ -1,0 +1,21 @@
+CLASS:: MIDIHoldsNotes
+summary::
+categories:: External Control>MIDI, Libraries>crucial>MIDI
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: removeResponders
+
+
+returns::
+
+
+
