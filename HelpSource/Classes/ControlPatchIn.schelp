@@ -1,0 +1,21 @@
+CLASS:: ControlPatchIn
+summary::
+categories:: Libraries>crucial>internals
+related:: Classes/PatchIn
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: rate
+
+
+returns::
+
+
+

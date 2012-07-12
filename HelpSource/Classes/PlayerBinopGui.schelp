@@ -1,0 +1,24 @@
+CLASS:: PlayerBinopGui
+summary::
+categories:: Libraries>crucial>GuiClasses
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: guiBody
+
+
+argument:: layout
+
+
+returns::
+
+
+

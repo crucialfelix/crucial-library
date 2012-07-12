@@ -1,0 +1,145 @@
+CLASS:: BusPool
+summary:: bus allocator with retain/release counting for shared busses
+categories:: Libraries>crucial>internals
+related:: Classes/Bus, Classes/SharedBus
+
+DESCRIPTION:: Iin the style of Objective-C retain/release memory management.
+	this is useful for situations where many clients may use the same
+	bus, handing it to each other.  each one retains, each one releases.
+	when the bus is released for the last time it is freed
+
+
+
+CLASSMETHODS::
+
+METHOD:: counts
+
+
+returns::
+
+METHOD:: annotations
+
+
+returns::
+
+METHOD:: alloc
+
+
+argument:: rate
+
+
+argument:: server
+
+
+argument:: numChannels
+
+
+argument:: client
+
+
+argument:: name
+
+
+returns::
+
+METHOD:: retain
+
+
+argument:: bus
+
+
+argument:: client
+
+
+argument:: name
+
+
+returns::
+
+METHOD:: release
+
+
+argument:: bus
+
+
+argument:: client
+
+
+returns::
+
+METHOD:: initClass
+
+
+returns::
+
+METHOD:: reset
+
+
+returns::
+
+METHOD:: watchServer
+
+
+argument:: server
+
+
+returns::
+
+METHOD:: itemCount
+
+
+argument:: bus
+
+
+returns::
+
+METHOD:: busses
+
+
+returns::
+
+METHOD:: gui
+
+
+returns::
+
+METHOD:: getAnnotations
+
+
+argument:: bus
+
+
+returns::
+
+METHOD:: findBus
+
+
+argument:: server
+
+
+argument:: index
+
+
+returns::
+
+METHOD:: makeBusFromSpec
+
+
+argument:: busSpec
+
+
+argument:: server
+
+
+argument:: client
+
+
+argument:: name
+
+
+returns::
+
+
+
+
+

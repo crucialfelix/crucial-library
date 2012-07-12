@@ -1,0 +1,61 @@
+CLASS:: EnvSpec
+summary:: datatype specifying an Env
+categories:: Spec, Libraries>crucial>Spec, Envelopes
+related:: Classes/Env, Classes/Spec
+
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: prototype
+
+
+returns::
+
+METHOD:: initClass
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: prototype
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: defaultControl
+
+
+argument:: env
+
+
+returns::
+
+METHOD:: default
+
+
+returns::
+
+METHOD:: canAccept
+
+
+argument:: thing
+
+
+returns::
+
+
+

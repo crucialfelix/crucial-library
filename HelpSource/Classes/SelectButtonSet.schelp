@@ -1,0 +1,269 @@
+CLASS:: SelectButtonSet
+summary:: a set of radio buttons
+categories:: Libraries>crucial>GUI
+related:: Classes/PopUpMenu
+
+DESCRIPTION:: Radio button style set, fashioned as a single object.
+
+code::
+(
+
+	SelectButtonSet( nil,  [ "one", "two","three","four"] ,
+		{ arg selectedIndex,selectButtonSet;
+			[ selectedIndex, selectButtonSet ].postln;
+		},width: 60
+	)
+)
+
+(
+	SelectButtonSet( nil,
+		16 , //  make 16 buttons
+		{ arg selectedIndex,selectButtonSet;
+			[ selectedIndex, selectButtonSet ].postln;
+		}
+	)
+)
+::
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: layout
+
+
+argument:: labelArrayOrQnty
+
+
+argument:: action
+
+
+argument:: color
+
+
+argument:: selectedColor
+
+
+argument:: width
+
+
+argument:: height
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: selected
+selected index
+
+returns::
+
+METHOD:: action
+
+
+returns::
+
+METHOD:: colorFunc
+
+
+returns::
+
+METHOD:: selectedColor
+
+
+returns::
+
+METHOD:: labelArray
+
+
+returns::
+
+METHOD:: altAction
+
+
+returns::
+
+METHOD:: init
+
+
+argument:: layout
+
+
+argument:: x
+
+
+argument:: y
+
+
+argument:: arglabelArray
+
+
+argument:: argaction
+
+
+argument:: argcolorFunc
+
+
+argument:: argselectedColor
+
+
+returns::
+
+METHOD:: select
+
+
+argument:: x
+
+
+returns::
+
+METHOD:: selectItem
+
+
+argument:: item
+
+
+returns::
+
+METHOD:: passiveSelect
+action is not performed
+
+argument:: x
+
+
+returns::
+
+METHOD:: update
+
+
+argument:: x
+
+
+returns::
+
+METHOD:: refresh
+
+
+returns::
+
+METHOD:: selectedIndex
+
+
+returns::
+
+METHOD:: selectedLabel
+the string label of currently selected item
+
+returns::
+
+METHOD:: selectedItem
+
+
+returns::
+
+METHOD:: deselect
+
+
+returns::
+
+METHOD:: setButtonColor
+
+
+argument:: butt
+
+
+argument:: color
+
+
+returns::
+
+METHOD:: colorNormal
+
+
+argument:: i
+
+
+returns::
+
+METHOD:: colorSelected
+
+
+argument:: i
+
+
+returns::
+
+METHOD:: doAction
+
+
+returns::
+
+METHOD:: addAction
+
+
+argument:: func
+
+
+returns::
+
+METHOD:: font
+
+
+argument:: f
+
+
+returns::
+
+
+EXAMPLES::
+
+code::
+
+(
+SelectButtonSet(
+	nil,
+		["1", "2"],
+		{|i| ("Input" + i).postln},
+		width: 40, height: 30
+	);
+)
+
+(
+SelectButtonSet(
+	FlowView.new,
+		["1", "2"],
+		{|i| ("Input" + i).postln},
+		width: 40, height: 30
+	);
+)
+(
+SelectButtonSet(
+	GUI.window.new.front,
+		["1", "2"],
+		{|i| ("Input" + i).postln},
+		width: 40, height: 30
+	);
+)
+(
+SelectButtonSet(
+	GUI.hLayoutView.new(GUI.window.new.front,400@400),
+		["1", "2"],
+		{|i| ("Input" + i).postln},
+		width: 40, height: 30
+	);
+)
+
+(
+// vertical
+SelectButtonSet(
+	GUI.vLayoutView.new(GUI.window.new.front,100@400),
+		["1", "2"],
+		{|i| ("Input" + i).postln},
+		width: 40, height: 30
+	);
+
+)
+::

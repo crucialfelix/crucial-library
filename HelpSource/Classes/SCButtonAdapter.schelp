@@ -1,0 +1,109 @@
+CLASS:: SCButtonAdapter
+summary:: parent class for Button classes
+categories:: Libraries>crucial>GUI>abstract
+related:: Classes/ActionButton
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: initClass
+
+
+returns::
+
+METHOD:: defaultHeight
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: makeView
+
+
+argument:: layout
+
+
+argument:: x
+
+
+argument:: y
+
+
+returns::
+
+METHOD:: flowMakeView
+
+
+argument:: layout
+
+
+argument:: x
+
+
+argument:: y
+
+
+returns::
+
+METHOD:: makeViewWithStringSize
+
+
+argument:: layout
+
+
+argument:: optimalWidth
+
+
+argument:: minWidth
+
+
+argument:: minHeight
+
+
+returns::
+
+METHOD:: initOneState
+
+
+argument:: name
+
+
+argument:: textcolor
+
+
+argument:: backcolor
+
+
+returns::
+
+METHOD:: label
+
+
+argument:: string
+
+
+returns::
+
+METHOD:: background
+
+
+argument:: color
+
+
+returns::
+
+METHOD:: labelColor
+
+
+argument:: color
+
+
+returns::
+
+
+

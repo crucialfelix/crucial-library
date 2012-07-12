@@ -1,0 +1,29 @@
+CLASS:: ScalarPatchIn
+summary:: \scalar rate PatchIn
+categories:: Libraries>crucial>internals
+related:: Classes/PatchIn
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: value
+
+
+argument:: val
+
+
+returns::
+
+
+

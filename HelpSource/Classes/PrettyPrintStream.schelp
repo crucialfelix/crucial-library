@@ -1,0 +1,40 @@
+CLASS:: PrettyPrintStream
+summary:: a CollStream subclass that supports indenting with tabs
+categories:: Libraries>crucial>utils
+related:: Classes/CollStream
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: nl
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+argument:: args
+
+
+argument:: itemsPerLine
+
+
+returns::
+
+METHOD:: indent
+
+
+argument:: way
+
+
+returns::
+
+
+

@@ -1,0 +1,44 @@
+CLASS:: AbstractConsole
+summary:: abstract parent class for the console widgets
+categories:: Libraries>crucial>GUI>abstract
+related:: Classes/SynthConsole, Classes/SaveConsole
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: layout
+
+
+returns::
+
+METHOD:: defaultPath
+
+
+returns::
+
+METHOD:: getPathThen
+
+
+argument:: then
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: addToLayout
+
+
+argument:: moreFunc
+
+
+returns::
+
+

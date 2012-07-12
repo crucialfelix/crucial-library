@@ -1,0 +1,34 @@
+CLASS:: ScalarSpec
+summary:: datatype specifiying a \scalar "rate" input or output
+categories:: Spec, Libraries>crucial>Spec
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: newFrom
+
+
+argument:: similar
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: canKr
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+
+

@@ -1,0 +1,74 @@
+CLASS:: CXAbstractLabel
+summary::
+categories:: Libraries>crucial>GUI>abstract
+related:: Classes/CXLabel
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: layout
+
+
+argument:: string
+
+
+argument:: width
+
+
+argument:: height
+
+
+argument:: minWidth
+
+
+argument:: font
+
+
+returns::
+
+METHOD:: viewClass
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: init
+
+
+argument:: layout
+
+
+argument:: bounds
+
+
+argument:: string
+
+
+returns::
+
+METHOD:: label
+
+
+argument:: string
+
+
+returns::
+
+METHOD:: bold
+
+
+argument:: fontSize
+
+
+returns::
+
+
+

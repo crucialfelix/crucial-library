@@ -346,11 +346,11 @@ AbstractPlayer : AbstractFunction  {
 		});
 	}
 	record { arg path,endBeat,onComplete,recHeaderFormat, recSampleFormat,atTime;
-		PlayerRecorder(this).record(path,
+		var recorder;
+		recorder = PlayerRecorder(this,recHeaderFormat,recSampleFormat);
+		^recorder.record(path,
 			endBeat,
 			onComplete,
-			recHeaderFormat ?? {(this.server ? Server.default).recHeaderFormat}, 
-			recSampleFormat ?? {(this.server ? Server.default).recSampleFormat},
 			atTime)
 	}
 

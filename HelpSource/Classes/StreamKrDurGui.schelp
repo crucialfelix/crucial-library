@@ -1,0 +1,32 @@
+CLASS:: StreamKrDurGui
+summary:: gui class
+categories:: Libraries>crucial>GuiClasses
+related:: Classes/StreamKrDurGui
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: writeName
+
+
+argument:: layout
+
+
+returns::
+
+METHOD:: guiBody
+
+
+argument:: layout
+
+
+returns::
+
+
+

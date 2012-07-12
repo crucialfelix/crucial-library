@@ -142,14 +142,14 @@
 	color { ^Color.new255(125, 255, 205) }
 }
 + StaticSpec {
-	color { ^Color.black}
+	color { ^Color.grey }
 }
 + NonControlSpec {
 	color { ^Color.yellow(alpha:0.3) }
 }
 	
 + AudioSpec {
-	color { ^Color.new255(255, 218, 000) }
+	color { ^Color(0.17647058823529, 0.89803921568627, 0.027450980392157) }
 }
 + StreamSpec {
 	color { ^Color.green }

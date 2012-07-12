@@ -1,0 +1,35 @@
+CLASS:: InstrGui
+summary:: gui class
+categories:: Libraries>crucial>GuiClasses
+related:: Classes/Instr
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: guiBody
+
+
+argument:: layout
+
+
+returns::
+
+METHOD:: sourceGui
+
+
+argument:: layout
+
+
+argument:: width
+
+
+returns::
+
+
+

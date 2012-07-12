@@ -1,0 +1,39 @@
+CLASS:: TempoGui
+summary::
+categories:: Libraries>crucial>GuiClasses
+related::
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: setTempoKeys
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: writeName
+
+
+returns::
+
+METHOD:: guiBody
+
+
+argument:: layout
+
+
+returns::
+
+METHOD:: update
+
+
+returns::
+
+
+

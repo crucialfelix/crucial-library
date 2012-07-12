@@ -1,0 +1,251 @@
+CLASS:: AbstractSFP
+summary:: base class for SoundFilePlayer classes
+categories:: Libraries>crucial>Players>abstract
+related:: Classes/SFP, Classes/VSFP
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: dir
+
+
+argument:: path
+
+
+returns::
+
+METHOD:: new
+
+
+argument:: file
+
+
+returns::
+
+METHOD:: standardizePath
+
+
+argument:: path
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: file
+
+
+returns::
+
+METHOD:: numFrames
+
+
+returns::
+
+METHOD:: sampleRate
+
+
+returns::
+
+METHOD:: numChannels
+
+
+returns::
+
+METHOD:: preloadData
+
+
+argument:: startAt
+
+
+argument:: endAt
+
+
+returns::
+
+METHOD:: tempo
+
+
+argument:: tempo
+
+
+returns::
+
+METHOD:: firstBeatIsAt
+
+
+argument:: f
+
+
+returns::
+
+METHOD:: bpm
+
+
+argument:: b
+
+
+returns::
+
+METHOD:: fileName
+
+
+returns::
+
+METHOD:: soundFilePath
+
+
+returns::
+
+METHOD:: fileDuration
+
+
+returns::
+
+METHOD:: name
+
+
+returns::
+
+METHOD:: timeDuration
+
+
+returns::
+
+METHOD:: beatDuration
+
+
+returns::
+
+METHOD:: frames2secs
+
+
+argument:: frames
+
+
+returns::
+
+METHOD:: secs2frames
+
+
+argument:: secs
+
+
+returns::
+
+METHOD:: frames2beats
+
+
+argument:: frames
+
+
+returns::
+
+METHOD:: beats2frames
+
+
+argument:: beats
+
+
+returns::
+
+METHOD:: relativeBeats2secs
+
+
+argument:: beats
+
+
+returns::
+
+METHOD:: relativeSecs2beats
+
+
+argument:: secs
+
+
+returns::
+
+METHOD:: beats2secs
+
+
+argument:: beats
+
+
+returns::
+
+METHOD:: secs2beats
+
+
+argument:: secs
+
+
+returns::
+
+METHOD:: snapSecondToBeat
+
+
+argument:: second
+
+
+argument:: beats
+
+
+returns::
+
+METHOD:: loadBuffersToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: freeResourcesToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: asSynthDef
+
+
+returns::
+
+METHOD:: defName
+
+
+returns::
+
+METHOD:: synthDefArgs
+
+
+returns::
+
+METHOD:: didSpawn
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: children
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+
+

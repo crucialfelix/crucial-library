@@ -1,0 +1,51 @@
+CLASS:: AbstractBusDriver
+summary:: abstract parent class
+categories:: Libraries>crucial>Players>abstract
+related:: Classes/StreamKrDur, Classes/Stream2Trig
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: lag
+
+
+returns::
+
+METHOD:: latency
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: instrArgFromControl
+
+
+argument:: control
+
+
+returns::
+
+METHOD:: synthArg
+
+
+returns::
+
+METHOD:: stopToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+

@@ -1,0 +1,96 @@
+CLASS:: SimpleTrigger
+summary:: a player that emits a trigger on button push or .trig
+categories:: Libraries>crucial>Players
+related:: Classes/BeatClockPlayer, Classes/Stream2Trig
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: spec
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: action
+
+
+returns::
+
+METHOD:: spec
+
+
+returns::
+
+METHOD:: value
+
+
+returns::
+
+METHOD:: init
+
+
+returns::
+
+METHOD:: trig
+
+
+argument:: val
+
+
+returns::
+
+METHOD:: synthArg
+
+
+returns::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: addToSynthDef
+
+
+argument:: synthDef
+
+
+argument:: name
+
+
+returns::
+
+METHOD:: instrArgFromControl
+
+
+argument:: control
+
+
+returns::
+
+METHOD:: makePatchOut
+
+
+returns::
+
+METHOD:: didStop
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+
+

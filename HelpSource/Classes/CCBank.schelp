@@ -1,0 +1,152 @@
+CLASS:: CCBank
+summary:: a set of named MIDI CCResponders
+categories:: External Control>MIDI, Libraries>crucial>MIDI
+related:: Classes/CCResponder
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: sets
+
+
+argument:: src
+
+
+returns::
+
+METHOD:: responderClass
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: sets
+
+
+returns::
+
+METHOD:: src
+
+
+returns::
+
+METHOD:: storeArgs
+
+
+returns::
+
+METHOD:: init
+
+
+returns::
+
+METHOD:: guiBody
+
+
+argument:: layout
+
+
+returns::
+
+METHOD:: guiOne
+
+
+argument:: layout
+
+
+argument:: assc
+
+
+argument:: minWidth
+
+
+returns::
+
+METHOD:: add
+
+
+argument:: key
+
+
+argument:: ccnum
+
+
+returns::
+
+METHOD:: at
+
+
+argument:: key
+
+
+returns::
+
+METHOD:: isMapped
+
+
+argument:: key
+
+
+returns::
+
+METHOD:: setCtlnum
+
+
+argument:: ccr
+
+
+argument:: ctlnum
+
+
+returns::
+
+METHOD:: responder
+
+
+argument:: key
+
+
+argument:: function
+
+
+returns::
+
+METHOD:: doesNotUnderstand
+
+
+argument:: key
+
+
+argument::  ... args
+
+
+returns::
+
+METHOD:: free
+
+
+returns::
+
+METHOD:: keys
+
+
+returns::
+
+METHOD:: findSet
+
+
+argument:: key
+
+
+returns::
+
+
+

@@ -1,0 +1,37 @@
+CLASS:: AudioPatchIn
+summary::
+categories:: Libraries>crucial>internals
+related:: Classes/PatchIn
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: rate
+
+
+returns::
+
+METHOD:: readFromBus
+
+
+argument:: bus
+
+
+returns::
+
+METHOD:: value
+
+
+argument:: val
+
+
+returns::
+
+
+

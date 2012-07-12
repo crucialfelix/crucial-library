@@ -1,0 +1,37 @@
+CLASS:: IsIn
+summary:: given a list, validates that the test object is in that list
+categories:: Libraries>crucial>Constraints
+related:: Guides/Constraints
+
+DESCRIPTION::
+
+
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+argument:: collection
+
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: collection
+
+
+returns::
+
+METHOD:: value
+
+
+argument:: obj
+
+
+returns::
+
+
+

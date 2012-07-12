@@ -1,0 +1,200 @@
+CLASS:: Editor
+summary:: holds a value that can be edited with a GUI, saves as the value
+categories:: Libraries>crucial>Editors
+related::
+
+DESCRIPTION::  This is the parent class for all Editors and also has a repository of handlers that are used to find the appropriate editor for a given object.
+
+In some cases not only is an Editor found for the object, but objects within the object are converted to Editors.  For instance when editing a Patch  it is actually the patch's inputs that are converted to Editors (NumberEditor, EnvEditor etc).
+
+Note that an Editor has a separate GUI class, and does not in fact have to have an open GUI in order to use or interact with it.
+
+
+CLASSMETHODS::
+
+METHOD:: for
+Find the appropriate Editor for the given object
+
+code::
+Editor.for(Env.perc).gui
+
+Editor.for([1,2,3]).gui
+
+Editor.for(Event.default)
+
+Editor.for((type: \instr,instr:"test.makeDef",env:Env.perc,beat: 64.rand,degree: 20.rand)).gui
+
+::
+
+argument:: object
+
+
+argument::  ... args
+additional arguments are supplied to the purveyor function
+
+returns::
+
+METHOD:: editorFor
+private. this is the handler dictionary
+
+returns::
+
+
+INSTANCEMETHODS::
+
+METHOD:: action
+Like a view, an editor has an action function which will fire when the value is set.  Note that an Editor does not have to have an open GUI.
+
+returns::
+
+METHOD:: value
+Get the current value of the edited object
+
+returns::
+
+METHOD:: patchOut
+
+
+returns::
+
+METHOD:: storeOn
+Editors always store the value.  In other words, when saving they do not store an Editor, they store the edited object.
+
+argument:: stream
+
+
+returns::
+
+METHOD:: next
+
+returns:: current edited value
+
+METHOD:: poll
+
+
+returns::
+
+METHOD:: dereference
+
+returns:: current edited value
+
+METHOD:: embedInStream
+
+
+argument:: inval
+
+
+returns::
+
+METHOD:: asStream
+an Editor can be used as a stream. it would return the current edited value on each iteration
+
+returns:: FuncStream(this)
+
+METHOD:: setPatchOut
+
+
+argument:: po
+
+
+returns::
+
+METHOD:: makePatchOut
+
+
+returns::
+
+METHOD:: stopToBundle
+
+
+argument:: b
+
+
+returns::
+
+METHOD:: freePatchOutToBundle
+
+
+argument:: bundle
+
+
+returns::
+
+METHOD:: synthArg
+
+
+returns::
+
+METHOD:: instrArgFromControl
+
+
+argument:: control
+
+
+returns::
+
+METHOD:: editWithCallback
+
+
+argument:: callback
+
+
+returns::
+
+METHOD:: set
+
+
+argument:: val
+
+
+returns::
+
+METHOD:: activeValue
+
+
+argument:: val
+
+
+returns::
+
+METHOD:: valueAction
+
+
+argument:: val
+
+
+returns::
+
+METHOD:: spec
+
+
+returns::
+
+METHOD:: copy
+
+
+returns::
+
+METHOD:: guiClass
+
+
+returns::
+
+METHOD:: addToDefName
+
+
+argument:: stream
+
+
+returns::
+
+METHOD:: state
+
+
+argument:: val
+
+
+returns::
+
+
+

@@ -1,0 +1,20 @@
+CLASS:: ObjectPatchIn
+summary:: \noncontrol rate PatchIn
+categories:: Libraries>crucial>internals
+related::
+
+DESCRIPTION::
+
+
+
+
+
+INSTANCEMETHODS::
+
+METHOD:: rate
+
+
+returns::
+
+
+
