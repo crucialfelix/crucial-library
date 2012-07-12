@@ -91,7 +91,7 @@ Instr  {
     ar { arg ... inputs;
         ^func.valueArray(this.convertArgs(inputs));
     }
-    value { arg inputs;
+    value { arg inputs; // this should be ... inputs
         ^func.valueArray(this.convertArgs(inputs))
     }
     valueEnvir { arg inputs;
@@ -116,6 +116,7 @@ Instr  {
         this.asSynthDef(args).writeDefFile(dir);
     }
     write { arg dir,args;
+	    // deprec. same as writeDefFile
         var synthDef;
         synthDef = this.asSynthDef(args);
         synthDef.writeDefFile(dir);

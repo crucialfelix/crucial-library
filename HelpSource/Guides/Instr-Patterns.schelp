@@ -45,6 +45,9 @@ Note that it IS possible to dynamically change the SynthDef architecture using I
 
 section:: Creating a single Event and spawning it
 
+code::
+Instr("minimoog.two").spawnEvent( (freq: 100) )
+::
 
 METHOD:: spawnEvent
 This will take an Event and set it to type='instr' and set the \instr name.  It will then play the event.
@@ -52,7 +55,8 @@ This will take an Event and set it to type='instr' and set the \instr name.  It 
 argument:: event
 proto event which it will spawn.  The keys in the Event are used to satisfy args of the Instr
 
-returns::
+returns:: this
+
 
 
 see also link::Classes/InstrGateSpawner:: and link::Clases/InstrSpawner::

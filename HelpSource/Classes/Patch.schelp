@@ -131,7 +131,7 @@ METHOD:: args
 
 
 argument:: inputs
-
+array or dict
 
 returns::
 
@@ -161,12 +161,17 @@ METHOD:: outClass
 returns::
 
 METHOD:: respawnOnChange
+The Patch is a dependant of the Instr. When the Instr is redefined (you edit the func def and evaluate the Instr code, it saves it to the Library) it will call .changed on itself and the Patch can be set to automatically respawn iself.
 
+if nil (default) then it will not
+
+if a number then it is an link::Guides/atTime:: specifier:  1 means respawn on the next bar, 4 means on the next beat.  0.1 would respawn in 0.1 seconds after change.
 
 returns::
 
 METHOD:: stepChildren
-
+private
+the children are the inputs to the Patch.  the stepChildren are hidden objects like ClientOnTrigResponder or TempoBus
 
 returns::
 
@@ -198,15 +203,16 @@ argument:: value
 returns::
 
 METHOD:: rand
-
+call .rand on all inputs that support .rand; specifically NumberEditors will do a gaussian distribution randomization centered on the default value of the ControlSpec.
 
 argument:: standardDeviation
+for the gaussian randomization in NumberEditors.  default 0.15
 
-
-returns::
+returns:: this
 
 METHOD:: doesNotUnderstand
-
+overides unmatched method selectors to return the inputs by name.
+eg aPatch.freq will return a KrNumberEditor
 
 argument:: selector
 
@@ -303,6 +309,7 @@ METHOD:: respawn
 
 
 argument:: atTime
+see link::Guides/atTime::
 
 
 returns::
@@ -355,7 +362,7 @@ argument:: bundle
 returns::
 
 METHOD:: didSpawn
-
+private
 
 returns::
 
@@ -373,10 +380,10 @@ argument:: bundle
 returns::
 
 METHOD:: value
-
+value the Instr as a function returning the result
 
 argument::  ... overideArgs
-
+array or dict of args that should overide any of the Patch's inputs.
 
 returns::
 
@@ -389,7 +396,25 @@ argument:: overideArgs
 returns::
 
 METHOD:: asEvent
+returns an Event that encapsulates the current state of the Patch.  this can be spawned with .play or further manipulated
 
+code::
+(
+s.boot;
+
+Instr("saw",{ arg freq=400; Saw.ar(freq) * EnvGen.kr(Env.perc,doneAction:2)});
+
+p = Patch("saw",[KrNumberEditor(300,\freq)]);
+
+Sheet({ arg f;
+	p.gui(f);
+	ActionButton(f,"asEvent",{
+		p.asEvent.play.postln
+	});
+});
+
+)
+::
 
 returns::
 
@@ -431,31 +456,6 @@ METHOD:: guiClass
 
 
 returns::
-
-METHOD:: state
-
-
-argument:: state
-
-
-returns::
-
-METHOD:: hasAudioInput
-
-
-returns::
-
-METHOD:: busReport
-
-
-argument:: f
-
-
-argument:: slogan
-
-
-returns::
-
 
 
 

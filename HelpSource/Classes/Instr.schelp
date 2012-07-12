@@ -169,14 +169,16 @@ private
 returns::
 
 METHOD:: dir
+The default directory to look for Instr.  Each quark can also contain an Instr/ dir and those will be searched.
 
 argument:: p
+path
 
 returns::
 
 
 METHOD:: at
-
+look up an Instr by name, searching and loading from disk if not already loaded.
 
 argument:: name
 
@@ -184,7 +186,7 @@ argument:: name
 returns::
 
 METHOD:: load
-
+loads Instr by name from file
 
 argument:: name
 
@@ -192,12 +194,12 @@ argument:: name
 returns::
 
 METHOD:: loadAll
-
+loads all Instr in all Instr/ directories. This usually doesn't take very long and doesn't take up that much memory.  I load all on compile.
 
 returns::
 
 METHOD:: prLoadDir
-
+private
 
 argument:: dir
 
@@ -205,12 +207,19 @@ argument:: dir
 returns::
 
 METHOD:: addExcludePaths
+Because Instr files are kept in quarks this can greatly increase the number of files that the language compiler will attempt to examine.  It won't compile them, but it looks at all of those folders anyway.  This adds the paths of all of your Instr folders to the link::Classes/LanguageConfig:: exclude paths.
 
+code::
+(
+    Instr.addExcludePaths;
+    LanguageConfig.store;
+)
+::
 
 returns::
 
 METHOD:: clearAll
-
+clear the Library cache
 
 returns::
 
@@ -225,7 +234,7 @@ SynthDef("mini",{
 }).send(s);
 ::
 
-Equivalent usage when using an already loaded Instr:
+Equivalent usage when using an instance:
 
 code::
 SynthDef("mini",{
@@ -239,7 +248,7 @@ argument:: name
 
 
 argument:: args
-
+array or dict
 
 returns::
 
@@ -250,60 +259,66 @@ argument:: name
 
 
 argument:: args
-
+array or dict
 
 returns::
 
 METHOD:: choose
-
+choose a random Instr from the library.
 
 argument:: start
+if supplied, this is the address of the branch within the Instr library tree from which to choose
 
-
-returns::
+returns:: an Instr
 
 METHOD:: leaves
-
+returns all Instr in the library tree in a flat list
 
 argument:: startAt
+if supplied, address of a branch within the tree.  eg. Instr.leaves("oscillators")
 
+returns:: an Array of Instr
 
-returns::
 
 METHOD:: selectBySpec
-
+filters the Instr library for those matching the output Spec.
+code::
+Instr.selectBySpec(\audio)
+::
 
 argument:: outSpec
 
+returns:: an Array of Instr
 
-returns::
 
 METHOD:: chooseBySpec
-
+chooses a random Instr among those matching the outputSpec
+code::
+Instr.selectBySpec(\audio)
+::
 
 argument:: outSpec
 
+returns:: an Instr
 
-returns::
 
 METHOD:: put
 
-
 argument:: instr
 
-
 returns::
+
 
 METHOD:: remove
-
+remove an Instr from the library
 
 argument:: instr
 
+returns:: returns the removed Instr or nil it wasn't defined
 
-returns::
 
 METHOD:: orc
-
+a method for creating many related instruments.  short for orchestra, but funnier.
 
 argument:: name
 
@@ -317,7 +332,8 @@ argument:: outSpec
 returns::
 
 METHOD:: symbolizeName
-
+convert dotNotation to symbolized list form: [\one,\two,\three]
+private
 
 argument:: name
 
@@ -325,12 +341,12 @@ argument:: name
 returns::
 
 METHOD:: isDefined
-
+checks if an object by this name is already defined
 
 argument:: name
 
 
-returns::
+returns:: Boolean
 
 METHOD:: objectAt
 
@@ -344,14 +360,15 @@ METHOD:: findFileFor
 
 
 argument:: symbolized
-
+name as list of symbols
 
 returns::
 
 METHOD:: findFileInDir
-
+private
 
 argument:: symbolized
+name as list of symbols
 
 
 argument:: rootPath
@@ -360,12 +377,13 @@ argument:: rootPath
 returns::
 
 METHOD:: initClass
-
+private
 
 returns::
 
 METHOD:: singleNameAsNames
-
+private
+converts dotNotation to symbolized list
 
 argument:: singleName
 
@@ -376,115 +394,128 @@ returns::
 INSTANCEMETHODS::
 
 METHOD:: name
-
+the symbolized version of the name: [\one,\two,\three]
+dotNotation is usually nicer to work with.
 
 returns::
 
+
+METHOD:: dotNotation
+the canonical instr name with each path element joined by dots : "one.two.three"
+
+returns:: string
+
 METHOD:: func
-
-
+get or set the Instr function
 returns::
 
 METHOD:: specs
-
+an array of specs, one for each input
 
 returns::
 
 METHOD:: outSpec
-
+the output Spec of the Instr.  if your Instr is not 'audio' rate or is multi channel than it is best to specify an outSpec
 
 returns::
 
 METHOD:: explicitSpecs
-
+those that were declared when creating the Instr, as opposed to those that were not supplied and were guessed by using the argName
 
 returns::
 
 METHOD:: convertArgs
+Most methods accept args in the form of a list [ 440, 1.0, Env.adsr ] or as a argName:value dict (env:Env.adsr)
 
+This utility function converts the supplied arguments to the list form.
 
 argument:: args
+array or dict
 
-
-returns::
+returns:: array
 
 METHOD:: ar
-
+values the function using the supplied inputs.  this is for using Instr as a subroutine or function library.
 
 argument::  ... inputs
-
+inputs as separate arguments
 
 returns::
 
 METHOD:: value
-
+inputs as a single array or dict
+same as .valueArray but should probably change to accept ... inputs
 
 argument:: inputs
-
+array or dict
 
 returns::
 
 METHOD:: valueEnvir
-
+values the function with the supplied inputs, filling in any missing ones by looking up by argName in the current link::Classes/Environment::
 
 argument:: inputs
-
+array or dict
 
 returns::
 
 METHOD:: valueArray
-
+like value but takes a single array
 
 argument:: inputs
-
+array or dict
 
 returns::
 
-METHOD:: kr
 
+METHOD:: kr
+same as ar
 
 argument::  ... inputs
-
+array or dict
 
 returns::
 
 METHOD:: asSynthDef
-
+creates a SynthDef
 
 argument:: args
-
+array or dict
 
 argument:: outClass
+if no Out.ar is found in your Instr then it automatically adds one and an argument called \out
 
+The default class is Out, but you can specify ReplaceOut or OffsetOut
 
 returns::
 
 METHOD:: writeDefFile
-
+creates SynthDef and writes it to file
 
 argument:: dir
-
+directory to write to.  the name is unique and is determined by the arguments
 
 argument:: args
+array or dict
 
-
-returns::
+returns:: this
 
 METHOD:: write
-
+same as writeDefFile, older syntax
 
 argument:: dir
 
-
 argument:: args
+array or dict
 
+returns:: this
 
-returns::
 
 METHOD:: add
-
+create a SynthDef and add it to the link::Classes/SynthDescLib:: for use in Patterns.  see also link::Guides/Instr-Patterns::
 
 argument:: args
+array or dict
 
 
 argument:: libname
@@ -499,179 +530,199 @@ argument:: keepDef
 returns::
 
 METHOD:: store
-
+for Patterns.  older system, .add is preferred now
 
 argument:: args
+array or dict
 
 
 returns::
+
+
 
 METHOD:: after
-
+spawn a Synth into the same Group as a node, directly after that node in the call graph
 
 argument:: anode
 
 
 argument:: args
-
+array or dict
 
 argument:: bundle
 
 
 argument:: atTime
-
+see link::Guides/atTime::
 
 argument:: out
+out bus index
 
-
-returns::
+returns:: a Synth
 
 METHOD:: before
+spawn a Synth into the same Group as a node, directly before that node in the call graph
 
 
 argument:: anode
 
 
 argument:: args
-
+array or dict
 
 argument:: bundle
 
 
 argument:: atTime
+see link::Guides/atTime::
 
 
 argument:: out
+out bus index
 
-
-returns::
+returns:: a Synth
 
 METHOD:: head
-
+spawn a Synth into the Group, adding it as the first node in that group
 
 argument:: anode
 
-
 argument:: args
-
+array or dict
 
 argument:: bundle
 
 
 argument:: atTime
+see link::Guides/atTime::
 
 
 argument:: out
+out bus index
 
-
-returns::
+returns:: a Synth
 
 METHOD:: tail
+spawn a Synth into the Group, adding it as the last node in that group
 
 
 argument:: anode
 
 
 argument:: args
-
+array or dict
 
 argument:: bundle
 
 
 argument:: atTime
+see link::Guides/atTime::
 
 
 argument:: out
+out bus index
 
+returns:: a Synth
 
-returns::
+discussion::
+code::
+Instr("saw",{ arg freq=440,amp=0.9,dur=0.25;
+	EnvGen.kr(Env.sine(dur:dur),doneAction:2) * Saw.ar(freq,amp)
+})
+
+Instr("saw").tail( s, (freq:  rrand(100,400) ) )
+::
 
 METHOD:: replace
+spawn a Synth that replace an already playing Synth and frees it
 
 
 argument:: anode
 
 
 argument:: args
-
+array or dict
 
 argument:: bundle
 
 
 argument:: atTime
+see link::Guides/atTime::
 
 
 argument:: out
-
+out bus index
 
 returns::
 
 METHOD:: spawnEvent
-
+sets the Event 'type' = 'instr' and 'instr' = this and then .plays the Event.
 
 argument:: event
-
+link::Classes/Event:: to play.  Instr arguments will be looked up by name in the Event.
 
 returns::
 
 METHOD:: next
-
+same as valueArray, for use in Streams
 
 argument::  ... inputs
-
+array or dict
 
 returns::
 
 METHOD:: <>>
-
+function composition : construct a CompositeInstr by patching this Instr into another one.
 
 argument:: that
+another Instr (or a CompositeInstr or Papplied Instr)
 
-
-returns::
+returns:: a link::Classes/CompositeInstr::
 
 METHOD:: papply
-
+partial application : fix certain args with the supplied object.  returns a link::Classes/PappliedInstr::
 
 argument::  ... args
-
+either a dict or a list.  if a list then non nil arguments will
 
 returns::
 
 METHOD:: rate
+\audio \control \scalar \stream
+If the Instr has an out spec then it will determine the rate.  Otherwise its assumed to be the default 'audio'
 
-
-returns::
+returns:: a Symbol
 
 METHOD:: numChannels
+If the Instr has an out spec then it will determine the numChannels.  Otherwise its assumed to be the default 1
 
-
-returns::
+returns:: Integer
 
 METHOD:: path
-
+full path on disk if the Instr was loaded from a file
 
 returns::
 
 METHOD:: maxArgs
-
+same as argsSize
 
 returns::
 
 METHOD:: argsSize
-
+number of arguments / inputs.
 
 returns::
 
 METHOD:: argNames
 
 
-returns::
+returns:: array of Symbols
 
 METHOD:: defArgs
+the defaults for each argument that were specified in the function;
+eg. for { arg freq=440; } the defArg is 440
 
-
-returns::
+returns:: array of default args
 
 METHOD:: argNameAt
 
@@ -690,7 +741,7 @@ argument:: i
 returns::
 
 METHOD:: initAt
-
+either the default value supplied in the function or the spec's default value.
 
 argument:: i
 
@@ -698,17 +749,22 @@ argument:: i
 returns::
 
 METHOD:: defName
+the instr name as a string:  "one.two.three"
+
+deprec.
 
 
 returns::
 
 METHOD:: asDefName
-
+calculates the unique SynthDef name for the supplied arguments.  this is fairly efficient and is even used when spawning Events in Patterns
 
 argument:: args
+array or dict
 
+the objects that determine the unique SynthDef.  they may determine the rate, whether a control input is added or not and they may insert unique objects into the SynthDef.
 
-returns::
+returns:: string
 
 METHOD:: prepareToBundle
 
@@ -736,53 +792,53 @@ argument:: anode
 
 
 argument:: args
+array or dict
 
 
 argument:: bundle
 
 
 argument:: atTime
+see link::Guides/atTime::
 
 
 argument:: out
+out bus index
 
 
 returns::
 
 METHOD:: test
-
+creates a Patch, guis it and plays it
 
 argument::  ... args
 
 
-returns::
+returns:: a Patch
 
 METHOD:: play
-
+creates a Patch and plays it
 
 argument::  ... args
 
 
-returns::
+returns:: a Patch
 
 METHOD:: plot
-
+creates a Patch and plays it for {duration} seconds and plots it
 
 argument:: args
-
+array or dict
 
 argument:: duration
 
 
 returns::
 
-METHOD:: dotNotation
 
-
-returns::
 
 METHOD:: asString
-
+printable name
 
 returns::
 
@@ -792,38 +848,40 @@ METHOD:: storeArgs
 returns::
 
 METHOD:: storeableFuncReference
-
+for storing Instr and objects that have Instr.
+if the Instr was loaded from disk then the dotNotation instr name is used.  if it was created with something like Patch({ SinOsc.ar }) then the source code is used.
 
 returns::
 
 METHOD:: copy
+if the name is the same then its the same Instr. so copying just returns self.  this might be changed.
 
+returns:: this
 
-returns::
 
 METHOD:: init
-
+private
 
 argument:: specs
 
 
-argument:: outsp
+argument:: outSpec
 
 
 returns::
 
 METHOD:: makeSpecs
+private
 
-
-argument:: argspecs
+argument:: argSpecs
 
 
 returns::
 
 METHOD:: isFilter
+a filter is any instr that has an input the same spec as its output.
 
-
-returns::
+returns:: Boolean
 
 METHOD:: guiClass
 
