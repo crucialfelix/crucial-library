@@ -29,6 +29,7 @@ argument:: server
 
 
 argument:: atTime
+see link::Guides/atTime::
 
 
 argument:: buildFunction
@@ -155,7 +156,7 @@ argument:: group
 	nil (default server's root node)
 
 argument:: atTime
-	atTime - see atTime (Nil,Float,Integer or Date)
+	see link::Guides/atTime::
 
 argument:: bus
 	bus - (Bus,Integer,Nil)
@@ -167,6 +168,7 @@ METHOD:: prPlay
 
 
 argument:: atTime
+see link::Guides/atTime::
 
 
 argument:: bus
@@ -310,6 +312,7 @@ METHOD:: spawn
 
 
 argument:: atTime
+see link::Guides/atTime::
 
 
 argument:: timeOfRequest
@@ -327,6 +330,7 @@ argument:: bus
 
 
 argument:: atTime
+see link::Guides/atTime::
 
 
 argument:: timeOfRequest
@@ -468,6 +472,7 @@ METHOD:: stop
 
 
 argument:: atTime
+see link::Guides/atTime::
 
 
 returns::
@@ -515,6 +520,7 @@ METHOD:: free
 
 
 argument:: atTime
+see link::Guides/atTime::
 
 
 returns::
@@ -572,6 +578,7 @@ argument:: recSampleFormat
 
 
 argument:: atTime
+see link::Guides/atTime::
 
 
 returns::

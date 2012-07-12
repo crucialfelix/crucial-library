@@ -389,6 +389,7 @@ METHOD:: schedAtTime
 
 
 argument:: atTime
+see link::Guides/atTime::
 
 
 argument:: server
@@ -403,6 +404,7 @@ METHOD:: xschedAtTime
 
 
 argument:: atTime
+see link::Guides/atTime::
 
 
 argument:: server
