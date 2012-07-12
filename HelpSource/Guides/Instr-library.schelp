@@ -65,17 +65,24 @@ Specify by dot notation to look for an Instr named 'oscillators.sin' in a file n
 
 code::
 	Instr( "oscillators.sin")
-	Instr( "folder.subfolder.oscillators.sin")
 ::
 
-It will look for the files oscillators.rtf, oscillators.txt, oscillators.sc or oscillators
+It will look for the files oscillators.scd, oscillators.txt
 
 it expects to find in one of those files an Instr named "oscillators.sin"
 
-The older form array notation also works:
 
 code::
-	Instr([\oscillators,\sin])
+	Instr( "folder.subfolder.oscillators.sin")
+::
+
+It will search the following paths in order:
+
+list::
+##	folder/subfolder/oscillators/sin.scd
+##	folder/subfolder/oscillators.scd
+##	folder/subfolder.scd
+##	folder.scd
 ::
 
 

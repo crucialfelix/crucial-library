@@ -215,13 +215,6 @@ METHOD:: guiClass
 
 returns::
 
-METHOD:: swappable
-
-
-argument:: spec
-
-
-returns::
 
 
 EXAMPLES::

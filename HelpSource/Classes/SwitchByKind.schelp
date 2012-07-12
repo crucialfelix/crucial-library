@@ -1,6 +1,6 @@
 CLASS:: SwitchByKind
 summary:: a switch statement that matches by class
-categories:: Libraries>crucial>misc
+categories:: Libraries>crucial>utils
 related::
 
 DESCRIPTION::  This can efficiently replace a common and ugly series of if statements.

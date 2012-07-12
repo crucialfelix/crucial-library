@@ -1,9 +1,9 @@
 CLASS:: SampleSpec
 summary:: datatype specifying a Sample
-categories:: Spec, Libraries>crucial>Spec, Libraries>crucial>Buffers
-related::
+categories:: Spec, Libraries>crucial>Spec, Libraries>crucial>Buffers>Specs
+related:: Classes/Sample
 
-DESCRIPTION::
+DESCRIPTION:: datatype specifying a Sample
 
 
 
@@ -35,16 +35,6 @@ argument:: ting
 
 returns::
 
-METHOD:: swappableFor
-
-
-argument:: source
-
-
-argument:: argName
-
-
-returns::
 
 
 

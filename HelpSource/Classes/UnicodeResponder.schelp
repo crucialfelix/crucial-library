@@ -1,6 +1,6 @@
 CLASS:: UnicodeResponder
 summary:: register responder functions for unicode and modifier combinations
-categories:: External Control>Keyboard, Libraries>crucial>GUI
+categories:: External Control>Keyboard, Libraries>crucial>Keyboard
 related:: Classes/KeyCodeResponder, Classes/KeyResponder
 
 DESCRIPTION:: This can be used to replace a function in a view's keydownAction.

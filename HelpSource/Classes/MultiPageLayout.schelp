@@ -1,6 +1,6 @@
 CLASS:: MultiPageLayout
 summary:: deprecated, see PageLayout
-categories:: Libraries>crucial>GUI>deprecated
+categories:: Libraries>crucial>deprecated
 related:: Classes/PageLayout
 
 DESCRIPTION:: see PageLayout

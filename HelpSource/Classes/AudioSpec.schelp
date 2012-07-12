@@ -95,16 +95,3 @@ METHOD:: color
 
 returns::
 
-METHOD:: swappableFor
-
-
-argument:: source
-
-
-argument:: argName
-
-
-returns::
-
-
-

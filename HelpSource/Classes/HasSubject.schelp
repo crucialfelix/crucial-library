@@ -63,16 +63,5 @@ argument:: state
 
 returns::
 
-METHOD:: swappableChildren
-
-
-argument:: parentForSpec
-
-
-argument:: parentForArgName
-
-
-returns::
-
 
 

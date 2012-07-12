@@ -2,8 +2,8 @@ title:: Patch Busses and Groups
 summary:: Playing a patch on a specific Bus or Group
 categories:: Libraries>crucial>Instr
 
-c
-(
+code::
+
 
 s.boot;
 
@@ -36,7 +36,7 @@ z.stop;
 
 y.stop;
 
-)
+
 // z and y are now stopped by p is still playing
 
 // c is a Bus object
@@ -48,7 +48,7 @@ c.play
 
 
 
-(
+
 s.boot;
 
 a = Group.new;
@@ -71,3 +71,5 @@ c.insp
 // play onto this bus in a group before that of the filter
 z = Patch({	Saw.ar([400,401]) * 0.1  }).play(group: a, bus: c )
 
+
+::

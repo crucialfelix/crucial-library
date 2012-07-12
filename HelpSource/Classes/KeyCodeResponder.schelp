@@ -1,6 +1,6 @@
 CLASS:: KeyCodeResponder
 summary:: register responder functions for keycode and modifier combinations
-categories:: Libraries>crucial>GUI, External Control>Keyboard
+categories:: Libraries>crucial>Keyboard, External Control>Keyboard
 related:: Classes/UnicodeResponder, Classes/KeyResponder
 
 DESCRIPTION::

@@ -117,16 +117,3 @@ METHOD:: guiClass
 
 returns::
 
-METHOD:: swappable
-
-
-argument:: spec
-
-
-argument:: argName
-
-
-returns::
-
-
-

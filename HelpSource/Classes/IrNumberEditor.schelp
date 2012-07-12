@@ -5,7 +5,10 @@ related:: Classes/Editor, Classes/KrEditor, Classes/Patch
 
 DESCRIPTION:: When used with Patch or InstrSpawner this will result in an .ir rate control.  This means you can only change the value before the synth starts, no 'control' rate modulation.
 
+An InstrSpawner spawns synths.  Here each synth has .ir rate inputs and gets a new value from the IrNumberEditor on each event.
+
 code::
+(
 InstrSpawner({ arg sample,pchRatio=1,start=0,dur=0.2;
 
    Pan2.ar(
@@ -25,6 +28,7 @@ InstrSpawner({ arg sample,pchRatio=1,start=0,dur=0.2;
 ],
 	NumberEditor(0.1,[0.05,0.2])
 ).gui
+)
 ::
 
 INSTANCEMETHODS::
@@ -82,16 +86,6 @@ argument:: stream
 
 returns::
 
-METHOD:: swappable
-
-
-argument:: spec
-
-
-argument:: argName
-
-
-returns::
 
 
 

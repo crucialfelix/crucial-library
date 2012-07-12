@@ -1,17 +1,16 @@
 title:: Instr SynthDefs
 summary:: How Instr make SynthDefs
 categories:: Libraries>crucial>Instr
+related:: Guides/Patch-client-server-magic
 
 
 section:: An Instr is not a SynthDef
 
-link::blah::
-
-An Instr can create an InstrSynthDef which is a subclass of SynthDef.
+An Instr is a function that creates SynthDefs.
 
 Each argument in the function for a SynthDef creates a Control input to the Synth that will eventually play on the server.
 
-An Instr can also include extra arguments that will be used in building the synth def, but will not be Control inputs in the final synth.
+An Instr can also include extra arguments that will be used in building the SynthDef, but will not be Control inputs on the final synth.
 
 For instance an Integer may be passed in:
 
@@ -20,6 +19,7 @@ code::
 (
 Instr(\qAllpassA,{	arg audio,decay=1,maxDelay=0.3,quantity=4,chanDiff=0.1;
 
+	// this is wrapping the sound in layers of Allpass delays
 	(quantity.asInteger).do({
 			var x;
 			audio =
@@ -34,7 +34,7 @@ Patch(\qAllpassA,[
 	{ AudioIn.ar([1,2]) },
 	1,
 	0.3,
-	8
+	8.rand + 2 // quantity of Allpass layers
 ]).play
 
 )
@@ -75,28 +75,6 @@ code::
 
 and thus get further reuse out of your library of functions.  Here the \rlpf that is used inside doesn't produce a synth def, but is used as a simple function in the ugenGraph of the \sawfilter Instr which does make a synthDef.
 
-It is not generally possible to use the .ar method on a player inside of an Instrument function.  This was possible in sc2.   You cannot use a sound file player in this way:
-
-	sfp = SFP("path/to/soundfile");
-	Instr('no-can-do',{ arg sfp,amp=1.0;
-		sfp.ar * amp
-	});
-
-Because an SFP (soundfile player) will require a buffer, a bus, and various stages of preparation.  It is a complex process that cannot be compiled into a SynthDef.
-
-the better approach is to use Patch which will manage the preparation process:
-
-code::
-	Instr("can-do",{ arg input,amp=1.0;
-	  input * amp
-	});
-
-	Patch("can-do",[
-		SFP("path/to/soundfile")
-	])
-::
-
-
 
 
 SECTION:: Dynamic SynthDef architecture
@@ -123,36 +101,6 @@ The upDown param acts as a switch between different synth def architectures.  If
 Note that the Patch would assume upDown to be a modulatable control input (with a default of 0.0) without the StaticIntegerSpec making it clear that its a static integer.
 
 
+see also link::Guides/Patch-client-server-magic::
 
 
-
-SECTION:: Function composition and partial application
-
-
-code::
-f = Instr("eperc",{ arg audio,dur=2.0; audio * EnvGen.kr(Env.sine(dur)) });
-
-t = Instr("tonez",{ arg freq=300; Saw.ar(freq) });
-
-// this creates a link::CompositeInstr::
-// t is plugged into f
-o = t <>> f;
-
-o.gui;
-
-Patch(o).rand.gui
-::
-
-If you create a link::Classes/CompositeInstr:: directly (without using <>> ) then you can specify which input on the second Instr to plug into.
-
-
-
-
-
-METHOD:: papply
-
-
-argument::  ... args
-
-
-returns::

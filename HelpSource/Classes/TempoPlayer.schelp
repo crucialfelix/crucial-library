@@ -135,10 +135,6 @@ METHOD:: spec
 
 returns::
 
-METHOD:: swappable
-
-
-returns::
 
 
 EXAMPLES::

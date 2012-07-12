@@ -5,6 +5,21 @@ related:: Classes/SimpleButton, Classes/Button
 
 DESCRIPTION:: Sizes itself to fit the name.  Nice, simple constructor saves fiddling around with a raw Button.
 
+code::
+(
+	ActionButton(nil,"hit me",{
+		"thank you".postln
+	});
+)
+
+(
+//   bigger title... bigger button
+	ActionButton(nil,"hit me hit me hit me hit me hit me hit me hit me hit me hit me hit me hit me ",{
+		"THANK YOU".postln
+	});
+)
+
+::
 SimpleButton in ServerTools is basically the same thing but I wanted that library to have no dependencies on crucial.
 
 
@@ -23,10 +38,10 @@ argument:: function
 
 
 argument:: minWidth
-
+to overide the auto-sizing feature
 
 argument:: minHeight
-
+default is GUI.skin.buttonHeight
 
 argument:: color
 
@@ -83,20 +98,6 @@ returns::
 EXAMPLES::
 
 code::
-(
-	ActionButton(nil,"hit me",{
-		"yeah baby".postln
-	});
-
-)
-
-(
-//   bigger title... bigger button
-	ActionButton(nil,"hit me hit me hit me hit me hit me hit me hit me hit me hit me hit me hit me ",{
-		"yeah baby".postln
-	});
-)
-
 
 (
 // set minimum sizes for x and y

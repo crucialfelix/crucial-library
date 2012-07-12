@@ -1,6 +1,6 @@
 CLASS:: SCButtonAdapter
 summary:: parent class for Button classes
-categories:: Libraries>crucial>GUI
+categories:: Libraries>crucial>GUI>abstract
 related:: Classes/ActionButton
 
 DESCRIPTION::

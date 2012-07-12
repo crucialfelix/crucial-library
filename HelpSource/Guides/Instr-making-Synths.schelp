@@ -2,9 +2,30 @@ title:: Instr making Synths
 summary:: Methods for spawning synths from Instr
 categories:: Libraries>crucial>Instr
 
-Playing
+section:: Make a SynthDef:
 
+code::
+(
+	// given an Instr
+	Instr(\sin,{ arg freq=440,amp=0.5; SinOsc.ar(freq) * amp });
 
+	// make a SynthDef
+	d = Instr(\sin).asSynthDef( (amp:0.2) )
+)
+::
+
+Arguments to asSynthDef can be a list or an event with argName:value pairs.
+
+see also the following methods in link::Classes/Instr:: which are equivalent to the standard SynthDef methods
+
+method:: asSynthDef
+method:: writeDefFile
+method:: add
+method:: store
+
+section:: Making Synths
+
+code::
 (
 Instr.new("minimoog.two",{ arg freq=440,int1=5,int2 = -5,
 						width1=0.1,width2=0.1,width3=0.1,
@@ -27,54 +48,43 @@ Instr.new("minimoog.two",{ arg freq=440,int1=5,int2 = -5,
 ]);
 
 )
+::
 
-.play will create a Patch
+.play will create a Patch and play it
 
+code::
 (
-	Instr.at("minimoog.two").play
+	Instr("minimoog.two").play
 )
+::
 
-A string called with .ar will actually look up an Instr and play that:
+See the following methods in link::Classes/Instr:: which will spawn Synths using the standard syntax for creating Synth nodes.
+
+METHOD:: after
+METHOD:: before
+METHOD:: head
+METHOD:: tail
+METHOD:: replace
+
+
+
+section:: Events
+
+method:: spawnEvent
+
+code::
 (
-	{
-		"minimoog.two".ar( LFNoise1.kr(0.1,300,700) )
-	}.play
+	Instr(\sin, { arg freq,amp,dur=0.2;
+		SinOsc.ar(freq,0.0, LFNoise1.kr(0.1,amp))
+			* EnvGen.kr(Env.triangle(dur),doneAction:2)
+	});
+
+	Instr(\sin).spawnEvent( (dur: 4.0.rand) )
 )
-
-(
-	{
-		Instr.at("minimoog.two")
-			.ar( LFNoise1.kr(0.1,300,700) );
-	}.play
-)
+::
 
 
-Use Instr as a library of audio functions for use in SynthDefs
-(
-SynthDef("mini",{
-	Out.ar( 0,
-		Instr("minimoog.two").ar( SinOsc.kr(1.0).range(300,500) )
-	)
-}).send(s);
-)
-
-Synth("mini")
-
-or even:
-
-SynthDef("mini",{
-	var out;
-
-	out = "minimoog.two".ar( SinOsc.kr(1.0).range(300,500) );
-	// do more filtering etc ...
-
-	Out.ar( 0, out )
-}).send(s);
+see also link::Guides/Instr-Patterns::
 
 
 
-but by far the best way is to use Patch :
-
-Patch("minimoog.two",[1000]).play
-
-Patch("minimoog.two").gui

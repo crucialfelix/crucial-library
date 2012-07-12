@@ -9,7 +9,22 @@ Each method you call adds another button to the gui.
 
 This widget is used in AbstractPlayerGui but may also be used on its own.
 
+code::
+(
+var p;
+p = Patch({ arg freq; SinOsc.ar(freq,0,0.3) });
+w = Window("patch",Rect(0,0,800,200)).front;
 
+SynthConsole(p,w)
+	.play
+	.record("SoundFiles/testy.aiff") // sets defaultPath for the prompt dialog
+	.formats
+	.stop
+	.scope
+	.fftScope
+	.tempo // gui the default Tempo
+)
+::
 
 CLASSMETHODS::
 
@@ -171,23 +186,7 @@ returns::
 
 EXAMPLES::
 
-code::
-Sheet({ arg f;
 
-	SynthConsole({ arg synth;
-		 SinOsc.ar(300,0,0.3)
-	},f) // if no layout provided it will create one
-	.play
-	.scope
-	.fftScope
-	.record("SoundFiles/testy.aiff") // sets defaultPath for the prompt dialog
-	.write(20) // 20 seconds
-	.pauseableRecord	// |,|  toggle recording on and off while you play
-	.stop
-	.formats
-	.tempo // gui the default Tempo
-})
-::
 
 SynthConsole sends notifications that you can register to recieve through NotificationCenter:
 

@@ -1,6 +1,6 @@
 CLASS:: BufferProxySpec
 summary:: datatype specifying an input of BufferProxy
-categories:: Spec, Libraries>crucial>Spec, Libraries>crucial>Buffers
+categories:: Spec, Libraries>crucial>Spec, Libraries>crucial>Buffers>Specs
 related:: Classes/BufferProxy
 
 DESCRIPTION:: This Spec will create a BufferProxy as its defaultControl, and Patch created with an Instr with this type will be supplied the BufferProxy "automagically".

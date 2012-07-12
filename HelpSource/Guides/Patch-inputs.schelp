@@ -8,12 +8,14 @@ Each argument of the Instr function has a Spec.  See Instr for how these specs a
 
 An argument may be nil.  For a nil argument, Patch will ask the spec to create a suitable defaultControl.
 
-ControlSpec   :  KrNumberEditor
-StaticSpec    :  NumberEditor  (for quantities or max delay times etc.)
+list::
+## ControlSpec   :  KrNumberEditor
+## StaticSpec    :  NumberEditor  (for quantities or max delay times etc.)
 				a static spec is a non-modulateable control
-EnvSpec       : EnvEditor
-SampleSpec    :   Sample
-
+## EnvSpec       : EnvEditor
+## SampleSpec    :   Sample
+## etc.
+::
 
 
 

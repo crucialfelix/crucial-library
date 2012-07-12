@@ -3,7 +3,9 @@ summary:: Watches server replies for node ended/started events using AbstractPla
 categories:: Libraries>crucial>Debugging
 related:: Classes/DebugNodeWatcher, Clases/Annotations
 
-DESCRIPTION::
+DESCRIPTION:: Like the normal link::Classes/DebugNodeWatcher::, this watches server replies for node ended/started events.
+
+In addition it appends any text link::Classes/Annotations:: found for that node.
 
 
 

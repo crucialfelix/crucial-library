@@ -1,6 +1,6 @@
 CLASS:: CXMenu
 summary:: a basic nav menu
-categories:: Libraries>crucial>GUI
+categories:: Libraries>crucial>deprecated
 related:: Classes/PopUpMenu
 
 DESCRIPTION::  This is an old class.  Pending deprecation.

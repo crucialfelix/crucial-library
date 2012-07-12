@@ -1,5 +1,5 @@
 CLASS:: BufferProxy
-summary:: holds size and numChannels definition for a buffer, allocates it on play
+summary:: allocates a Buffer on play
 categories:: Libraries>crucial>Buffers
 related:: Classes/Sample
 
@@ -260,10 +260,6 @@ METHOD:: spec
 
 returns::
 
-METHOD:: swappable
-
-
-returns::
 
 
 

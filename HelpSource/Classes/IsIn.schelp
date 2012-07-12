@@ -1,5 +1,5 @@
 CLASS:: IsIn
-summary::
+summary:: given a list, validates that the test object is in that list
 categories:: Libraries>crucial>Constraints
 related:: Guides/Constraints
 

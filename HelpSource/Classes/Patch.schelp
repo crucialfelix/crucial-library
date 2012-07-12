@@ -3,8 +3,11 @@ summary:: Pairs an Instr with inputs that that will be passed to the Instr
 categories:: Libraries>crucial>Instr, Libraries>crucial>Players
 related:: Classes/Instr
 
-DESCRIPTION:: An Instr (Instrument) is a function that has a unique name attached to it.
-A Patch specifies an Instr by name and specifies inputs that will be passed to the Instr function when it is actually played.  A Patch is the player that actually plays an Instr's sound function.
+DESCRIPTION:: A Patch is a player that plays an Instr.
+
+An Instr (Instrument) is a named function.
+
+A Patch specifies an Instr and the inputs that will be passed to the Instr function.
 
 Note that an Instr can also be connected with other things using link::Classes/Mx:: and SynthDefs can be made from Instr in other ways than using Patch.
 
@@ -12,17 +15,11 @@ code::
 (
 // given a simple instrument
 Instr(\Pulse,{ arg freq=440.0,width=0.5,mul=0.1;
-
 	Pulse.ar( freq, width, mul )
-
 });
 
 // a patch specifies inputs (arguments) to that instrument
-p = Patch( \Pulse, [
-					300,
-					0.2,
-					0.1
-				]);
+p = Patch( \Pulse, [ 300, 0.2, 0.1 ]);
 
 //the default server will be booted, the SynthDef written and loaded
 p.play;
@@ -32,13 +29,21 @@ p.play;
 p.stop;
 ::
 
-Guides
+Patch can also express arguments using argName:value dicts:
 
-link::Guides/Patch-inputs::
-link::Guides/Patch-Busses-and-Groups::
-link::Guides/Patch-spawning-and-patterns::
-link::Guides/Patch-client-server-magic::
+code::
+p = Patch( \Pulse, (freq: 300) );
+::
 
+
+### Guides
+
+list::
+## link::Guides/Patch-inputs::
+## link::Guides/Patch-Busses-and-Groups::
+## link::Guides/Patch-spawning-and-patterns::
+## link::Guides/Patch-client-server-magic::
+::
 
 CLASSMETHODS::
 
@@ -451,27 +456,7 @@ argument:: slogan
 
 returns::
 
-METHOD:: swappable
 
-
-argument:: spec
-
-
-argument:: argName
-
-
-returns::
-
-METHOD:: swappableChildren
-
-
-argument:: parentForSpec
-
-
-argument:: parentForArgName
-
-
-returns::
 
 
 EXAMPLES::

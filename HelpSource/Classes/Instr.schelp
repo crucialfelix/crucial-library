@@ -17,6 +17,9 @@ DESCRIPTION:: An Instrument is a function that has a unique name attached to it 
 
 	There are methods detailed below for creating SynthDefs from Instr.  Instr also support partial application (supplying some of the arguments in advance) and function composition (chaining them together to make a new Instr)
 
+	link::Guides/Instr-making-Synths::
+
+	SynthDefs can be created and Synths can be spawned in various convienient ways.
 
 	link::Guides/Instr-Patterns::
 
@@ -24,6 +27,13 @@ DESCRIPTION:: An Instrument is a function that has a unique name attached to it 
 
 	link::Guides/Instr-functional-tricks::
 
+	Instr can be chained together, used as subroutines and have inputs partially satisfied.
+
+	link::Guides/Patch-magic-tricks::
+
+	When used with Patch there are some glue functions to make language-server communication much easier and clearer.
+
+------------------------------------------------------------
 
 Whenever you create an Instr it is stored in the library:
 
@@ -38,7 +48,9 @@ code::
 and can be retrieved:
 
 code::
+(
 	Instr(\sin)
+)
 ::
 
 or redefined:
@@ -65,7 +77,6 @@ code::
 )
 ::
 
-	see also link::Guides/Instr-making-Synths::
 
 A simple reference gui:
 code::
@@ -77,7 +88,9 @@ code::
 
 Browse your Instr library:
 code::
-InstrBrowser.new
+(
+InstrBrowser.new.gui
+)
 ::
 
 CLASSMETHODS::
@@ -847,25 +860,4 @@ argument:: bus
 
 
 returns::
-
-METHOD:: papplyEnvir
-
-
-argument:: recursions
-
-
-returns::
-
-METHOD:: papplyOther
-
-
-argument:: other
-
-
-argument:: argi
-
-
-returns::
-
-
 

@@ -1,6 +1,6 @@
 CLASS:: KeyResponder
 summary:: combines KeyCodeResponder and UnicodeResponder
-categories:: Libraries>crucial>GUI, External Control>Keyboard
+categories:: Libraries>crucial>Keyboard, External Control>Keyboard
 related:: Classes/KeyCodeResponder, Classes/UnicodeResponder
 
 DESCRIPTION::

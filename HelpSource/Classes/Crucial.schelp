@@ -1,9 +1,15 @@
 CLASS:: Crucial
 summary:: library initializer
-categories:: Libraries>crucial
+categories:: Libraries>crucial>deprecated
 related::
 
-DESCRIPTION::  pending deprecation.
+DESCRIPTION::  This is a simple class that used to do more initialization for crucial but has now been made much simpler.
+
+It only adds an optional GUI skin.
+
+Pending deprecation.
+
+initSpecs will be moved somewhere
 
 
 

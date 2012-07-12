@@ -5,6 +5,17 @@ related:: Classes/SynthConsole
 
 DESCRIPTION::
 
+code::
+(
+f = SoundFileFormats.new;
+f.gui(Window.new.front);
+
+// select your type using the popup
+// these are the symbols that SoundFile expects
+f.headerFormat;
+f.sampleFormat;
+)
+::
 
 
 CLASSMETHODS::

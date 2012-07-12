@@ -1,6 +1,6 @@
 CLASS:: Sample
 summary:: a soundfile small enough to be loaded in memory
-categories:: Libraries>crucial>Buffers
+categories:: Libraries>crucial>Buffers, Libraries>crucial>SoundFiles
 related:: Classes/SoundFile
 
 DESCRIPTION:: This class can be used as an argument to a Patch.  It will take care of all the troubles of loading, allocating, measuring, and even beat synchronizing of a small sound file.  It will not clear the copyright.

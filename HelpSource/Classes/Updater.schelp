@@ -1,5 +1,5 @@
 CLASS:: Updater
-summary:: adds itself as a dependant on a Model and calls an update handler when the model changes
+summary:: simple MVC utility; calls an update handler when the model changes
 categories:: Libraries>crucial>GUI
 related:: Classes/ObjectGui, Classes/SimpleController
 

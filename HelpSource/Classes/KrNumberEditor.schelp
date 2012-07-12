@@ -20,7 +20,36 @@ k.setUnmappedValue(0.5)
 
 ::
 
+section:: Internals
 
+if a KrNumberEditor is in a Patch, and that Patch is playing on a server, the message to the server happens when the KrNumberEditor gets the .changed message and sends .update to all its depedants.  This includes any NumberEditorGui and also any UpdatingScalarPatchOut, which is what actually sends the message to the server.
+
+section:: Lag
+
+KrNumberEditors  support lag.  This means that the control messages received by the Synth are smoothed by a Lag.kr  You can set lag to nil for no Lag.
+
+code::
+k = KrNumberEditor(0,\loop);
+k.lag = nil;
+::
+
+Alternatively see link::Classes/NoLagControlSpec::, whose defaultControl sets the lag to nil.
+
+code::
+k = KrNumberEditor(0, NoLagControlSpec(0,1) );
+::
+
+the keys \binary, \loop (as looked up in the Spec dictionary)  are registred as NoLagControlSpec, and thus don't use any lag at all.
+
+code::
+// \loop is defined by default as a no lag control spec
+\loop.asSpec.defaultControl.insp
+::
+
+I would prefer to just have a lag preference in ControlSpec
+(clients that do lag eg. sliders can tell from the spec if they should do lag or not).
+
+You can register others, or use a NoLagControlSpec when writing the Instr.
 
 CLASSMETHODS::
 
@@ -109,46 +138,7 @@ argument:: stream
 
 returns::
 
-METHOD:: swappable
 
 
-argument:: spec
 
-
-argument:: argName
-
-
-returns::
-
-
-section:: Internals
-
-if a KrNumberEditor is in a Patch, and that Patch is playing on a server, the message to the server happens when the KrNumberEditor gets the .changed message and sends .update to all its depedants.  This includes any NumberEditorGui and also any UpdatingScalarPatchOut, which is what actually sends the message to the server.
-
-section:: Lag
-
-KrNumberEditors  support lag.  This means that the control messages received by the Synth are smoothed by a Lag.kr  You can set lag to nil for no Lag.
-
-code::
-k = KrNumberEditor(0,\loop);
-k.lag = nil;
-::
-
-Alternatively see link::Classes/NoLagControlSpec::, whose defaultControl sets the lag to nil.
-
-code::
-k = KrNumberEditor(0, NoLagControlSpec(0,1) );
-::
-
-the keys \binary, \loop (as looked up in the Spec dictionary)  are registred as NoLagControlSpec, and thus don't use any lag at all.
-
-code::
-// \loop is defined by default as a no lag control spec
-\loop.asSpec.defaultControl.insp
-::
-
-I would prefer to just have a lag preference in ControlSpec
-(clients that do lag eg. sliders can tell from the spec if they should do lag or not).
-
-You can register others, or use a NoLagControlSpec when writing the Instr.
 

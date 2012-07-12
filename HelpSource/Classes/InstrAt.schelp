@@ -1,6 +1,6 @@
 CLASS:: InstrAt
 summary:: a reference to an Instr by name. obsolete
-categories:: Libraries>crucial>Instr
+categories:: Libraries>crucial>deprecated
 related:: Classes/Instr
 
 DESCRIPTION:: This is now happily obsolete.

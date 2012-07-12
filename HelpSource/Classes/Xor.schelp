@@ -1,5 +1,5 @@
 CLASS:: Xor
-summary:: either or
+summary:: given two constraint objects, validates that the test object is true for one or the other but not both
 categories:: Libraries>crucial>Constraints
 related:: Guides/Constraints
 

@@ -1,9 +1,9 @@
 CLASS:: Every
-summary::
+summary:: holds a list of Contraints, validates that the test object satisifes all of those
 categories:: Libraries>crucial>Constraints
 related:: Guides/Constraints
 
-DESCRIPTION::
+DESCRIPTION:: Given a list of contraints (or simple functions), the .value method will validate that the test object satisfies all of them.  This is like chaining many (constraint and: constaint) together
 
 
 

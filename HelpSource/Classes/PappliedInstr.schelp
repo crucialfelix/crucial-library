@@ -7,6 +7,17 @@ DESCRIPTION:: In computer science, partial application (or partial function appl
 
 A partially applied Instr produces a PappliedInstr that references the Instr (by name) and which arguments are satisfied.  A PappliedInstr is usable as any normal Instr but it has fewer arguments than the original.
 
+code::
+Instr(\saw, { arg freq=200,amp=0.5,env;
+	EnvGen.kr(env,doneAction:2) * LFSaw.ar(freq,0.0, amp);
+});
+
+p = Instr(\saw).papply((env:Env.perc));
+
+p.gui
+::
+
+The resulting PappliedInstr now has the Envelope hardcoded.
 
 
 CLASSMETHODS::

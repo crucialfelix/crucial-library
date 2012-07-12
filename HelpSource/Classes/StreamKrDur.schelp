@@ -163,27 +163,7 @@ METHOD:: guiClass
 
 returns::
 
-METHOD:: swappable
 
-
-argument:: spec
-
-
-argument:: argName
-
-
-returns::
-
-METHOD:: swappableChildren
-
-
-argument:: parentForSpec
-
-
-argument:: parentForArgName
-
-
-returns::
 
 METHOD:: wigglyness
 
