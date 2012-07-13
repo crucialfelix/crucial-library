@@ -1,7 +1,7 @@
 CLASS:: PatchIn
 summary:: manages a Player's input when connecting to other Players
 categories:: Libraries>crucial>internals
-related::
+
 
 
 DESCRIPTION:: These objects hold information about a Player's inputs and outputs. They are used to make connections to other Players, and to manage that connection and all subsequent repatching or disconnections.

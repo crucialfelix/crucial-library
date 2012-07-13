@@ -1,11 +1,11 @@
 CLASS:: ControlPatchIn
-summary::
+summary:: manages a Player's input when connecting to other Players
 categories:: Libraries>crucial>internals
 related:: Classes/PatchIn
 
-DESCRIPTION::
+DESCRIPTION:: manages a Player's input when connecting to other Players
 
-
+see link::Classes/PatchIn::
 
 CLASSMETHODS::
 

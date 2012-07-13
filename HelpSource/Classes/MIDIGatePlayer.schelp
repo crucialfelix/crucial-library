@@ -1,9 +1,11 @@
 CLASS:: MIDIGatePlayer
-summary::
+summary:: converts monophonic MIDI note on/off to a control rate gate
 categories:: External Control>MIDI, Libraries>crucial>MIDI
-related::
 
-DESCRIPTION::
+
+DESCRIPTION:: Converts monophonic MIDI note on/off to a control rate gate.
+
+Like an analog monophonic synth, this does not release until the last key is released.
 
 code::
 (

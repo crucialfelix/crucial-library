@@ -1,10 +1,11 @@
 CLASS:: AudioPatchOut
-summary::
+summary:: manages state and resources for a Player's output when connecting to other Players
 categories:: Libraries>crucial>internals
 related:: Classes/PatchOut
 
-DESCRIPTION::
+DESCRIPTION:: manages state and resources for a Player's output when connecting to other Players
 
+see link::Classes/PatchOut::
 
 
 CLASSMETHODS::

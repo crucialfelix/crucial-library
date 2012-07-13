@@ -1,5 +1,5 @@
 CLASS:: IsNil
-summary::
+summary:: validates that the tested object is Nil
 categories:: Libraries>crucial>Constraints
 related:: Guides/Constraints
 

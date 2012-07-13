@@ -1,9 +1,9 @@
 CLASS:: Not
-summary::
+summary:: holds a Constraint and validates that the test object fails that Contraints validation
 categories:: Libraries>crucial>Constraints
 related:: Guides/Constraints
 
-DESCRIPTION::
+DESCRIPTION:: holds a Constraint and validates that the test object fails that Contraints validation
 
 
 

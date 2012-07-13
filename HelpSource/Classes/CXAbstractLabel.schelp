@@ -1,5 +1,5 @@
 CLASS:: CXAbstractLabel
-summary::
+summary:: parent class for Label classes
 categories:: Libraries>crucial>GUI>abstract
 related:: Classes/CXLabel
 
