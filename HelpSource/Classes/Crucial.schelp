@@ -1,7 +1,7 @@
 CLASS:: Crucial
 summary:: library initializer
 categories:: Libraries>crucial>deprecated
-related::
+
 
 DESCRIPTION::  This is a simple class that used to do more initialization for crucial but has now been made much simpler.
 

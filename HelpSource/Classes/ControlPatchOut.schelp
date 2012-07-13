@@ -1,9 +1,9 @@
 CLASS:: ControlPatchOut
-summary::
+summary:: manages a Player's output when connecting to other Players
 categories:: Libraries>crucial>internals
 related:: Classes/PatchOut
 
-DESCRIPTION::
+DESCRIPTION:: manages a Player's output when connecting to other Players
 
 
 

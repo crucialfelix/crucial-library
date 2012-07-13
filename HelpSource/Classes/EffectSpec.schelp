@@ -1,7 +1,7 @@
 CLASS:: EffectSpec
 summary:: datatype specifying an object that is an 'audio' rate effect
 categories:: Spec, Libraries>crucial>Spec
-related::
+
 
 DESCRIPTION::
 

@@ -1,9 +1,9 @@
 CLASS:: TempoGui
-summary::
+summary:: gui class
 categories:: Libraries>crucial>GuiClasses
-related::
 
-DESCRIPTION::
+
+DESCRIPTION:: a slider and number box to control the current Tempo in bpm
 
 
 

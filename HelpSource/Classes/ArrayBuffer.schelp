@@ -1,7 +1,7 @@
 CLASS:: ArrayBuffer
 summary:: given an array, will allocate and fill a Buffer for use in Patch etc
 categories:: Libraries>crucial>Buffers
-related::
+
 
 DESCRIPTION:: Passes an array into a Patch for use in UGens which need an array supplied as a buffer index.
 If saved as a compile string to disk, saves the array with it.

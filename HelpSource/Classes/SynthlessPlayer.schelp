@@ -1,7 +1,7 @@
 CLASS:: SynthlessPlayer
 summary:: parent class for Players that will not spawn a synth
 categories:: Libraries>crucial>Players>abstract
-related::
+
 
 DESCRIPTION::
 

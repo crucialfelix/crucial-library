@@ -1,9 +1,9 @@
 CLASS:: MIDIFreqPlayer
-summary:: classic analog monophonic style including trills
+summary:: MIDI note to control rate \freq convertor. Classic analog monophonic style including hammer on trills
 categories:: External Control>MIDI, Libraries>crucial>MIDI
-related::
 
-DESCRIPTION::
+
+DESCRIPTION:: Implements classic analog monophonic style MIDI to control rate \freq.  Including hammer on trills (if you know analog synths you know what that means).
 
 code::
 (
