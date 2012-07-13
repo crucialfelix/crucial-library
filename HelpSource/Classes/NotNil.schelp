@@ -1,9 +1,9 @@
 CLASS:: NotNil
-summary::
+summary:: validates that the tested object is not nil
 categories:: Libraries>crucial>Constraints
 related:: Guides/Constraints
 
-DESCRIPTION::
+DESCRIPTION:: validates that the tested object is not nil
 
 
 

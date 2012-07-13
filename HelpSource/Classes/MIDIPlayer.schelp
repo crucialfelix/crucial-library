@@ -1,7 +1,7 @@
 CLASS:: MIDIPlayer
 summary:: parent class for Players that receive midi and send control messages to synths
 categories:: External Control>MIDI, Libraries>crucial>MIDI, Libraries>crucial>Players
-related::
+
 
 DESCRIPTION:: abstract parent class for Players that receive midi and send control messages to synths
 

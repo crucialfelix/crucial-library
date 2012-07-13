@@ -1,7 +1,7 @@
 CLASS:: Editor
 summary:: holds a value that can be edited with a GUI, saves as the value
 categories:: Libraries>crucial>Editors
-related::
+
 
 DESCRIPTION::  This is the parent class for all Editors and also has a repository of handlers that are used to find the appropriate editor for a given object.
 

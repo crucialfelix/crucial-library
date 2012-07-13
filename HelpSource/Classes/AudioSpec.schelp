@@ -1,7 +1,7 @@
 CLASS:: AudioSpec
 summary:: datatype expressing an 'audio' rate object
 categories:: Spec, Libraries>crucial>Spec
-related::
+
 
 DESCRIPTION::
 An audio spec specifies that the input should be an audio signal, or that an output will be an audio signal.

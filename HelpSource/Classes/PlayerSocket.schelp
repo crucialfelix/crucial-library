@@ -1,7 +1,7 @@
 CLASS:: PlayerSocket
 summary:: a player that can play other players using a cross-faded and fuse-protected socket
 categories:: Libraries>crucial>Players
-related::
+
 
 DESCRIPTION:: A voice that is able to host and switch between different players.
 

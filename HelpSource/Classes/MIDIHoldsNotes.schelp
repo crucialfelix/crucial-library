@@ -1,9 +1,9 @@
 CLASS:: MIDIHoldsNotes
-summary::
+summary:: parent class for MIDI note on/off classes
 categories:: External Control>MIDI, Libraries>crucial>MIDI
-related::
+related:: Classes/MIDIGatePlayer, CLasses/MIDIFreqPlayer
 
-DESCRIPTION::
+DESCRIPTION:: parent class for MIDI note on/off classes
 
 
 

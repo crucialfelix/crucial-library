@@ -1,7 +1,7 @@
 CLASS:: MIDIClockOut
 summary:: a Player that sends MIDI Clock Out
 categories:: External Control>MIDI, Libraries>crucial>MIDI, Libraries>crucial>Scheduling
-related::
+
 
 DESCRIPTION::  As a player this produces no audio, but emits MIDI Clock.  It can be simply played and it will start sending.  It can be added to a PlayerMixer and it will play in synch with the other players.
 
