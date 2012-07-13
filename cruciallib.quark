@@ -3,7 +3,7 @@
 	\path:		"cruciallib",
 	\summary:	"The AbstractPlayer system including Patch, Instr, Sample, and scheduling tools",
 	\author:	"felix",
-	\version:	"4.1.0",
+	\version:	"4.1.1",
 	\url:		"https://github.com/crucialfelix/crucial-library",
 	\isCompatible:	{ Main.versionAtLeast(3,5) },
 )
