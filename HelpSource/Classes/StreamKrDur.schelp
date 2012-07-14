@@ -1,7 +1,7 @@
 CLASS:: StreamKrDur
 summary:: a 'control' rate player that combines a stream of values with a stream of durations and plays them
 categories:: Libraries>crucial>Players
-related:: Classes/Stream2Trig, Classes/StreamKr
+related:: Classes/Stream2Trig
 
 DESCRIPTION:: This plays a pattern in real time in the language, and sends those values as /c_set messages to its bus on the server.
 Durations are specified in beats by a second pattern.

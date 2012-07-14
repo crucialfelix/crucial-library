@@ -1,7 +1,7 @@
 CLASS:: IrNumberEditor
 summary:: a number box and slider for editing a float value [\ir rate]
 categories:: Libraries>crucial>Editors
-related:: Classes/Editor, Classes/KrEditor, Classes/Patch
+related:: Classes/Editor, Classes/KrNumberEditor, Classes/Patch
 
 DESCRIPTION:: When used with Patch or InstrSpawner this will result in an .ir rate control.  This means you can only change the value before the synth starts, no 'control' rate modulation.
 
