@@ -13,7 +13,6 @@ CLASSMETHODS::
 METHOD:: amp
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -21,12 +20,10 @@ INSTANCEMETHODS::
 METHOD:: ar
 
 
-returns::
 
 METHOD:: numChannels
 
 
-returns::
 
 
 

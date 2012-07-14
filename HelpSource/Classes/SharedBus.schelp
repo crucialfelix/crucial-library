@@ -32,7 +32,6 @@ argument:: bus
 argument:: owner
 Principal owner object of the Bus.  Nobody else can free it but owner.
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -40,7 +39,6 @@ INSTANCEMETHODS::
 METHOD:: owner
 
 
-returns::
 
 METHOD:: releaseBus
 this will not actually release the bus unless the supposedOwner really is the owner.
@@ -49,17 +47,14 @@ this will not actually release the bus unless the supposedOwner really is the ow
 argument:: supposedOwner
 
 
-returns::
 
 METHOD:: free
 
 
-returns::
 
 METHOD:: realloc
 
 
-returns::
 
 
 

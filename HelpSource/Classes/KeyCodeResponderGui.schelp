@@ -18,12 +18,10 @@ METHOD:: guiBody
 argument:: f
 
 
-returns::
 
 METHOD:: writeName
 
 
-returns::
 
 
 

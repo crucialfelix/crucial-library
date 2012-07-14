@@ -15,7 +15,6 @@ INSTANCEMETHODS::
 METHOD:: nl
 
 
-returns::
 
 METHOD:: storeArgs
 
@@ -26,7 +25,6 @@ argument:: args
 argument:: itemsPerLine
 
 
-returns::
 
 METHOD:: indent
 
@@ -34,7 +32,6 @@ METHOD:: indent
 argument:: way
 
 
-returns::
 
 
 

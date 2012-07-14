@@ -58,7 +58,6 @@ argument:: tempo
 argument:: firstBeatIsAtFrame
 
 
-returns::
 
 METHOD:: getNew
 
@@ -66,7 +65,6 @@ METHOD:: getNew
 argument:: receivingFunction
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -74,22 +72,18 @@ INSTANCEMETHODS::
 METHOD:: firstBeatIsAt
 
 
-returns::
 
 METHOD:: found
 
 
-returns::
 
 METHOD:: soundFilePath
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: init
 
@@ -97,7 +91,6 @@ METHOD:: init
 argument:: sfilePath
 
 
-returns::
 
 METHOD:: fileNotFound
 
@@ -105,7 +98,6 @@ METHOD:: fileNotFound
 argument:: sfilePath
 
 
-returns::
 
 METHOD:: preloadData
 
@@ -125,22 +117,18 @@ argument:: bundle
 argument:: parentSegmentBuffers
 
 
-returns::
 
 METHOD:: fileName
 
 
-returns::
 
 METHOD:: fileDuration
 
 
-returns::
 
 METHOD:: timeDuration
 
 
-returns::
 
 METHOD:: tempo
 
@@ -148,17 +136,14 @@ METHOD:: tempo
 argument:: t
 
 
-returns::
 
 METHOD:: children
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 
 

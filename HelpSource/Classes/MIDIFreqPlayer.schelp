@@ -39,7 +39,6 @@ METHOD:: new
 argument:: init
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -47,7 +46,6 @@ INSTANCEMETHODS::
 METHOD:: initResponders
 
 
-returns::
 
 
 EXAMPLES::

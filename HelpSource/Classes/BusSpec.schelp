@@ -21,7 +21,6 @@ argument:: numChannels
 argument:: private
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -29,17 +28,14 @@ INSTANCEMETHODS::
 METHOD:: rate
 
 
-returns::
 
 METHOD:: numChannels
 
 
-returns::
 
 METHOD:: private
 
 
-returns::
 
 
 

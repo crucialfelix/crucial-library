@@ -20,12 +20,10 @@ METHOD:: canAccept
 argument:: ting
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 
 

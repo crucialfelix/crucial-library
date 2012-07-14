@@ -15,12 +15,10 @@ CLASSMETHODS::
 METHOD:: counts
 
 
-returns::
 
 METHOD:: annotations
 
 
-returns::
 
 METHOD:: alloc
 
@@ -40,7 +38,6 @@ argument:: client
 argument:: name
 
 
-returns::
 
 METHOD:: retain
 
@@ -54,7 +51,6 @@ argument:: client
 argument:: name
 
 
-returns::
 
 METHOD:: release
 
@@ -65,17 +61,14 @@ argument:: bus
 argument:: client
 
 
-returns::
 
 METHOD:: initClass
 
 
-returns::
 
 METHOD:: reset
 
 
-returns::
 
 METHOD:: watchServer
 
@@ -83,7 +76,6 @@ METHOD:: watchServer
 argument:: server
 
 
-returns::
 
 METHOD:: itemCount
 
@@ -91,17 +83,14 @@ METHOD:: itemCount
 argument:: bus
 
 
-returns::
 
 METHOD:: busses
 
 
-returns::
 
 METHOD:: gui
 
 
-returns::
 
 METHOD:: getAnnotations
 
@@ -109,7 +98,6 @@ METHOD:: getAnnotations
 argument:: bus
 
 
-returns::
 
 METHOD:: findBus
 
@@ -120,7 +108,6 @@ argument:: server
 argument:: index
 
 
-returns::
 
 METHOD:: makeBusFromSpec
 
@@ -137,7 +124,6 @@ argument:: client
 argument:: name
 
 
-returns::
 
 
 

@@ -1,7 +1,7 @@
 CLASS:: StreamKrDur
 summary:: a 'control' rate player that combines a stream of values with a stream of durations and plays them
 categories:: Libraries>crucial>Players
-related:: Classes/Stream2Trig, Classes/StreamKr
+related:: Classes/Stream2Trig
 
 DESCRIPTION:: This plays a pattern in real time in the language, and sends those values as /c_set messages to its bus on the server.
 Durations are specified in beats by a second pattern.
@@ -75,7 +75,6 @@ lag time for a Lag.kr that will be added to the output.
 		if 0.0 (default) no Lag will be used.
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -83,47 +82,38 @@ INSTANCEMETHODS::
 METHOD:: values
 
 
-returns::
 
 METHOD:: durations
 
 
-returns::
 
 METHOD:: lastValue
 
 
-returns::
 
 METHOD:: delta
 
 
-returns::
 
 METHOD:: beat
 
 
-returns::
 
 METHOD:: skdinit
 
 
-returns::
 
 METHOD:: didStop
 
 
-returns::
 
 METHOD:: stopRoutine
 
 
-returns::
 
 METHOD:: resetRoutine
 
 
-returns::
 
 METHOD:: spawnToBundle
 
@@ -131,44 +121,36 @@ METHOD:: spawnToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: didSpawn
 
 
-returns::
 
 METHOD:: poll
 
 
-returns::
 
 METHOD:: spec
 
 
-returns::
 
 METHOD:: children
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 
 
 METHOD:: wigglyness
 
 
-returns::
 
 
 EXAMPLES::

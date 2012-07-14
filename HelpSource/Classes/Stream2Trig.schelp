@@ -69,6 +69,7 @@ argument:: deltas
 	`[1.0,0.25,0.5] // Ref
 
 
+
 INSTANCEMETHODS::
 
 METHOD:: instrArgFromControl
@@ -77,17 +78,9 @@ METHOD:: instrArgFromControl
 argument:: control
 
 
-returns::
-
 METHOD:: poll
 
 
-returns::
-
 METHOD:: spec
-
-
-returns::
-
 
 

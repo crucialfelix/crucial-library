@@ -79,7 +79,6 @@ METHOD:: new
 argument:: nodeControl
 
 
-returns::
 
 METHOD:: newByRate
 
@@ -90,7 +89,6 @@ argument:: rate
 argument:: nodeControl
 
 
-returns::
 
 METHOD:: audio
 
@@ -98,7 +96,6 @@ METHOD:: audio
 argument:: nodeControl
 
 
-returns::
 
 METHOD:: control
 
@@ -106,7 +103,6 @@ METHOD:: control
 argument:: nodeControl
 
 
-returns::
 
 METHOD:: scalar
 
@@ -114,7 +110,6 @@ METHOD:: scalar
 argument:: nodeControl
 
 
-returns::
 
 METHOD:: stream
 
@@ -122,7 +117,6 @@ METHOD:: stream
 argument:: nodeControl
 
 
-returns::
 
 METHOD:: noncontrol
 
@@ -130,7 +124,6 @@ METHOD:: noncontrol
 argument:: nodeControl
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -138,22 +131,18 @@ INSTANCEMETHODS::
 METHOD:: nodeControl
 
 
-returns::
 
 METHOD:: connectedTo
 
 
-returns::
 
 METHOD:: server
 
 
-returns::
 
 METHOD:: group
 
 
-returns::
 
 METHOD:: disconnectFrom
 
@@ -161,7 +150,6 @@ METHOD:: disconnectFrom
 argument:: patchOut
 
 
-returns::
 
 
 

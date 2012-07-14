@@ -15,12 +15,10 @@ INSTANCEMETHODS::
 METHOD:: subjectGroup
 
 
-returns::
 
 METHOD:: effectGroup
 
 
-returns::
 
 METHOD:: makeResourcesToBundle
 
@@ -28,7 +26,6 @@ METHOD:: makeResourcesToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: freeResourcesToBundle
 
@@ -36,7 +33,6 @@ METHOD:: freeResourcesToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: spawnToBundle
 
@@ -44,7 +40,6 @@ METHOD:: spawnToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: preparePlayer
 
@@ -55,7 +50,6 @@ argument:: player
 argument:: bus
 
 
-returns::
 
 
 

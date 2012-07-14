@@ -26,12 +26,10 @@ INSTANCEMETHODS::
 METHOD:: value
 
 
-returns::
 
 METHOD:: spec
 
 
-returns::
 
 METHOD:: topMakePatchOut
 
@@ -42,12 +40,10 @@ argument:: group
 argument:: bundle
 
 
-returns::
 
 METHOD:: synthArg
 
 
-returns::
 
 METHOD:: addToSynthDef
 
@@ -58,7 +54,6 @@ argument:: synthDef
 argument:: name
 
 
-returns::
 
 METHOD:: instrArgFromControl
 
@@ -66,17 +61,14 @@ METHOD:: instrArgFromControl
 argument:: control
 
 
-returns::
 
 METHOD:: didSpawn
 
 
-returns::
 
 METHOD:: removeResponders
 
 
-returns::
 
 METHOD:: stopToBundle
 
@@ -84,7 +76,6 @@ METHOD:: stopToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: freeToBundle
 
@@ -92,17 +83,14 @@ METHOD:: freeToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: cmdPeriod
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 
 

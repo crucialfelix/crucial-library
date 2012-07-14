@@ -15,12 +15,10 @@ INSTANCEMETHODS::
 METHOD:: current
 
 
-returns::
 
 METHOD:: previous
 
 
-returns::
 
 METHOD:: value
 
@@ -28,12 +26,10 @@ METHOD:: value
 argument:: val
 
 
-returns::
 
 METHOD:: next
 
 
-returns::
 
 METHOD:: wrapNext
 
@@ -44,7 +40,6 @@ argument:: min
 argument:: max
 
 
-returns::
 
 
 

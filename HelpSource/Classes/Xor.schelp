@@ -18,7 +18,6 @@ argument:: a
 argument:: b
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -26,12 +25,10 @@ INSTANCEMETHODS::
 METHOD:: a
 
 
-returns::
 
 METHOD:: b
 
 
-returns::
 
 METHOD:: value
 
@@ -39,12 +36,10 @@ METHOD:: value
 argument:: obj
 
 
-returns::
 
 METHOD:: reset
 
 
-returns::
 
 
 

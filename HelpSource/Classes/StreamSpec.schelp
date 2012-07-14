@@ -41,7 +41,6 @@ METHOD:: constrain
 argument:: value
 
 
-returns::
 
 METHOD:: canAccept
 
@@ -49,12 +48,10 @@ METHOD:: canAccept
 argument:: ting
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: defaultControl
 
@@ -62,30 +59,24 @@ METHOD:: defaultControl
 argument:: val
 
 
-returns::
 
 METHOD:: minval
 
 
-returns::
 
 METHOD:: maxval
 
 
-returns::
 
 METHOD:: clipLo
 
 
-returns::
 
 METHOD:: clipHi
 
 
-returns::
 
 METHOD:: color
 
 
-returns::
 

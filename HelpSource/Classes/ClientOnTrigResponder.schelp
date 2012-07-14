@@ -20,7 +20,6 @@ argument:: triggerID
 argument:: func
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -28,12 +27,10 @@ INSTANCEMETHODS::
 METHOD:: triggerID
 
 
-returns::
 
 METHOD:: func
 
 
-returns::
 
 METHOD:: didSpawn
 
@@ -41,7 +38,6 @@ METHOD:: didSpawn
 argument:: synth
 
 
-returns::
 
 METHOD:: stopToBundle
 
@@ -49,7 +45,6 @@ METHOD:: stopToBundle
 argument:: b
 
 
-returns::
 
 
 

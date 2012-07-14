@@ -16,7 +16,6 @@ INSTANCEMETHODS::
 METHOD:: currentIndex
 
 
-returns::
 
 METHOD:: value
 
@@ -36,7 +35,6 @@ argument:: unicode
 argument:: keycode
 
 
-returns::
 
 METHOD:: select
 
@@ -44,7 +42,6 @@ METHOD:: select
 argument:: i
 
 
-returns::
 
 
 

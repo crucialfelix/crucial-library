@@ -17,12 +17,10 @@ CLASSMETHODS::
 METHOD:: registery
 
 
-returns::
 
 METHOD:: initClass
 
 
-returns::
 
 METHOD:: define
 Keys are either symbols or classes, the values are functions that return arrays of prototypes.  Patch simply selects the first in the list.  Other methods of ControlPrototypes use the full list.
@@ -36,7 +34,6 @@ This class also serves to decouple Spec from knowing of the various controls, ga
 argument::  ... assns
 
 
-returns::
 
 METHOD:: at
 
@@ -47,7 +44,6 @@ argument:: key
 argument:: spec
 
 
-returns::
 
 METHOD:: forSpec
 
@@ -58,7 +54,6 @@ argument:: argName
 argument:: spec
 
 
-returns::
 
 METHOD:: firstAt
 
@@ -69,7 +64,6 @@ argument:: argName
 argument:: spec
 
 
-returns::
 
 METHOD:: chooseAt
 
@@ -80,7 +74,6 @@ argument:: argName
 argument:: spec
 
 
-returns::
 
 METHOD:: chooseForSpec
 
@@ -91,7 +84,6 @@ argument:: argName
 argument:: spec
 
 
-returns::
 
 METHOD:: listForSpec
 
@@ -102,7 +94,6 @@ argument:: argName
 argument:: spec
 
 
-returns::
 
 
 EXAMPLES::

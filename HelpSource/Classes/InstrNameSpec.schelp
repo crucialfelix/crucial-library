@@ -21,7 +21,6 @@ argument:: hasGate
 argument:: hasAudioInput
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -29,17 +28,14 @@ INSTANCEMETHODS::
 METHOD:: hasGate
 
 
-returns::
 
 METHOD:: hasAudioInput
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: canAccept
 
@@ -47,7 +43,6 @@ METHOD:: canAccept
 argument:: ting
 
 
-returns::
 
 METHOD:: constrain
 
@@ -55,7 +50,6 @@ METHOD:: constrain
 argument:: instr
 
 
-returns::
 
 
 

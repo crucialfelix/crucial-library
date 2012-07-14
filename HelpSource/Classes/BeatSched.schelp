@@ -75,7 +75,6 @@ CLASSMETHODS::
 METHOD:: global
 
 
-returns::
 
 METHOD:: new
 
@@ -89,17 +88,14 @@ argument:: tempo
 argument:: tempoClock
 
 
-returns::
 
 METHOD:: initClass
 
 
-returns::
 
 METHOD:: xblock
 blocks any and all pending x-scheduled messages.
 
-returns::
 
 METHOD:: time
 get the scheduler's time
@@ -107,7 +103,6 @@ get the scheduler's time
 argument:: seconds
 
 
-returns::
 
 METHOD:: beat
 get the scheduler's current beat
@@ -118,12 +113,10 @@ previously scheduled events will be unpredictable
 argument:: beat
 
 
-returns::
 
 METHOD:: clear
  clear all scheduled events.
 
-returns::
 
 METHOD:: deltaTillNext
 returns the number of beats untiil the next quantizeDivision.
@@ -134,7 +127,6 @@ returns the number of beats untiil the next quantizeDivision.
 argument:: quantize
 
 
-returns::
 
 METHOD:: tdeltaTillNext
 returns the number of seconds untiil the next beat quantizeDivision.
@@ -145,7 +137,6 @@ returns the number of seconds untiil the next beat quantizeDivision.
 argument:: quantize
 
 
-returns::
 
 METHOD:: tsched
 	time based scheduling
@@ -156,7 +147,6 @@ argument:: seconds
 
 argument:: function
 
-returns::
 
 METHOD:: xtsched
 	exclusive time based schedule
@@ -179,7 +169,6 @@ argument:: seconds
 argument:: function
 
 
-returns::
 
 METHOD:: sched
 delta specified in beats
@@ -190,7 +179,6 @@ argument:: beats
 argument:: function
 
 
-returns::
 
 METHOD:: xsched
 exclusive, delta specified in beats
@@ -201,7 +189,6 @@ argument:: beats
 argument:: function
 
 
-returns::
 
 METHOD:: qsched
     function will execute at the next division based on quantize value:
@@ -218,7 +205,6 @@ argument:: quantize
 argument:: function
 
 
-returns::
 
 METHOD:: xqsched
 exclusive quantized beat based scheduling
@@ -229,7 +215,6 @@ argument:: quantize
 argument:: function
 
 
-returns::
 
 METHOD:: tschedAbs
 will happen at the time specified in seconds
@@ -240,7 +225,6 @@ argument:: time
 argument:: function
 
 
-returns::
 
 METHOD:: xtschedAbs
 
@@ -251,7 +235,6 @@ argument:: time
 argument:: function
 
 
-returns::
 
 METHOD:: schedAbs
 will happen at the beat specified.
@@ -262,7 +245,6 @@ argument:: beat
 argument:: function
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -270,22 +252,18 @@ INSTANCEMETHODS::
 METHOD:: tempo
 
 
-returns::
 
 METHOD:: tempoClock
 
 
-returns::
 
 METHOD:: init
 
 
-returns::
 
 METHOD:: xblock
 
 
-returns::
 
 METHOD:: time
 
@@ -293,7 +271,6 @@ METHOD:: time
 argument:: seconds
 
 
-returns::
 
 METHOD:: beat
 
@@ -301,12 +278,10 @@ METHOD:: beat
 argument:: beat
 
 
-returns::
 
 METHOD:: clear
 
 
-returns::
 
 METHOD:: deltaTillNext
 
@@ -314,7 +289,6 @@ METHOD:: deltaTillNext
 argument:: quantize
 
 
-returns::
 
 METHOD:: tdeltaTillNext
 
@@ -322,7 +296,6 @@ METHOD:: tdeltaTillNext
 argument:: quantize
 
 
-returns::
 
 METHOD:: tsched
 
@@ -333,7 +306,6 @@ argument:: seconds
 argument:: function
 
 
-returns::
 
 METHOD:: xtsched
 
@@ -344,7 +316,6 @@ argument:: seconds
 argument:: function
 
 
-returns::
 
 METHOD:: sched
 
@@ -355,7 +326,6 @@ argument:: beats
 argument:: function
 
 
-returns::
 
 METHOD:: xsched
 
@@ -366,7 +336,6 @@ argument:: beats
 argument:: function
 
 
-returns::
 
 METHOD:: qsched
 
@@ -377,7 +346,6 @@ argument:: quantize
 argument:: function
 
 
-returns::
 
 METHOD:: xqsched
 
@@ -388,7 +356,6 @@ argument:: quantize
 argument:: function
 
 
-returns::
 
 METHOD:: tschedAbs
 
@@ -399,7 +366,6 @@ argument:: time
 argument:: function
 
 
-returns::
 
 METHOD:: xtschedAbs
 
@@ -410,7 +376,6 @@ argument:: time
 argument:: function
 
 
-returns::
 
 METHOD:: schedAbs
 
@@ -421,12 +386,10 @@ argument:: beat
 argument:: function
 
 
-returns::
 
 METHOD:: tschedAbsNext
 
 
-returns::
 
 EXAMPLES::
 

@@ -39,7 +39,6 @@ METHOD:: new
 argument:: spec
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -47,12 +46,10 @@ INSTANCEMETHODS::
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: initResponders
 
 
-returns::
 
 
 

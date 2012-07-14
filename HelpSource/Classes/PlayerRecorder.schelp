@@ -21,7 +21,6 @@ argument:: recHeaderFormat
 argument:: recSampleFormat
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -29,22 +28,18 @@ INSTANCEMETHODS::
 METHOD:: player
 
 
-returns::
 
 METHOD:: recHeaderFormat
 
 
-returns::
 
 METHOD:: recSampleFormat
 
 
-returns::
 
 METHOD:: limit
 
 
-returns::
 
 METHOD:: record
 
@@ -62,7 +57,6 @@ argument:: atTime
 see link::Guides/atTime::
 
 
-returns::
 
 METHOD:: liveRecord
 
@@ -77,27 +71,22 @@ argument:: atTime
 see link::Guides/atTime::
 
 
-returns::
 
 METHOD:: stop
 
 
-returns::
 
 METHOD:: cmdPeriod
 
 
-returns::
 
 METHOD:: makePath
 
 
-returns::
 
 METHOD:: server
 
 
-returns::
 
 METHOD:: bufferAndThen
 
@@ -108,7 +97,6 @@ argument:: path
 argument:: then
 
 
-returns::
 
 METHOD:: prRecord
 
@@ -126,7 +114,6 @@ see link::Guides/atTime::
 argument:: timeOfRequest
 
 
-returns::
 
 METHOD:: prLiveRecord
 
@@ -141,7 +128,6 @@ see link::Guides/atTime::
 argument:: timeOfRequest
 
 
-returns::
 
 METHOD:: synthDefToBundle
 
@@ -152,12 +138,10 @@ argument:: bundle
 argument:: listen
 
 
-returns::
 
 METHOD:: free
 
 
-returns::
 
 
 

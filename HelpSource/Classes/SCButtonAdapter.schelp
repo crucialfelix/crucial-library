@@ -12,12 +12,10 @@ CLASSMETHODS::
 METHOD:: initClass
 
 
-returns::
 
 METHOD:: defaultHeight
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -34,7 +32,6 @@ argument:: x
 argument:: y
 
 
-returns::
 
 METHOD:: flowMakeView
 
@@ -48,7 +45,6 @@ argument:: x
 argument:: y
 
 
-returns::
 
 METHOD:: makeViewWithStringSize
 
@@ -65,7 +61,6 @@ argument:: minWidth
 argument:: minHeight
 
 
-returns::
 
 METHOD:: initOneState
 
@@ -79,7 +74,6 @@ argument:: textcolor
 argument:: backcolor
 
 
-returns::
 
 METHOD:: label
 
@@ -87,7 +81,6 @@ METHOD:: label
 argument:: string
 
 
-returns::
 
 METHOD:: background
 
@@ -95,7 +88,6 @@ METHOD:: background
 argument:: color
 
 
-returns::
 
 METHOD:: labelColor
 
@@ -103,7 +95,6 @@ METHOD:: labelColor
 argument:: color
 
 
-returns::
 
 
 

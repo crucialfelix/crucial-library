@@ -51,7 +51,6 @@ argument:: width
 argument:: height
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -59,32 +58,26 @@ INSTANCEMETHODS::
 METHOD:: selected
 selected index
 
-returns::
 
 METHOD:: action
 
 
-returns::
 
 METHOD:: colorFunc
 
 
-returns::
 
 METHOD:: selectedColor
 
 
-returns::
 
 METHOD:: labelArray
 
 
-returns::
 
 METHOD:: altAction
 
 
-returns::
 
 METHOD:: init
 
@@ -110,7 +103,6 @@ argument:: argcolorFunc
 argument:: argselectedColor
 
 
-returns::
 
 METHOD:: select
 
@@ -118,7 +110,6 @@ METHOD:: select
 argument:: x
 
 
-returns::
 
 METHOD:: selectItem
 
@@ -126,7 +117,6 @@ METHOD:: selectItem
 argument:: item
 
 
-returns::
 
 METHOD:: passiveSelect
 action is not performed
@@ -134,7 +124,6 @@ action is not performed
 argument:: x
 
 
-returns::
 
 METHOD:: update
 
@@ -142,32 +131,26 @@ METHOD:: update
 argument:: x
 
 
-returns::
 
 METHOD:: refresh
 
 
-returns::
 
 METHOD:: selectedIndex
 
 
-returns::
 
 METHOD:: selectedLabel
 the string label of currently selected item
 
-returns::
 
 METHOD:: selectedItem
 
 
-returns::
 
 METHOD:: deselect
 
 
-returns::
 
 METHOD:: setButtonColor
 
@@ -178,7 +161,6 @@ argument:: butt
 argument:: color
 
 
-returns::
 
 METHOD:: colorNormal
 
@@ -186,7 +168,6 @@ METHOD:: colorNormal
 argument:: i
 
 
-returns::
 
 METHOD:: colorSelected
 
@@ -194,12 +175,10 @@ METHOD:: colorSelected
 argument:: i
 
 
-returns::
 
 METHOD:: doAction
 
 
-returns::
 
 METHOD:: addAction
 
@@ -207,7 +186,6 @@ METHOD:: addAction
 argument:: func
 
 
-returns::
 
 METHOD:: font
 
@@ -215,7 +193,6 @@ METHOD:: font
 argument:: f
 
 
-returns::
 
 
 EXAMPLES::

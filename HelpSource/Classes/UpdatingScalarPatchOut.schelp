@@ -23,7 +23,6 @@ argument:: bus
 argument:: enabled
 
 
-returns::
 
 METHOD:: prNew
 
@@ -34,7 +33,6 @@ argument:: source
 argument:: enabled
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -45,7 +43,6 @@ METHOD:: init
 argument:: enabled
 
 
-returns::
 
 METHOD:: audio
 
@@ -56,7 +53,6 @@ argument:: audioPatchIn
 argument:: needsValueSetNow
 
 
-returns::
 
 METHOD:: control
 
@@ -67,7 +63,6 @@ argument:: controlPatchIn
 argument:: needsValueSetNow
 
 
-returns::
 
 METHOD:: scalar
 
@@ -75,22 +70,18 @@ METHOD:: scalar
 argument:: scalarPatchIn
 
 
-returns::
 
 METHOD:: enable
 
 
-returns::
 
 METHOD:: update
 
 
-returns::
 
 METHOD:: free
 
 
-returns::
 
 
 

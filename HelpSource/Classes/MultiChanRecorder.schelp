@@ -38,7 +38,6 @@ METHOD:: new
 argument:: busses
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -48,22 +47,18 @@ boolean
 
 By default it uses a Limiter on each channel.  Set limit to false to defeat this.
 
-returns::
 
 METHOD:: path
 
 
-returns::
 
 METHOD:: recHeaderFormat
 
 
-returns::
 
 METHOD:: recSampleFormat
 
 
-returns::
 
 METHOD:: init
 
@@ -71,7 +66,6 @@ METHOD:: init
 argument:: buses
 
 
-returns::
 
 METHOD:: prepareForRecord
 
@@ -79,12 +73,10 @@ METHOD:: prepareForRecord
 argument:: basePath
 
 
-returns::
 
 METHOD:: isPrepared
 
 
-returns::
 
 METHOD:: record
 
@@ -93,12 +85,10 @@ argument:: atTime
 see link::Guides/atTime::
 
 
-returns::
 
 METHOD:: isRecording
 
 
-returns::
 
 METHOD:: pauseRecording
 
@@ -107,12 +97,10 @@ argument:: atTime
 see link::Guides/atTime::
 
 
-returns::
 
 METHOD:: stop
 
 
-returns::
 
 METHOD:: monitor
 
@@ -120,17 +108,14 @@ METHOD:: monitor
 argument:: boo
 
 
-returns::
 
 METHOD:: isMonitoring
 
 
-returns::
 
 METHOD:: cmdPeriod
 
 
-returns::
 
 
 

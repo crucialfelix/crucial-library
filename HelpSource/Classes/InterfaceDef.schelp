@@ -15,57 +15,46 @@ INSTANCEMETHODS::
 METHOD:: onLoad
 
 
-returns::
 
 METHOD:: onPlay
 
 
-returns::
 
 METHOD:: onStop
 
 
-returns::
 
 METHOD:: onFree
 
 
-returns::
 
 METHOD:: onNoteOn
 
 
-returns::
 
 METHOD:: onNoteOff
 
 
-returns::
 
 METHOD:: onPitchBend
 
 
-returns::
 
 METHOD:: onCC
 
 
-returns::
 
 METHOD:: guiBodyFunction
 
 
-returns::
 
 METHOD:: keyDownAction
 
 
-returns::
 
 METHOD:: keyUpAction
 
 
-returns::
 
 METHOD:: gui
 
@@ -73,12 +62,10 @@ METHOD:: gui
 argument:: function
 
 
-returns::
 
 METHOD:: asInterfaceDef
 
 
-returns::
 
 
 

@@ -15,7 +15,6 @@ INSTANCEMETHODS::
 METHOD:: writeName
 
 
-returns::
 
 METHOD:: guiBody
 
@@ -23,7 +22,6 @@ METHOD:: guiBody
 argument:: layout
 
 
-returns::
 
 
 

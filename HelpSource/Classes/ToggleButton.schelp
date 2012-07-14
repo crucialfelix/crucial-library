@@ -68,7 +68,6 @@ argument:: onColor
 argument:: offColor
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -76,17 +75,14 @@ INSTANCEMETHODS::
 METHOD:: state
 
 
-returns::
 
 METHOD:: onFunction
 
 
-returns::
 
 METHOD:: offFunction
 
 
-returns::
 
 METHOD:: value
 set the value, not doing the action
@@ -94,7 +90,6 @@ set the value, not doing the action
 argument:: way
 
 
-returns::
 
 METHOD:: toggle
 	with no arguments it toggles the state, doing the action
@@ -106,7 +101,6 @@ argument:: way
 argument:: doAction
 boolean: if the action handler should be run
 
-returns::
 
 METHOD:: init
 
@@ -132,7 +126,6 @@ argument:: onc
 argument:: offc
 
 
-returns::
 
 METHOD:: prSetState
 
@@ -140,7 +133,6 @@ METHOD:: prSetState
 argument:: newstate
 
 
-returns::
 
 
 

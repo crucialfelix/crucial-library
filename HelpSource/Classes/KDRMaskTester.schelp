@@ -24,7 +24,6 @@ argument:: function
 argument:: description
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -32,7 +31,6 @@ INSTANCEMETHODS::
 METHOD:: denyMask
 
 
-returns::
 
 METHOD:: value
 
@@ -52,7 +50,6 @@ argument:: unicode
 argument:: keycode
 
 
-returns::
 
 METHOD:: ==
 
@@ -60,7 +57,6 @@ METHOD:: ==
 argument:: aResponder
 
 
-returns::
 
 
 

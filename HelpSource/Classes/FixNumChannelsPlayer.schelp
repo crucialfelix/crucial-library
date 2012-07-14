@@ -20,7 +20,6 @@ argument:: subject
 argument:: numChannels
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -28,27 +27,22 @@ INSTANCEMETHODS::
 METHOD:: numChannels
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: asSynthDef
 
 
-returns::
 
 METHOD:: defName
 
 
-returns::
 
 METHOD:: synthDefArgs
 
 
-returns::
 
 
 

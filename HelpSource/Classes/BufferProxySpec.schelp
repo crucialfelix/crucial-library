@@ -21,12 +21,10 @@ argument:: numChannels
 argument:: sampleRate
 
 
-returns::
 
 METHOD:: initClass
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -34,32 +32,26 @@ INSTANCEMETHODS::
 METHOD:: numFrames
 
 
-returns::
 
 METHOD:: numChannels
 
 
-returns::
 
 METHOD:: sampleRate
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: defaultControl
 
 
-returns::
 
 METHOD:: default
 
 
-returns::
 
 METHOD:: canAccept
 
@@ -67,7 +59,6 @@ METHOD:: canAccept
 argument:: thing
 
 
-returns::
 
 
 

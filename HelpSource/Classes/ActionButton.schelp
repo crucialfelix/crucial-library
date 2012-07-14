@@ -52,7 +52,6 @@ argument:: backcolor
 argument:: font
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -63,7 +62,6 @@ METHOD:: action
 argument:: f
 
 
-returns::
 
 METHOD:: init
 
@@ -92,7 +90,6 @@ argument:: backcolor
 argument:: font
 
 
-returns::
 
 
 EXAMPLES::

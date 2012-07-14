@@ -12,7 +12,6 @@ CLASSMETHODS::
 METHOD:: bgcolor
 
 
-returns::
 
 METHOD:: new
 
@@ -35,7 +34,6 @@ argument:: minWidth
 argument:: font
 
 
-returns::
 
 
 INSTANCEMETHODS::

@@ -29,17 +29,14 @@ METHOD:: gui
 argument:: layout
 
 
-returns::
 
 METHOD:: headerFormat
 
 
-returns::
 
 METHOD:: sampleFormat
 
 
-returns::
 
 
 

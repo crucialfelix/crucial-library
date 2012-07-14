@@ -54,7 +54,6 @@ METHOD:: new
 argument:: array
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -65,12 +64,10 @@ METHOD:: array
 argument:: a
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: prepareToBundle
 
@@ -81,12 +78,10 @@ argument:: group
 argument:: bundle
 
 
-returns::
 
 METHOD:: makePatchOut
 
 
-returns::
 
 METHOD:: put
 
@@ -97,7 +92,6 @@ argument:: i
 argument:: v
 
 
-returns::
 
 METHOD:: at
 
@@ -105,12 +99,10 @@ METHOD:: at
 argument:: i
 
 
-returns::
 
 METHOD:: zero
 
 
-returns::
 
 METHOD:: setArrayToBundle
 
@@ -121,7 +113,6 @@ argument:: a
 argument:: b
 
 
-returns::
 
 
 

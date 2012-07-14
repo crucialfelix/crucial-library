@@ -39,7 +39,6 @@ METHOD:: value
 argument:: obj
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -50,7 +49,6 @@ METHOD:: value
 argument:: obj
 
 
-returns::
 
 
 

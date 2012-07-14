@@ -21,7 +21,6 @@ argument:: bipolar
 argument:: width
 Determines the amount of overlap or bleed between channels. Width can be set high enough that there are always at least 2 channels stacked up at any point in the crossfade.
 
-returns::
 
 METHOD:: kr
 
@@ -35,7 +34,6 @@ argument:: bipolar
 argument:: width
 
 
-returns::
 
 
 

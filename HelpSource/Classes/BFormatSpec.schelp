@@ -12,12 +12,10 @@ CLASSMETHODS::
 METHOD:: new
 
 
-returns::
 
 METHOD:: initClass
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -25,7 +23,6 @@ INSTANCEMETHODS::
 METHOD:: storeArgs
 
 
-returns::
 
 
 

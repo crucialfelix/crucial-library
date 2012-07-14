@@ -19,7 +19,6 @@ METHOD:: new
 argument:: input
 
 
-returns::
 
 
 INSTANCEMETHODS::

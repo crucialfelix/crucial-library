@@ -31,7 +31,6 @@ CLASSMETHODS::
 METHOD:: amp
 
 
-returns::
 
 METHOD:: new
 
@@ -42,7 +41,6 @@ argument:: numChannels
 argument:: firstChannel
 firstChannel - starting at 0
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -50,22 +48,18 @@ INSTANCEMETHODS::
 METHOD:: numChannels
 
 
-returns::
 
 METHOD:: firstChannel
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: ar
 
 
-returns::
 
 
 
