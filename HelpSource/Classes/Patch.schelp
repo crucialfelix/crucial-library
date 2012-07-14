@@ -36,8 +36,6 @@ p = Patch( \Pulse, (freq: 300) );
 ::
 
 
-### Guides
-
 list::
 ## link::Guides/Patch-inputs::
 ## link::Guides/Patch-Busses-and-Groups::
@@ -50,7 +48,7 @@ CLASSMETHODS::
 METHOD:: new
 
 
-argument:: instr
+argument:: name
 The Instr can be specified as:
 
 an Instr name
