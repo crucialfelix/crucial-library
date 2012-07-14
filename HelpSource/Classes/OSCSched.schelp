@@ -37,12 +37,10 @@ CLASSMETHODS::
 METHOD:: global
 
 
-returns::
 
 METHOD:: initClass
 
 
-returns::
 
 METHOD:: tsched
        time based scheduling
@@ -60,7 +58,6 @@ argument:: bundle
 argument:: onArrival
 
 
-returns::
 
 METHOD:: xtsched
 	exclusive time based schedule
@@ -89,7 +86,6 @@ argument:: bundle
 argument:: onArrival
 
 
-returns::
 
 METHOD:: sched
  delta specified in beats
@@ -106,7 +102,6 @@ argument:: bundle
 argument:: onArrival
 
 
-returns::
 
 METHOD:: xsched
 exclusive beat based scheduling
@@ -123,7 +118,6 @@ argument:: bundle
 argument:: onArrival
 
 
-returns::
 
 METHOD:: qsched
 will happen at the next even division ( 4.0 means on the downbeat of a 4/4 bar ),
@@ -141,7 +135,6 @@ argument:: bundle
 argument:: onArrival
 
 
-returns::
 
 METHOD:: xqsched
 exclusive quantized beat based scheduling
@@ -158,7 +151,6 @@ argument:: bundle
 argument:: onArrival
 
 
-returns::
 
 METHOD:: tschedAbs
 will happen at the time specified in seconds
@@ -175,7 +167,6 @@ argument:: bundle
 argument:: onArrival
 
 
-returns::
 
 METHOD:: schedAbs
 will happen at the beat specified.  this uses TempoClock for scheduling
@@ -192,7 +183,6 @@ argument:: bundle
 argument:: onArrival
 
 
-returns::
 
 
 
@@ -215,7 +205,6 @@ argument:: bundle
 argument:: onArrival
 
 
-returns::
 
 METHOD:: xtsched
 
@@ -232,7 +221,6 @@ argument:: bundle
 argument:: onArrival
 
 
-returns::
 
 METHOD:: xtschedFunc
 
@@ -243,7 +231,6 @@ argument:: seconds
 argument:: function
 
 
-returns::
 
 METHOD:: sched
 
@@ -263,7 +250,6 @@ argument:: onArrival
 argument:: onSend
 
 
-returns::
 
 METHOD:: xsched
 
@@ -280,7 +266,6 @@ argument:: bundle
 argument:: onArrival
 
 
-returns::
 
 METHOD:: qsched
 
@@ -297,7 +282,6 @@ argument:: bundle
 argument:: onArrival
 
 
-returns::
 
 METHOD:: xqsched
 
@@ -314,7 +298,6 @@ argument:: bundle
 argument:: onArrival
 
 
-returns::
 
 METHOD:: tschedAbs
 
@@ -331,7 +314,6 @@ argument:: bundle
 argument:: onArrival
 
 
-returns::
 
 METHOD:: schedAbs
 
@@ -348,7 +330,6 @@ argument:: bundle
 argument:: onArrival
 
 
-returns::
 
 METHOD:: aschedFunc
 execute the function at this absolute beat
@@ -359,7 +340,6 @@ argument:: beat
 argument:: func
 
 
-returns::
 
 discussion::
 code::
@@ -398,7 +378,6 @@ argument:: server
 argument:: bundle
 
 
-returns::
 
 METHOD:: xschedAtTime
 
@@ -413,7 +392,6 @@ argument:: server
 argument:: bundle
 
 
-returns::
 
 METHOD:: xschedBundle
 
@@ -427,12 +405,10 @@ argument:: server
 argument:: bundle
 
 
-returns::
 
 METHOD:: tschedAbsNext
 
 
-returns::
 
 
 EXAMPLES::

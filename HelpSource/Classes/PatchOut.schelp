@@ -23,7 +23,6 @@ argument:: group
 argument:: bus
 
 
-returns::
 
 METHOD:: prNew
 
@@ -37,7 +36,6 @@ argument:: group
 argument:: bus
 
 
-returns::
 
 METHOD:: audio
 
@@ -51,7 +49,6 @@ argument:: group
 argument:: bus
 
 
-returns::
 
 METHOD:: control
 
@@ -65,7 +62,6 @@ argument:: group
 argument:: bus
 
 
-returns::
 
 METHOD:: scalar
 
@@ -79,7 +75,6 @@ argument:: group
 argument:: bus
 
 
-returns::
 
 METHOD:: stream
 
@@ -93,7 +88,6 @@ argument:: group
 argument:: bus
 
 
-returns::
 
 METHOD:: noncontrol
 
@@ -107,7 +101,6 @@ argument:: group
 argument:: bus
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -115,12 +108,10 @@ INSTANCEMETHODS::
 METHOD:: source
 
 
-returns::
 
 METHOD:: group
 
 
-returns::
 
 METHOD:: bus
 
@@ -128,27 +119,22 @@ METHOD:: bus
 argument:: b
 
 
-returns::
 
 METHOD:: connectedTo
 
 
-returns::
 
 METHOD:: patchOutsOfInputs
 
 
-returns::
 
 METHOD:: init
 
 
-returns::
 
 METHOD:: busses
 
 
-returns::
 
 METHOD:: connectTo
 
@@ -159,32 +145,26 @@ argument:: patchIn
 argument:: needsValueSetNow
 
 
-returns::
 
 METHOD:: disconnect
 
 
-returns::
 
 METHOD:: free
 
 
-returns::
 
 METHOD:: server
 
 
-returns::
 
 METHOD:: isPlaying
 
 
-returns::
 
 METHOD:: hasBus
 
 
-returns::
 
 METHOD:: allocBus
 
@@ -198,12 +178,10 @@ argument:: rate
 argument:: numChannels
 
 
-returns::
 
 METHOD:: releaseBusses
 
 
-returns::
 
 
 

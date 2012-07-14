@@ -34,7 +34,6 @@ This is used for the save/save as behavior.
 argument:: layout
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -42,27 +41,22 @@ INSTANCEMETHODS::
 METHOD:: object
 
 
-returns::
 
 METHOD:: path
 
 
-returns::
 
 METHOD:: onSaveAs
 
 
-returns::
 
 METHOD:: print
 
 
-returns::
 
 METHOD:: printPath
 
 
-returns::
 
 METHOD:: save
 
@@ -73,7 +67,6 @@ argument:: title
 argument:: minWidth
 
 
-returns::
 
 METHOD:: saveAs
 
@@ -84,7 +77,6 @@ argument:: onSaveF
 argument:: default
 
 
-returns::
 
 METHOD:: open
 
@@ -92,7 +84,6 @@ METHOD:: open
 argument:: onOpenF
 
 
-returns::
 
 METHOD:: getPathThen
 
@@ -103,17 +94,14 @@ argument:: then
 argument::  ... args
 
 
-returns::
 
 METHOD:: doSave
 
 
-returns::
 
 METHOD:: doSaveAs
 
 
-returns::
 
 
 

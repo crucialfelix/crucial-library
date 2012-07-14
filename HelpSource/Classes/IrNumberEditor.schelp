@@ -42,12 +42,10 @@ argument:: val
 argument:: aspec
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: addToSynthDef
 
@@ -58,7 +56,6 @@ argument:: synthDef
 argument:: name
 
 
-returns::
 
 METHOD:: instrArgFromControl
 
@@ -66,17 +63,14 @@ METHOD:: instrArgFromControl
 argument:: control
 
 
-returns::
 
 METHOD:: makePatchOut
 
 
-returns::
 
 METHOD:: connectToPatchIn
 
 
-returns::
 
 METHOD:: addToDefName
 
@@ -84,7 +78,6 @@ METHOD:: addToDefName
 argument:: stream
 
 
-returns::
 
 
 

@@ -22,7 +22,6 @@ METHOD:: new
 argument:: dict
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -30,7 +29,6 @@ INSTANCEMETHODS::
 METHOD:: editing
 
 
-returns::
 
 METHOD:: value
 
@@ -38,12 +36,10 @@ METHOD:: value
 argument:: dict
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 
 

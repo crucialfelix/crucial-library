@@ -15,12 +15,10 @@ INSTANCEMETHODS::
 METHOD:: spec
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: instrArgFromControl
 
@@ -28,27 +26,22 @@ METHOD:: instrArgFromControl
 argument:: control
 
 
-returns::
 
 METHOD:: ar
 
 
-returns::
 
 METHOD:: value
 
 
-returns::
 
 METHOD:: poll
 
 
-returns::
 
 METHOD:: wigglyness
 
 
-returns::
 
 
 

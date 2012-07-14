@@ -66,7 +66,6 @@ METHOD:: new
 argument:: players
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -74,22 +73,18 @@ INSTANCEMETHODS::
 METHOD:: players
 
 
-returns::
 
 METHOD:: asSynthDef
 
 
-returns::
 
 METHOD:: defName
 
 
-returns::
 
 METHOD:: synthDefArgs
 
 
-returns::
 
 METHOD:: respawnMixerToBundle
 
@@ -97,7 +92,6 @@ METHOD:: respawnMixerToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: addPlayer
 
@@ -105,7 +99,6 @@ METHOD:: addPlayer
 argument:: player
 
 
-returns::
 
 METHOD:: removePlayerAt
 
@@ -113,7 +106,6 @@ METHOD:: removePlayerAt
 argument:: pli
 
 
-returns::
 
 METHOD:: putPlayer
 
@@ -124,37 +116,30 @@ argument:: i
 argument:: pl
 
 
-returns::
 
 METHOD:: beatDuration
 
 
-returns::
 
 METHOD:: children
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: numChannels
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 
 EXAMPLES::

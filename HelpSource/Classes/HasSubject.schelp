@@ -15,7 +15,6 @@ METHOD:: new
 argument:: subject
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -23,37 +22,30 @@ INSTANCEMETHODS::
 METHOD:: subject
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: ar
 
 
-returns::
 
 METHOD:: children
 
 
-returns::
 
 METHOD:: inputs
 
 
-returns::
 
 METHOD:: numChannels
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 METHOD:: state
 
@@ -61,7 +53,6 @@ METHOD:: state
 argument:: state
 
 
-returns::
 
 
 

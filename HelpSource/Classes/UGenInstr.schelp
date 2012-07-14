@@ -18,7 +18,6 @@ argument:: ugenClass
 argument:: rate
 
 
-returns::
 
 METHOD:: leaves
 
@@ -26,7 +25,6 @@ METHOD:: leaves
 argument:: rateMethod
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -34,22 +32,18 @@ INSTANCEMETHODS::
 METHOD:: ugenClass
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: specs
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: init
 
@@ -60,7 +54,6 @@ argument:: uc
 argument:: r
 
 
-returns::
 
 METHOD:: value
 
@@ -68,7 +61,6 @@ METHOD:: value
 argument:: args
 
 
-returns::
 
 METHOD:: valueArray
 
@@ -76,7 +68,6 @@ METHOD:: valueArray
 argument:: args
 
 
-returns::
 
 METHOD:: ar
 
@@ -84,7 +75,6 @@ METHOD:: ar
 argument::  ... args
 
 
-returns::
 
 METHOD:: kr
 
@@ -92,52 +82,42 @@ METHOD:: kr
 argument::  ... args
 
 
-returns::
 
 METHOD:: outSpec
 
 
-returns::
 
 METHOD:: dotNotation
 
 
-returns::
 
 METHOD:: storeableFuncReference
 
 
-returns::
 
 METHOD:: funcDef
 
 
-returns::
 
 METHOD:: path
 
 
-returns::
 
 METHOD:: maxArgs
 
 
-returns::
 
 METHOD:: argsSize
 
 
-returns::
 
 METHOD:: argNames
 
 
-returns::
 
 METHOD:: defArgs
 
 
-returns::
 
 METHOD:: initAt
 
@@ -145,7 +125,6 @@ METHOD:: initAt
 argument:: i
 
 
-returns::
 
 METHOD:: argNameAt
 
@@ -153,7 +132,6 @@ METHOD:: argNameAt
 argument:: i
 
 
-returns::
 
 METHOD:: defArgAt
 
@@ -161,27 +139,22 @@ METHOD:: defArgAt
 argument:: i
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 METHOD:: asString
 
 
-returns::
 
 METHOD:: asInstr
 
 
-returns::
 
 METHOD:: name
 
 
-returns::
 
 
 

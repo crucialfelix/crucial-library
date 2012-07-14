@@ -21,7 +21,6 @@ argument:: layout
 argument:: name
 
 
-returns::
 
 METHOD:: guiBody
 
@@ -32,7 +31,6 @@ argument:: layout
 argument:: bounds
 
 
-returns::
 
 METHOD:: instrGui
 
@@ -40,7 +38,6 @@ METHOD:: instrGui
 argument:: layout
 
 
-returns::
 
 
 

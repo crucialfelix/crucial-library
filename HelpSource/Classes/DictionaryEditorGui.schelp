@@ -15,7 +15,6 @@ INSTANCEMETHODS::
 METHOD:: onSave
 
 
-returns::
 
 METHOD:: guiBody
 
@@ -29,7 +28,6 @@ argument:: bounds
 argument:: onSave
 
 
-returns::
 
 
 

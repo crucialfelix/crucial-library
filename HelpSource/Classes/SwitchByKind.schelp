@@ -51,7 +51,6 @@ METHOD:: new
 argument::  ... pairs
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -62,7 +61,6 @@ METHOD:: init
 argument:: pairs
 
 
-returns::
 
 METHOD:: value
 
@@ -73,7 +71,6 @@ argument:: object
 argument::  ... args
 
 
-returns::
 
 
 

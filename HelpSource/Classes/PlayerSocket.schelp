@@ -75,7 +75,6 @@ if calling qspawnPlayer this is the timing quantization setting
 argument:: env
 the Envelope for the internal EnvelopedPlayer
 
-returns::
 
 METHOD:: prNew
 
@@ -92,7 +91,6 @@ argument:: round
 argument:: env
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -100,47 +98,38 @@ INSTANCEMETHODS::
 METHOD:: round
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: numChannels
 
 
-returns::
 
 METHOD:: env
 
 
-returns::
 
 METHOD:: socketGroup
 
 
-returns::
 
 METHOD:: lastPlayer
 
 
-returns::
 
 METHOD:: envdSource
 
 
-returns::
 
 METHOD:: fuseBlown
 
 
-returns::
 
 METHOD:: psinit
 
 
-returns::
 
 METHOD:: prepareAndSpawn
 
@@ -151,7 +140,6 @@ argument:: player
 argument:: releaseTime
 
 
-returns::
 
 METHOD:: prepareAndQSpawn
 
@@ -162,7 +150,6 @@ argument:: player
 argument:: releaseTime
 
 
-returns::
 
 METHOD:: preparePlayer
 
@@ -173,7 +160,6 @@ argument:: player
 argument:: onComplete
 
 
-returns::
 
 METHOD:: spawnPlayer
 you should have already prepared the player
@@ -190,7 +176,6 @@ argument:: beatDelta
 argument:: forceRespawn
 
 
-returns::
 
 METHOD:: qspawnPlayer
 you should have already prepared the player
@@ -202,7 +187,6 @@ argument:: player
 argument:: releaseTime
 
 
-returns::
 
 METHOD:: qrespawnPlayer
 restart the currently playing player
@@ -210,7 +194,6 @@ restart the currently playing player
 argument:: releaseTime
 
 
-returns::
 
 METHOD:: releaseVoice
 release the currently playing player voice
@@ -218,17 +201,14 @@ release the currently playing player voice
 argument:: releaseTime
 
 
-returns::
 
 METHOD:: isSleeping
 
 
-returns::
 
 METHOD:: qwake
 
 
-returns::
 
 METHOD:: makeResourcesToBundle
 
@@ -236,7 +216,6 @@ METHOD:: makeResourcesToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: freeResourcesToBundle
 
@@ -244,7 +223,6 @@ METHOD:: freeResourcesToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: prepareChildrenToBundle
 
@@ -252,7 +230,6 @@ METHOD:: prepareChildrenToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: freeToBundle
 
@@ -260,12 +237,10 @@ METHOD:: freeToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: subGroups
 
 
-returns::
 
 METHOD:: loadDefFileToBundle
 
@@ -276,7 +251,6 @@ argument:: bundle
 argument:: server
 
 
-returns::
 
 METHOD:: instrArgFromControl
 
@@ -284,7 +258,6 @@ METHOD:: instrArgFromControl
 argument:: control
 
 
-returns::
 
 METHOD:: spawnToBundle
 
@@ -292,12 +265,10 @@ METHOD:: spawnToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: synthArg
 
 
-returns::
 
 METHOD:: setSource
 
@@ -312,7 +283,6 @@ see link::Guides/atTime::
 argument:: releaseTime
 
 
-returns::
 
 METHOD:: setSourceToBundle
 
@@ -326,12 +296,10 @@ argument:: bundle
 argument:: releaseTime
 
 
-returns::
 
 METHOD:: didFree
 
 
-returns::
 
 METHOD:: fuseDidBlow
 
@@ -339,17 +307,14 @@ METHOD:: fuseDidBlow
 argument:: value
 
 
-returns::
 
 METHOD:: socketFreeAll
 
 
-returns::
 
 METHOD:: name
 
 
-returns::
 
 METHOD:: limit
 
@@ -357,7 +322,6 @@ METHOD:: limit
 argument:: boo
 
 
-returns::
 
 
 EXAMPLES::

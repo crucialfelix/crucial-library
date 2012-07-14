@@ -18,12 +18,10 @@ argument:: numChannels
 argument:: numInputs
 
 
-returns::
 
 METHOD:: initClass
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -31,7 +29,6 @@ INSTANCEMETHODS::
 METHOD:: numInputs
 
 
-returns::
 
 
 

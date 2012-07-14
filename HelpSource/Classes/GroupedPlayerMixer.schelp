@@ -45,7 +45,6 @@ METHOD:: new
 argument::  ... players
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -56,7 +55,6 @@ METHOD:: gpminit
 argument:: pls
 
 
-returns::
 
 METHOD:: makeResourcesToBundle
 
@@ -64,7 +62,6 @@ METHOD:: makeResourcesToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: prepareChildrenToBundle
 
@@ -72,12 +69,10 @@ METHOD:: prepareChildrenToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: subGroups
 
 
-returns::
 
 METHOD:: freeResourcesToBundle
 
@@ -85,7 +80,6 @@ METHOD:: freeResourcesToBundle
 argument:: bundle
 
 
-returns::
 
 
 

@@ -26,7 +26,6 @@ argument:: things
 argument::  ... notes
 
 
-returns::
 
 METHOD:: at
 
@@ -34,7 +33,6 @@ METHOD:: at
 argument:: thing
 
 
-returns::
 
 METHOD:: register
 
@@ -42,7 +40,6 @@ METHOD:: register
 argument:: object
 
 
-returns::
 
 METHOD:: unregister
 
@@ -50,7 +47,6 @@ METHOD:: unregister
 argument:: object
 
 
-returns::
 
 METHOD:: find
 
@@ -58,7 +54,6 @@ METHOD:: find
 argument::  ... clauses
 
 
-returns::
 
 METHOD:: findBus
 
@@ -69,7 +64,6 @@ argument:: index
 argument:: rate
 
 
-returns::
 
 METHOD:: findNode
 
@@ -77,7 +71,6 @@ METHOD:: findNode
 argument:: nodeID
 
 
-returns::
 
 METHOD:: guiFindNode
 
@@ -88,7 +81,6 @@ argument:: nodeID
 argument:: layout
 
 
-returns::
 
 METHOD:: guiFindBus
 
@@ -102,7 +94,6 @@ argument:: rate
 argument:: layout
 
 
-returns::
 
 METHOD:: prAnnotate
 
@@ -113,7 +104,6 @@ argument:: thing
 argument:: notes
 
 
-returns::
 
 METHOD:: packNotes
 
@@ -121,7 +111,6 @@ METHOD:: packNotes
 argument:: notes
 
 
-returns::
 
 METHOD:: unpackNotes
 
@@ -129,12 +118,10 @@ METHOD:: unpackNotes
 argument:: notes
 
 
-returns::
 
 METHOD:: initClass
 
 
-returns::
 
 METHOD:: new
 
@@ -142,7 +129,6 @@ METHOD:: new
 argument:: weakRef
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -150,7 +136,6 @@ INSTANCEMETHODS::
 METHOD:: dereference
 
 
-returns::
 
 
 

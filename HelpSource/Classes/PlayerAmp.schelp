@@ -42,7 +42,6 @@ argument:: amp
 argument:: spec
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -53,27 +52,22 @@ METHOD:: amp
 argument:: v
 
 
-returns::
 
 METHOD:: spec
 
 
-returns::
 
 METHOD:: asSynthDef
 
 
-returns::
 
 METHOD:: defName
 
 
-returns::
 
 METHOD:: synthDefArgs
 
 
-returns::
 
 METHOD:: db
 
@@ -81,7 +75,6 @@ METHOD:: db
 argument:: db
 
 
-returns::
 
 METHOD:: value
 
@@ -89,12 +82,10 @@ METHOD:: value
 argument:: v
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 
 

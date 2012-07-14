@@ -56,7 +56,6 @@ CLASSMETHODS::
 METHOD:: defaultLag
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -64,7 +63,6 @@ INSTANCEMETHODS::
 METHOD:: lag
 
 
-returns::
 
 METHOD:: init
 
@@ -75,7 +73,6 @@ argument:: val
 argument:: aspec
 
 
-returns::
 
 METHOD:: canDoSpec
 
@@ -83,7 +80,6 @@ METHOD:: canDoSpec
 argument:: aspec
 
 
-returns::
 
 METHOD:: addToSynthDef
 
@@ -94,7 +90,6 @@ argument:: synthDef
 argument:: name
 
 
-returns::
 
 METHOD:: instrArgFromControl
 
@@ -102,12 +97,10 @@ METHOD:: instrArgFromControl
 argument:: control
 
 
-returns::
 
 METHOD:: makePatchOut
 
 
-returns::
 
 METHOD:: connectToPatchIn
 
@@ -118,17 +111,14 @@ argument:: patchIn
 argument:: needsValueSetNow
 
 
-returns::
 
 METHOD:: copy
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 METHOD:: addToDefName
 
@@ -136,7 +126,6 @@ METHOD:: addToDefName
 argument:: stream
 
 
-returns::
 
 
 

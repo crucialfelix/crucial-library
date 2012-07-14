@@ -63,7 +63,6 @@ argument:: numChannels
 argument:: limit
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -71,52 +70,42 @@ INSTANCEMETHODS::
 METHOD:: env
 
 
-returns::
 
 METHOD:: numChannels
 
 
-returns::
 
 METHOD:: limit
 
 
-returns::
 
 METHOD:: onFuseBlown
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: asSynthDef
 
 
-returns::
 
 METHOD:: defName
 
 
-returns::
 
 METHOD:: synthDefArgs
 
 
-returns::
 
 METHOD:: didSpawn
 
 
-returns::
 
 METHOD:: didStop
 
 
-returns::
 
 METHOD:: releaseToBundle
 
@@ -127,7 +116,6 @@ argument:: releaseTime
 argument:: bundle
 
 
-returns::
 
 
 EXAMPLES::

@@ -44,12 +44,10 @@ METHOD:: new
 argument:: numChannels
 The number of channels your input requires. Default value is 1. This can also be nil which expresses that your Instr will multi-channel expand if given more than one channel.  ie. its mono-stereo compatible
 
-returns::
 
 METHOD:: initClass
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -57,22 +55,18 @@ INSTANCEMETHODS::
 METHOD:: numChannels
 
 
-returns::
 
 METHOD:: defaultControl
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: canAccept
 
@@ -80,7 +74,6 @@ METHOD:: canAccept
 argument:: thing
 
 
-returns::
 
 METHOD:: constrain
 
@@ -88,10 +81,8 @@ METHOD:: constrain
 argument::  ... args
 
 
-returns::
 
 METHOD:: color
 
 
-returns::
 

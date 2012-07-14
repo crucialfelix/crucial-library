@@ -22,7 +22,6 @@ METHOD:: setInputBus
 argument:: abus
 
 
-returns::
 
 METHOD:: setSourceToBundle
 
@@ -36,7 +35,6 @@ argument:: bundle
 argument:: releaseTime
 
 
-returns::
 
 
 EXAMPLES::

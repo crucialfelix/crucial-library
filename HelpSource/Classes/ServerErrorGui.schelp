@@ -29,7 +29,6 @@ INSTANCEMETHODS::
 METHOD:: writeName
 
 
-returns::
 
 METHOD:: guiBody
 
@@ -37,17 +36,14 @@ METHOD:: guiBody
 argument:: layout
 
 
-returns::
 
 METHOD:: remove
 
 
-returns::
 
 METHOD:: isClosed
 
 
-returns::
 
 
 

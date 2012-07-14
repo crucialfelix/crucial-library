@@ -47,7 +47,6 @@ METHOD:: new
 argument::  ... nameFuncs
 
 
-returns::
 
 METHOD:: newWith
 
@@ -55,7 +54,6 @@ METHOD:: newWith
 argument:: nameFuncs
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -66,27 +64,22 @@ METHOD:: nameFuncs
 argument:: nf
 
 
-returns::
 
 METHOD:: layout
 
 
-returns::
 
 METHOD:: backColor
 
 
-returns::
 
 METHOD:: stringColor
 
 
-returns::
 
 METHOD:: closeOnSelect
 
 
-returns::
 
 METHOD:: gui
 
@@ -103,7 +96,6 @@ argument:: height
 argument:: argButtonWidth
 
 
-returns::
 
 METHOD:: guiBody
 
@@ -111,7 +103,6 @@ METHOD:: guiBody
 argument:: resize
 
 
-returns::
 
 METHOD:: add
 
@@ -119,7 +110,6 @@ METHOD:: add
 argument:: nf
 
 
-returns::
 
 METHOD:: addToGui
 
@@ -130,7 +120,6 @@ argument:: nf
 argument:: resize
 
 
-returns::
 
 METHOD:: resize
 
@@ -138,22 +127,18 @@ METHOD:: resize
 argument:: r
 
 
-returns::
 
 METHOD:: doAction
 
 
-returns::
 
 METHOD:: keyDownResponder
 
 
-returns::
 
 METHOD:: focus
 
 
-returns::
 
 METHOD:: focusOn
 
@@ -161,7 +146,6 @@ METHOD:: focusOn
 argument:: f
 
 
-returns::
 
 EXAMPLES::
 

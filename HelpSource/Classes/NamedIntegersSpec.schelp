@@ -55,7 +55,6 @@ argument:: default
 argument:: static
 
 
-returns::
 
 METHOD:: newFrom
 
@@ -63,7 +62,6 @@ METHOD:: newFrom
 argument:: similar
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -71,22 +69,18 @@ INSTANCEMETHODS::
 METHOD:: values
 
 
-returns::
 
 METHOD:: names
 
 
-returns::
 
 METHOD:: static
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: nisinit
 
@@ -100,17 +94,14 @@ argument:: s
 argument:: d
 
 
-returns::
 
 METHOD:: canKr
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: defaultControl
 
@@ -118,7 +109,6 @@ METHOD:: defaultControl
 argument:: val
 
 
-returns::
 
 
 

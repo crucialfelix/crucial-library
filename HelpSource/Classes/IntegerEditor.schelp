@@ -21,7 +21,6 @@ argument:: val
 argument:: changer
 
 
-returns::
 
 METHOD:: rand
 
@@ -32,7 +31,6 @@ argument:: standardDeviation
 argument:: mean
 
 
-returns::
 
 
 

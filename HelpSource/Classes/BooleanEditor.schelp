@@ -21,7 +21,6 @@ METHOD:: new
 argument:: val
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -32,7 +31,6 @@ METHOD:: instrArgFromControl
 argument:: control
 
 
-returns::
 
 METHOD:: value
 
@@ -40,17 +38,14 @@ METHOD:: value
 argument:: v
 
 
-returns::
 
 METHOD:: rand
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 
 

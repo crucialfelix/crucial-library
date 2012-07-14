@@ -15,7 +15,6 @@ METHOD:: new
 argument:: itemSpec
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -23,17 +22,14 @@ INSTANCEMETHODS::
 METHOD:: itemSpec
 
 
-returns::
 
 METHOD:: defaultControl
 
 
-returns::
 
 METHOD:: default
 
 
-returns::
 
 METHOD:: map
 
@@ -41,7 +37,6 @@ METHOD:: map
 argument:: val
 
 
-returns::
 
 METHOD:: unmap
 
@@ -49,7 +44,6 @@ METHOD:: unmap
 argument:: val
 
 
-returns::
 
 METHOD:: constrain
 
@@ -57,12 +51,10 @@ METHOD:: constrain
 argument:: val
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 
 

@@ -21,7 +21,6 @@ argument:: topBarFunc
 argument:: showUGenInstr
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -29,37 +28,30 @@ INSTANCEMETHODS::
 METHOD:: toolbarFunc
 
 
-returns::
 
 METHOD:: topBarFunc
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: showUGenInstr
 
 
-returns::
 
 METHOD:: inputSpec
 
 
-returns::
 
 METHOD:: outputSpec
 
 
-returns::
 
 METHOD:: filterFunc
 
 
-returns::
 
 METHOD:: gui
 
@@ -70,7 +62,6 @@ argument:: layout
 argument:: bounds
 
 
-returns::
 
 METHOD:: guiBody
 
@@ -78,27 +69,22 @@ METHOD:: guiBody
 argument:: layout
 
 
-returns::
 
 METHOD:: init
 
 
-returns::
 
 METHOD:: rateMethod
 
 
-returns::
 
 METHOD:: allInstr
 
 
-returns::
 
 METHOD:: refresh
 
 
-returns::
 
 METHOD:: search
 
@@ -106,7 +92,6 @@ METHOD:: search
 argument:: q
 
 
-returns::
 
 METHOD:: focus
 
@@ -114,7 +99,6 @@ METHOD:: focus
 argument:: instrname
 
 
-returns::
 
 
 

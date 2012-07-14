@@ -15,7 +15,6 @@ METHOD:: new
 argument:: prototype
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -23,7 +22,6 @@ INSTANCEMETHODS::
 METHOD:: prototype
 
 
-returns::
 
 METHOD:: canAccept
 
@@ -31,22 +29,18 @@ METHOD:: canAccept
 argument:: ting
 
 
-returns::
 
 METHOD:: default
 
 
-returns::
 
 METHOD:: defaultControl
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 
 

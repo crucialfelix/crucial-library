@@ -32,7 +32,6 @@ INSTANCEMETHODS::
 METHOD:: history
 
 
-returns::
 
 METHOD:: value
 
@@ -40,12 +39,10 @@ METHOD:: value
 argument:: path
 
 
-returns::
 
 METHOD:: reset
 
 
-returns::
 
 
 

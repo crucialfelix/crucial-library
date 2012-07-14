@@ -161,12 +161,10 @@ argument:: outSpec
 	and finding what the spec of the result is.
 	An Instr can be .ar, .kr or can even return an object, a player, or a pattern.
 
-returns::
 
 METHOD:: prNew
 private
 
-returns::
 
 METHOD:: dir
 The default directory to look for Instr.  Each quark can also contain an Instr/ dir and those will be searched.
@@ -174,7 +172,6 @@ The default directory to look for Instr.  Each quark can also contain an Instr/ 
 argument:: p
 path
 
-returns::
 
 
 METHOD:: at
@@ -183,7 +180,6 @@ look up an Instr by name, searching and loading from disk if not already loaded.
 argument:: name
 
 
-returns::
 
 METHOD:: load
 loads Instr by name from file
@@ -191,12 +187,10 @@ loads Instr by name from file
 argument:: name
 
 
-returns::
 
 METHOD:: loadAll
 loads all Instr in all Instr/ directories. This usually doesn't take very long and doesn't take up that much memory.  I load all on compile.
 
-returns::
 
 METHOD:: prLoadDir
 private
@@ -204,7 +198,6 @@ private
 argument:: dir
 
 
-returns::
 
 METHOD:: addExcludePaths
 Because Instr files are kept in quarks this can greatly increase the number of files that the language compiler will attempt to examine.  It won't compile them, but it looks at all of those folders anyway.  This adds the paths of all of your Instr folders to the link::Classes/LanguageConfig:: exclude paths.
@@ -216,12 +209,10 @@ code::
 )
 ::
 
-returns::
 
 METHOD:: clearAll
 clear the Library cache
 
-returns::
 
 METHOD:: ar
 As a class method, this looks up (or loads) the Instr and values it with supplied args.  It can thus be used as a kind of subroutine or easily reusable function.
@@ -250,7 +241,6 @@ argument:: name
 argument:: args
 array or dict
 
-returns::
 
 METHOD:: kr
 see ar
@@ -261,7 +251,6 @@ argument:: name
 argument:: args
 array or dict
 
-returns::
 
 METHOD:: choose
 choose a random Instr from the library.
@@ -306,7 +295,6 @@ METHOD:: put
 
 argument:: instr
 
-returns::
 
 
 METHOD:: remove
@@ -329,7 +317,6 @@ argument:: pairs
 argument:: outSpec
 
 
-returns::
 
 METHOD:: symbolizeName
 convert dotNotation to symbolized list form: [\one,\two,\three]
@@ -338,7 +325,6 @@ private
 argument:: name
 
 
-returns::
 
 METHOD:: isDefined
 checks if an object by this name is already defined
@@ -354,7 +340,6 @@ METHOD:: objectAt
 argument:: name
 
 
-returns::
 
 METHOD:: findFileFor
 
@@ -362,7 +347,6 @@ METHOD:: findFileFor
 argument:: symbolized
 name as list of symbols
 
-returns::
 
 METHOD:: findFileInDir
 private
@@ -374,12 +358,10 @@ name as list of symbols
 argument:: rootPath
 
 
-returns::
 
 METHOD:: initClass
 private
 
-returns::
 
 METHOD:: singleNameAsNames
 private
@@ -388,7 +370,6 @@ converts dotNotation to symbolized list
 argument:: singleName
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -397,7 +378,6 @@ METHOD:: name
 the symbolized version of the name: [\one,\two,\three]
 dotNotation is usually nicer to work with.
 
-returns::
 
 
 METHOD:: dotNotation
@@ -407,22 +387,18 @@ returns:: string
 
 METHOD:: func
 get or set the Instr function
-returns::
 
 METHOD:: specs
 an array of specs, one for each input
 
-returns::
 
 METHOD:: outSpec
 the output Spec of the Instr.  if your Instr is not 'audio' rate or is multi channel than it is best to specify an outSpec
 
-returns::
 
 METHOD:: explicitSpecs
 those that were declared when creating the Instr, as opposed to those that were not supplied and were guessed by using the argName
 
-returns::
 
 METHOD:: convertArgs
 Most methods accept args in the form of a list [ 440, 1.0, Env.adsr ] or as a argName:value dict (env:Env.adsr)
@@ -440,7 +416,6 @@ values the function using the supplied inputs.  this is for using Instr as a sub
 argument::  ... inputs
 inputs as separate arguments
 
-returns::
 
 METHOD:: value
 inputs as a single array or dict
@@ -449,7 +424,6 @@ same as .valueArray but should probably change to accept ... inputs
 argument:: inputs
 array or dict
 
-returns::
 
 METHOD:: valueEnvir
 values the function with the supplied inputs, filling in any missing ones by looking up by argName in the current link::Classes/Environment::
@@ -457,7 +431,6 @@ values the function with the supplied inputs, filling in any missing ones by loo
 argument:: inputs
 array or dict
 
-returns::
 
 METHOD:: valueArray
 like value but takes a single array
@@ -465,7 +438,6 @@ like value but takes a single array
 argument:: inputs
 array or dict
 
-returns::
 
 
 METHOD:: kr
@@ -474,7 +446,6 @@ same as ar
 argument::  ... inputs
 array or dict
 
-returns::
 
 METHOD:: asSynthDef
 creates a SynthDef
@@ -487,7 +458,6 @@ if no Out.ar is found in your Instr then it automatically adds one and an argume
 
 The default class is Out, but you can specify ReplaceOut or OffsetOut
 
-returns::
 
 METHOD:: writeDefFile
 creates SynthDef and writes it to file
@@ -527,7 +497,6 @@ argument:: completionMsg
 argument:: keepDef
 
 
-returns::
 
 METHOD:: store
 for Patterns.  older system, .add is preferred now
@@ -536,7 +505,6 @@ argument:: args
 array or dict
 
 
-returns::
 
 
 
@@ -653,7 +621,6 @@ see link::Guides/atTime::
 argument:: out
 out bus index
 
-returns::
 
 METHOD:: spawnEvent
 sets the Event 'type' = 'instr' and 'instr' = this and then .plays the Event.
@@ -661,7 +628,6 @@ sets the Event 'type' = 'instr' and 'instr' = this and then .plays the Event.
 argument:: event
 link::Classes/Event:: to play.  Instr arguments will be looked up by name in the Event.
 
-returns::
 
 METHOD:: next
 same as valueArray, for use in Streams
@@ -669,7 +635,6 @@ same as valueArray, for use in Streams
 argument::  ... inputs
 array or dict
 
-returns::
 
 METHOD:: <>>
 function composition : construct a CompositeInstr by patching this Instr into another one.
@@ -685,7 +650,6 @@ partial application : fix certain args with the supplied object.  returns a link
 argument::  ... args
 either a dict or a list.  if a list then non nil arguments will
 
-returns::
 
 METHOD:: rate
 \audio \control \scalar \stream
@@ -701,17 +665,14 @@ returns:: Integer
 METHOD:: path
 full path on disk if the Instr was loaded from a file
 
-returns::
 
 METHOD:: maxArgs
 same as argsSize
 
-returns::
 
 METHOD:: argsSize
 number of arguments / inputs.
 
-returns::
 
 METHOD:: argNames
 
@@ -730,7 +691,6 @@ METHOD:: argNameAt
 argument:: i
 
 
-returns::
 
 METHOD:: defArgAt
 
@@ -738,7 +698,6 @@ METHOD:: defArgAt
 argument:: i
 
 
-returns::
 
 METHOD:: initAt
 either the default value supplied in the function or the spec's default value.
@@ -746,7 +705,6 @@ either the default value supplied in the function or the spec's default value.
 argument:: i
 
 
-returns::
 
 METHOD:: defName
 the instr name as a string:  "one.two.three"
@@ -754,7 +712,6 @@ the instr name as a string:  "one.two.three"
 deprec.
 
 
-returns::
 
 METHOD:: asDefName
 calculates the unique SynthDef name for the supplied arguments.  this is fairly efficient and is even used when spawning Events in Patterns
@@ -775,12 +732,10 @@ argument:: group
 argument:: bundle
 
 
-returns::
 
 METHOD:: funcDef
 
 
-returns::
 
 METHOD:: prMakeSynth
 
@@ -806,7 +761,6 @@ argument:: out
 out bus index
 
 
-returns::
 
 METHOD:: test
 creates a Patch, guis it and plays it
@@ -833,25 +787,21 @@ array or dict
 argument:: duration
 
 
-returns::
 
 
 
 METHOD:: asString
 printable name
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: storeableFuncReference
 for storing Instr and objects that have Instr.
 if the Instr was loaded from disk then the dotNotation instr name is used.  if it was created with something like Patch({ SinOsc.ar }) then the source code is used.
 
-returns::
 
 METHOD:: copy
 if the name is the same then its the same Instr. so copying just returns self.  this might be changed.
@@ -865,10 +815,9 @@ private
 argument:: specs
 
 
-argument:: outSpec
+argument:: outsp
+outSpec
 
-
-returns::
 
 METHOD:: makeSpecs
 private
@@ -876,7 +825,6 @@ private
 argument:: argSpecs
 
 
-returns::
 
 METHOD:: isFilter
 a filter is any instr that has an input the same spec as its output.
@@ -886,17 +834,14 @@ returns:: Boolean
 METHOD:: guiClass
 
 
-returns::
 
 METHOD:: asSingleName
 
 
-returns::
 
 METHOD:: asInstr
 
 
-returns::
 
 METHOD:: instr
 
@@ -904,12 +849,10 @@ METHOD:: instr
 argument::  ... args
 
 
-returns::
 
 METHOD:: proxyControlClass
 
 
-returns::
 
 METHOD:: wrapInFader
 
@@ -917,5 +860,4 @@ METHOD:: wrapInFader
 argument:: bus
 
 
-returns::
 

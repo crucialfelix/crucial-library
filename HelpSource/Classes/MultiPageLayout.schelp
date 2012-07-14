@@ -15,7 +15,6 @@ METHOD:: new
 argument::  ... args
 
 
-returns::
 
 
 INSTANCEMETHODS::

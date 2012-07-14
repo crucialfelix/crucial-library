@@ -12,7 +12,6 @@ CLASSMETHODS::
 METHOD:: setTempoKeys
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -20,7 +19,6 @@ INSTANCEMETHODS::
 METHOD:: writeName
 
 
-returns::
 
 METHOD:: guiBody
 
@@ -28,12 +26,10 @@ METHOD:: guiBody
 argument:: layout
 
 
-returns::
 
 METHOD:: update
 
 
-returns::
 
 
 

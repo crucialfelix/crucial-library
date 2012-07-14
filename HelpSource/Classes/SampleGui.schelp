@@ -18,7 +18,6 @@ METHOD:: writeName
 argument:: layout
 
 
-returns::
 
 METHOD:: guiBody
 
@@ -26,7 +25,6 @@ METHOD:: guiBody
 argument:: layout
 
 
-returns::
 
 METHOD:: update
 
@@ -37,17 +35,14 @@ argument:: changed
 argument:: changer
 
 
-returns::
 
 METHOD:: updateSelection
 
 
-returns::
 
 METHOD:: loadDialog
 
 
-returns::
 
 
 

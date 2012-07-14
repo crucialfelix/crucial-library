@@ -112,7 +112,6 @@ argument:: outClass
 
 default is Out.ar You could supply ReplaceOut to do effect processing on a Bus
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -123,7 +122,6 @@ METHOD:: instr
 argument:: newInstr
 
 
-returns::
 
 METHOD:: args
 
@@ -131,32 +129,26 @@ METHOD:: args
 argument:: inputs
 array or dict
 
-returns::
 
 METHOD:: argsForSynth
 
 
-returns::
 
 METHOD:: argNamesForSynth
 
 
-returns::
 
 METHOD:: synthArgsIndices
 
 
-returns::
 
 METHOD:: synthDef
 
 
-returns::
 
 METHOD:: outClass
 
 
-returns::
 
 METHOD:: respawnOnChange
 The Patch is a dependant of the Instr. When the Instr is redefined (you edit the func def and evaluate the Instr code, it saves it to the Library) it will call .changed on itself and the Patch can be set to automatically respawn iself.
@@ -165,18 +157,15 @@ if nil (default) then it will not
 
 if a number then it is an link::Guides/atTime:: specifier:  1 means respawn on the next bar, 4 means on the next beat.  0.1 would respawn in 0.1 seconds after change.
 
-returns::
 
 METHOD:: stepChildren
 private
 the children are the inputs to the Patch.  the stepChildren are hidden objects like ClientOnTrigResponder or TempoBus
 
-returns::
 
 METHOD:: inputs
 
 
-returns::
 
 METHOD:: setInput
 
@@ -187,7 +176,6 @@ argument:: index
 argument:: newArg
 
 
-returns::
 
 METHOD:: set
 
@@ -198,7 +186,6 @@ argument:: index
 argument:: value
 
 
-returns::
 
 METHOD:: rand
 call .rand on all inputs that support .rand; specifically NumberEditors will do a gaussian distribution randomization centered on the default value of the ControlSpec.
@@ -218,12 +205,10 @@ argument:: selector
 argument::  ... dnuargs
 
 
-returns::
 
 METHOD:: argNames
 
 
-returns::
 
 METHOD:: argNameAt
 
@@ -231,7 +216,6 @@ METHOD:: argNameAt
 argument:: i
 
 
-returns::
 
 METHOD:: specAt
 
@@ -239,22 +223,18 @@ METHOD:: specAt
 argument:: i
 
 
-returns::
 
 METHOD:: spec
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: numChannels
 
 
-returns::
 
 METHOD:: indexFromName
 
@@ -262,7 +242,6 @@ METHOD:: indexFromName
 argument:: argName
 
 
-returns::
 
 METHOD:: argFromName
 
@@ -270,7 +249,6 @@ METHOD:: argFromName
 argument:: argName
 
 
-returns::
 
 METHOD:: loadSubject
 
@@ -278,7 +256,6 @@ METHOD:: loadSubject
 argument:: name
 
 
-returns::
 
 METHOD:: createArgs
 
@@ -286,22 +263,18 @@ METHOD:: createArgs
 argument:: argargs
 
 
-returns::
 
 METHOD:: defName
 
 
-returns::
 
 METHOD:: asSynthDef
 
 
-returns::
 
 METHOD:: watchNoncontrols
 
 
-returns::
 
 METHOD:: respawn
 
@@ -310,7 +283,6 @@ argument:: atTime
 see link::Guides/atTime::
 
 
-returns::
 
 METHOD:: update
 
@@ -321,27 +293,22 @@ argument:: changed
 argument:: what
 
 
-returns::
 
 METHOD:: removeSynthDefCache
 
 
-returns::
 
 METHOD:: invalidateSynthDef
 
 
-returns::
 
 METHOD:: releaseArgs
 
 
-returns::
 
 METHOD:: didFree
 
 
-returns::
 
 METHOD:: prepareChildrenToBundle
 
@@ -349,7 +316,6 @@ METHOD:: prepareChildrenToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: spawnToBundle
 
@@ -357,17 +323,14 @@ METHOD:: spawnToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: didSpawn
 private
 
-returns::
 
 METHOD:: synthDefArgs
 
 
-returns::
 
 METHOD:: stopToBundle
 
@@ -375,7 +338,6 @@ METHOD:: stopToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: value
 value the Instr as a function returning the result
@@ -383,7 +345,6 @@ value the Instr as a function returning the result
 argument::  ... overideArgs
 array or dict of args that should overide any of the Patch's inputs.
 
-returns::
 
 METHOD:: valueArray
 
@@ -391,7 +352,6 @@ METHOD:: valueArray
 argument:: overideArgs
 
 
-returns::
 
 METHOD:: asEvent
 returns an Event that encapsulates the current state of the Patch.  this can be spawned with .play or further manipulated
@@ -414,7 +374,6 @@ Sheet({ arg f;
 )
 ::
 
-returns::
 
 METHOD:: embedInStream
 
@@ -422,12 +381,10 @@ METHOD:: embedInStream
 argument:: event
 
 
-returns::
 
 METHOD:: children
 
 
-returns::
 
 METHOD:: printOn
 
@@ -435,7 +392,6 @@ METHOD:: printOn
 argument:: s
 
 
-returns::
 
 METHOD:: storeParamsOn
 
@@ -443,17 +399,14 @@ METHOD:: storeParamsOn
 argument:: stream
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 
 

@@ -18,7 +18,6 @@ argument:: tracks
 argument:: numChannels
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -26,12 +25,10 @@ INSTANCEMETHODS::
 METHOD:: tracks
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 
 

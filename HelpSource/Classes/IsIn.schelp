@@ -15,7 +15,6 @@ METHOD:: new
 argument:: collection
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -23,7 +22,6 @@ INSTANCEMETHODS::
 METHOD:: collection
 
 
-returns::
 
 METHOD:: value
 
@@ -31,7 +29,6 @@ METHOD:: value
 argument:: obj
 
 
-returns::
 
 
 

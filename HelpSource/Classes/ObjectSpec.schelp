@@ -19,7 +19,6 @@ METHOD:: new
 argument:: defaultControl
 This can be a function that will create a defaultControl as the other Spec classes do.
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -27,7 +26,6 @@ INSTANCEMETHODS::
 METHOD:: defaultControl
 
 
-returns::
 
 METHOD:: storeArgs
 
@@ -35,7 +33,6 @@ METHOD:: storeArgs
 argument:: stream
 
 
-returns::
 
 
 EXAMPLES::
