@@ -15,7 +15,6 @@ METHOD:: new
 argument:: spec
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -23,22 +22,18 @@ INSTANCEMETHODS::
 METHOD:: action
 
 
-returns::
 
 METHOD:: spec
 
 
-returns::
 
 METHOD:: value
 
 
-returns::
 
 METHOD:: init
 
 
-returns::
 
 METHOD:: trig
 
@@ -46,17 +41,14 @@ METHOD:: trig
 argument:: val
 
 
-returns::
 
 METHOD:: synthArg
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: addToSynthDef
 
@@ -67,7 +59,6 @@ argument:: synthDef
 argument:: name
 
 
-returns::
 
 METHOD:: instrArgFromControl
 
@@ -75,22 +66,18 @@ METHOD:: instrArgFromControl
 argument:: control
 
 
-returns::
 
 METHOD:: makePatchOut
 
 
-returns::
 
 METHOD:: didStop
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 
 

@@ -15,12 +15,10 @@ INSTANCEMETHODS::
 METHOD:: canKr
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: defaultControl
 
@@ -28,10 +26,8 @@ METHOD:: defaultControl
 argument:: val
 
 
-returns::
 
 METHOD:: color
 
 
-returns::
 

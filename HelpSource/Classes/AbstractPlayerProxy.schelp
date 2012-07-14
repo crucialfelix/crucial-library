@@ -28,37 +28,30 @@ INSTANCEMETHODS::
 METHOD:: source
 
 
-returns::
 
 METHOD:: socketStatus
 
 
-returns::
 
 METHOD:: asSynthDef
 
 
-returns::
 
 METHOD:: synthDefArgs
 
 
-returns::
 
 METHOD:: synthArg
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: numChannels
 
 
-returns::
 
 METHOD:: loadDefFileToBundle
 
@@ -69,12 +62,10 @@ argument:: b
 argument:: server
 
 
-returns::
 
 METHOD:: defName
 
 
-returns::
 
 METHOD:: spawnToBundle
 
@@ -82,17 +73,14 @@ METHOD:: spawnToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: isPlaying
 
 
-returns::
 
 METHOD:: didSpawn
 
 
-returns::
 
 METHOD:: instrArgFromControl
 
@@ -100,7 +88,6 @@ METHOD:: instrArgFromControl
 argument:: control
 
 
-returns::
 
 METHOD:: initForSynthDef
 
@@ -111,7 +98,6 @@ argument:: synthDef
 argument:: argi
 
 
-returns::
 
 METHOD:: connectToPatchIn
 
@@ -122,17 +108,14 @@ argument:: patchIn
 argument:: needsValueSetNow
 
 
-returns::
 
 METHOD:: didStop
 
 
-returns::
 
 METHOD:: children
 
 
-returns::
 
 METHOD:: prepareChildrenToBundle
 
@@ -140,7 +123,6 @@ METHOD:: prepareChildrenToBundle
 argument:: bundle
 
 
-returns::
 
 
 

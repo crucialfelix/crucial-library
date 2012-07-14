@@ -33,7 +33,6 @@ METHOD:: new
 argument:: spec
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -41,22 +40,18 @@ INSTANCEMETHODS::
 METHOD:: spec
 
 
-returns::
 
 METHOD:: initValue
 
 
-returns::
 
 METHOD:: patchIn
 
 
-returns::
 
 METHOD:: pipinit
 
 
-returns::
 
 METHOD:: setInputBus
 
@@ -64,7 +59,6 @@ METHOD:: setInputBus
 argument:: bus
 
 
-returns::
 
 METHOD:: setNodeControl
 
@@ -72,17 +66,14 @@ METHOD:: setNodeControl
 argument:: nc
 
 
-returns::
 
 METHOD:: synthArg
 
 
-returns::
 
 METHOD:: ar
 
 
-returns::
 
 METHOD:: makePatchOut
 
@@ -99,17 +90,14 @@ argument:: bus
 argument:: bundle
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: numChannels
 
 
-returns::
 
 
 

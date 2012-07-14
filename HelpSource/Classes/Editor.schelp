@@ -32,12 +32,10 @@ argument:: object
 argument::  ... args
 additional arguments are supplied to the purveyor function
 
-returns::
 
 METHOD:: editorFor
 private. this is the handler dictionary
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -45,17 +43,14 @@ INSTANCEMETHODS::
 METHOD:: action
 Like a view, an editor has an action function which will fire when the value is set.  Note that an Editor does not have to have an open GUI.
 
-returns::
 
 METHOD:: value
 Get the current value of the edited object
 
-returns::
 
 METHOD:: patchOut
 
 
-returns::
 
 METHOD:: storeOn
 Editors always store the value.  In other words, when saving they do not store an Editor, they store the edited object.
@@ -63,7 +58,6 @@ Editors always store the value.  In other words, when saving they do not store a
 argument:: stream
 
 
-returns::
 
 METHOD:: next
 
@@ -72,7 +66,6 @@ returns:: current edited value
 METHOD:: poll
 
 
-returns::
 
 METHOD:: dereference
 
@@ -84,7 +77,6 @@ METHOD:: embedInStream
 argument:: inval
 
 
-returns::
 
 METHOD:: asStream
 an Editor can be used as a stream. it would return the current edited value on each iteration
@@ -97,12 +89,10 @@ METHOD:: setPatchOut
 argument:: po
 
 
-returns::
 
 METHOD:: makePatchOut
 
 
-returns::
 
 METHOD:: stopToBundle
 
@@ -110,7 +100,6 @@ METHOD:: stopToBundle
 argument:: b
 
 
-returns::
 
 METHOD:: freePatchOutToBundle
 
@@ -118,12 +107,10 @@ METHOD:: freePatchOutToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: synthArg
 
 
-returns::
 
 METHOD:: instrArgFromControl
 
@@ -131,7 +118,6 @@ METHOD:: instrArgFromControl
 argument:: control
 
 
-returns::
 
 METHOD:: editWithCallback
 
@@ -139,7 +125,6 @@ METHOD:: editWithCallback
 argument:: callback
 
 
-returns::
 
 METHOD:: set
 
@@ -147,7 +132,6 @@ METHOD:: set
 argument:: val
 
 
-returns::
 
 METHOD:: activeValue
 
@@ -155,7 +139,6 @@ METHOD:: activeValue
 argument:: val
 
 
-returns::
 
 METHOD:: valueAction
 
@@ -163,22 +146,18 @@ METHOD:: valueAction
 argument:: val
 
 
-returns::
 
 METHOD:: spec
 
 
-returns::
 
 METHOD:: copy
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 METHOD:: addToDefName
 
@@ -186,7 +165,6 @@ METHOD:: addToDefName
 argument:: stream
 
 
-returns::
 
 METHOD:: state
 
@@ -194,7 +172,6 @@ METHOD:: state
 argument:: val
 
 
-returns::
 
 
 

@@ -109,7 +109,6 @@ argument:: startFrame
 argument:: endFrame
 
 
-returns::
 
 METHOD:: newClear
 
@@ -123,7 +122,6 @@ argument:: numChannels
 argument:: sampleRate
 
 
-returns::
 
 METHOD:: roster
 
@@ -134,7 +132,6 @@ argument:: perItems
 argument:: globals
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -142,7 +139,6 @@ INSTANCEMETHODS::
 METHOD:: soundFile
 
 
-returns::
 
 METHOD:: beats
 number of beats in the sample if its a rhythmic loop.  this co-depends on the tempo setting.
@@ -150,7 +146,6 @@ number of beats in the sample if its a rhythmic loop.  this co-depends on the te
 argument:: bt
 
 
-returns::
 
 METHOD:: tempo
 tempo of the musical content of the sample if its a rhythmic loop.  this co-depends on the beats setting.
@@ -159,23 +154,19 @@ tempo of the musical content of the sample if its a rhythmic loop.  this co-depe
 argument:: tm
 
 
-returns::
 
 METHOD:: beatsize
 number of samples per beat based on beat or tempo setting.
 
-returns::
 
 METHOD:: end
 signal.size - 1
 	the last indexable position in the signal
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: printOn
 
@@ -183,7 +174,6 @@ METHOD:: printOn
 argument:: stream
 
 
-returns::
 
 METHOD:: load
 
@@ -200,7 +190,6 @@ argument:: argStartFrame
 argument:: argEndFrame
 
 
-returns::
 
 METHOD:: prLoad
 
@@ -211,12 +200,10 @@ argument:: thing
 argument:: t
 
 
-returns::
 
 METHOD:: reloadBuffer
 
 
-returns::
 
 METHOD:: bpm
 
@@ -224,12 +211,10 @@ METHOD:: bpm
 argument:: bpm
 
 
-returns::
 
 METHOD:: calculate
 
 
-returns::
 
 METHOD:: guessBeats
 
@@ -240,7 +225,6 @@ argument:: min
 argument:: max
 
 
-returns::
 
 METHOD:: initForSynthDef
 
@@ -251,27 +235,22 @@ argument:: synthDef
 argument:: argi
 
 
-returns::
 
 METHOD:: pchRatioKr
 
 
-returns::
 
 METHOD:: getTempoBus
 
 
-returns::
 
 METHOD:: beatsizeIr
 
 
-returns::
 
 METHOD:: sampleTempoIr
 
 
-returns::
 
 METHOD:: prepareToBundle
 
@@ -282,17 +261,14 @@ argument:: group
 argument:: bundle
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 METHOD:: play
 
 
-returns::
 
 METHOD:: asSignal
 
@@ -300,7 +276,6 @@ METHOD:: asSignal
 argument:: channel
 
 
-returns::
 
 METHOD:: addToDefName
 
@@ -308,17 +283,14 @@ METHOD:: addToDefName
 argument:: stream
 
 
-returns::
 
 METHOD:: spec
 
 
-returns::
 
 METHOD:: rand
 
 
-returns::
 
 
 EXAMPLES::

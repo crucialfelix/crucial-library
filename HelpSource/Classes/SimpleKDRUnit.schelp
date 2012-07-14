@@ -21,7 +21,6 @@ argument:: function
 argument:: description
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -29,17 +28,14 @@ INSTANCEMETHODS::
 METHOD:: requireMask
 
 
-returns::
 
 METHOD:: function
 
 
-returns::
 
 METHOD:: description
 
 
-returns::
 
 METHOD:: value
 
@@ -59,7 +55,6 @@ argument:: unicode
 argument:: keycode
 
 
-returns::
 
 METHOD:: ==
 
@@ -67,17 +62,14 @@ METHOD:: ==
 argument:: that
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 METHOD:: report
 
 
-returns::
 
 
 

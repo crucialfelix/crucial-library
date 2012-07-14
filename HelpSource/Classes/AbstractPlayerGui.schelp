@@ -39,7 +39,6 @@ argument:: bounds
 argument::  ... args
 
 
-returns::
 
 METHOD:: background
 
@@ -47,7 +46,6 @@ METHOD:: background
 argument:: b
 
 
-returns::
 
 METHOD:: topGui
 	does
@@ -66,7 +64,6 @@ argument:: bounds
 argument::  ... args
 
 
-returns::
 
 METHOD:: writeName
 	write the name of the object as a label.
@@ -75,17 +72,14 @@ METHOD:: writeName
 argument:: layout
 
 
-returns::
 
 METHOD:: viewDidClose
 
 
-returns::
 
 METHOD:: keyDownResponder
 
 
-returns::
 
 METHOD:: saveConsole
 	standard save controls using link::Classes/SaveConsole::. you can override this method in subclasses to customise.
@@ -95,7 +89,6 @@ METHOD:: saveConsole
 argument:: layout
 
 
-returns::
 
 METHOD:: synthConsole
 standard play/record/etc. controls using link::Classes/SynthConsole::.   you can override this method in
@@ -104,13 +97,11 @@ standard play/record/etc. controls using link::Classes/SynthConsole::.   you can
 argument:: layout
 
 
-returns::
 
 METHOD:: durationString
 	returns a formatted string representing the minutes:seconds duration of the player
 
 
-returns::
 
 METHOD:: durationGui
 	subclasses can call this to add a display of the duration of the player.  it will
@@ -119,12 +110,10 @@ METHOD:: durationGui
 argument:: layout
 
 
-returns::
 
 METHOD:: enableMIDI
 
 
-returns::
 
 
 

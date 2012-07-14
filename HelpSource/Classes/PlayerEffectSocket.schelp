@@ -8,7 +8,7 @@ DESCRIPTION:: hot swappable effects layer
 there is no crossfading or envelopes built into this.  the mix is always 100% wet.
 it is meant as a raw component that a more sophisticated switcher can use.
 
-see link::Clases/PlayerSocket:: which does a crossfade between two voices
+see link::Classes/PlayerSocket:: which does a crossfade between two voices
 
 
 CLASSMETHODS::
@@ -22,7 +22,6 @@ METHOD:: setInputBus
 argument:: abus
 
 
-returns::
 
 METHOD:: setSourceToBundle
 
@@ -36,7 +35,6 @@ argument:: bundle
 argument:: releaseTime
 
 
-returns::
 
 
 EXAMPLES::

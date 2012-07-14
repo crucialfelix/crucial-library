@@ -15,22 +15,18 @@ INSTANCEMETHODS::
 METHOD:: voices
 
 
-returns::
 
 METHOD:: children
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: numChannels
 
 
-returns::
 
 
 

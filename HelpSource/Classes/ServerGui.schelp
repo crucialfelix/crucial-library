@@ -17,7 +17,6 @@ INSTANCEMETHODS::
 METHOD:: writeName
 
 
-returns::
 
 METHOD:: guiBody
 
@@ -25,7 +24,6 @@ METHOD:: guiBody
 argument:: layout
 
 
-returns::
 
 METHOD:: output
 
@@ -36,7 +34,6 @@ argument:: layout
 argument:: width
 
 
-returns::
 
 METHOD:: input
 
@@ -47,7 +44,6 @@ argument:: layout
 argument:: width
 
 
-returns::
 
 METHOD:: meters
 
@@ -58,7 +54,6 @@ argument:: layout
 argument:: bounds
 
 
-returns::
 
 METHOD:: tail
 
@@ -66,7 +61,6 @@ METHOD:: tail
 argument:: layout
 
 
-returns::
 
 METHOD:: update
 
@@ -77,7 +71,6 @@ argument:: changer
 argument:: what
 
 
-returns::
 
 
 

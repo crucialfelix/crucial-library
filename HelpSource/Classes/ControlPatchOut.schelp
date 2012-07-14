@@ -15,17 +15,14 @@ INSTANCEMETHODS::
 METHOD:: init
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: synthArg
 
 
-returns::
 
 METHOD:: control
 
@@ -36,7 +33,6 @@ argument:: controlPatchIn
 argument:: needsValueSetNow
 
 
-returns::
 
 METHOD:: audio
 
@@ -44,7 +40,6 @@ METHOD:: audio
 argument:: audioPatchIn
 
 
-returns::
 
 METHOD:: scalar
 
@@ -52,7 +47,6 @@ METHOD:: scalar
 argument:: scalarPatchIn
 
 
-returns::
 
 
 

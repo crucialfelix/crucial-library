@@ -27,7 +27,6 @@ argument:: model
 argument:: updateFunc
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -35,17 +34,14 @@ INSTANCEMETHODS::
 METHOD:: model
 
 
-returns::
 
 METHOD:: updateFunc
 
 
-returns::
 
 METHOD:: init
 
 
-returns::
 
 METHOD:: update
 
@@ -53,12 +49,10 @@ METHOD:: update
 argument::  ... args
 
 
-returns::
 
 METHOD:: remove
 
 
-returns::
 
 METHOD:: removeOnClose
 
@@ -66,7 +60,6 @@ METHOD:: removeOnClose
 argument:: layout
 
 
-returns::
 
 METHOD:: findWindow
 
@@ -74,7 +67,6 @@ METHOD:: findWindow
 argument:: layout
 
 
-returns::
 
 EXAMPLES::
 

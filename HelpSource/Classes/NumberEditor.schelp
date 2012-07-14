@@ -23,7 +23,6 @@ initial value
 argument:: spec
 link::Classes/ControlSpec:: or link::Classes/StaticSpec::
 
-returns::
 
 METHOD:: bind
 
@@ -46,7 +45,6 @@ argument:: bounds
 argument:: labelWidth
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -57,7 +55,6 @@ METHOD:: spec
 argument:: aspec
 
 
-returns::
 
 METHOD:: init
 
@@ -68,7 +65,6 @@ argument:: val
 argument:: aspec
 
 
-returns::
 
 METHOD:: value
 
@@ -79,7 +75,6 @@ argument:: v
 argument:: change
 
 
-returns::
 
 METHOD:: setUnmappedValue
 
@@ -90,12 +85,10 @@ argument:: unipolar
 argument:: change
 
 
-returns::
 
 METHOD:: unmappedValue
 
 
-returns::
 
 METHOD:: rand
 
@@ -106,12 +99,10 @@ argument:: standardDeviation
 argument:: mean
 
 
-returns::
 
 METHOD:: numChannels
 
 
-returns::
 
 METHOD:: addToSynthDef
 
@@ -122,7 +113,6 @@ argument:: synthDef
 argument:: name
 
 
-returns::
 
 METHOD:: instrArgFromControl
 
@@ -130,22 +120,18 @@ METHOD:: instrArgFromControl
 argument:: control
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: copy
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 EXAMPLES::
 

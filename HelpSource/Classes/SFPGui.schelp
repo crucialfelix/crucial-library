@@ -18,27 +18,22 @@ METHOD:: sfpBody
 argument:: layout
 
 
-returns::
 
 METHOD:: replaceFile
 
 
-returns::
 
 METHOD:: read
 
 
-returns::
 
 METHOD:: update
 
 
-returns::
 
 METHOD:: underlyingFileGui
 
 
-returns::
 
 
 

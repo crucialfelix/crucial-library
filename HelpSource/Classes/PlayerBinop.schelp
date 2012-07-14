@@ -21,7 +21,6 @@ argument:: a
 argument:: b
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -29,32 +28,26 @@ INSTANCEMETHODS::
 METHOD:: operator
 
 
-returns::
 
 METHOD:: a
 
 
-returns::
 
 METHOD:: b
 
 
-returns::
 
 METHOD:: ar
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 
 

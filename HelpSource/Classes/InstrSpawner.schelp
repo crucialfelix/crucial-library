@@ -38,7 +38,6 @@ CLASSMETHODS::
 METHOD:: latency
 
 
-returns::
 
 METHOD:: new
 
@@ -59,7 +58,6 @@ a float or pattern that returns floats.
 		in seconds
 		see link::Classes/InstrGateSpawner:: for time measured in beats and for variable legato
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -67,27 +65,22 @@ INSTANCEMETHODS::
 METHOD:: deltaPattern
 
 
-returns::
 
 METHOD:: deltaStream
 
 
-returns::
 
 METHOD:: delta
 
 
-returns::
 
 METHOD:: clock
 
 
-returns::
 
 METHOD:: spawnGroup
 
 
-returns::
 
 METHOD:: storeParamsOn
 
@@ -95,22 +88,18 @@ METHOD:: storeParamsOn
 argument:: stream
 
 
-returns::
 
 METHOD:: asSynthDef
 
 
-returns::
 
 METHOD:: makeTask
 
 
-returns::
 
 METHOD:: spawnNext
 
 
-returns::
 
 METHOD:: update
 
@@ -121,7 +110,6 @@ argument:: changed
 argument:: changer
 
 
-returns::
 
 METHOD:: makeResourcesToBundle
 
@@ -129,7 +117,6 @@ METHOD:: makeResourcesToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: prepareToBundle
 
@@ -149,7 +136,6 @@ argument:: bus
 argument:: defWasLoaded
 
 
-returns::
 
 METHOD:: freeResourcesToBundle
 
@@ -157,12 +143,10 @@ METHOD:: freeResourcesToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: children
 
 
-returns::
 
 METHOD:: prepareChildrenToBundle
 
@@ -170,7 +154,6 @@ METHOD:: prepareChildrenToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: spawnToBundle
 
@@ -178,42 +161,34 @@ METHOD:: spawnToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: didSpawn
 
 
-returns::
 
 METHOD:: startTask
 
 
-returns::
 
 METHOD:: isPlaying
 
 
-returns::
 
 METHOD:: didStop
 
 
-returns::
 
 METHOD:: didFree
 
 
-returns::
 
 METHOD:: cmdPeriod
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 
 

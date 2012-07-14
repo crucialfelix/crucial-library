@@ -19,7 +19,6 @@ METHOD:: new
 argument:: name
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -27,17 +26,14 @@ INSTANCEMETHODS::
 METHOD:: name
 
 
-returns::
 
 METHOD:: path
 
 
-returns::
 
 METHOD:: init
 
 
-returns::
 
 METHOD:: value
 
@@ -45,7 +41,6 @@ METHOD:: value
 argument::  ... args
 
 
-returns::
 
 METHOD:: valueEnvir
 
@@ -53,7 +48,6 @@ METHOD:: valueEnvir
 argument::  ... args
 
 
-returns::
 
 METHOD:: prepareToBundle
 
@@ -64,17 +58,14 @@ argument:: group
 argument:: bundle
 
 
-returns::
 
 METHOD:: asDefName
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 
 

@@ -63,7 +63,6 @@ argument:: server
 argument:: tempo
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -71,27 +70,22 @@ INSTANCEMETHODS::
 METHOD:: tempo
 
 
-returns::
 
 METHOD:: releaseBus
 
 
-returns::
 
 METHOD:: asBus
 
 
-returns::
 
 METHOD:: index
 
 
-returns::
 
 METHOD:: server
 
 
-returns::
 
 METHOD:: prepareToBundle
 
@@ -102,7 +96,6 @@ argument:: group
 argument:: bundle
 
 
-returns::
 
 METHOD:: addToSynthDef
 
@@ -113,17 +106,14 @@ argument:: synthDef
 argument:: name
 
 
-returns::
 
 METHOD:: synthArg
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: instrArgFromControl
 
@@ -131,12 +121,10 @@ METHOD:: instrArgFromControl
 argument:: control
 
 
-returns::
 
 METHOD:: free
 
 
-returns::
 
 METHOD:: init
 
@@ -144,7 +132,6 @@ METHOD:: init
 argument:: server
 
 
-returns::
 
 METHOD:: update
 
@@ -155,7 +142,6 @@ argument:: changed
 argument:: changer
 
 
-returns::
 
 
 

@@ -62,7 +62,6 @@ argument:: operator
 argument:: a
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -70,42 +69,34 @@ INSTANCEMETHODS::
 METHOD:: operator
 
 
-returns::
 
 METHOD:: a
 
 
-returns::
 
 METHOD:: asSynthDef
 
 
-returns::
 
 METHOD:: defName
 
 
-returns::
 
 METHOD:: children
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 
 

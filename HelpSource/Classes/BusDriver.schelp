@@ -18,7 +18,6 @@ argument:: value
 argument:: spec
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -29,17 +28,14 @@ METHOD:: value
 argument:: v
 
 
-returns::
 
 METHOD:: spec
 
 
-returns::
 
 METHOD:: poll
 
 
-returns::
 
 METHOD:: activeValue
 
@@ -47,7 +43,6 @@ METHOD:: activeValue
 argument:: v
 
 
-returns::
 
 METHOD:: spawnToBundle
 
@@ -55,7 +50,6 @@ METHOD:: spawnToBundle
 argument:: b
 
 
-returns::
 
 METHOD:: storeOn
 
@@ -63,17 +57,14 @@ METHOD:: storeOn
 argument:: stream
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 
 

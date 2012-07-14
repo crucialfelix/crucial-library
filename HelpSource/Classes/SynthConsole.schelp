@@ -37,7 +37,6 @@ argument:: ugenFunc
 argument:: layout
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -45,32 +44,26 @@ INSTANCEMETHODS::
 METHOD:: format
 
 
-returns::
 
 METHOD:: duration
 
 
-returns::
 
 METHOD:: ugenFunc
 
 
-returns::
 
 METHOD:: onRecordOrWrite
 
 
-returns::
 
 METHOD:: init
 
 
-returns::
 
 METHOD:: remove
 
 
-returns::
 
 METHOD:: update
 
@@ -78,17 +71,14 @@ METHOD:: update
 argument:: status
 
 
-returns::
 
 METHOD:: play
 
 
-returns::
 
 METHOD:: prepare
 
 
-returns::
 
 METHOD:: scope
 
@@ -96,17 +86,14 @@ METHOD:: scope
 argument:: duration
 
 
-returns::
 
 METHOD:: fftScope
 
 
-returns::
 
 METHOD:: record
 
 
-returns::
 
 METHOD:: write
 
@@ -117,7 +104,6 @@ argument:: dur
 argument:: defpath
 
 
-returns::
 
 METHOD:: stop
 
@@ -125,32 +111,26 @@ METHOD:: stop
 argument:: stopFunc
 
 
-returns::
 
 METHOD:: free
 
 
-returns::
 
 METHOD:: formats
 
 
-returns::
 
 METHOD:: tempo
 
 
-returns::
 
 METHOD:: doPlay
 
 
-returns::
 
 METHOD:: doPrepare
 
 
-returns::
 
 METHOD:: doScope
 
@@ -158,12 +138,10 @@ METHOD:: doScope
 argument:: duration
 
 
-returns::
 
 METHOD:: doFreqScope
 
 
-returns::
 
 METHOD:: doStop
 
@@ -171,7 +149,6 @@ METHOD:: doStop
 argument:: stopFunc
 
 
-returns::
 
 METHOD:: doWrite
 
@@ -182,7 +159,6 @@ argument:: path
 argument:: argduration
 
 
-returns::
 
 EXAMPLES::
 

@@ -15,7 +15,6 @@ INSTANCEMETHODS::
 METHOD:: rate
 
 
-returns::
 
 METHOD:: value
 
@@ -23,7 +22,6 @@ METHOD:: value
 argument:: val
 
 
-returns::
 
 
 

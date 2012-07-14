@@ -24,7 +24,6 @@ argument:: default
 argument:: units
 
 
-returns::
 
 METHOD:: newFrom
 
@@ -32,12 +31,10 @@ METHOD:: newFrom
 argument:: similar
 
 
-returns::
 
 METHOD:: initClass
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -45,12 +42,10 @@ INSTANCEMETHODS::
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: init
 
 
-returns::
 
 METHOD:: defaultControl
 
@@ -58,7 +53,6 @@ METHOD:: defaultControl
 argument:: val
 
 
-returns::
 
 METHOD:: constrain
 
@@ -66,7 +60,6 @@ METHOD:: constrain
 argument:: value
 
 
-returns::
 
 
 

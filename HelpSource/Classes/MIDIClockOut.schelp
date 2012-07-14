@@ -22,7 +22,6 @@ argument:: portName
 argument:: tempoClock
 defaults to the global default TempoClock
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -30,38 +29,31 @@ INSTANCEMETHODS::
 METHOD:: sched
 
 
-returns::
 
 METHOD:: port
 
 
-returns::
 
 METHOD:: isPlaying
 
 
-returns::
 
 METHOD:: play
 at the start of the next bar (according to the default TempoClock)
 	send a song position pointer of 0 and start sending MIDI clocks
 
-returns::
 
 METHOD:: start
 
 
-returns::
 
 METHOD:: next
 
 
-returns::
 
 METHOD:: stop
 stop sending MIDI clocks, effective immediately
 
-returns::
 
 METHOD:: prepareToBundle
 
@@ -72,7 +64,6 @@ argument:: group
 argument:: b
 
 
-returns::
 
 METHOD:: stopToBundle
 
@@ -80,22 +71,18 @@ METHOD:: stopToBundle
 argument:: b
 
 
-returns::
 
 METHOD:: synthArg
 
 
-returns::
 
 METHOD:: cmdPeriod
 
 
-returns::
 
 METHOD:: destroy
 
 
-returns::
 
 
 EXAMPLES::

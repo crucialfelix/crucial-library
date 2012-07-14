@@ -15,7 +15,6 @@ METHOD:: new
 argument:: constraint
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -23,7 +22,6 @@ INSTANCEMETHODS::
 METHOD:: constraint
 
 
-returns::
 
 METHOD:: value
 
@@ -31,12 +29,10 @@ METHOD:: value
 argument:: obj
 
 
-returns::
 
 METHOD:: reset
 
 
-returns::
 
 
 

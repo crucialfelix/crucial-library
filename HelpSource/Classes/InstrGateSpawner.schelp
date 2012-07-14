@@ -135,17 +135,14 @@ INSTANCEMETHODS::
 METHOD:: beat
 
 
-returns::
 
 METHOD:: makeTask
 
 
-returns::
 
 METHOD:: startTask
 
 
-returns::
 
 EXAMPLES::
 

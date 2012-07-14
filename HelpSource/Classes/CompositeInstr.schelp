@@ -40,7 +40,6 @@ argument:: b
 argument:: index
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -48,22 +47,18 @@ INSTANCEMETHODS::
 METHOD:: b
 
 
-returns::
 
 METHOD:: index
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: init
 
 
-returns::
 
 METHOD:: findUniqueNameForArg
 
@@ -74,7 +69,6 @@ argument:: argName
 argument:: argNames
 
 
-returns::
 
 METHOD:: valueArray
 
@@ -82,16 +76,13 @@ METHOD:: valueArray
 argument:: args
 
 
-returns::
 
 METHOD:: outSpec
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 

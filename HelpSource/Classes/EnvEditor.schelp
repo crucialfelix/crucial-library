@@ -18,7 +18,6 @@ argument:: env
 argument:: levelSpec
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -26,7 +25,6 @@ INSTANCEMETHODS::
 METHOD:: levelSpec
 
 
-returns::
 
 METHOD:: instrArgFromControl
 
@@ -34,12 +32,10 @@ METHOD:: instrArgFromControl
 argument:: control
 
 
-returns::
 
 METHOD:: value
 
 
-returns::
 
 METHOD:: putTime
 
@@ -50,7 +46,6 @@ argument:: i
 argument:: t
 
 
-returns::
 
 METHOD:: putLevel
 
@@ -61,7 +56,6 @@ argument:: i
 argument:: l
 
 
-returns::
 
 METHOD:: setCurve
 
@@ -69,7 +63,6 @@ METHOD:: setCurve
 argument:: c
 
 
-returns::
 
 METHOD:: putCurve
 
@@ -80,40 +73,32 @@ argument:: i
 argument:: c
 
 
-returns::
 
 METHOD:: times
 
 
-returns::
 
 METHOD:: levels
 
 
-returns::
 
 METHOD:: curves
 
 
-returns::
 
 METHOD:: spec
 
 
-returns::
 
 METHOD:: env
 
 
-returns::
 
 METHOD:: copy
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 

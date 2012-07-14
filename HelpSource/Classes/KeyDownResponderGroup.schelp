@@ -17,7 +17,6 @@ METHOD:: new
 argument::  ... responders
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -25,7 +24,6 @@ INSTANCEMETHODS::
 METHOD:: responders
 
 
-returns::
 
 METHOD:: value
 
@@ -45,7 +43,6 @@ argument:: unicode
 argument:: keycode
 
 
-returns::
 
 
 

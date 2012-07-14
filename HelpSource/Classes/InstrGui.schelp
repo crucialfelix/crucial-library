@@ -18,7 +18,6 @@ METHOD:: guiBody
 argument:: layout
 
 
-returns::
 
 METHOD:: sourceGui
 
@@ -29,7 +28,6 @@ argument:: layout
 argument:: width
 
 
-returns::
 
 
 

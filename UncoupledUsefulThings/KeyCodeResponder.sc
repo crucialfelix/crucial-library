@@ -19,23 +19,23 @@ KeyCodeResponder {
 
 	// keycode -> { }, keycode -> { }, ...
 
-	normal { arg ... asses;
-		asses.do({ arg as;
+	normal { arg ... associations;
+		associations.do({ arg as;
 			this.register(as.key,false,false,false,false,as.value)
 		})
 	}
-	shift { arg ... asses;
-		asses.do({ arg as;
+	shift { arg ... associations;
+		associations.do({ arg as;
 			this.register(as.key,true,false,false,false,as.value)
 		})
 	}
-	control { arg ... asses;
-		asses.do({ arg as;
+	control { arg ... associations;
+		associations.do({ arg as;
 			this.register(as.key,false,false,false,true,as.value)
 		})
 	}
-	option { arg ... asses;
-		asses.do({ arg as;
+	option { arg ... associations;
+		associations.do({ arg as;
 			this.register(as.key,false,false,true,false,as.value)
 		})
 	}

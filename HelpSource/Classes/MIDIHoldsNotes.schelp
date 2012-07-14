@@ -1,13 +1,11 @@
 CLASS:: MIDIHoldsNotes
 summary:: parent class for MIDI note on/off classes
 categories:: External Control>MIDI, Libraries>crucial>MIDI
-related:: Classes/MIDIGatePlayer, CLasses/MIDIFreqPlayer
+related:: Classes/MIDIGatePlayer, Classes/MIDIFreqPlayer
 
 DESCRIPTION:: parent class for MIDI note on/off classes
 
 
-
-CLASSMETHODS::
 
 
 INSTANCEMETHODS::
@@ -15,7 +13,6 @@ INSTANCEMETHODS::
 METHOD:: removeResponders
 
 
-returns::
 
 
 

@@ -15,12 +15,10 @@ INSTANCEMETHODS::
 METHOD:: layout
 
 
-returns::
 
 METHOD:: defaultPath
 
 
-returns::
 
 METHOD:: getPathThen
 
@@ -31,7 +29,6 @@ argument:: then
 argument::  ... args
 
 
-returns::
 
 METHOD:: addToLayout
 
@@ -39,6 +36,5 @@ METHOD:: addToLayout
 argument:: moreFunc
 
 
-returns::
 
 

@@ -31,7 +31,6 @@ argument:: a
 argument:: args
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -39,7 +38,6 @@ INSTANCEMETHODS::
 METHOD:: a
 
 
-returns::
 
 METHOD:: appliedArgs
 
@@ -47,27 +45,22 @@ METHOD:: appliedArgs
 argument:: args
 
 
-returns::
 
 METHOD:: argNames
 
 
-returns::
 
 METHOD:: defArgs
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: init
 
 
-returns::
 
 METHOD:: value
 
@@ -75,7 +68,6 @@ METHOD:: value
 argument::  ... args
 
 
-returns::
 
 METHOD:: valueArray
 
@@ -83,7 +75,6 @@ METHOD:: valueArray
 argument:: args
 
 
-returns::
 
 METHOD:: ar
 
@@ -91,7 +82,6 @@ METHOD:: ar
 argument::  ... args
 
 
-returns::
 
 METHOD:: kr
 
@@ -99,22 +89,18 @@ METHOD:: kr
 argument::  ... args
 
 
-returns::
 
 METHOD:: outSpec
 
 
-returns::
 
 METHOD:: maxArgs
 
 
-returns::
 
 METHOD:: argsSize
 
 
-returns::
 
 METHOD:: initAt
 
@@ -122,7 +108,6 @@ METHOD:: initAt
 argument:: i
 
 
-returns::
 
 METHOD:: argNameAt
 
@@ -130,7 +115,6 @@ METHOD:: argNameAt
 argument:: i
 
 
-returns::
 
 METHOD:: defArgAt
 
@@ -138,32 +122,26 @@ METHOD:: defArgAt
 argument:: i
 
 
-returns::
 
 METHOD:: funcDef
 
 
-returns::
 
 METHOD:: storeableFuncReference
 
 
-returns::
 
 METHOD:: asString
 
 
-returns::
 
 METHOD:: asInstr
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 
 

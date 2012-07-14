@@ -210,7 +210,9 @@ StreamKrDur : AbstractBusDriver {
 
 Stream2Trig : StreamKrDur { // outputs just a single pulse trig with the amplitude of the value stream
 
-	// *new(amplitudes, deltas)
+	*new { arg levels, deltas;
+		^super.new(levels,deltas)	
+	}
 
 	// doesn't use lag
 	instrArgFromControl { arg control;

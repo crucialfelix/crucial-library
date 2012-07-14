@@ -15,12 +15,10 @@ INSTANCEMETHODS::
 METHOD:: isPlaying
 
 
-returns::
 
 METHOD:: loadDefFileToBundle
 
 
-returns::
 
 METHOD:: spawnToBundle
 
@@ -28,17 +26,14 @@ METHOD:: spawnToBundle
 argument:: bundle
 
 
-returns::
 
 METHOD:: didSpawn
 
 
-returns::
 
 METHOD:: didStop
 
 
-returns::
 
 METHOD:: releaseToBundle
 
@@ -49,7 +44,6 @@ argument:: releaseTime
 argument:: bundle
 
 
-returns::
 
 METHOD:: connectToPatchIn
 
@@ -60,17 +54,14 @@ argument:: patchIn
 argument:: needsValueSetNow
 
 
-returns::
 
 METHOD:: proxyControlClass
 
 
-returns::
 
 METHOD:: wrapInFader
 
 
-returns::
 
 
 

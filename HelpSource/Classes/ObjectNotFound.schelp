@@ -12,7 +12,6 @@ CLASSMETHODS::
 METHOD:: somethingMissing
 
 
-returns::
 
 METHOD:: new
 
@@ -20,7 +19,6 @@ METHOD:: new
 argument:: path
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -28,12 +26,10 @@ INSTANCEMETHODS::
 METHOD:: missing
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 
 

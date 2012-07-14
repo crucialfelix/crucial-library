@@ -30,12 +30,10 @@ argument:: minWidth
 argument:: font
 
 
-returns::
 
 METHOD:: viewClass
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -52,7 +50,6 @@ argument:: bounds
 argument:: string
 
 
-returns::
 
 METHOD:: label
 
@@ -60,7 +57,6 @@ METHOD:: label
 argument:: string
 
 
-returns::
 
 METHOD:: bold
 
@@ -68,7 +64,6 @@ METHOD:: bold
 argument:: fontSize
 
 
-returns::
 
 
 

@@ -12,7 +12,6 @@ CLASSMETHODS::
 METHOD:: initClass
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -20,12 +19,10 @@ INSTANCEMETHODS::
 METHOD:: defaultControl
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: canAccept
 
@@ -33,7 +30,6 @@ METHOD:: canAccept
 argument:: thing
 
 
-returns::
 
 
 

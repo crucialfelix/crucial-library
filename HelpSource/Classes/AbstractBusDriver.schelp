@@ -15,17 +15,14 @@ INSTANCEMETHODS::
 METHOD:: lag
 
 
-returns::
 
 METHOD:: latency
 
 
-returns::
 
 METHOD:: rate
 
 
-returns::
 
 METHOD:: instrArgFromControl
 
@@ -33,12 +30,10 @@ METHOD:: instrArgFromControl
 argument:: control
 
 
-returns::
 
 METHOD:: synthArg
 
 
-returns::
 
 METHOD:: stopToBundle
 
@@ -46,6 +41,5 @@ METHOD:: stopToBundle
 argument:: bundle
 
 
-returns::
 
 

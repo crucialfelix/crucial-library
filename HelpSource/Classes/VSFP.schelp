@@ -43,7 +43,6 @@ METHOD:: pchRatio
 argument:: p
 
 
-returns::
 
 METHOD:: init
 
@@ -51,7 +50,6 @@ METHOD:: init
 argument:: path
 
 
-returns::
 
 METHOD:: preloadData
 
@@ -71,42 +69,34 @@ argument:: bundle
 argument:: parentSegmentBuffers
 
 
-returns::
 
 METHOD:: asSynthDef
 
 
-returns::
 
 METHOD:: synthDefArgs
 
 
-returns::
 
 METHOD:: didSpawn
 
 
-returns::
 
 METHOD:: didStop
 
 
-returns::
 
 METHOD:: currentFrame
 
 
-returns::
 
 METHOD:: beat
 
 
-returns::
 
 METHOD:: time
 
 
-returns::
 
 
 

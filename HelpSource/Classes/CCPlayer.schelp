@@ -18,7 +18,6 @@ argument:: num
 argument:: spec
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -26,17 +25,14 @@ INSTANCEMETHODS::
 METHOD:: num
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: initResponders
 
 
-returns::
 
 
 

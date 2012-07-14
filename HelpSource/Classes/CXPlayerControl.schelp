@@ -15,7 +15,6 @@ INSTANCEMETHODS::
 METHOD:: bus
 
 
-returns::
 
 METHOD:: build
 
@@ -23,7 +22,6 @@ METHOD:: build
 argument:: argProxy
 
 
-returns::
 
 METHOD:: playToBundle
 
@@ -40,7 +38,6 @@ argument:: target
 argument:: addAction
 
 
-returns::
 
 METHOD:: stopToBundle
 
@@ -51,22 +48,18 @@ argument:: bundle
 argument:: fadeTime
 
 
-returns::
 
 METHOD:: pause
 
 
-returns::
 
 METHOD:: resume
 
 
-returns::
 
 METHOD:: isPlaying
 
 
-returns::
 
 
 

@@ -30,7 +30,6 @@ argument:: name
 argument:: bounds
 
 
-returns::
 
 METHOD:: getString
 
@@ -44,7 +43,6 @@ argument:: defaultString
 argument:: callback
 
 
-returns::
 
 
 EXAMPLES::

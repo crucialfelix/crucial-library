@@ -16,12 +16,10 @@ METHOD:: new
 argument:: prototype
 
 
-returns::
 
 METHOD:: initClass
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -29,12 +27,10 @@ INSTANCEMETHODS::
 METHOD:: prototype
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: defaultControl
 
@@ -42,12 +38,10 @@ METHOD:: defaultControl
 argument:: env
 
 
-returns::
 
 METHOD:: default
 
 
-returns::
 
 METHOD:: canAccept
 
@@ -55,7 +49,6 @@ METHOD:: canAccept
 argument:: thing
 
 
-returns::
 
 
 

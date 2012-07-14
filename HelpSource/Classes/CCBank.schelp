@@ -18,12 +18,10 @@ argument:: sets
 argument:: src
 
 
-returns::
 
 METHOD:: responderClass
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -31,22 +29,18 @@ INSTANCEMETHODS::
 METHOD:: sets
 
 
-returns::
 
 METHOD:: src
 
 
-returns::
 
 METHOD:: storeArgs
 
 
-returns::
 
 METHOD:: init
 
 
-returns::
 
 METHOD:: guiBody
 
@@ -54,7 +48,6 @@ METHOD:: guiBody
 argument:: layout
 
 
-returns::
 
 METHOD:: guiOne
 
@@ -68,7 +61,6 @@ argument:: assc
 argument:: minWidth
 
 
-returns::
 
 METHOD:: add
 
@@ -79,7 +71,6 @@ argument:: key
 argument:: ccnum
 
 
-returns::
 
 METHOD:: at
 
@@ -87,7 +78,6 @@ METHOD:: at
 argument:: key
 
 
-returns::
 
 METHOD:: isMapped
 
@@ -95,7 +85,6 @@ METHOD:: isMapped
 argument:: key
 
 
-returns::
 
 METHOD:: setCtlnum
 
@@ -106,7 +95,6 @@ argument:: ccr
 argument:: ctlnum
 
 
-returns::
 
 METHOD:: responder
 
@@ -117,7 +105,6 @@ argument:: key
 argument:: function
 
 
-returns::
 
 METHOD:: doesNotUnderstand
 
@@ -128,17 +115,14 @@ argument:: key
 argument::  ... args
 
 
-returns::
 
 METHOD:: free
 
 
-returns::
 
 METHOD:: keys
 
 
-returns::
 
 METHOD:: findSet
 
@@ -146,7 +130,6 @@ METHOD:: findSet
 argument:: key
 
 
-returns::
 
 
 

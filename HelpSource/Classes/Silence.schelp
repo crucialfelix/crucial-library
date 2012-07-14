@@ -37,7 +37,6 @@ METHOD:: ar
 argument::  ... args
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -45,7 +44,6 @@ INSTANCEMETHODS::
 METHOD:: ar
 
 
-returns::
 
 
 

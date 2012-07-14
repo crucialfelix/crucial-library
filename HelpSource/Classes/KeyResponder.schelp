@@ -12,7 +12,6 @@ CLASSMETHODS::
 METHOD:: initKeycodeMap
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -20,7 +19,6 @@ INSTANCEMETHODS::
 METHOD:: keycodes
 
 
-returns::
 
 METHOD:: register
 
@@ -46,7 +44,6 @@ argument:: function
 argument:: description
 
 
-returns::
 
 METHOD:: value
 
@@ -66,7 +63,6 @@ argument:: unicode
 argument:: keycode
 
 
-returns::
 
 METHOD:: registerKeycode
 
@@ -92,7 +88,6 @@ argument:: function
 argument:: description
 
 
-returns::
 
 METHOD:: ++
 
@@ -100,12 +95,10 @@ METHOD:: ++
 argument:: that
 
 
-returns::
 
 METHOD:: clear
 
 
-returns::
 
 
 

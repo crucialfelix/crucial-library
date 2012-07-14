@@ -41,7 +41,6 @@ CLASSMETHODS::
 METHOD:: default
 
 
-returns::
 
 METHOD:: new
 
@@ -52,12 +51,10 @@ tempo in beats per second
 argument:: tempoClock
 The TempoClock that this Tempo object will control
 
-returns::
 
 METHOD:: initClass
 
 
-returns::
 
 METHOD:: bpm
 beats per minute
@@ -65,12 +62,10 @@ beats per minute
 argument:: bpm
 
 
-returns::
 
 METHOD:: next
 
 
-returns::
 
 METHOD:: beats2secs
 convert beats to seconds
@@ -78,7 +73,6 @@ convert beats to seconds
 argument:: beats
 
 
-returns::
 
 METHOD:: secs2beats
 convert seconds to beats
@@ -86,7 +80,6 @@ convert seconds to beats
 argument:: secs
 
 
-returns::
 
 METHOD:: tempo
 tempo in beats per second
@@ -94,12 +87,10 @@ tempo in beats per second
 argument:: tempo
 
 
-returns::
 
 METHOD:: kr
 when used in an Instr in a Patch this will insert a control rate UGen that will emit the tempo.  changing the tempo in the language will change this tempo on the server.
 
-returns::
 
 discussion::
 code::
@@ -121,7 +112,6 @@ when used in an Instr in a Patch this will convert beats to seconds, inserting a
 argument:: beats
 
 
-returns::
 
 METHOD:: makeClock
 
@@ -129,7 +119,6 @@ METHOD:: makeClock
 argument:: owner
 
 
-returns::
 
 
 INSTANCEMETHODS::
@@ -140,7 +129,6 @@ METHOD:: tempo
 argument:: t
 
 
-returns::
 
 METHOD:: beatsPerBar
 Bored with the old 4/4 ?
@@ -149,7 +137,6 @@ Tempo.beatsPerBar = 7.0;
 argument:: b
 
 
-returns::
 
 METHOD:: init
 
@@ -157,7 +144,6 @@ METHOD:: init
 argument:: t
 
 
-returns::
 
 METHOD:: bpm
 
@@ -165,12 +151,10 @@ METHOD:: bpm
 argument:: bpm
 
 
-returns::
 
 METHOD:: next
 
 
-returns::
 
 METHOD:: beats2secs
 
@@ -178,7 +162,6 @@ METHOD:: beats2secs
 argument:: beats
 
 
-returns::
 
 METHOD:: secs2beats
 
@@ -186,7 +169,6 @@ METHOD:: secs2beats
 argument:: secs
 
 
-returns::
 
 METHOD:: bars2secs
 
@@ -194,7 +176,6 @@ METHOD:: bars2secs
 argument:: bars
 
 
-returns::
 
 METHOD:: secs2bars
 
@@ -202,22 +183,18 @@ METHOD:: secs2bars
 argument:: secs
 
 
-returns::
 
 METHOD:: guiClass
 
 
-returns::
 
 METHOD:: kr
 
 
-returns::
 
 METHOD:: destroy
 
 
-returns::
 
 METHOD:: makeClock
 
@@ -225,22 +202,18 @@ METHOD:: makeClock
 argument:: owner
 
 
-returns::
 
 METHOD:: cmdPeriod
 
 
-returns::
 
 METHOD:: clearClocks
 
 
-returns::
 
 METHOD:: clockDidClear
 
 
-returns::
 
 
 EXAMPLES::
