@@ -85,10 +85,33 @@ Instr  {
     }
     convertArgs { arg args;
         if(args.isKindOf(Dictionary),{
-	        ^this.argNames.collect({ arg an,i; args.at(an) ?? {this.defArgAt(i)} })
+            ^this.argNames.collect({ arg an,i;
+                this.convertArg(args.at(an),i)
+            })
         });
         ^args ? []
-    }	    
+    }
+    convertArg { arg a,i;
+        if(a.isNil,{^this.defArgAt(i)});
+        if(a.isKindOf(Symbol).not
+            or: {this.specs.at(i).isKindOf(SymbolSpec)},{
+            ^a
+        });
+        // these objects act as placeholders to create the desired synth control
+        if(a == \kr,{
+            ^KrNumberEditor(this.defArgAt(i),this.specs.at(i).as(ControlSpec))
+        });
+        if(a == \ir,{
+            ^IrNumberEditor(this.defArgAt(i),this.specs.at(i).as(StaticSpec))
+        });
+        if(a == 'tr',{
+            ^SimpleTrigger.new
+        });
+        if(a == 'ar',{
+            ^PlayerInputProxy.new;
+        });
+        Error("Unrecognized Symbol supplied to Instr" + a).throw
+    }
     ar { arg ... inputs;
         ^func.valueArray(this.convertArgs(inputs));
     }
