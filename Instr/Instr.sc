@@ -43,8 +43,9 @@ Instr  {
         this.prLoadDir(Platform.userExtensionDir ++ "/quarks/*/Instr");
     }
     *prLoadDir { arg dir;
-        var paths;
-        paths = (dir +/+ "*").pathMatch.reject { |path| path.splitext[1] == "sc" };
+        var paths,ext;
+        ext = this.extensions;
+        paths = (dir +/+ "*").pathMatch.select { |path| ext.includesEqual(path.splitext[1]) };
         paths.do { |path|
             if(path.last == $/,{
                 this.prLoadDir(path)
@@ -357,7 +358,7 @@ Instr  {
         });
         ^nil
     }
-    // .scd .rtf .txt
+    *extensions { ^["scd","rtf","txt"] }
     *findFileInDir { arg symbolized, rootPath;
 		var pathParts;
 
@@ -370,7 +371,7 @@ Instr  {
 				var pathName;
 				var symbols,orcname;
 				pathName = PathName(path);
-				if(["scd","rtf","txt"].includesEqual( pathName.extension ),{
+				if(this.extensions.includesEqual( pathName.extension ),{
 					path.load;
 
 					orcname = pathName.fileNameWithoutExtension;
