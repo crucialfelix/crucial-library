@@ -108,23 +108,23 @@ InstrSynthDef : SynthDef {
 		controlNames = saveControlNames;
 		^result
 	}
-	*makeDefName { arg instr,args,outClass=\Out;
-		var name,longName,firstName;
-		
-		longName = [instr.dotNotation,outClass];
+	*makeDefName { arg instr, args, outClass=\Out;
+		var name, longName, firstName;
+
+		longName = [instr.dotNotation, outClass];
 		args.do { arg obj,i;
 			var r, shard;
 			r = obj.rate;
 			if([\audio, \control].includes(r), r, { obj });
 			longName = longName.add(shard);
 		};
-		
+
 		firstName = instr.name.last.asString;
-		if(firstName.size > 18,{
-			firstName = firstName.copyRange(0,16);
+		if(firstName.size > 18, {
+			firstName = firstName.copyRange(0, 16);
 		});
 		name = firstName ++ "#" ++ this.hashEncode(longName);
-		^[longName,name]
+		^[longName, name]
 	}
 	*hashEncode { arg object;
 		var fromdigits,todigits,res,x=0,digit;
@@ -232,7 +232,7 @@ InstrSynthDef : SynthDef {
 			init = instr.initAt(defargi);
 			if(obj.isNil,{
 				obj = instr.specs.at(defargi).defaultControl(init);
-			});								
+			});
 			obj.addToSynthDef(this,name,init);
 			obj
 		});
@@ -360,7 +360,7 @@ InstrSynthDef : SynthDef {
 			})
 		})
 	}
-			
+
 	*buildSynthDef {
 		var sd;
 		sd = UGen.buildSynthDef;
@@ -385,7 +385,7 @@ InstrSynthDef : SynthDef {
 			^SendTrig.kr(trig,triggerID,value)
 		},{
 			^SendTrig.ar(trig,triggerID,value)
-		})			
+		})
 	}
 
 	/*synthProxy {
