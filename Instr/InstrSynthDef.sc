@@ -109,9 +109,10 @@ InstrSynthDef : SynthDef {
 		
 		longName = [instr.dotNotation,outClass];
 		args.do { arg obj,i;
-			var r;
-			r = instr.specs.at(i).rate;
-			longName = longName.add(if(r == 'noncontrol',{obj},{r}))
+			var r, shard;
+			r = obj.rate;
+			if([\audio, \control].includes(r), r, { obj });
+			longName = longName.add(shard);
 		};
 		
 		firstName = instr.name.last.asString;
