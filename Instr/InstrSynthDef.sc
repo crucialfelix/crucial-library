@@ -76,6 +76,10 @@ InstrSynthDef : SynthDef {
 						("InstrSynthDef: result of your Instr function was a scalar rate object:"
 							+ result + this.buildErrorString).error;
 					},
+					\demand, { // you can't patch these between synths
+						("InstrSynthDef: result of your Instr function was a demand rate object:"
+							+ result + this.buildErrorString).error;
+					},
 					\noncontrol,{
 						("InstrSynthDef: result of your Instr function was a noncontrol rate object:"
 							+ result + this.buildErrorString).error;
