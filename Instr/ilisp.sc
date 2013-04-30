@@ -17,10 +17,7 @@
 				^operator.asInstr.perform(imethod, arguments.collect(_.ilisp));
 			})
 		});
-		subject = arguments.removeAt(0);
-		if(subject.isSequenceableCollection, {
-			subject = subject.ilisp;
-		});
+		subject = arguments.removeAt(0).ilisp;
 		^subject.performList(operator, arguments.collect(_.ilisp));
 	}
 }
