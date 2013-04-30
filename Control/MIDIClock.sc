@@ -28,13 +28,13 @@ MIDIClockOut {
 		});
 	}
 	start {
+		CmdPeriod.add(this);
 		click = 0;
 		sched.beat = 0.0;
 		port.songPtr(sched.beat);
 		port.start;
 		isPlaying = true;
 		this.next;
-		CmdPeriod.add(this);
 	}
 	next {
 		// calculate the beat delta to the logical time we should be at for the
@@ -66,6 +66,7 @@ MIDIClockOut {
 		sched.clear;
 		port.stop;
 		isPlaying = false;
+		CmdPeriod.remove(this);
 	}
 
 	// player support
