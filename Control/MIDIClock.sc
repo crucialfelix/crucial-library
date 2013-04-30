@@ -81,6 +81,15 @@ MIDIClockOut {
 	/*songPtr { arg gotoBeat,atTime;
 
 	}*/
+	gotoBeatAtBeat { arg beat,atBeat;
+		var delta = atBeat - sched.beat;
+		sched.xsched(delta,{
+			sched.beat = beat;
+			port.songPtr(beat);
+			click = (beat * 24).asInteger; // not tested
+			this.next;
+		})
+	}
 
 	cmdPeriod {
 		this.stop;
