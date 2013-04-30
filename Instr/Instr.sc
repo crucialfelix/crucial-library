@@ -124,6 +124,11 @@ Instr  {
     valueArray { arg inputs;
         ^func.valueArray(this.convertArgs(inputs))
     }
+    isValidUGenInput {
+        ^true
+    }
+    asUGenInput { arg for; ^this.ar(for) }
+    asControlInput { ^this.value }
     *kr { arg name, args;
         ^this.ar(name,args)
     }
