@@ -1,0 +1,74 @@
+title:: ilisp - a lisp dialect using Instr
+summary:: construct larger instr and signal chains using compact lisp
+categories:: Libraries>crucial>Instr
+related:: Guides/Instr-library, Guides/Instr-SynthDefs, Guides/Instr-Patterns, Classes/InstrBrowser
+
+First you'll probably want to know the basics of lisp
+
+section:: evaluating sexpressions
+
+code::
+
+// prefix notation
+['+', 1, 2].ilisp
+3
+
+// inner sexpressions are evaluated
+['+', 1, ['+', 2, 3]].ilisp
+// 2 + 3 = 5
+// 1 + 5 = 6
+6
+
+// use a backtick to escape a list so it doesn't get evaluated as a sexpr
+['+', 1, `[2, 3]].ilisp
+
+
+Instr("pulse", { arg freq=300, width=0.5, amp=1.0;
+	Pulse.ar(freq, width, amp)
+});
+
+Instr("rlpf", { arg in, freq=300, rq = 1.0;
+	RLPF.ar(in, freq, rq)
+});
+
+
+// operators that are strings are references to Instr
+// and are loaded from disk if needed
+
+// returns an Instr with the freq fixed to 100
+// and the width and amp as control rate
+["pulse", 100].ilisp
+
+// calling .play on the resulting Instr
+[\play, ["pulse", 100]].ilisp
+
+// keyword arguments
+["pulse", (width: 0.1)].ilisp
+
+// wrap the pulse in an rlpf
+["rlpf", ["pulse", 100], 400].ilisp
+
+// make a synthDef
+[\asSynthDef, ["rlpf", ["pulse", 100], 400]].ilisp
+
+::code
+
+
+section:: complete lisp
+
+atom, quote, eq, car, cdr, cons, cond, lambda, label, apply
+
+code::
+
+// CDR aka first
+[\first, `[1, 2, 3]].ilisp
+1
+
+// LAMBDA
+// you can use functions for lambdas
+// remember to ` escape it otherwise it would get
+// resolved when evaluating the sexpr
+
+[\collect, `[1, 2, 3], `{ arg x; x + 3 }].ilisp
+
+::
