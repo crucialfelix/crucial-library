@@ -3,14 +3,18 @@
 + SequenceableCollection {
 
 	ilisp {
-		var operator, subject, arguments;
+		var operator, subject, arguments, imethod='papply';
 		# operator ... arguments = this;
 		if(operator.isString, {
+			// a #macro just values the function
+			if(operator.first == $#, {
+				imethod = 'valueArray';
+			});
 			// accept keyword arguments
 			if(arguments.size == 1 and: {arguments.first.isKindOf(Dictionary)}, {
-				^operator.asInstr.papply(arguments.first.ilisp);
+				^operator.asInstr.perform(imethod, arguments.first.ilisp);
 			},{
-				^operator.asInstr.papply(arguments.collect(_.ilisp));
+				^operator.asInstr.perform(imethod, arguments.collect(_.ilisp));
 			})
 		});
 		subject = arguments.removeAt(0);
