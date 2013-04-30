@@ -23,7 +23,7 @@ MIDIClockOut {
 			^this
 		});
 		sched.xqsched(quantize,{
-			if(songBeat.notNil,{ sched.beat = songBeat });
+			sched.beat = songBeat;
 			this.start;
 		});
 	}
