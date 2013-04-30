@@ -125,7 +125,7 @@ ServerGui : ObjectGui {
 			model.options.outDevice = devs[switch.value];
 		};
 		if(current.notNil,{
-			switch.value = devs.indexOf(current) ? 0;
+			switch.value = devs.indexOfEqual(current) ? 0;
 		},switch.action);
 	}
 	input { |layout,width=140|
@@ -145,7 +145,7 @@ ServerGui : ObjectGui {
 			model.options.inDevice = devs[switch.value];
 		};
 		if(current.notNil,{
-			switch.value = devs.indexOf(current) ? 0;
+			switch.value = devs.indexOfEqual(current) ? 0;
 		},switch.action);
 	}
 	meters { |layout,bounds|
