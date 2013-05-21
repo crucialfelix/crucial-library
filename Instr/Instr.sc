@@ -192,10 +192,10 @@ Instr  {
 	papply { arg ... args;
 		// partial application :
 		// dict[key=>value, ... ] or [ args1, nil, arg3 , ...]
-		if(args.size == 1 and: {args.first.isKindOf(Dictionary)},{
+		if(args.size == 1 and: { args.first.isKindOf(Dictionary) }, {
 			args = args.first
 		});
-		^PappliedInstr(this,args.first)
+		^PappliedInstr(this, args)
 	}
 	// set the directory where your library of Instr is to be found
 	*dir_ { arg p;
