@@ -24,8 +24,8 @@
 			^operator.asInstr.valueArray(arguments);
 		});
 		// operator is symbol
-		if(operator.isKindOf(Symbol).not,{
-			Error("Operator is not a symbol" + [this, operator, arguments]).throw
+		if(operator.isKindOf(Symbol).not, {
+			Error("Operator is not a symbol:" + operator + "in form:" + this).throw
 		});
 
 		subject = arguments.removeAt(0);
