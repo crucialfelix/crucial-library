@@ -127,7 +127,7 @@ Instr  {
 	isValidUGenInput {
 		^true
 	}
-	asUGenInput { arg for; ^this.ar(for) }
+	asUGenInput { ^this.ar }
 	asControlInput { ^this.value }
 	*kr { arg name, args;
 		^this.ar(name,args)
