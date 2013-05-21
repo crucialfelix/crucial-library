@@ -76,6 +76,10 @@ InstrSynthDef : SynthDef {
 						("InstrSynthDef: result of your Instr function was a scalar rate object:"
 							+ result + this.buildErrorString).error;
 					},
+					\demand, { // you can't patch these between synths
+						("InstrSynthDef: result of your Instr function was a demand rate object:"
+							+ result + this.buildErrorString).error;
+					},
 					\noncontrol,{
 						("InstrSynthDef: result of your Instr function was a noncontrol rate object:"
 							+ result + this.buildErrorString).error;
@@ -104,22 +108,23 @@ InstrSynthDef : SynthDef {
 		controlNames = saveControlNames;
 		^result
 	}
-	*makeDefName { arg instr,args,outClass=\Out;
-		var name,longName,firstName;
-		
-		longName = [instr.dotNotation,outClass];
+	*makeDefName { arg instr, args, outClass=\Out;
+		var name, longName, firstName;
+
+		longName = [instr.dotNotation, outClass];
 		args.do { arg obj,i;
-			var r;
-			r = instr.specs.at(i).rate;
-			longName = longName.add(if(r == 'noncontrol',{obj},{r}))
+			var r, shard;
+			r = obj.rate;
+			if([\audio, \control].includes(r), r, { obj });
+			longName = longName.add(shard);
 		};
-		
+
 		firstName = instr.name.last.asString;
-		if(firstName.size > 18,{
-			firstName = firstName.copyRange(0,16);
+		if(firstName.size > 18, {
+			firstName = firstName.copyRange(0, 16);
 		});
 		name = firstName ++ "#" ++ this.hashEncode(longName);
-		^[longName,name]
+		^[longName, name]
 	}
 	*hashEncode { arg object;
 		var fromdigits,todigits,res,x=0,digit;
@@ -227,7 +232,7 @@ InstrSynthDef : SynthDef {
 			init = instr.initAt(defargi);
 			if(obj.isNil,{
 				obj = instr.specs.at(defargi).defaultControl(init);
-			});								
+			});
 			obj.addToSynthDef(this,name,init);
 			obj
 		});
@@ -320,13 +325,22 @@ InstrSynthDef : SynthDef {
 	*watchServer { arg server;
 		if(NotificationCenter.registrationExists(server,\didQuit,this).not,{
 			NotificationCenter.register(server,\didQuit,this,{
-				this.clearCache(server);
+				if(server.isLocal and: {thisProcess.platform.isKindOf(UnixPlatform)}, {
+					if(("ps -ef|grep" + server.pid).unixCmdGetStdOut.split("\n").any(_.contains("scsynth")).not,{
+						this.clearCache(server);
+						NotificationCenter.notify(server,\reallyDidQuit)
+					},{
+						("Server process still found, not dead yet:" + server.pid).debug;
+					})
+				}, {
+					this.clearCache(server);
+				});
 			});
 		});
 	}
 	*clearCache { arg server;
 		"Clearing AbstractPlayer SynthDef cache".inform;
-		Library.global.removeAt(SynthDef,server);
+		Library.global.removeAt(SynthDef,server ? Server.default);
 	}
 	*loadCacheFromDir { arg server,dir;
 		dir = dir ? SynthDef.synthDefDir;
@@ -355,7 +369,7 @@ InstrSynthDef : SynthDef {
 			})
 		})
 	}
-			
+
 	*buildSynthDef {
 		var sd;
 		sd = UGen.buildSynthDef;
@@ -380,7 +394,7 @@ InstrSynthDef : SynthDef {
 			^SendTrig.kr(trig,triggerID,value)
 		},{
 			^SendTrig.ar(trig,triggerID,value)
-		})			
+		})
 	}
 
 	/*synthProxy {

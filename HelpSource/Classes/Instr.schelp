@@ -29,6 +29,10 @@ DESCRIPTION:: An Instrument is a function that has a unique name attached to it 
 
 	Instr can be chained together, used as subroutines and have inputs partially satisfied.
 
+	link::Guides/ilisp::
+
+	Instr can be chained together using a lisp dialect.
+
 	link::Guides/Patch-client-server-magic::
 
 	When used with Patch there are some glue functions to make language-server communication much easier and clearer.

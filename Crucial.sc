@@ -49,7 +49,7 @@ Crucial {
 
 			'trig'->TrigSpec.new(0, 1, 'lin', 0, 0.0),
 			'trigger'->TrigSpec.new(0, 1, 'lin', 0, 0.0),
-			'gate'->TrigSpec.new(0, 1, 'lin', 0, 0.0),
+			'gate'-> ControlSpec(0, 1, 'lin', 0, 0.0),
 
 			'legato'->StaticSpec.new(0.01, 4, 'lin', 0, 0.9),
 			'release'->ControlSpec.new(0, 16, 'lin', 0, 0.5),

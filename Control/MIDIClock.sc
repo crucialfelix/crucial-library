@@ -23,18 +23,18 @@ MIDIClockOut {
 			^this
 		});
 		sched.xqsched(quantize,{
-			if(songBeat.notNil,{ sched.beat = songBeat });
+			sched.beat = songBeat;
 			this.start;
 		});
 	}
 	start {
+		CmdPeriod.add(this);
 		click = 0;
 		sched.beat = 0.0;
 		port.songPtr(sched.beat);
 		port.start;
 		isPlaying = true;
 		this.next;
-		CmdPeriod.add(this);
 	}
 	next {
 		// calculate the beat delta to the logical time we should be at for the
@@ -66,6 +66,7 @@ MIDIClockOut {
 		sched.clear;
 		port.stop;
 		isPlaying = false;
+		CmdPeriod.remove(this);
 	}
 
 	// player support
@@ -80,6 +81,15 @@ MIDIClockOut {
 	/*songPtr { arg gotoBeat,atTime;
 
 	}*/
+	gotoBeatAtBeat { arg beat,atBeat;
+		var delta = atBeat - sched.beat;
+		sched.xsched(delta,{
+			sched.beat = beat;
+			port.songPtr(beat);
+			click = (beat * 24).asInteger; // not tested
+			this.next;
+		})
+	}
 
 	cmdPeriod {
 		this.stop;

@@ -121,14 +121,12 @@ ServerGui : ObjectGui {
 		switch.focusColor = Color.clear;
 		switch.items = devs.collect({ arg dev; dev.select({ arg c; c.isAlphaNum or: c.isSpace }) });
 		current = model.options.outDevice;
-		if(current.notNil,{
-			switch.value = devs.indexOf(current) ? 0;
-		});
 		switch.action = {
-			var ll;
-			ll = switch.items[switch.value];
-			model.options.outDevice = ll;
+			model.options.outDevice = devs[switch.value];
 		};
+		if(current.notNil,{
+			switch.value = devs.indexOfEqual(current) ? 0;
+		},switch.action);
 	}
 	input { |layout,width=140|
 		var switch,devs,current;
@@ -143,14 +141,12 @@ ServerGui : ObjectGui {
 		switch.focusColor = Color.clear;
 		switch.items = devs.collect({ arg dev; dev.select({ arg c; c.isAlphaNum or: c.isSpace }) });
 		current = model.options.inDevice;
-		if(current.notNil,{
-			switch.value = devs.indexOf(current) ? 0;
-		});
 		switch.action = {
-			var ll;
-			ll = switch.items[switch.value];
-			model.options.inDevice = ll;
+			model.options.inDevice = devs[switch.value];
 		};
+		if(current.notNil,{
+			switch.value = devs.indexOfEqual(current) ? 0;
+		},switch.action);
 	}
 	meters { |layout,bounds|
 		ActionButton(layout,"Meters",{
