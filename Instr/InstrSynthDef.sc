@@ -325,13 +325,22 @@ InstrSynthDef : SynthDef {
 	*watchServer { arg server;
 		if(NotificationCenter.registrationExists(server,\didQuit,this).not,{
 			NotificationCenter.register(server,\didQuit,this,{
-				this.clearCache(server);
+				if(server.isLocal and: {thisProcess.platform.isKindOf(UnixPlatform)}, {
+					if(("ps -ef|grep" + server.pid).unixCmdGetStdOut.split("\n").any(_.contains("scsynth")).not,{
+						this.clearCache(server);
+						NotificationCenter.notify(server,\reallyDidQuit)
+					},{
+						("Server process still found, not dead yet:" + server.pid).debug;
+					})
+				}, {
+					this.clearCache(server);
+				});
 			});
 		});
 	}
 	*clearCache { arg server;
 		"Clearing AbstractPlayer SynthDef cache".inform;
-		Library.global.removeAt(SynthDef,server);
+		Library.global.removeAt(SynthDef,server ? Server.default);
 	}
 	*loadCacheFromDir { arg server,dir;
 		dir = dir ? SynthDef.synthDefDir;
