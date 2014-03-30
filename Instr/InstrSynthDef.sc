@@ -115,7 +115,7 @@ InstrSynthDef : SynthDef {
 		args.do { arg obj,i;
 			var r, shard;
 			r = obj.rate;
-			if([\audio, \control].includes(r), r, { obj });
+			shard = if([\audio, \control].includes(r), r, { obj });
 			longName = longName.add(shard);
 		};
 
@@ -453,4 +453,3 @@ ClientOnTrigResponder {
 		// shift the Out.ar
 	}* /
 }*/
-
