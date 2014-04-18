@@ -1,6 +1,8 @@
 
 Crucial {
 
+	classvar <>documentDir = "";
+
 	*initClass {
 		Class.initClassTree(GUI);
 		// this skin is cleaner and more basic than the default
@@ -22,7 +24,7 @@ Crucial {
 
 	*initSpecs {
 		// optional
-		
+
 		Class.initClassTree(Warp);
 		Class.initClassTree(Spec);
 
@@ -146,7 +148,7 @@ Crucial {
 			'bufnum' -> StaticIntegerSpec(0,100,0),
 			'sndbuf' -> StaticIntegerSpec(0,100,0),
 			\instr -> InstrNameSpec()
-			
+
 		  ]
 		);
 	}

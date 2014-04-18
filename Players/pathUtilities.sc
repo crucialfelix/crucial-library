@@ -1,4 +1,38 @@
 
++ PathName {
+
+	*documentDir {
+		^Crucial.documentDir
+	}
+	*standardizeDocumentPath { | p |
+		/**
+		 * expand path relative to the documentDir
+		 */
+		var pathName;
+		pathName = PathName(p.standardizePath);
+		^if(pathName.isRelativePath) {
+			this.documentDir ++ pathName.fullPath
+		} {
+			pathName.fullPath
+		}
+	}
+	*abrevDocumentPath { | path |
+		/**
+		 * if path is inside documentDir then
+		 * then return a relative path inside that.
+		 */
+		var dirSize = this.documentDir.size;
+		if(path.size < dirSize) {
+			^path
+		};
+		if(path.copyRange(0, dirSize) == this.documentDir) {
+			^path.copyRange(dirSize, path.size - 1)
+		};
+		^path
+	}
+}
+
+
 + Object {
 	loadPath {}
 	enpath {}
@@ -50,7 +84,7 @@
 	}
 	loadDocument { arg warnIfNotFound=true;
 		var path,obj;
-		path = Document.standardizePath(this);
+		path = PathName.standardizeDocumentPath(this);
 		if(File.exists(path),{
 			obj = thisProcess.interpreter.executeFile(path);
 			obj.didLoadFromPath(path);
@@ -63,7 +97,7 @@
 		});
 	}
 	enpath {
-		^Document.abrevPath(this)
+		^PathName.abrevDocumentPath(this)
 	}
 
 	guiDocument {
@@ -79,7 +113,7 @@
 	enpath {
 		//document enpath abrev it
 		^if(path.notNil,{
-			^Document.abrevPath(path)
+			^PathName.abrevDocumentPath(path)
 		},{
 			this
 		})
@@ -91,7 +125,7 @@
 		path = argpath;
 		//dirty = false;
 	}
-// old style
+	// old style
 	*load { arg obj, warnIfNotFound=true;
 		^obj.loadDocument(warnIfNotFound);
 	}
@@ -112,7 +146,7 @@
 			obj.enpath
 		})
 	}
-}	
+}
 
 
 
