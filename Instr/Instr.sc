@@ -4,7 +4,7 @@ Instr  {
 
 	classvar <dir;
 
-	var  <>name, <>func, <>specs, <>outSpec, >path;
+	var <>name, <>func, <>specs, <>outSpec, >path;
 	var <explicitSpecs;// specs that were explicitly stated on construction (not guessed)
 
 	// specs are optional : can be guessed from the argnames
@@ -447,13 +447,12 @@ Instr  {
 
 	*initClass {
 		if(dir.isNil,{
-			try{ // Document class not always present
+			if(\Document.asClass.notNil, {
 				Class.initClassTree(Document);
-				// default is relative to your doc directory
 				dir = Document.dir ++ "Instr/";
-			}{
+			}, {
 				dir = "Instr/";
-			};
+			});
 		});
 
 		Class.initClassTree(Event);
