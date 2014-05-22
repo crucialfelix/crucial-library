@@ -5,5 +5,5 @@
 	\author:	"felix",
 	\version:	"4.1.3",
 	\url:		"https://github.com/crucialfelix/crucial-library",
-	\isCompatible:	{ Main.versionAtLeast(3,5) },
+	\isCompatible:	{ Main.versionAtLeast(3,5) }
 )
