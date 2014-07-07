@@ -8,13 +8,14 @@
 		/**
 		 * expand path relative to the documentDir
 		 */
-		var pathName;
+		var pathName, path;
 		pathName = PathName(p.standardizePath);
-		^if(pathName.isRelativePath) {
-			this.documentDir ++ pathName.fullPath
+		if(pathName.isRelativePath) {
+			path = this.documentDir +/+ pathName.fullPath
 		} {
-			pathName.fullPath
+			path = pathName.fullPath
 		}
+		^path.standardizePath
 	}
 	*abrevDocumentPath { | path |
 		/**
@@ -83,7 +84,7 @@
 		^obj
 	}
 	loadDocument { arg warnIfNotFound=true;
-		var path,obj;
+		var path, obj;
 		path = PathName.standardizeDocumentPath(this);
 		if(File.exists(path),{
 			obj = thisProcess.interpreter.executeFile(path);
