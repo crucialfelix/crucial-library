@@ -1,7 +1,7 @@
 
 DocumentFile {
 
-  classvar <>dir;
+  classvar <dir;
 
   *open { arg path;
     if(\Document.asClass.notNil, {
@@ -10,6 +10,10 @@ DocumentFile {
       path = this.standardizePath(path);
       ("open " + path.escapeChar($ )).unixCmd;
     });
+  }
+
+  *dir_ { arg path;
+    dir = path.standardizePath(path);
   }
 
 	*standardizePath { | p |
