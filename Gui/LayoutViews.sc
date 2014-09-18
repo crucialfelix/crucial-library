@@ -8,8 +8,8 @@ VertLayoutView : SCViewHolder {
 		^VertLayout
 	}
 
-	*new { arg parent, bounds, margin, gap;
-		^super.new.init(parent, bounds, margin, gap);
+	*new { arg parent, bounds, gap;
+		^super.new.init(parent, bounds, gap);
 	}
 	init { arg parent, bounds, margin, gap;
 		var w, parentView;
@@ -24,10 +24,7 @@ VertLayoutView : SCViewHolder {
 		// parent has placed me, now get my bounds
 		bounds = view.bounds.moveTo(0, 0);
 
-		view.decorator = this.decoratorClass.new(bounds,
-																							margin ?? { 2@0 },
-																							gap ?? { 4@4 },
-																							false);
+		view.decorator = this.decoratorClass.new(bounds, gap, false);
 		view.decorator.owner = this;
 	}
 	add { |child|

@@ -1,31 +1,29 @@
 
 VertLayout : Decorator {
 
-	var <>bounds, <>margin, <>gap;
+	var <>bounds, <>gap;
 	var <>current;
 	var <>owner;
 
-	*new { arg bounds, margin, gap;
-		^super.newCopyArgs(bounds, margin, gap).init
+	*new { arg bounds, gap;
+		^super.newCopyArgs(bounds, gap ? 4).init
 	}
 	init {
-		gap = gap ? Point(4, 4);
-		margin = margin ? Point(4, 4);
 		this.reset;
 	}
 	clear { this.reset; }
 	reset {
-		current = bounds.top + margin.y;
+		current = bounds.top;
 	}
 	place { arg view;
 		var height;
 		height = view.bounds.height;
-		view.bounds = Rect(margin.x, current, bounds.width - margin.x, height);
-		current = current + height + margin.y;
+		view.bounds = Rect(bounds.left, current, bounds.width, height);
+		current = current + height + gap;
 	}
 	remove { }
 	innerBounds {
-		^bounds.insetBy(margin.x * 2, margin.y * 2)
+		^bounds
 	}
 }
 
@@ -33,12 +31,12 @@ VertLayout : Decorator {
 HorzLayout : VertLayout {
 
 	reset {
-		current = margin.y;
+		current = bounds.left;
 	}
 	place { arg view;
 		var width;
 		width = view.bounds.width;
-		view.bounds = Rect(current + margin.x, bounds.top, width, bounds.height - margin.y);
-		current = current + width + margin.x;
+		view.bounds = Rect(current, bounds.top, width, bounds.height);
+		current = current + width + gap;
 	}
 }
