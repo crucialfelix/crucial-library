@@ -134,6 +134,22 @@ Patch : HasPatchIns  {
 		instr.addDependant(this);
 		this.changed(\instr);
 	}
+	get { arg index;
+		var argg;
+		if(index.isKindOf(Symbol),{
+			index = this.argNames.detectIndex({ |an| an == index });
+			if(index.isNil,{
+				Error("Key not found in argNames:"+index).throw
+			});
+		});
+		argg = args[index];
+		if(argg.respondsTo('value'),{
+			^argg.value
+		},{
+			(argg.asString + "does not respond to .value").warn;
+			^nil
+		});
+	}
 	set { arg index, value;
 		var argg;
 		if(index.isKindOf(Symbol),{
