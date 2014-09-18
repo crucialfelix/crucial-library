@@ -28,7 +28,7 @@ DocumentFile {
 
 	*abrevPath { | path |
 		if(path.size < dir.size) { ^path };
-		if(path.copyRange(0,dir.size - 1) == dir) {
+		if(path.copyRange(0, dir.size - 1) == dir) {
 			^path.copyRange(dir.size, path.size - 1)
 		};
 		^path

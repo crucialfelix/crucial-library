@@ -18,7 +18,7 @@ Crucial {
 				gap:			4 @ 4,
 				margin: 		2@0,
 				buttonHeight:	17,
-				focusColor: Color(1.0, 0.98507462686567,0)
+				focusColor: Color(1.0, 0.98507462686567, 0)
 			));
 	}
 
@@ -63,7 +63,7 @@ Crucial {
 			'saferq'->ControlSpec.new(0.001, 0.7, 'lin', 0, 0.3505),
 			'chaos'->ControlSpec.new(0, 5, 'lin', 0, 2.5),
 			'freqOffset'->ControlSpec.new(-4000, 4000, 'lin', 0, 0),
-			'bwr'->ControlSpec.new(0, 1, 'lin', 0, 0.5),//bandwithratio
+			'bwr'->ControlSpec.new(0, 1, 'lin', 0, 0.5), //bandwithratio
 			'delayDecay'->ControlSpec.new(-2, 2, 'lin', 0, 0),
 			'binstretch'->ControlSpec.new(0, 1, 'lin', 0, 0.5),
 			'binshift'->ControlSpec.new(0, 16, 'lin', 0, 8),
@@ -141,12 +141,12 @@ Crucial {
 			'midivelocity'->ControlSpec.new(1, 127, 'lin', 0, 64),
 			//'delay'->ControlSpec.new(0.005, 1, 'lin', 0, 0.5025),
 			\in->AudioSpec.new,
-			\k->ControlSpec(-6.0,6.0),
-			\stepsPerOctave->ControlSpec(1.0,128.0,\lin,1.0,12.0),
-			\mul -> ControlSpec(0.0,1.0,\lin,0,1.0),
-			\add -> ControlSpec(0.0,1.0,\lin,0.0,0.0),
-			'bufnum' -> StaticIntegerSpec(0,100,0),
-			'sndbuf' -> StaticIntegerSpec(0,100,0),
+			\k->ControlSpec(-6.0, 6.0),
+			\stepsPerOctave->ControlSpec(1.0, 128.0, \lin, 1.0, 12.0),
+			\mul -> ControlSpec(0.0, 1.0, \lin, 0, 1.0),
+			\add -> ControlSpec(0.0, 1.0, \lin, 0.0, 0.0),
+			'bufnum' -> StaticIntegerSpec(0, 100, 0),
+			'sndbuf' -> StaticIntegerSpec(0, 100, 0),
 			\instr -> InstrNameSpec()
 
 		  ]

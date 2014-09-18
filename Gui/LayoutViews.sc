@@ -16,7 +16,7 @@ VertLayoutView : SCViewHolder {
 		parentView = parent.asView;
 		if(bounds.notNil, {
 			bounds = bounds.asRect;
-		},{
+		}, {
 			bounds = parentView.bounds.moveTo(0, 0);
 		});
 		this.view = this.class.viewClass.new(parentView, bounds);
@@ -33,7 +33,7 @@ VertLayoutView : SCViewHolder {
 
 	innerBounds { ^this.decorator.innerBounds }
 	bounds_ { arg b;
-		if(b != view.bounds,{
+		if(b != view.bounds, {
 			view.bounds = b;
 			if(this.decorator.notNil, {
 				this.decorator.bounds = b.moveTo(0, 0);

@@ -61,9 +61,9 @@
 
 + String {
 	loadPath { arg warnIfNotFound=true;
-		var obj,path;
+		var obj, path;
 		path = this.standardizePath;
-		if(File.exists(path),{
+		if(File.exists(path), {
 			{
 				obj = thisProcess.interpreter.executeFile(path);
 				obj.didLoadFromPath(this);
@@ -72,8 +72,8 @@
 				("executeFile failed: " + this).postln;
 				err.throw;
 			});
-		},{
-			if(warnIfNotFound,{
+		}, {
+			if(warnIfNotFound, {
 				warn("String:loadPath file not found " + this + path);
 				^nil
 			});
@@ -86,12 +86,12 @@
 	loadDocument { arg warnIfNotFound=true;
 		var path, obj;
 		path = PathName.standardizeDocumentPath(this);
-		if(File.exists(path),{
+		if(File.exists(path), {
 			obj = thisProcess.interpreter.executeFile(path);
 			obj.didLoadFromPath(path);
 			^obj
-		},{
-			if(warnIfNotFound,{
+		}, {
+			if(warnIfNotFound, {
 				warn("String:loadDocument file not found " + this + path);
 			});
 			^ObjectNotFound.new(path)
@@ -113,9 +113,9 @@
 
 	enpath {
 		//document enpath abrev it
-		^if(path.notNil,{
+		^if(path.notNil, {
 			^PathName.abrevDocumentPath(path)
-		},{
+		}, {
 			this
 		})
 	}
@@ -162,26 +162,26 @@
 + Integer {
 
 	asFileSafeChar {
-		^(#[ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z","_","*","#","-","+","~","$" ]).at(this)
+		^(#[ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "_", "*", "#", "-", "+", "~", "$" ]).at(this)
 	}
 	/*
 		extension methods crash if called recursively.
 		james is working on a fix.
 
 	asFileSafeString {
-		var output,msd,lsd;
-		if(this < 62,{
-			if(this.isNegative,{
+		var output, msd, lsd;
+		if(this < 62, {
+			if(this.isNegative, {
 				^("-" ++ this.neg.asFileSafeString)
-			},{
+			}, {
 				^this.asFileSafeChar
 			})
-		},{
+		}, {
 			msd = floor(this / 62.0);
 			lsd = this - (msd * 62.0);
-			if(msd >= 62,{
+			if(msd >= 62, {
 				^msd.asFileSafeString ++ lsd.asInteger.asFileSafeChar
-			},{
+			}, {
 				^msd.asInteger.asFileSafeChar ++ lsd.asInteger.asFileSafeChar
 			})
 		})
@@ -190,7 +190,7 @@
 	asFileSafeString {
 		var output = "", val, msd, lsd;
 		val = this.abs;
-		while ({ val != 0 },{
+		while ({ val != 0 }, {
 			msd = floor(val / 69).asInteger;
 			lsd = val - (msd * 69);
 			output = lsd.asFileSafeChar ++ output;
@@ -213,7 +213,7 @@
 + String {
 	asFileSafeString { // this is more for protecting against / etc.
 		^this.collect({ arg c;
-			if(c.isFileSafe,{ c },{ $# })
+			if(c.isFileSafe, { c }, { $# })
 		})
 	}
 }

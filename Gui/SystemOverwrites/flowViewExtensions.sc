@@ -50,7 +50,7 @@
 		var f, comp;
 		f = FlowView(this, bounds); // flow view intellegently calc defaults bounds
 		func.value(f);
-		if(bounds.isNil,{
+		if(bounds.isNil, {
 			f.resizeToFit
 		});
 		^f
@@ -89,8 +89,8 @@
 
 	// place a FlowView on this FlowView
 	flow { arg func, bounds;
-		var f, consumed,b;
-		if(bounds.notNil,{
+		var f, consumed, b;
+		if(bounds.notNil, {
 			f = FlowView(this, bounds);
 			func.value(f);
 			^f
@@ -99,7 +99,7 @@
 		func.value(f);
 		consumed = f.resizeToFit;
 		// did we exceed ?
-		if(this.decorator.bounds.containsRect(consumed).not,{
+		if(this.decorator.bounds.containsRect(consumed).not, {
 			// yes
 			// pretend I just consumed nothing
 			this.didUseAllocated(consumed.resizeTo(0, 0));
@@ -115,7 +115,7 @@
 			// reflow the sub view
 			f.reflowAll.resizeToFit;
 			this.didUseAllocated(f.bounds);
-		},{
+		}, {
 			this.didUseAllocated(consumed);
 		});
 		^f
