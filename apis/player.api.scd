@@ -11,7 +11,9 @@ var
     p
   },
   set = { arg uuid, player;
-    register[uuid.asSymbol] = player;
+    uuid = uuid.asSymbol;
+    register[uuid] = player;
+    uuid
   };
 
 (
@@ -67,20 +69,36 @@ var
     ));
   },
 
-  // not for remove calling.
+  // not for remote calling.
   // this is for other apis to get a player object
   _get: { arg reply, uuid;
-    reply.(get.(uuid));
+    reply.value(get.value(uuid));
   },
   _set: { arg reply, uuid, player;
-    reply.(set.(uuid, player));
+    uuid = asuuid.value(uuid);
+    reply.value(set.value(uuid, player));
   },
   prGetOrSet: { arg reply, player;
     var uuid = register.findKeyForValue(player);
     if(uuid.isNil, {
-      uuid = asuuid.(nil);
+      uuid = asuuid.value(nil);
       set.value(uuid, player);
     });
     reply.value(uuid);
+  },
+  // curry a dict of handlers
+  // of the form { arg player, arg1, arg2; }
+  // into { arg reply, uuid, arg1, arg2; }
+  // so that you can write simpler handlers
+  withObject: { arg reply, e;
+    var c = ();
+    e.keysValuesDo({ arg name, fn;
+      c[name] = { arg reply, uuid ... args;
+        var player = get.value(uuid),
+          result = fn.valueArray([player] ++ args);
+        reply.value(result);
+      };
+    });
+    reply.value(c)
   }
 );
