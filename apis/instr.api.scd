@@ -23,7 +23,6 @@ var cb = { arg reply, name, args, atTime, targetStyle, target;
 		outSpec = instr.outSpec;
 		args = instr.argNames.collect({ arg argName, i;
 							var spec = instr.specs.at(i);
-							spec.insp;
 							(
 								name: argName,
 								spec: [spec.class, spec.rate] ++ spec.storeArgs,

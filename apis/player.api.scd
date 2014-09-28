@@ -68,6 +68,12 @@ var
       path: p.path
     ));
   },
+  gui: { arg reply, uuid;
+    {
+      get.(uuid).gui();
+      reply.value();
+    }.defer;
+  },
 
   // not for remote calling.
   // this is for other apis to get a player object
@@ -94,8 +100,8 @@ var
     var c = ();
     e.keysValuesDo({ arg name, fn;
       c[name] = { arg reply, uuid ... args;
-        var player = get.value(uuid),
-          result = fn.valueArray([player] ++ args);
+        var object = get.value(uuid),
+          result = fn.valueArray([object] ++ args);
         reply.value(result);
       };
     });
