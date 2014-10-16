@@ -1,97 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <meta charset='utf-8'>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Crucial Library by crucialfelix</title>
 
-  <title>crucialfelix/crucial-library @ GitHub</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Crucial Library</h1>
+        <p>A music programming library for SuperCollider</p>
 
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #2b192e;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #d4e6d1; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #d4e6d1; }
-    h3 { text-align: center; color: #d4e6d1; }
-    a { color: #d4e6d1; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
-</head>
+        <p class="view"><a href="https://github.com/crucialfelix/crucial-library">View the Project on GitHub <small>crucialfelix/crucial-library</small></a></p>
 
-<body>
-  <a href="https://github.com/crucialfelix/crucial-library"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
-  <div id="container">
+        <ul>
+          <li><a href="https://github.com/crucialfelix/crucial-library/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/crucialfelix/crucial-library/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/crucialfelix/crucial-library">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="crucial-library" class="anchor" href="#crucial-library"><span class="octicon octicon-link"></span></a>crucial library</h1>
 
-    <div class="download">
-      <a href="https://github.com/crucialfelix/crucial-library/zipball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-      <a href="https://github.com/crucialfelix/crucial-library/tarball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
+<p>Classes for <a href="http://github.com/supercollider/supercollider">SuperCollider</a></p>
+
+<ul>
+<li>
+<strong>Instr</strong> —
+load resuable functions from disk, create dynamically variable architecture SynthDefs for use in Synths, Pbind/Patterns and Patches.  Quarks can include Instr/ folders to share with others.</li>
+<li><p><strong>InstrBrowser</strong> —
+peruse and search your installed Instr</p></li>
+<li><p><strong>Patch</strong> — an Instr player</p></li>
+<li><p><strong>Player</strong> — class framework for objects that play. manages loading of resources, includes support for sound file recording and saving object state to file.</p></li>
+<li><p><strong>extended Spec system</strong> — extended datatypes specifications</p></li>
+<li><p><strong>OSCSched</strong> — schedule OSC bundles to be sent just prior to event time. revoke scheduled bundles, relocate in time, stop, change tempo</p></li>
+<li><p><strong>BeatSched</strong> — full featured function scheduling with same features as OSCSched</p></li>
+<li><p><strong>Tempo</strong> - tempo calculations and centralized control</p></li>
+<li><p><strong>TempoBus</strong> - maintains a control rate bus on scsynth</p></li>
+<li><p><strong>MultiChanRecorder</strong> — utility for recording multiple Busses to disk</p></li>
+<li>
+<p><strong>Editors</strong></p>
+
+<ul>
+<li>NumberEditor</li>
+<li>EnvEditor</li>
+<li>DictionaryEditor</li>
+</ul>
+</li>
+<li><p><strong>SFP</strong> — SoundFilePlayer</p></li>
+<li><p><strong>Sample</strong> — easy to load to server, beat matching and slicing tools</p></li>
+<li><p><strong>StreamKrDur</strong> — play Pseq and friends at \control rate on a Bus</p></li>
+<li><p><strong>Stream2Trig</strong> - play Pseq and friends as rhythmic \trigs on a Bus</p></li>
+<li><p><strong>InstrSpawner</strong> — similar to Pbind for Instr</p></li>
+<li>
+<strong>InstrGateSpawner</strong> — similar to Pbind for Instr</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/crucialfelix">crucialfelix</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
     </div>
-
-    <h1><a href="https://github.com/crucialfelix/crucial-library">crucial-library</a>
-      <span class="small">by <a href="https://github.com/crucialfelix">crucialfelix</a></span></h1>
-
-    <div class="description">
-      SuperCollider music programming library. A public working copy of the SVN Quark at soundforge
-    </div>
-
+    <script src="javascripts/scale.fix.js"></script>
     
-
-    
-
-    
-
-    
-
-    
-      <h2>Authors</h2>
-      <p>crucialfelix (crucialfelix@gmail.com)<br/>      </p>
-    
-
-    
-      <h2>Contact</h2>
-      <p> (crucialfelix@gmail.com)<br/>      </p>
-    
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="https://github.com/crucialfelix/crucial-library/zipball/master">zip</a> or
-      <a href="https://github.com/crucialfelix/crucial-library/tarball/master">tar formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/crucialfelix/crucial-library</pre>
-    </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="https://github.com/crucialfelix/crucial-library">crucialfelix/crucial-library</a>
-    </div>
-
-  </div>
-
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-154147-1");
-pageTracker._trackPageview();
-} catch(err) {}</script>"
-</body>
+  </body>
 </html>
