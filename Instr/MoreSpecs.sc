@@ -22,6 +22,9 @@ AudioSpec : Spec {
 			];
 		)
 	}
+	default {
+		^Silent.ar(this.numChannels ? 1)
+	}
 	defaultControl {
 		if(numChannels.isNil, {
 			// the purpose is to occupy an input
@@ -535,4 +538,3 @@ ObjectSpec : Spec {
 		^[defaultControl]
 	}
 }
-
