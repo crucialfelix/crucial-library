@@ -373,16 +373,17 @@ Instr  {
 		^Library.atList([this] ++ symbolized) ?? {("Instr " + symbolized + "still not found after loading from file").warn; nil};
 	}
 	*findFileFor { arg symbolized;
-		var quarkInstr, found;
+		var found;
 		// the user's primary Instr directory
 		found = this.findFileInDir(symbolized, this.dir);
 		if(found.notNil, { ^found });
 
-		// look in each quark with an Instr directory
-		quarkInstr = (Platform.userExtensionDir ++ "/quarks/*/Instr").pathMatch;
-		quarkInstr.do({ |path|
-			found = this.findFileInDir(symbolized, path);
-			if(found.notNil, { ^found });
+		// search quarks
+		Quarks.installed.do({ |quark|
+			(quark.localPath +/+ "Instr").pathMatch.do({ |instrDir|
+				found = this.findFileInDir(symbolized, instrDir);
+				if(found.notNil, { ^found });
+			});
 		});
 		^nil
 	}
@@ -858,4 +859,3 @@ InterfaceDef : Instr {
 	gui_ { arg function; guiBodyFunction = function; }
 
 }
-
