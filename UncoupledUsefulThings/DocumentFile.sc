@@ -1,20 +1,20 @@
 
 DocumentFile {
 
-  classvar <dir;
+	classvar <dir;
 
-  *open { arg path;
-    if(\Document.asClass.notNil, {
-      Document.open(path);
-    }, {
-      path = this.standardizePath(path);
-      ("open " + path.escapeChar($ )).unixCmd;
-    });
-  }
+	*open { arg path;
+		if(\Document.asClass.notNil, {
+			Document.open(path);
+		}, {
+			path = this.standardizePath(path);
+			("open " + path.escapeChar($ )).unixCmd;
+		});
+	}
 
-  *dir_ { arg path;
-    dir = path.standardizePath(path);
-  }
+	*dir_ { arg path;
+		dir = path.standardizePath(path);
+	}
 
 	*standardizePath { | p |
 		var pathName;
