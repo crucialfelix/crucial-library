@@ -103,7 +103,7 @@ CCPlayer : MIDIPlayer {
 	}
 	storeArgs { ^[num, spec] }
 	initResponders {
-		resp = CCResponder(num, { arg val; value = spec.map(val / 127.0); this.changed });
+		resp = CCResponder({ arg val; value = spec.map(val / 127.0); this.changed }, num:num);
 	}
 }
 
@@ -133,5 +133,3 @@ CatchingCCPlayer : MIDIPlayer {
 
 // MIDINotePlayer(spec, scale)
 // MIDIVelocityPlayer(spec)
-
-
