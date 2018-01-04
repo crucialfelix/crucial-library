@@ -40,7 +40,9 @@ Instr  {
 	}
 	*loadAll {
 		this.prLoadDir(this.dir);
-		this.prLoadDir(Platform.userExtensionDir ++ "/quarks/*/Instr");
+		Quarks.installedPaths.do { |path|
+			this.prLoadDir(path +/+ "Instr");
+		}
 	}
 	*prLoadDir { arg dir;
 		var paths, ext;
