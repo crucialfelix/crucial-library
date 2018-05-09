@@ -1,5 +1,4 @@
 
-
 Instr  {
 
 	classvar <dir;
@@ -224,7 +223,7 @@ Instr  {
 	maxArgs { ^this.argsSize }
 	argsSize { ^func.def.argNames.size }
 	argNames { ^(func.def.argNames ? []).asList }
-	defArgs { ^(func.def.prototypeFrame ? []).asList }
+	defArgs { ^(func.def.prototypeFrame ? []).copyRange(0,this.argNames.size-1).asList }
 
 	argNameAt { arg i;
 		var nn;
